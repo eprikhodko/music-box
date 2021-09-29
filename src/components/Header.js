@@ -1,5 +1,8 @@
 import { useState } from "react"
 
+// import styled from "styled-components"
+// import { createGlobalStyle } from "styled-components"
+
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 
