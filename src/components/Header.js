@@ -3,6 +3,8 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 
+import { ReactComponent as IconSearch } from "../icons/search_24px.svg"
+
 function Header() {
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -27,7 +29,13 @@ function Header() {
         <form onSubmit={handleSearchSubmit}>
           <label htmlFor="search input">
             Search
-            <input type="text" value={searchQuery} onChange={handleChange} />
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={handleChange}
+            />
+            <IconSearch />
           </label>
           <input type="submit" value="Submit" />
         </form>
