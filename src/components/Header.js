@@ -1,11 +1,20 @@
 import { useState } from "react"
 
-// import styled from "styled-components"
+import styled from "styled-components"
 
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 
 import { ReactComponent as IconSearch } from "../icons/search_24px.svg"
+
+// styles
+const StyledHeader = styled.header`
+  background-color: rosybrown;
+`
+
+const Logo = styled.h1`
+  margin: 0;
+`
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -22,10 +31,10 @@ function Header() {
   console.log(searchQuery)
 
   return (
-    <header>
+    <StyledHeader>
       <div>
         <Link to={ROUTES.HOME}>
-          <h1>Music Box</h1>
+          <Logo>Music Box</Logo>
         </Link>
 
         <form onSubmit={handleSearchSubmit}>
@@ -72,7 +81,7 @@ function Header() {
           </ul>
         </nav>
       </div>
-    </header>
+    </StyledHeader>
   )
 }
 
