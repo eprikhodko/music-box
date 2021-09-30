@@ -9,11 +9,24 @@ import { ReactComponent as IconSearch } from "../icons/search_24px.svg"
 
 // styles
 const StyledHeader = styled.header`
+  /* display: flex;
+  justify-content: space-between; */
   background-color: rosybrown;
 `
 
 const Logo = styled.h1`
   margin: 0;
+`
+
+const ContainerFlex = styled.div`
+  display: flex;
+  border: 1px solid rebeccapurple;
+`
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: 5px solid royalblue;
 `
 
 function Header() {
@@ -32,25 +45,26 @@ function Header() {
 
   return (
     <StyledHeader>
-      <div>
-        <Link to={ROUTES.HOME}>
-          <Logo>Music Box</Logo>
-        </Link>
+      <Container>
+        <ContainerFlex>
+          <Link to={ROUTES.HOME}>
+            <Logo>Music Box</Logo>
+          </Link>
 
-        <form onSubmit={handleSearchSubmit}>
-          <label htmlFor="search input">
-            Search
-            <input
-              type="text"
-              placeholder="Search"
-              value={searchQuery}
-              onChange={handleChange}
-            />
-            <IconSearch />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-
+          <form onSubmit={handleSearchSubmit}>
+            <label htmlFor="search input">
+              Search
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchQuery}
+                onChange={handleChange}
+              />
+              <IconSearch />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        </ContainerFlex>
         <nav>
           <ul>
             <li>
@@ -80,7 +94,7 @@ function Header() {
             </li>
           </ul>
         </nav>
-      </div>
+      </Container>
     </StyledHeader>
   )
 }
