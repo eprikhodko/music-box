@@ -8,17 +8,20 @@ const Ul = styled.ul`
 `
 
 const Li = styled.li`
-  margin-left: 2em;
+  margin-left: 2.5em;
 `
 
 const NavLink = styled(Link)`
   text-decoration: none;
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 500;
 `
 
 function Nav() {
   return (
     <nav>
-      <Ul>
+      <Ul aria-label="Header navigation" role="navigation">
         <Li>
           <NavLink to={ROUTES.HOME}>Home</NavLink>
         </Li>
