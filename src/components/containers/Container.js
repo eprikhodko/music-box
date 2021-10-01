@@ -7,7 +7,7 @@ const StyledContainer = styled.div`
   justify-content: space-between;
   /* border: 1px solid magenta; */
 
-  margin: 0 auto;
+  margin: 0.2em auto;
 `
 
 function Container({ children }) {

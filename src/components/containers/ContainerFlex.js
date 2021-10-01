@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const StyledContainerFlex = styled.div`
   display: flex;
+  align-items: center;
 `
 
 function ContainerFlex({ children }) {
