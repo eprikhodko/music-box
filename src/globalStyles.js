@@ -10,6 +10,8 @@ const GlobalStyle = createGlobalStyle`
     color: rgba(0, 0, 0, 0.7);
     font-weight: 500;
     line-height: 1.6;
+
+    background-color: #dbdbdb;
   }
 
   h1, h2, strong {
