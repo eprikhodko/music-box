@@ -1,7 +1,8 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-import { ReactComponent as SearchIcon } from "../icons/search_24px.svg"
+import { ReactComponent as SearchIcon } from "../icons/icon-search.svg"
+import { ReactComponent as ArrowIcon } from "../icons/icon-arrow-right.svg"
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +15,10 @@ const Container = styled.div`
   margin-left: 2.5em;
   background-color: #f9f9f9;
   &:hover {
-    box-shadow: 5px 5px 1px thistle;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  &:focus-within {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 `
 
@@ -38,9 +42,20 @@ const TextInput = styled.input`
   }
 `
 
-const Icon = styled.div`
+const IconSearch = styled.div`
   display: flex;
-  margin-right: 1em;
+  margin-left: 0.6em;
+`
+
+const IconArrow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5em;
+  min-width: 26px;
+  min-height: 26px;
+  border: 1px solid #000;
+  border-radius: 50px;
 `
 
 function Search() {
@@ -59,14 +74,17 @@ function Search() {
 
   return (
     <Container>
+      <IconSearch>
+        <SearchIcon />
+      </IconSearch>
       <TextInput
         placeholder="Search"
         value={searchQuery}
         onChange={handleChange}
       />
-      <Icon>
-        <SearchIcon onClick={handleSearchSubmit} />
-      </Icon>
+      <IconArrow>
+        <ArrowIcon onClick={handleSearchSubmit} />
+      </IconArrow>
     </Container>
   )
 }

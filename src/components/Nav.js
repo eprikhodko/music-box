@@ -16,6 +16,10 @@ const NavLink = styled(Link)`
   color: #000;
   font-size: 1.8rem;
   font-weight: 500;
+  padding-bottom: 0.2em;
+  &:hover {
+    border-bottom: 2px solid #000;
+  }
 `
 
 function Nav() {
