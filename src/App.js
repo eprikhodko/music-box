@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { Switch, Route } from "react-router-dom"
 import * as ROUTES from "./constants/routes"
 
 // pages
@@ -11,18 +11,18 @@ import NotFound from "./pages/not-found"
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path={ROUTES.HOME} exact>
-          <Home />
-        </Route>
-        <Route path={ROUTES.CATALOG} component={Catalog} />
-        <Route path={ROUTES.SEARCH} component={Search} />
-        <Route path={ROUTES.LOGIN} component={Login} />
-        <Route path={ROUTES.SIGNUP} component={SignUp} />
-        <Route path={ROUTES.NOT_FOUND} component={NotFound} />
-      </Switch>
-    </Router>
+    // <Router>
+    <Switch>
+      <Route path={ROUTES.HOME} exact>
+        <Home />
+      </Route>
+      <Route path={ROUTES.CATALOG} component={Catalog} />
+      <Route path={ROUTES.SEARCH} component={Search} />
+      <Route path={ROUTES.LOGIN} component={Login} />
+      <Route path={ROUTES.SIGNUP} component={SignUp} />
+      <Route path={ROUTES.NOT_FOUND} component={NotFound} />
+    </Switch>
+    // </Router>
   )
 }
 
