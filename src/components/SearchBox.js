@@ -42,12 +42,12 @@ const TextInput = styled.input`
   }
 `
 
-const IconSearch = styled.div`
+const ContainerSearchIcon = styled.div`
   display: flex;
   margin-left: 0.6em;
 `
 
-const IconArrow = styled.div`
+const ContainerArrowIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,9 +56,12 @@ const IconArrow = styled.div`
   min-height: 26px;
   border: 1px solid #000;
   border-radius: 50px;
+  &:hover {
+    background-color: ${({ isEmpty }) => isEmpty && "#dbdbdb"};
+  }
 `
 
-function Search() {
+function SearchBox() {
   const [searchQuery, setSearchQuery] = useState("")
 
   const handleChange = (event) => {
@@ -74,19 +77,19 @@ function Search() {
 
   return (
     <Container>
-      <IconSearch>
-        <SearchIcon />
-      </IconSearch>
+      <ContainerSearchIcon>
+        <SearchIcon onClick={handleSearchSubmit} />
+      </ContainerSearchIcon>
       <TextInput
         placeholder="Search"
         value={searchQuery}
         onChange={handleChange}
       />
-      <IconArrow>
+      <ContainerArrowIcon isEmpty={searchQuery}>
         <ArrowIcon onClick={handleSearchSubmit} />
-      </IconArrow>
+      </ContainerArrowIcon>
     </Container>
   )
 }
 
-export default Search
+export default SearchBox

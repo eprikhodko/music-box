@@ -4,7 +4,7 @@ import ContainerMain from "./containers/ContainerMain"
 import Container from "./containers/Container"
 import ContainerFlex from "./containers/ContainerFlex"
 import Logo from "./Logo"
-import Search from "./Search"
+import SearchBox from "./SearchBox"
 import Nav from "./Nav"
 
 const StyledHeader = styled.header`
@@ -25,7 +25,7 @@ function Header() {
         <Container>
           <ContainerFlex>
             <Logo />
-            <Search />
+            <SearchBox />
           </ContainerFlex>
 
           <Nav />
