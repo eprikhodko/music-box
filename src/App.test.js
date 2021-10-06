@@ -28,7 +28,7 @@ describe("App component", () => {
   })
 })
 
-describe("Header Navigation", () => {
+describe("Header Navigation for anonynomous user", () => {
   test("Logo link points to the home page", () => {
     renderApp()
     const link = screen.getByRole("link", { name: /music box/i })
@@ -69,5 +69,42 @@ describe("Header Navigation", () => {
     const link = screen.getByRole("link", { name: /sign up/i })
     userEvent.click(link)
     expect(screen.getByText(/this is sign up page/i)).toBeInTheDocument()
+  })
+})
+
+describe("Header Navigation for authorized user", () => {
+  test("Logo link points to the home page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /music box/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is home page/i)).toBeInTheDocument()
+  })
+
+  test("'Home' link points to the home page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /home/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is home page/i)).toBeInTheDocument()
+  })
+
+  test("'Catalog' link points to the 'catalog' page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /catalog/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is catalog page/i)).toBeInTheDocument()
+  })
+
+  test("'Search' link points to the 'search' page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /search/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is search page/i)).toBeInTheDocument()
+  })
+
+  test("'Upload' link points to the 'upload' page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /upload/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is upload page/i)).toBeInTheDocument()
   })
 })
