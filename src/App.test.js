@@ -4,71 +4,70 @@ import { MemoryRouter } from "react-router-dom"
 import App from "./App"
 
 /* eslint-disable */
-
 beforeEach(() => {
   global.console = require("console")
 })
+/* eslint-enable */
 
-describe("App", () => {
-  test("'catalog' link points to the correct page", async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    )
-    // screen.debug()
-    const link = screen.getByRole("link", { name: /catalog/i })
-    // screen.debug(link)
-    userEvent.click(link)
-    // screen.debug()
-    // const divContainer = screen.getByText(/this is catalog page/i)
-    // const divContainer = screen.getByText("This is catalog page")
-    // screen.debug(divContainer)
+const renderApp = () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
+}
 
-    // screen.debug(await screen.findByText("This is catalog page"))
-    // await screen.findByText("This is catalog page")
+describe("App component", () => {
+  test("App component is rendered", () => {
+    renderApp()
+  })
 
-    // expect(screen.getByText("This is catalog page")).toBeInTheDocument()
+  test("We're currently at home page", () => {
+    renderApp()
+    expect(screen.getByText(/this is home page/i)).toBeInTheDocument()
   })
 })
 
-test("App component is rendered", () => {
-  render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  )
-})
+describe("Header Navigation", () => {
+  test("Logo link points to the home page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /music box/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is home page/i)).toBeInTheDocument()
+  })
 
-test("full app rendering/navigating", () => {
-  render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  )
+  test("'Home' link points to the home page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /home/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is home page/i)).toBeInTheDocument()
+  })
 
-  // verify page content for expected route
-  expect(screen.getByText(/this is home page/i)).toBeInTheDocument()
-})
+  test("'Catalog' link points to the 'catalog' page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /catalog/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is catalog page/i)).toBeInTheDocument()
+  })
 
-test("'catalog' link points to the correct page", () => {
-  render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  )
+  test("'Search' link points to the 'search' page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /search/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is search page/i)).toBeInTheDocument()
+  })
 
-  userEvent.click(screen.getByRole("link", { name: /catalog/i }))
-  expect(screen.getByText(/this is catalog page/i))
-})
+  test("'Log in' link points to the 'login' page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /log in/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is login page/i)).toBeInTheDocument()
+  })
 
-test("'search' link points to the correct page", () => {
-  render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  )
-
-  userEvent.click(screen.getByRole("link", { name: /search/i }))
-  expect(screen.getByText(/this is search page/i))
+  test("'Sign up' link points to the 'signup' page", () => {
+    renderApp()
+    const link = screen.getByRole("link", { name: /sign up/i })
+    userEvent.click(link)
+    expect(screen.getByText(/this is sign up page/i)).toBeInTheDocument()
+  })
 })
