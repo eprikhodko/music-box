@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "eslint:recommended",
@@ -21,8 +22,17 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "testing-library",
+        "jest-dom"
     ],
+    "overrides": [
+        {
+          // enable eslint-plugin-testing-library rules or preset only for matching files!
+          "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+          "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+        }
+      ],
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
