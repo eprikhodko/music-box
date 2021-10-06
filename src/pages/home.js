@@ -10,6 +10,7 @@ function Home() {
       {/* <Hero />
       <RecentlyAddedAlbums />
       <Footer /> */}
+      <div>This is home page</div>
     </>
   )
 }
