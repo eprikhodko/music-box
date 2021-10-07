@@ -46,7 +46,7 @@ const currentUser = false
 
 function Nav() {
   // return navigation for anonymous user
-  return currentUser ? (
+  return !currentUser ? (
     <StyledNav>
       <Ul aria-label="Header navigation" role="navigation">
         <Li>
