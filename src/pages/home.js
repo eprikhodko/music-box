@@ -7,9 +7,11 @@ function Home() {
   return (
     <>
       <Header />
-      <Hero />
-      {/* <RecentlyAddedAlbums />
-      <Footer /> */}
+      <main>
+        <Hero />
+        {/* <RecentlyAddedAlbums / */}
+      </main>
+      {/* <Footer /> */}
       <div>This is home page</div>
     </>
   )

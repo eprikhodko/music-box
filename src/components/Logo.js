@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import * as ROUTES from "../constants/routes"
 
-const StyledLogo = styled.h1`
+const StyledLogo = styled.p`
   color: #000;
   font-size: 3.5rem;
   font-weight: 800;
