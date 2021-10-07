@@ -56,6 +56,7 @@ const ContainerArrowIcon = styled.div`
   min-height: 26px;
   border: 1px solid #000;
   border-radius: 50px;
+  cursor: ${({ isEmpty }) => isEmpty && "pointer"};
   &:hover {
     background-color: ${({ isEmpty }) => isEmpty && "#dbdbdb"};
   }

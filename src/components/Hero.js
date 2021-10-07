@@ -4,7 +4,7 @@ import ContainerMain from "./containers/ContainerMain"
 import Button from "./Button"
 
 const HeroSection = styled.section`
-  background-color: honeydew;
+  /* background-color: honeydew; */
 `
 
 const HeroTitle = styled.h1`
@@ -26,8 +26,8 @@ function Hero() {
       <HeroSection>
         <HeroTitle>Build your music library</HeroTitle>
         <HeroSubtitle>Discover new music with us</HeroSubtitle>
-        <Button text="View all" />
-        <Button text="Log in" />
+        <Button hero text="View all" />
+        <Button hero text="Log in" />
       </HeroSection>
     </ContainerMain>
   )
