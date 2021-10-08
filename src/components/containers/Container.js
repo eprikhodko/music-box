@@ -5,8 +5,8 @@ const StyledContainer = styled.div`
   max-width: 1160px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  /* border: 1px solid magenta; */
+  /* align-items: center; */
+  border: 1px solid magenta;
   margin: 0.2em auto;
 `
 
