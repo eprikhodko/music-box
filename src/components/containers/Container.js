@@ -6,8 +6,8 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
   /* align-items: center; */
-  border: 1px solid magenta;
-  margin: 0.2em auto;
+  margin: 0 auto;
+  /* border: 1px solid magenta; */
 `
 
 function Container({ children }) {
