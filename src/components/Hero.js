@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
+
+import * as ROUTES from "../constants/routes"
 
 import ContainerMain from "./containers/ContainerMain"
 import Container from "./containers/Container"
@@ -42,6 +45,8 @@ const HeroSubtitle = styled.h2`
   margin-top: 0.5em;
 `
 
+const currentUser = false
+
 function Hero() {
   return (
     <ContainerMain>
@@ -51,8 +56,14 @@ function Hero() {
             <HeroTitle>Build your music library</HeroTitle>
             <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
             <ContainerHeroButtons>
-              <Button hero text="View all" />
-              <Button hero text="Log in" />
+              <Link to={ROUTES.CATALOG}>
+                <Button hero text="View all" />
+              </Link>
+              {!currentUser && (
+                <Link to={ROUTES.LOGIN}>
+                  <Button hero text="Log in" />
+                </Link>
+              )}
             </ContainerHeroButtons>
           </ContainerHeroText>
         </Container>
