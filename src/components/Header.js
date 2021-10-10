@@ -10,10 +10,10 @@ import Nav from "./Nav"
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
   max-width: 1440px;
-  /* width: 90%; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 90%;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   margin: 0 auto;
   border-bottom: 3px solid #c2c2c2;
 `

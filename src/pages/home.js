@@ -1,6 +1,6 @@
 import Header from "../components/Header"
 import Hero from "../components/Hero"
-// import RecentlyAddedAlbums from "../components/RecentlyAddedAlbums"
+import RecentlyAddedAlbums from "../components/RecentlyAddedAlbums"
 // import Footer from "../components/Footer"
 
 function Home() {
@@ -9,7 +9,7 @@ function Home() {
       <Header />
       <main>
         <Hero />
-        {/* <RecentlyAddedAlbums / */}
+        <RecentlyAddedAlbums />
       </main>
       {/* <Footer /> */}
       <div>This is home page</div>
