@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
+import * as ROUTES from "../constants/routes"
+
 import Button from "./Button"
 
 import Container from "./containers/Container"
@@ -23,14 +27,43 @@ const ContainerFlexColumn = styled.div`
 `
 
 function RecentlyAddedAlbums() {
+  const [albumsData, setAlbumsData] = useState([])
+
+  const url =
+    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/images.json"
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setAlbumsData(data))
+  }, [])
+
+  // console.log(albumsData)
+
+  const albumsComponents = albumsData.map((album) => (
+    <div key={album.albumId}>
+      <img
+        src={album.albumCover}
+        alt={`album cover for ${album.albumTitle} album`}
+      />
+      <p>{album.albumTitle}</p>
+      <p>{album.artist}</p>
+    </div>
+  ))
+
   return (
     <ContainerMain>
       <Section>
         <Container>
           <ContainerFlexColumn>
             <Title>Recently added albums</Title>
-            <div>Albums grid</div>
-            <Button text="Show more" />
+            <div>
+              Albums grid
+              {albumsComponents}
+            </div>
+            <Link to={ROUTES.CATALOG}>
+              <Button text="Show more" />
+            </Link>
           </ContainerFlexColumn>
         </Container>
       </Section>

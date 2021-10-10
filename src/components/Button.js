@@ -33,7 +33,11 @@ function Button({ text, hero }) {
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  hero: PropTypes.bool.isRequired,
+  hero: PropTypes.bool,
+}
+
+Button.defaultProps = {
+  hero: false,
 }
 
 export default Button
