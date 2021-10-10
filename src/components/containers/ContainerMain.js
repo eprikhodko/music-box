@@ -5,6 +5,7 @@ const StyledContainerMain = styled.div`
   width: 90%;
   max-width: 1440px;
   margin: 0 auto;
+  /* border: 5px solid goldenrod; */
 `
 
 function ContainerMain({ children }) {

@@ -26,6 +26,10 @@ const NavLink = styled(Link)`
   &:hover {
     border-bottom: 2px solid #000;
   }
+  &:focus {
+    border-bottom: 2px solid #000;
+    outline: 3px solid transparent;
+  }
 `
 
 const UserAvatar = styled.div`

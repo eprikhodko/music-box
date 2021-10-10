@@ -8,7 +8,7 @@ import SearchBox from "./SearchBox"
 import Nav from "./Nav"
 
 const StyledHeader = styled.header`
-  height: 80px;
+  padding: 0.5em 0 0.5em;
   max-width: 1440px;
   /* width: 90%; */
   display: flex;
