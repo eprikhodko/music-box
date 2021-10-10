@@ -26,11 +26,29 @@ const ContainerFlexColumn = styled.div`
   /* border: 1px solid; */
 `
 
+const AlbumCover = styled.img`
+  max-width: 266px;
+`
+
+const AlbumsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2em;
+  margin: 3em 0 2em;
+  /* border: 1px solid; */
+`
+
+const AlbumContainer = styled.div`
+  &:hover {
+    background-color: #333;
+  }
+`
+
 function RecentlyAddedAlbums() {
   const [albumsData, setAlbumsData] = useState([])
 
   const url =
-    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/images.json"
+    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
 
   useEffect(() => {
     fetch(url)
@@ -41,14 +59,14 @@ function RecentlyAddedAlbums() {
   // console.log(albumsData)
 
   const albumsComponents = albumsData.map((album) => (
-    <div key={album.albumId}>
-      <img
+    <AlbumContainer key={album.albumId}>
+      <AlbumCover
         src={album.albumCover}
         alt={`album cover for ${album.albumTitle} album`}
       />
       <p>{album.albumTitle}</p>
       <p>{album.artist}</p>
-    </div>
+    </AlbumContainer>
   ))
 
   return (
@@ -57,10 +75,7 @@ function RecentlyAddedAlbums() {
         <Container>
           <ContainerFlexColumn>
             <Title>Recently added albums</Title>
-            <div>
-              Albums grid
-              {albumsComponents}
-            </div>
+            <AlbumsGrid>{albumsComponents}</AlbumsGrid>
             <Link to={ROUTES.CATALOG}>
               <Button text="Show more" />
             </Link>
