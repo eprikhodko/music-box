@@ -8,8 +8,8 @@ import Button from "./Button"
 import Container from "./containers/Container"
 import ContainerMain from "./containers/ContainerMain"
 
-const Section = styled.section`
-  margin-top: 4.2em;
+const RecentlyAddedAlbumsSection = styled.section`
+  margin-top: 4.4em;
 `
 
 const Title = styled.h2`
@@ -82,8 +82,8 @@ function RecentlyAddedAlbums() {
 
   // console.log(albumsData)
 
-  const albumsComponents = albumsData.map((album) => (
-    <LinkToAlbum to={ROUTES.ALBUM_DETAILS} key={album.albumId}>
+  const albumsComponents = albumsData.slice(0, 8).map((album) => (
+    <LinkToAlbum to={`/albums/${album.albumId}`} key={album.albumId}>
       <AlbumContainer>
         <AlbumCover
           src={album.albumCover}
@@ -97,7 +97,7 @@ function RecentlyAddedAlbums() {
 
   return (
     <ContainerMain>
-      <Section>
+      <RecentlyAddedAlbumsSection>
         <Container>
           <ContainerFlexColumn>
             <Title>Recently added albums</Title>
@@ -107,7 +107,7 @@ function RecentlyAddedAlbums() {
             </Link>
           </ContainerFlexColumn>
         </Container>
-      </Section>
+      </RecentlyAddedAlbumsSection>
     </ContainerMain>
   )
 }
