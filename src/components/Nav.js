@@ -13,16 +13,14 @@ const Ul = styled.ul`
   list-style: none;
 `
 
-const Li = styled.li`
-  margin-left: 2.5em;
-`
-
 const NavLink = styled(Link)`
   text-decoration: none;
   color: #000;
   font-size: 1.8rem;
   font-weight: 500;
   padding-bottom: 0.2em;
+  margin-left: 2.5em;
+
   &:hover {
     border-bottom: 2px solid #000;
   }
@@ -53,50 +51,50 @@ function Nav() {
   return !currentUser ? (
     <StyledNav>
       <Ul aria-label="Header navigation" role="navigation">
-        <Li>
+        <li>
           <NavLink to={ROUTES.HOME}>Home</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.CATALOG}>Catalog</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.SEARCH}>Search</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.LOGIN}>Log in</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.SIGNUP}>Sign up</NavLink>
-        </Li>
+        </li>
       </Ul>
     </StyledNav>
   ) : (
     // return navigation for authorized user
     <StyledNav>
       <Ul aria-label="Header navigation" role="navigation">
-        <Li>
+        <li>
           <NavLink to={ROUTES.HOME}>Home</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.CATALOG}>Catalog</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.SEARCH}>Search</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.UPLOAD}>Upload</NavLink>
-        </Li>
+        </li>
 
-        <Li>
+        <li>
           <NavLink to={ROUTES.HOME}>Sign out</NavLink>
-        </Li>
+        </li>
       </Ul>
       <UserAvatar>
         <Link to={ROUTES.PROFILE}>
