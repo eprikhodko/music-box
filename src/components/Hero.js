@@ -21,7 +21,7 @@ const ContainerHeroText = styled.div`
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  margin: 7em 0 18em;
+  margin: 10em 0 14.5em;
   /* border: 3px solid green; */
 `
 
