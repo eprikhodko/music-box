@@ -18,6 +18,21 @@ const Title = styled.h2`
   font-weight: 500;
 `
 
+const AlbumTitle = styled.p`
+  font-size: 1.8rem;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 0;
+  margin-top: 0.6em;
+`
+
+const AlbumArtist = styled.p`
+  font-size: 1.6rem;
+  color: #000;
+  font-weight: 500;
+  margin: 0;
+`
+
 const ContainerFlexColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,6 +43,10 @@ const ContainerFlexColumn = styled.div`
 
 const AlbumCover = styled.img`
   max-width: 266px;
+  /* margin-bottom: 0; */
+  &:hover {
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+  }
 `
 
 const AlbumsGrid = styled.div`
@@ -39,9 +58,14 @@ const AlbumsGrid = styled.div`
 `
 
 const AlbumContainer = styled.div`
-  &:hover {
-    background-color: #333;
+  &:hover ${AlbumCover} {
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
   }
+`
+
+const LinkToAlbum = styled(Link)`
+  text-decoration: none;
+  color: #000;
 `
 
 function RecentlyAddedAlbums() {
@@ -59,14 +83,16 @@ function RecentlyAddedAlbums() {
   // console.log(albumsData)
 
   const albumsComponents = albumsData.map((album) => (
-    <AlbumContainer key={album.albumId}>
-      <AlbumCover
-        src={album.albumCover}
-        alt={`album cover for ${album.albumTitle} album`}
-      />
-      <p>{album.albumTitle}</p>
-      <p>{album.artist}</p>
-    </AlbumContainer>
+    <LinkToAlbum to={ROUTES.ALBUM_DETAILS} key={album.albumId}>
+      <AlbumContainer>
+        <AlbumCover
+          src={album.albumCover}
+          alt={`album cover for ${album.albumTitle} album`}
+        />
+        <AlbumTitle>{album.albumTitle}</AlbumTitle>
+        <AlbumArtist>{album.artist}</AlbumArtist>
+      </AlbumContainer>
+    </LinkToAlbum>
   ))
 
   return (
