@@ -25,13 +25,17 @@ const ContainerFlexColumn = styled.div`
 `
 
 function RecentlyAddedAlbums() {
+  const slice = {
+    start: 0,
+    end: 8,
+  }
   return (
     <ContainerMain>
       <RecentlyAddedAlbumsSection>
         <Container>
           <ContainerFlexColumn>
             <Title>Recently added albums</Title>
-            <AlbumsGrid gridForHomePage />
+            <AlbumsGrid gridSlice={slice} />
             <LinkAsButton to={ROUTES.CATALOG} text="Show more" />
           </ContainerFlexColumn>
         </Container>

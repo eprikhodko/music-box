@@ -58,7 +58,7 @@ const LinkToAlbum = styled(Link)`
   }
 `
 
-function AlbumsGrid({ gridForHomePage }) {
+function AlbumsGrid({ gridSlice }) {
   const [albumsData, setAlbumsData] = useState([])
 
   const url =
@@ -70,7 +70,8 @@ function AlbumsGrid({ gridForHomePage }) {
       .then((data) => setAlbumsData(data))
   }, [])
 
-  console.log(gridForHomePage)
+  console.log(gridSlice)
+  const { start, end } = gridSlice || {}
 
   const testAlbums = (a, b) => {
     const albumsComponents = albumsData.slice(a, b).map((album) => (
@@ -95,8 +96,8 @@ function AlbumsGrid({ gridForHomePage }) {
   //   testAlbums(4,8)
   // }
 
-  const albumsComponentsForHomePage = testAlbums(0, 8)
-  const albumsComponentsForCatalogPage = testAlbums()
+  const albumsComponentsForHomePage = testAlbums(start, end)
+  // const albumsComponentsForCatalogPage = testAlbums()
 
   // console.log(testAlbums(0, 8))
 
@@ -113,21 +114,18 @@ function AlbumsGrid({ gridForHomePage }) {
   //   </LinkToAlbum>
   // ))
 
-  return gridForHomePage ? (
-    <StyledAlbumsGrid>{albumsComponentsForHomePage}</StyledAlbumsGrid>
-  ) : (
-    <StyledAlbumsGrid>{albumsComponentsForCatalogPage}</StyledAlbumsGrid>
-  )
+  return <StyledAlbumsGrid>{albumsComponentsForHomePage}</StyledAlbumsGrid>
 
   // <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
 
 AlbumsGrid.propTypes = {
-  gridForHomePage: PropTypes.bool,
+  gridSlice: PropTypes.shape({ start: PropTypes.number, end: PropTypes.number })
+    .isRequired,
 }
 
-AlbumsGrid.defaultProps = {
-  gridForHomePage: false,
-}
+// AlbumsGrid.defaultProps = {
+//   gridSlice: {},
+// }
 
 export default AlbumsGrid

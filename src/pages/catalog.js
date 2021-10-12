@@ -5,6 +5,9 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 
 function Catalog() {
+  const slice = {
+    start: 8,
+  }
   return (
     <>
       <Header />
@@ -14,7 +17,7 @@ function Catalog() {
           {/* <RecentlyAddedAlbumsSection> */}
           <Container>
             {/* <ContainerFlexColumn> */}
-            <AlbumsGrid />
+            <AlbumsGrid gridSlice={slice} />
             {/* <LinkAsButton to={ROUTES.CATALOG} text="Show more" /> */}
             {/* </ContainerFlexColumn> */}
           </Container>
