@@ -9,9 +9,9 @@ const StyledButtonLink = styled(Link)`
   font-weight: 500;
   padding: 0.85em 3.5em;
   /* disable padding left and right if button recieve a 'hero' prop */
-  padding: ${({ hero }) => hero && "0.85em 0"};
+  padding: ${({ $hero }) => $hero && "0.85em 0"};
   /* set min-width if button receive a 'hero' prop */
-  min-width: ${({ hero }) => hero && "169px"};
+  min-width: ${({ $hero }) => $hero && "169px"};
   font-size: 1.6rem;
   color: #333;
   background-color: transparent;

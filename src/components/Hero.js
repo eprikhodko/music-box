@@ -56,7 +56,6 @@ function Hero() {
             <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
             <ContainerHeroButtons>
               <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
-
               {!currentUser && (
                 <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
               )}
