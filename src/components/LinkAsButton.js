@@ -32,7 +32,15 @@ const StyledButtonLink = styled(Link)`
 
 function LinkAsButton({ text, hero, to }) {
   return (
-    <StyledButtonLink to={to} hero={hero}>
+    // here we're pass a transient $hero prop down to StyledButtonLink component
+    // transient prop (https://styled-components.com/docs/api#transient-props) means that this prop will be consumed only by styled component,
+    // and not by underlying component. If we'll use here regular 'hero' prop, we will get an error:
+    // Warning: Received `true` for non-boolean attribute
+    // this error happens because we're styling a Link component with styled components, and every prop we're pass to the styled components,
+    // is passed down through to the Link component, that renders an 'a' anchor tag, and ends up passed down to that 'a' element. And ancor tag
+    // cannot have 'hero' property.
+    // for more info please check (https://github.com/styled-components/styled-components/issues/1198)
+    <StyledButtonLink to={to} $hero={hero}>
       {text}
     </StyledButtonLink>
   )
