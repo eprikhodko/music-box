@@ -9,6 +9,7 @@ import Login from "./pages/login"
 import SignUp from "./pages/signup"
 import NotFound from "./pages/not-found"
 import Upload from "./pages/upload"
+import Album from "./pages/album"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path={ROUTES.LOGIN} component={Login} />
       <Route path={ROUTES.SIGNUP} component={SignUp} />
       <Route path={ROUTES.UPLOAD} component={Upload} />
+      <Route path={ROUTES.ALBUM} component={Album} />
       <Route path={ROUTES.NOT_FOUND} component={NotFound} />
     </Switch>
     // </Router>
