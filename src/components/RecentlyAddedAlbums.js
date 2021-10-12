@@ -3,13 +3,12 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import * as ROUTES from "../constants/routes"
 
-import Button from "./Button"
-
 import Container from "./containers/Container"
 import ContainerMain from "./containers/ContainerMain"
+import LinkAsButton from "./LinkAsButton"
 
 const RecentlyAddedAlbumsSection = styled.section`
-  margin-top: 4.4em;
+  margin-top: 4.5em;
 `
 
 const Title = styled.h2`
@@ -66,6 +65,18 @@ const AlbumContainer = styled.div`
 const LinkToAlbum = styled(Link)`
   text-decoration: none;
   color: #000;
+  &:focus {
+    outline: 3px solid transparent;
+  }
+  &:focus ${AlbumCover} {
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+  }
+  &:focus ${AlbumTitle} {
+    color: #333;
+  }
+  &:focus ${AlbumArtist} {
+    color: #333;
+  }
 `
 
 function RecentlyAddedAlbums() {
@@ -102,9 +113,7 @@ function RecentlyAddedAlbums() {
           <ContainerFlexColumn>
             <Title>Recently added albums</Title>
             <AlbumsGrid>{albumsComponents}</AlbumsGrid>
-            <Link to={ROUTES.CATALOG}>
-              <Button text="Show more" />
-            </Link>
+            <LinkAsButton to={ROUTES.CATALOG} text="Show more" />
           </ContainerFlexColumn>
         </Container>
       </RecentlyAddedAlbumsSection>

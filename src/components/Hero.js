@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 import * as ROUTES from "../constants/routes"
 
 import ContainerMain from "./containers/ContainerMain"
 import Container from "./containers/Container"
-import Button from "./Button"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
+import LinkAsButton from "./LinkAsButton"
 
 const HeroSection = styled.section`
   background-image: url(${heroImage});
@@ -56,13 +55,10 @@ function Hero() {
             <HeroTitle>Build your music library</HeroTitle>
             <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
             <ContainerHeroButtons>
-              <Link to={ROUTES.CATALOG}>
-                <Button hero text="View all" />
-              </Link>
+              <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
+
               {!currentUser && (
-                <Link to={ROUTES.LOGIN}>
-                  <Button hero text="Log in" />
-                </Link>
+                <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
               )}
             </ContainerHeroButtons>
           </ContainerHeroText>

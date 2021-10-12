@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
+import { ReactComponent as IconInstagram } from "../icons/social/instagram-icon.svg"
+
 import ContainerMain from "./containers/ContainerMain"
 
 const ContainerFooter = styled.div`
@@ -49,12 +51,34 @@ const StyledLink = styled(Link)`
   font-weight: 500;
   &:hover {
     color: #000;
-    border-bottom: 2px solid #000;
+    /* border-bottom: 2px solid #000; */
   }
   &:focus {
-    border-bottom: 2px solid #000;
+    /* border-bottom: 2px solid #000; */
     outline: 3px solid transparent;
   }
+`
+
+const ContainerIconLink = styled.div`
+  display: flex;
+  /* align-content: center; */
+  /* justify-content: center; */
+  /* border: 1px solid; */
+`
+
+const ContainerIcon = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  /* border: 1px solid green; */
+`
+
+const StyledIcon = styled(IconInstagram)`
+  min-height: 22px;
+  min-width: 22px;
+  /* border: 1px solid magenta; */
+  margin-right: 0.3em;
 `
 
 const Copyright = styled.p`
@@ -130,9 +154,20 @@ function Footer() {
                 <Title>Follow us</Title>
               </p>
               <FooterLinks>
-                <li>Instagram</li>
-                <li>Facebook</li>
-                <li>Twitter</li>
+                <li>
+                  <ContainerIconLink>
+                    <ContainerIcon>
+                      <StyledIcon />
+                    </ContainerIcon>
+                    <StyledLink to="#">Instagram</StyledLink>
+                  </ContainerIconLink>
+                </li>
+                <li>
+                  <StyledLink to="#">Facebook</StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="#">Twitter</StyledLink>
+                </li>
               </FooterLinks>
             </GridElement>
 
