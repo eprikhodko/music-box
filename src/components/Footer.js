@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 import { ReactComponent as IconInstagram } from "../icons/social/instagram-icon.svg"
+import { ReactComponent as IconFacebook } from "../icons/social/facebook-icon.svg"
+import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 
 import ContainerMain from "./containers/ContainerMain"
 
@@ -55,18 +57,17 @@ const StyledLink = styled(Link)`
   }
   &:focus {
     /* border-bottom: 2px solid #000; */
+    color: #000;
     outline: 3px solid transparent;
   }
 `
 
-const ContainerIconLink = styled.div`
+const LinkWithIcon = styled.div`
   display: flex;
-  /* align-content: center; */
-  /* justify-content: center; */
   /* border: 1px solid; */
 `
 
-const ContainerIcon = styled.div`
+const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -74,17 +75,21 @@ const ContainerIcon = styled.div`
   /* border: 1px solid green; */
 `
 
-const StyledIcon = styled(IconInstagram)`
-  min-height: 22px;
-  min-width: 22px;
+const StyledIcon = styled.div`
+  display: flex;
+  svg {
+    min-height: 22px;
+    min-width: 22px;
+    margin-right: 0.3em;
+    color: palevioletred;
+  }
   /* border: 1px solid magenta; */
-  margin-right: 0.3em;
 `
 
 const Copyright = styled.p`
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.5);
-  margin-top: 6em;
+  margin-top: 5em;
   /* border: 1px solid green; */
 `
 
@@ -155,18 +160,34 @@ function Footer() {
               </p>
               <FooterLinks>
                 <li>
-                  <ContainerIconLink>
-                    <ContainerIcon>
-                      <StyledIcon />
-                    </ContainerIcon>
+                  <LinkWithIcon>
+                    <IconContainer>
+                      <StyledIcon>
+                        <IconInstagram />
+                      </StyledIcon>
+                    </IconContainer>
                     <StyledLink to="#">Instagram</StyledLink>
-                  </ContainerIconLink>
+                  </LinkWithIcon>
                 </li>
                 <li>
-                  <StyledLink to="#">Facebook</StyledLink>
+                  <LinkWithIcon>
+                    <IconContainer>
+                      <StyledIcon>
+                        <IconFacebook />
+                      </StyledIcon>
+                    </IconContainer>
+                    <StyledLink to="#">Facebook</StyledLink>
+                  </LinkWithIcon>
                 </li>
                 <li>
-                  <StyledLink to="#">Twitter</StyledLink>
+                  <LinkWithIcon>
+                    <IconContainer>
+                      <StyledIcon>
+                        <IconTwitter />
+                      </StyledIcon>
+                    </IconContainer>
+                    <StyledLink to="#">Twitter</StyledLink>
+                  </LinkWithIcon>
                 </li>
               </FooterLinks>
             </GridElement>
