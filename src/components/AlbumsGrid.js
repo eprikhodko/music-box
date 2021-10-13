@@ -19,6 +19,7 @@ const AlbumArtist = styled.p`
   font-weight: 500;
   margin: 0;
 `
+
 const AlbumCover = styled.img`
   max-width: 266px;
   /* margin-bottom: 0; */
@@ -62,7 +63,6 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
   const { start, end } = albumsSlice || {}
 
   const [albumsData, setAlbumsData] = useState([])
-
   const [albumsComponents, setAlbumsComponents] = useState([])
 
   const url =

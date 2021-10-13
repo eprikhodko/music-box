@@ -22,9 +22,11 @@ const StyledButton = styled.button`
     color: #fff;
   }
   &:focus {
-    background-color: #333;
-    color: #fff;
+    /* background-color: #333; */
+    /* color: #fff; */
     outline: 3px solid transparent;
+    /* outline: 2px solid #333; */
+    /* outline-offset: 4px; */
   }
 `
 
