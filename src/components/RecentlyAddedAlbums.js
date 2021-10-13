@@ -36,7 +36,7 @@ function RecentlyAddedAlbums() {
         <Content>
           <CenterContent>
             <Title>Recently added albums</Title>
-            <AlbumsGrid gridSlice={slice} />
+            <AlbumsGrid albumsSlice={slice} />
             <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
           </CenterContent>
         </Content>

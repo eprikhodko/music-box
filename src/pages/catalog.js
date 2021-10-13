@@ -7,9 +7,10 @@ import Button from "../components/Button"
 import CenterContent from "../components/containers/CenterContent"
 
 function Catalog() {
-  // const slice = {
-  //   start: 8,
-  // }
+  const handleClick = () => {
+    console.log("clicked")
+  }
+
   return (
     <>
       <Header />
@@ -18,8 +19,7 @@ function Catalog() {
           <Content>
             <CenterContent>
               <AlbumsGrid renderAllAlbums />
-              {/* <LinkAsButton to={ROUTES.CATALOG} text="Show more" /> */}
-              <Button text="Show more" />
+              <Button text="Show more" marginTop="2em" onClick={handleClick} />
             </CenterContent>
           </Content>
         </ContainerMain>
