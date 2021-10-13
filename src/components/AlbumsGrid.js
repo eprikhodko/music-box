@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 import PropTypes from "prop-types"
 
 import styled from "styled-components"
+import AlbumsDataContext from "../context/albumsData"
 
 const AlbumTitle = styled.p`
   font-size: 1.8rem;
@@ -62,21 +63,23 @@ const LinkToAlbum = styled(Link)`
 function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
   const { start, end } = albumsSlice || {}
 
-  const [albumsData, setAlbumsData] = useState([])
+  const { albumsData } = useContext(AlbumsDataContext)
+
+  // const [albumsData, setAlbumsData] = useState([])
   const [albumsComponents, setAlbumsComponents] = useState([])
 
-  const url =
-    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
+  // const url =
+  //   "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
 
-  const fetchAlbumsData = async () => {
-    const res = await fetch(url)
-    const data = await res.json()
-    setAlbumsData(data)
-  }
+  // const fetchAlbumsData = async () => {
+  //   const res = await fetch(url)
+  //   const data = await res.json()
+  //   setAlbumsData(data)
+  // }
 
-  useEffect(() => {
-    fetchAlbumsData()
-  }, [])
+  // useEffect(() => {
+  //   fetchAlbumsData()
+  // }, [])
 
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
