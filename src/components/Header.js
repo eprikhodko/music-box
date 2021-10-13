@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 import ContainerMain from "./containers/ContainerMain"
-import Container from "./containers/Container"
+import Content from "./containers/Content"
 import ContainerFlex from "./containers/ContainerFlex"
 import Logo from "./Logo"
 import SearchBox from "./SearchBox"
@@ -22,14 +22,14 @@ function Header() {
   return (
     <StyledHeader>
       <ContainerMain>
-        <Container>
+        <Content>
           <ContainerFlex>
             <Logo />
             <SearchBox />
           </ContainerFlex>
 
           <Nav />
-        </Container>
+        </Content>
       </ContainerMain>
     </StyledHeader>
   )

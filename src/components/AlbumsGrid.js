@@ -29,7 +29,7 @@ const AlbumCover = styled.img`
 
 const StyledAlbumsGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 2em;
   margin: 3em 0 2em;
   /* border: 1px solid; */
@@ -58,7 +58,7 @@ const LinkToAlbum = styled(Link)`
   }
 `
 
-function AlbumsGrid({ gridSlice }) {
+function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
   const [albumsData, setAlbumsData] = useState([])
 
   const url =
@@ -70,10 +70,10 @@ function AlbumsGrid({ gridSlice }) {
       .then((data) => setAlbumsData(data))
   }, [])
 
-  console.log(gridSlice)
-  const { start, end } = gridSlice || {}
+  console.log(albumsSlice)
+  const { start, end } = albumsSlice || {}
 
-  const testAlbums = (a, b) => {
+  const createAlbumsComponents = (a, b) => {
     const albumsComponents = albumsData.slice(a, b).map((album) => (
       <LinkToAlbum to={`/albums/${album.albumId}`} key={album.albumId}>
         <AlbumContainer>
@@ -96,7 +96,10 @@ function AlbumsGrid({ gridSlice }) {
   //   testAlbums(4,8)
   // }
 
-  const albumsComponentsForHomePage = testAlbums(start, end)
+  const slicedAlbums = createAlbumsComponents(start, end)
+
+  const allAlbums = createAlbumsComponents()
+
   // const albumsComponentsForCatalogPage = testAlbums()
 
   // console.log(testAlbums(0, 8))
@@ -114,18 +117,29 @@ function AlbumsGrid({ gridSlice }) {
   //   </LinkToAlbum>
   // ))
 
-  return <StyledAlbumsGrid>{albumsComponentsForHomePage}</StyledAlbumsGrid>
+  return (
+    <StyledAlbumsGrid>
+      {!renderAllAlbums ? slicedAlbums : allAlbums}
+    </StyledAlbumsGrid>
+  )
 
   // <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
 
 AlbumsGrid.propTypes = {
-  gridSlice: PropTypes.shape({ start: PropTypes.number, end: PropTypes.number })
-    .isRequired,
+  albumsSlice: PropTypes.shape({
+    start: PropTypes.number,
+    end: PropTypes.number,
+  }),
+  renderAllAlbums: PropTypes.bool,
 }
 
-// AlbumsGrid.defaultProps = {
-//   gridSlice: {},
-// }
+AlbumsGrid.defaultProps = {
+  renderAllAlbums: false,
+  albumsSlice: {
+    start: 0,
+    end: 8,
+  },
+}
 
 export default AlbumsGrid

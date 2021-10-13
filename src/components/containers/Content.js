@@ -10,12 +10,12 @@ const StyledContainer = styled.div`
   /* border: 1px solid magenta; */
 `
 
-function Container({ children }) {
+function Content({ children }) {
   return <StyledContainer>{children}</StyledContainer>
 }
 
-Container.propTypes = {
+Content.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Container
+export default Content
