@@ -59,22 +59,14 @@ const LinkToAlbum = styled(Link)`
 `
 
 function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
-  const [albumsData, setAlbumsData] = useState([])
-
-  const url =
-    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
-
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setAlbumsData(data))
-  }, [])
-
-  console.log(albumsSlice)
   const { start, end } = albumsSlice || {}
 
+  const [albumsData, setAlbumsData] = useState([])
+
+  const [albumsComponents, setAlbumsComponents] = useState([])
+
   const createAlbumsComponents = (a, b) => {
-    const albumsComponents = albumsData.slice(a, b).map((album) => (
+    const albums = albumsData.slice(a, b).map((album) => (
       <LinkToAlbum to={`/albums/${album.albumId}`} key={album.albumId}>
         <AlbumContainer>
           <AlbumCover
@@ -87,8 +79,32 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
       </LinkToAlbum>
     ))
 
-    return albumsComponents
+    return albums
   }
+  const url =
+    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
+
+  const fetchAlbumsData = async () => {
+    const res = await fetch(url)
+    const data = await res.json()
+
+    // console.log(data)
+    setAlbumsData(data)
+  }
+
+  console.log(albumsData)
+  console.log(albumsComponents)
+
+  useEffect(() => {
+    fetchAlbumsData()
+  }, [])
+
+  useEffect(() => {
+    setAlbumsComponents(createAlbumsComponents(start, end))
+  }, [albumsData])
+
+  console.log(albumsSlice)
+  console.log(renderAllAlbums)
 
   // if (gridType === "grid for home page") {
   //   testAlbums(0,8)
@@ -96,9 +112,9 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
   //   testAlbums(4,8)
   // }
 
-  const slicedAlbums = createAlbumsComponents(start, end)
+  // const slicedAlbums = createAlbumsComponents(start, end)
 
-  const allAlbums = createAlbumsComponents(0, 16)
+  // const allAlbums = createAlbumsComponents(0, 16)
 
   // const albumsComponentsForCatalogPage = testAlbums()
 
@@ -117,11 +133,7 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
   //   </LinkToAlbum>
   // ))
 
-  return (
-    <StyledAlbumsGrid>
-      {!renderAllAlbums ? slicedAlbums : allAlbums}
-    </StyledAlbumsGrid>
-  )
+  return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 
   // <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
@@ -138,7 +150,7 @@ AlbumsGrid.defaultProps = {
   renderAllAlbums: false,
   albumsSlice: {
     start: 0,
-    end: 8,
+    end: 0,
   },
 }
 

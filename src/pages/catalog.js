@@ -18,7 +18,7 @@ function Catalog() {
         <ContainerMain>
           <Content>
             <CenterContent>
-              <AlbumsGrid renderAllAlbums />
+              <AlbumsGrid renderAllAlbums albumsSlice={{ start: 0, end: 16 }} />
               <Button text="Show more" marginTop="2em" onClick={handleClick} />
             </CenterContent>
           </Content>
