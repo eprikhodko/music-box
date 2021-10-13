@@ -16,6 +16,7 @@ const StyledButton = styled.button`
   border: 2px solid #333;
   border-radius: 50px;
   margin-right: 2em;
+  margin-top: ${({ marginTop }) => marginTop};
   &:hover {
     background-color: #333;
     color: #fff;
@@ -27,17 +28,24 @@ const StyledButton = styled.button`
   }
 `
 
-function Button({ text, hero }) {
-  return <StyledButton hero={hero}> {text}</StyledButton>
+function Button({ text, hero, marginTop, onClick }) {
+  return (
+    <StyledButton hero={hero} marginTop={marginTop} onClick={onClick}>
+      {text}
+    </StyledButton>
+  )
 }
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   hero: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  marginTop: PropTypes.string,
 }
 
 Button.defaultProps = {
   hero: false,
+  marginTop: "0",
 }
 
 export default Button

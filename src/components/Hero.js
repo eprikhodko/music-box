@@ -3,7 +3,7 @@ import styled from "styled-components"
 import * as ROUTES from "../constants/routes"
 
 import ContainerMain from "./containers/ContainerMain"
-import Container from "./containers/Container"
+import Content from "./containers/Content"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
 import LinkAsButton from "./LinkAsButton"
@@ -50,19 +50,18 @@ function Hero() {
   return (
     <ContainerMain>
       <HeroSection>
-        <Container>
+        <Content>
           <ContainerHeroText>
             <HeroTitle>Build your music library</HeroTitle>
             <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
             <ContainerHeroButtons>
               <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
-
               {!currentUser && (
                 <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
               )}
             </ContainerHeroButtons>
           </ContainerHeroText>
-        </Container>
+        </Content>
       </HeroSection>
     </ContainerMain>
   )
