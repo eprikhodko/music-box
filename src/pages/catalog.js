@@ -3,6 +3,8 @@ import Content from "../components/containers/Content"
 import ContainerMain from "../components/containers/ContainerMain"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import Button from "../components/Button"
+import CenterContent from "../components/containers/CenterContent"
 
 function Catalog() {
   // const slice = {
@@ -14,8 +16,11 @@ function Catalog() {
       <main>
         <ContainerMain>
           <Content>
-            <AlbumsGrid renderAllAlbums />
-            {/* <LinkAsButton to={ROUTES.CATALOG} text="Show more" /> */}
+            <CenterContent>
+              <AlbumsGrid renderAllAlbums />
+              {/* <LinkAsButton to={ROUTES.CATALOG} text="Show more" /> */}
+              <Button text="Show more" />
+            </CenterContent>
           </Content>
         </ContainerMain>
       </main>

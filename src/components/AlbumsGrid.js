@@ -98,7 +98,7 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
 
   const slicedAlbums = createAlbumsComponents(start, end)
 
-  const allAlbums = createAlbumsComponents()
+  const allAlbums = createAlbumsComponents(0, 16)
 
   // const albumsComponentsForCatalogPage = testAlbums()
 
