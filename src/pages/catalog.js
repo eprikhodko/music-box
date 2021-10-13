@@ -1,3 +1,4 @@
+import { useState } from "react"
 import AlbumsGrid from "../components/AlbumsGrid"
 import Content from "../components/containers/Content"
 import ContainerMain from "../components/containers/ContainerMain"
@@ -7,8 +8,13 @@ import Button from "../components/Button"
 import CenterContent from "../components/containers/CenterContent"
 
 function Catalog() {
-  const handleClick = () => {
-    console.log("clicked")
+  const [albumsSlice, setAlbumsSlice] = useState({
+    start: 0,
+    end: 12,
+  })
+
+  const handleShowMore = () => {
+    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
 
   return (
@@ -18,8 +24,12 @@ function Catalog() {
         <ContainerMain>
           <Content>
             <CenterContent>
-              <AlbumsGrid renderAllAlbums albumsSlice={{ start: 0, end: 16 }} />
-              <Button text="Show more" marginTop="2em" onClick={handleClick} />
+              <AlbumsGrid albumsSlice={albumsSlice} />
+              <Button
+                text="Show more"
+                marginTop="2em"
+                onClick={handleShowMore}
+              />
             </CenterContent>
           </Content>
         </ContainerMain>

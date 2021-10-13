@@ -65,6 +65,19 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
 
   const [albumsComponents, setAlbumsComponents] = useState([])
 
+  const url =
+    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
+
+  const fetchAlbumsData = async () => {
+    const res = await fetch(url)
+    const data = await res.json()
+    setAlbumsData(data)
+  }
+
+  useEffect(() => {
+    fetchAlbumsData()
+  }, [])
+
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
       <LinkToAlbum to={`/albums/${album.albumId}`} key={album.albumId}>
@@ -81,61 +94,15 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
 
     return albums
   }
-  const url =
-    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
-
-  const fetchAlbumsData = async () => {
-    const res = await fetch(url)
-    const data = await res.json()
-
-    // console.log(data)
-    setAlbumsData(data)
-  }
-
-  console.log(albumsData)
-  console.log(albumsComponents)
-
-  useEffect(() => {
-    fetchAlbumsData()
-  }, [])
 
   useEffect(() => {
     setAlbumsComponents(createAlbumsComponents(start, end))
-  }, [albumsData])
+  }, [albumsData, albumsSlice])
 
   console.log(albumsSlice)
   console.log(renderAllAlbums)
 
-  // if (gridType === "grid for home page") {
-  //   testAlbums(0,8)
-  // } else {
-  //   testAlbums(4,8)
-  // }
-
-  // const slicedAlbums = createAlbumsComponents(start, end)
-
-  // const allAlbums = createAlbumsComponents(0, 16)
-
-  // const albumsComponentsForCatalogPage = testAlbums()
-
-  // console.log(testAlbums(0, 8))
-
-  // const albumsComponents = albumsData.slice(0, 8).map((album) => (
-  //   <LinkToAlbum to={`/albums/${album.albumId}`} key={album.albumId}>
-  //     <AlbumContainer>
-  //       <AlbumCover
-  //         src={album.albumCover}
-  //         alt={`album cover for ${album.albumTitle} album`}
-  //       />
-  //       <AlbumTitle>{album.albumTitle}</AlbumTitle>
-  //       <AlbumArtist>{album.artist}</AlbumArtist>
-  //     </AlbumContainer>
-  //   </LinkToAlbum>
-  // ))
-
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
-
-  // <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
 
 AlbumsGrid.propTypes = {
