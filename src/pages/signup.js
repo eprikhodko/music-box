@@ -1,10 +1,15 @@
+import Footer from "../components/Footer"
 import Header from "../components/Header"
+import SignUpForm from "../components/SignUpForm"
 
 function SignUp() {
   return (
     <>
       <Header />
-      <div>This is Sign Up page</div>
+      <main>
+        <SignUpForm />
+      </main>
+      <Footer />
     </>
   )
 }
