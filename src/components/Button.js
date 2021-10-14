@@ -5,11 +5,12 @@ const StyledButton = styled.button`
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.6rem;
+  line-height: 1.25;
   color: #333;
 
-  padding: 1.1em 3.5em;
+  padding: 1em 3.5em;
   /* disable padding left and right if button recieve a 'hero' prop */
-  padding: ${({ hero }) => hero && "1.1em 0"};
+  padding: ${({ hero }) => hero && "1em 0"};
   /* set min-width if button receive a 'hero' prop */
   min-width: ${({ hero }) => hero && "169px"};
   background-color: transparent;

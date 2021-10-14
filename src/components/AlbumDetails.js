@@ -9,6 +9,7 @@ import LinkAsButton from "./LinkAsButton"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
+import Button from "./Button"
 
 const AlbumCover = styled.img`
   max-width: 564px;
@@ -65,15 +66,15 @@ const ButtonsParagraph = styled.p`
 
 const AlbumButtons = styled.div`
   display: flex;
+  flex-direction: ${({ currentUser }) => currentUser && "column"};
+  margin-top: ${({ currentUser }) => currentUser && "2em"};
   /* border: 1px solid yellow; */
 `
 
 function AlbumDetails() {
   const { albumId } = useParams()
   const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
-  const { currentUser } = useContext(UserContext)
-
-  console.log(currentUser)
+  const currentUser = useContext(UserContext)
 
   const album = albumsData.find((element) => element.albumId === albumId)
 
@@ -90,14 +91,25 @@ function AlbumDetails() {
             <AlbumArtist>{album.artist}</AlbumArtist>
             <AlbumYear>Year: {album.year}</AlbumYear>
             <AlbumGenre>Genre: {album.genre}</AlbumGenre>
-            <ButtonsParagraph>
-              If you want to add this album to your collection or wishlist,
-              please make an account first:
-            </ButtonsParagraph>
-            <AlbumButtons>
-              <LinkAsButton to={ROUTES.SIGNUP} hero text="Sign up" />
-              <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
-            </AlbumButtons>
+            {currentUser ? (
+              <>
+                <AlbumButtons currentUser={currentUser}>
+                  <Button text="Add to my collection" />
+                  <Button text="Add to my wishlist" marginTop="1.5em" />
+                </AlbumButtons>
+              </>
+            ) : (
+              <>
+                <ButtonsParagraph>
+                  If you want to add this album to your collection or wishlist,
+                  please make an account first:
+                </ButtonsParagraph>
+                <AlbumButtons>
+                  <LinkAsButton to={ROUTES.SIGNUP} hero text="Sign up" />
+                  <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
+                </AlbumButtons>
+              </>
+            )}
           </AlbumDescription>
         </Content>
       )}
