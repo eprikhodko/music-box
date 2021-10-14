@@ -22,7 +22,7 @@ function Header() {
   return (
     <StyledHeader>
       <ContainerMain>
-        <Content>
+        <Content headerContent>
           <ContainerFlex>
             <Logo />
             <SearchBox />
