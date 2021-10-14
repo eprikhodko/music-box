@@ -8,6 +8,7 @@ import Content from "./containers/Content"
 import LinkAsButton from "./LinkAsButton"
 
 import * as ROUTES from "../constants/routes"
+import UserContext from "../context/user"
 
 const AlbumCover = styled.img`
   max-width: 564px;
@@ -69,37 +70,37 @@ const AlbumButtons = styled.div`
 
 function AlbumDetails() {
   const { albumId } = useParams()
-  const { albumsData } = useContext(AlbumsDataContext)
+  const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
+  const { currentUser } = useContext(UserContext)
 
-  console.log(albumId)
-  console.log(albumsData)
+  console.log(currentUser)
 
   const album = albumsData.find((element) => element.albumId === albumId)
 
-  console.log(album)
-
   return (
     <ContainerMain>
-      <Content marginTop="5em">
-        <AlbumCover
-          src={album.albumCover}
-          alt={`cover for ${album.albumCover} album`}
-        />
-        <AlbumDescription>
-          <AlbumTitle>{album.albumTitle}</AlbumTitle>
-          <AlbumArtist>{album.artist}</AlbumArtist>
-          <AlbumYear>Year: {album.year}</AlbumYear>
-          <AlbumGenre>Genre: {album.genre}</AlbumGenre>
-          <ButtonsParagraph>
-            If you want to add this album to your collection or wishlist, please
-            make an account first:
-          </ButtonsParagraph>
-          <AlbumButtons>
-            <LinkAsButton to={ROUTES.SIGNUP} hero text="Sign up" />
-            <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
-          </AlbumButtons>
-        </AlbumDescription>
-      </Content>
+      {!isAlbumsDataLoading && (
+        <Content marginTop="5em">
+          <AlbumCover
+            src={album.albumCover}
+            alt={`cover for ${album.albumCover} album`}
+          />
+          <AlbumDescription>
+            <AlbumTitle>{album.albumTitle}</AlbumTitle>
+            <AlbumArtist>{album.artist}</AlbumArtist>
+            <AlbumYear>Year: {album.year}</AlbumYear>
+            <AlbumGenre>Genre: {album.genre}</AlbumGenre>
+            <ButtonsParagraph>
+              If you want to add this album to your collection or wishlist,
+              please make an account first:
+            </ButtonsParagraph>
+            <AlbumButtons>
+              <LinkAsButton to={ROUTES.SIGNUP} hero text="Sign up" />
+              <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
+            </AlbumButtons>
+          </AlbumDescription>
+        </Content>
+      )}
     </ContainerMain>
   )
 }
