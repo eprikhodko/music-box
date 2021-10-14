@@ -1,10 +1,12 @@
 import AlbumDetails from "../components/AlbumDetails"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import ScrollToTop from "../components/utils/ScrollToTop"
 
 function Album() {
   return (
     <>
+      <ScrollToTop />
       <Header />
       <main>
         <AlbumDetails />
