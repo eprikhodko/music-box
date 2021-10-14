@@ -1,13 +1,17 @@
-import { useParams } from "react-router-dom"
+import AlbumDetails from "../components/AlbumDetails"
+import Footer from "../components/Footer"
 import Header from "../components/Header"
+import ScrollToTop from "../components/utils/ScrollToTop"
 
 function Album() {
-  const { albumId } = useParams()
-
   return (
     <>
+      <ScrollToTop />
       <Header />
-      <div>Hello, this is page of an album with ID number of {albumId}</div>
+      <main>
+        <AlbumDetails />
+      </main>
+      <Footer />
     </>
   )
 }

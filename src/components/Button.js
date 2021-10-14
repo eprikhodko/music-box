@@ -4,13 +4,15 @@ import styled from "styled-components"
 const StyledButton = styled.button`
   font-family: "Inter", sans-serif;
   font-weight: 500;
-  padding: 1.1em 3.5em;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  color: #333;
+
+  padding: 1em 3.5em;
   /* disable padding left and right if button recieve a 'hero' prop */
-  padding: ${({ hero }) => hero && "1.1em 0"};
+  padding: ${({ hero }) => hero && "1em 0"};
   /* set min-width if button receive a 'hero' prop */
   min-width: ${({ hero }) => hero && "169px"};
-  font-size: 1.6rem;
-  color: #333;
   background-color: transparent;
   cursor: pointer;
   border: 2px solid #333;
@@ -22,9 +24,11 @@ const StyledButton = styled.button`
     color: #fff;
   }
   &:focus {
-    background-color: #333;
-    color: #fff;
+    /* background-color: #333; */
+    /* color: #fff; */
     outline: 3px solid transparent;
+    /* outline: 2px solid #333; */
+    /* outline-offset: 4px; */
   }
 `
 
