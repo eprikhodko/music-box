@@ -14,14 +14,25 @@ const StyledForm = styled.form`
   /* border: 1px solid goldenrod; */
 `
 
+const ContainerInput = styled.div`
+  display: flex;
+  /* flex-direction: column; */
+  /* border: 1px solid; */
+`
+
 const FormInput = styled.input`
+  min-width: 564px;
   font-family: inherit;
-  line-height: 4;
-  /* background-color: transparent; */
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 2.5rem;
+  font-weight: 500;
+  /* line-height: 4; */
+  background-color: transparent;
   border: 0;
   border-bottom: 3px solid #c2c2c2;
   outline: 3px solid transparent;
-  margin: 4em 0;
+  /* margin: 4em 0; */
+  /* border: 1px solid green; */
   &::placeholder {
     /* add "opacity: 1;" rule because firefox will render input placeholder semi-transparent */
     opacity: 1;
@@ -31,7 +42,13 @@ const FormInput = styled.input`
   }
 `
 
-const FormLabel = styled.label``
+const FormLabel = styled.label`
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin: 0;
+  /* border: 1px solid red; */
+`
 
 function SignUpForm() {
   const [username, setUsername] = useState("")
@@ -46,16 +63,55 @@ function SignUpForm() {
 
   console.log(username)
 
+  const FloatLabel = styled.label`
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 12px;
+    color: #999;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(0, 16px) scale(1);
+
+    transform-origin: top left;
+    transition: all 0.2s ease-out;
+  `
+
+  const ContainerFloatLabel = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    position: relative;
+    &:focus-within ${FloatLabel} {
+      /* background-color: #333;
+      color: #fff;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+      transform: translate(0, 12px) scale(0.75);
+    }
+  `
+
+  const FloatInput = styled.input`
+    width: 100%;
+    height: 56px;
+    padding: 14px 16px 0 10px;
+    outline: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    /* font-family: Arial, sans-serif; */
+    font-size: 16px;
+  `
+
   return (
     <ContainerMain>
       <Content>
         <CenterContent>
           <StyledForm onSubmit={handleSubmit}>
-            <FormLabel>
-              Username
+            <ContainerInput>
+              <FormLabel htmlFor="username">Username</FormLabel>
               <FormInput
+                id="username"
                 type="text"
-                placeholder="Username"
+                // placeholder="Username"
                 name="username"
                 aria-label="Username"
                 value={username}
@@ -63,7 +119,7 @@ function SignUpForm() {
                   setUsername(event.target.value.toLowerCase())
                 }}
               />
-            </FormLabel>
+            </ContainerInput>
             <label>
               <input
                 type="email"
@@ -109,6 +165,10 @@ function SignUpForm() {
           </StyledForm>
           <p>Already have an account?</p>
           <Link to={ROUTES.LOGIN}>Log in</Link>
+          <ContainerFloatLabel>
+            <FloatInput type="email" />
+            <FloatLabel htmlFor="email">E-mail</FloatLabel>
+          </ContainerFloatLabel>
         </CenterContent>
       </Content>
     </ContainerMain>
