@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
   /* align-items: center; */
   margin: 0 auto;
   margin-top: ${({ marginTop }) => marginTop};
-  /* border: 1px solid magenta; */
+  border: 1px solid magenta;
 `
 
 function Content({ children, headerContent, marginTop }) {
