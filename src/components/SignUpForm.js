@@ -50,6 +50,52 @@ const FormLabel = styled.label`
   /* border: 1px solid red; */
 `
 
+const FloatLabel = styled.label`
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0 12px;
+  color: #999;
+  pointer-events: none;
+  position: absolute;
+  transform: translate(0, 16px) scale(1);
+
+  transform-origin: top left;
+  transition: all 0.2s ease-out;
+
+  transform: ${({ email }) => email && "translate(0, 12px) scale(0.75)"};
+  /* background-color: red; */
+  margin-top: ${({ email }) => email && "2em"};
+  background-color: ${({ email }) => email && "red"};
+
+  /* margin-top: 2em; */
+`
+
+const ContainerFloatLabel = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  position: relative;
+  &:focus-within ${FloatLabel} {
+    /* background-color: #333;
+  color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    transform: translate(0, 12px) scale(0.75);
+  }
+`
+
+const FloatInput = styled.input`
+  width: 100%;
+  height: 56px;
+  padding: 14px 16px 0 10px;
+  outline: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: transparent;
+  background-color: #fff;
+  /* font-family: Arial, sans-serif; */
+  font-size: 16px;
+`
+
 function SignUpForm() {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -62,44 +108,6 @@ function SignUpForm() {
   }
 
   console.log(username)
-
-  const FloatLabel = styled.label`
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0 12px;
-    color: #999;
-    pointer-events: none;
-    position: absolute;
-    transform: translate(0, 16px) scale(1);
-
-    transform-origin: top left;
-    transition: all 0.2s ease-out;
-  `
-
-  const ContainerFloatLabel = styled.div`
-    display: flex;
-    flex-direction: column;
-    min-width: 350px;
-    position: relative;
-    &:focus-within ${FloatLabel} {
-      /* background-color: #333;
-      color: #fff;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-      transform: translate(0, 12px) scale(0.75);
-    }
-  `
-
-  const FloatInput = styled.input`
-    width: 100%;
-    height: 56px;
-    padding: 14px 16px 0 10px;
-    outline: 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #fff;
-    /* font-family: Arial, sans-serif; */
-    font-size: 16px;
-  `
 
   return (
     <ContainerMain>
@@ -166,8 +174,16 @@ function SignUpForm() {
           <p>Already have an account?</p>
           <Link to={ROUTES.LOGIN}>Log in</Link>
           <ContainerFloatLabel>
-            <FloatInput type="email" />
-            <FloatLabel htmlFor="email">E-mail</FloatLabel>
+            <FloatInput
+              type="email"
+              onChange={(event) => {
+                setEmail(event.target.value.toLowerCase())
+              }}
+            />
+            {/* In order to make styled component 'FloatLabel' change its style depending on 'email' state, we need to pass to it 'email' state as props. We can then use this 'email' prop to control FloatLabel component styles. If we type something into FloatInput input, email state will change, and FloatLabel will change its style. Great! */}
+            <FloatLabel htmlFor="email" email={email}>
+              E-mail
+            </FloatLabel>
           </ContainerFloatLabel>
         </CenterContent>
       </Content>
