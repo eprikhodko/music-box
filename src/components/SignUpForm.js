@@ -11,89 +11,96 @@ import Content from "./containers/Content"
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  /* border: 1px solid goldenrod; */
+  margin-top: 8em;
+  /* border: 2px solid goldenrod; */
 `
 
-const ContainerInput = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-  /* border: 1px solid; */
-`
+// const ContainerInput = styled.div`
+//   display: flex;
+//   /* flex-direction: column; */
+//   /* border: 1px solid; */
+// `
 
-const FormInput = styled.input`
-  min-width: 564px;
-  font-family: inherit;
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 2.5rem;
-  font-weight: 500;
-  /* line-height: 4; */
-  background-color: transparent;
-  border: 0;
-  border-bottom: 3px solid #c2c2c2;
-  outline: 3px solid transparent;
-  /* margin: 4em 0; */
-  /* border: 1px solid green; */
-  &::placeholder {
-    /* add "opacity: 1;" rule because firefox will render input placeholder semi-transparent */
-    opacity: 1;
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 2.5rem;
-    font-weight: 500;
-  }
-`
+// const FormInput = styled.input`
+//   min-width: 564px;
+//   font-family: inherit;
+//   color: rgba(0, 0, 0, 0.7);
+//   font-size: 2.5rem;
+//   font-weight: 500;
+//   /* line-height: 4; */
+//   background-color: transparent;
+//   border: 0;
+//   border-bottom: 3px solid #c2c2c2;
+//   outline: 3px solid transparent;
+//   /* margin: 4em 0; */
+//   /* border: 1px solid green; */
+//   &::placeholder {
+//     /* add "opacity: 1;" rule because firefox will render input placeholder semi-transparent */
+//     opacity: 1;
+//     color: rgba(0, 0, 0, 0.7);
+//     font-size: 2.5rem;
+//     font-weight: 500;
+//   }
+// `
 
-const FormLabel = styled.label`
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin: 0;
-  /* border: 1px solid red; */
-`
+// const FormLabel = styled.label`
+//   color: rgba(0, 0, 0, 0.7);
+//   font-size: 2.5rem;
+//   font-weight: 500;
+//   margin: 0;
+//   /* border: 1px solid red; */
+// `
 
 const FloatLabel = styled.label`
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 0 12px;
-  color: #999;
+  font-size: 2.5rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  /* padding: 0 12px; */
   pointer-events: none;
   position: absolute;
-  transform: translate(0, 16px) scale(1);
+  /* translate() method moves label 0 pixels to the right, and 0.1 em up from the border bottom */
+  /* https://www.w3schools.com/css/css3_2dtransforms.asp */
+  /* transform: translate(0, -0.1em) scale(1); */
 
   transform-origin: top left;
   transition: all 0.2s ease-out;
 
-  transform: ${({ email }) => email && "translate(0, 12px) scale(0.75)"};
-  /* background-color: red; */
-  margin-top: ${({ email }) => email && "2em"};
-  background-color: ${({ email }) => email && "red"};
-
-  /* margin-top: 2em; */
+  transform: ${({ username }) => username && "translate(0, -1em) scale(0.65)"};
+  /* margin-top: ${({ email }) => email && "2em"};
+  background-color: ${({ email }) => email && "red"}; */
 `
 
 const ContainerFloatLabel = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 350px;
+  min-width: 564px;
   position: relative;
+  margin-bottom: 4em;
+  /* border: 1px solid green; */
   &:focus-within ${FloatLabel} {
-    /* background-color: #333;
-  color: #fff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    transform: translate(0, 12px) scale(0.75);
+    /* background-color: #fff; */
+    transform: translate(0, -1em) scale(0.65);
   }
 `
 
 const FloatInput = styled.input`
-  width: 100%;
-  height: 56px;
-  padding: 14px 16px 0 10px;
-  outline: 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  font-size: 2.5rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  /* line-height: 1.5; */
+  padding-top: 0.2em;
+  /* width: 100%; */
+  /* height: 56px; */
+  /* padding: 14px 16px 0 10px; */
+  /* outline: 0; */
+  outline: 3px solid transparent;
+  border: 0;
+  border-bottom: 3px solid #c2c2c2;
   background: transparent;
-  background-color: #fff;
-  /* font-family: Arial, sans-serif; */
-  font-size: 16px;
+  // border: 3px solid red;
+  /* background-color: #fff; */
 `
 
 function SignUpForm() {
@@ -114,9 +121,8 @@ function SignUpForm() {
       <Content>
         <CenterContent>
           <StyledForm onSubmit={handleSubmit}>
-            <ContainerInput>
-              <FormLabel htmlFor="username">Username</FormLabel>
-              <FormInput
+            <ContainerFloatLabel>
+              <FloatInput
                 id="username"
                 type="text"
                 // placeholder="Username"
@@ -127,7 +133,25 @@ function SignUpForm() {
                   setUsername(event.target.value.toLowerCase())
                 }}
               />
-            </ContainerInput>
+              <FloatLabel htmlFor="username" username={username}>
+                Username
+              </FloatLabel>
+            </ContainerFloatLabel>
+
+            <ContainerFloatLabel>
+              <FloatInput
+                type="email"
+                name="emailAddress"
+                aria-label="Email address"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value.toLowerCase())
+                }}
+              />
+              <FloatLabel htmlFor="username" username={username}>
+                Email
+              </FloatLabel>
+            </ContainerFloatLabel>
             <label>
               <input
                 type="email"
@@ -182,7 +206,7 @@ function SignUpForm() {
             />
             {/* In order to make styled component 'FloatLabel' change its style depending on 'email' state, we need to pass to it 'email' state as props. We can then use this 'email' prop to control FloatLabel component styles. If we type something into FloatInput input, email state will change, and FloatLabel will change its style. Great! */}
             <FloatLabel htmlFor="email" email={email}>
-              E-mail
+              Email
             </FloatLabel>
           </ContainerFloatLabel>
         </CenterContent>
