@@ -102,10 +102,14 @@ const FloatInput = styled.input`
   background: transparent;
   // border: 3px solid red;
   /* background-color: #fff; */
-  &-internal-autofill-selected {
-    background: transparent !important;
-    background-image: none !important;
-    color: rgba(0, 0, 0, 0.7) !important;
+  /* below is a solution for a browser colored autofill input background and text color
+  https://selleo.com/til/posts/xhgzlfgcql-a-way-to-make-autofilled-inputs-background-transparent */
+  &:-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus,
+  :-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.7) !important;
   }
 `
 
