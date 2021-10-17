@@ -66,7 +66,8 @@ const FloatLabel = styled.label`
   transform-origin: top left;
   transition: all 0.2s ease-out;
 
-  transform: ${({ username }) => username && "translate(0, -1em) scale(0.65)"};
+  transform: ${({ isNotEmpty }) =>
+    isNotEmpty && "translate(0, -1em) scale(0.65)"};
   /* margin-top: ${({ email }) => email && "2em"};
   background-color: ${({ email }) => email && "red"}; */
 `
@@ -101,6 +102,11 @@ const FloatInput = styled.input`
   background: transparent;
   // border: 3px solid red;
   /* background-color: #fff; */
+  &-internal-autofill-selected {
+    background: transparent !important;
+    background-image: none !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
 `
 
 function SignUpForm() {
@@ -133,13 +139,14 @@ function SignUpForm() {
                   setUsername(event.target.value.toLowerCase())
                 }}
               />
-              <FloatLabel htmlFor="username" username={username}>
+              <FloatLabel htmlFor="username" isNotEmpty={username}>
                 Username
               </FloatLabel>
             </ContainerFloatLabel>
 
             <ContainerFloatLabel>
               <FloatInput
+                id="email"
                 type="email"
                 name="emailAddress"
                 aria-label="Email address"
@@ -148,7 +155,7 @@ function SignUpForm() {
                   setEmail(event.target.value.toLowerCase())
                 }}
               />
-              <FloatLabel htmlFor="username" username={username}>
+              <FloatLabel htmlFor="email" isNotEmpty={email}>
                 Email
               </FloatLabel>
             </ContainerFloatLabel>
