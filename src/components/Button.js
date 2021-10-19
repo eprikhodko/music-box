@@ -56,7 +56,7 @@ Button.propTypes = {
 Button.defaultProps = {
   hero: false,
   marginTop: "0",
-  marginRight: "2em",
+  marginRight: "0",
 }
 
 export default Button

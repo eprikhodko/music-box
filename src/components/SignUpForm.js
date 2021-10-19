@@ -22,10 +22,8 @@ const FloatLabel = styled.label`
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   font-family: "Inter", sans-serif;
-  /* padding: 0 12px; */
   pointer-events: none;
   position: absolute;
-  /* translate() method moves label 0 pixels to the right, and 0.1 em up from the border bottom of FloatInput */
   /* https://www.w3schools.com/css/css3_2dtransforms.asp */
   transform: translate(0, 0.8em) scale(1);
 
@@ -34,8 +32,6 @@ const FloatLabel = styled.label`
 
   transform: ${({ isNotEmpty }) =>
     isNotEmpty && "translate(0, -0.2em) scale(0.65)"};
-  /* margin-top: ${({ email }) => email && "2em"};
-  background-color: ${({ email }) => email && "red"}; */
 `
 
 const FloatInput = styled.input`
@@ -46,14 +42,10 @@ const FloatInput = styled.input`
   /* line-height: 1.5; */
   padding: 0;
   padding-top: 1em;
-  /* width: 100%; */
-  /* height: 56px; */
   outline: 3px solid transparent;
   border: 0;
   border-bottom: 3px solid #c2c2c2;
   background: transparent;
-  /* background-color: #fff; */
-  /* border: 3px solid red; */
 
   /* this transition handle hover effect duration */
   transition: all 0.3s ease-out;
@@ -62,7 +54,7 @@ const FloatInput = styled.input`
     border-bottom: 3px solid #000;
   }
 
-  /* below is a solution for a browser colored autofill input background and text color
+  /* below is a code that removes browser colored autofill input background
   https://selleo.com/til/posts/xhgzlfgcql-a-way-to-make-autofilled-inputs-background-transparent */
   &:-webkit-autofill,
   :-webkit-autofill:hover,
@@ -78,7 +70,6 @@ const ContainerFloatInput = styled.div`
   flex-direction: column;
   min-width: 564px;
   position: relative;
-  /* padding-top: 1em; */
   margin-bottom: 3.5em;
   /* border: 1px solid green; */
   &:focus-within ${FloatLabel} {
@@ -128,6 +119,7 @@ function SignUpForm() {
                 type="text"
                 name="username"
                 aria-label="Username"
+                required
                 value={username}
                 onChange={(event) => {
                   setUsername(event.target.value.toLowerCase())
@@ -142,8 +134,9 @@ function SignUpForm() {
               <FloatInput
                 id="email"
                 type="email"
-                name="emailAddress"
+                name="email"
                 aria-label="Email address"
+                required
                 value={email}
                 onChange={(event) => {
                   setEmail(event.target.value.toLowerCase())
@@ -152,14 +145,16 @@ function SignUpForm() {
             </ContainerFloatInput>
 
             <ContainerFloatInput>
-              <FloatLabel htmlFor="password" isNotEmpty={password}>
-                Password
+              <FloatLabel htmlFor="pass" isNotEmpty={password}>
+                Password (6 characters minimum)
               </FloatLabel>
               <FloatInput
-                id="password"
+                id="pass"
                 type="password"
                 name="password"
                 aria-label="Password"
+                minLength="6"
+                required
                 value={password}
                 onChange={(event) => {
                   setPassword(event.target.value)
@@ -167,12 +162,7 @@ function SignUpForm() {
               />
             </ContainerFloatInput>
 
-            <Button
-              type="submit"
-              onSubmit={handleSubmit}
-              text="Create Account"
-              marginRight="0"
-            />
+            <Button type="submit" text="Create Account" />
             <StyledParagraph>
               Already have an account?{" "}
               <StyledLink to={ROUTES.LOGIN}>Log in</StyledLink>
