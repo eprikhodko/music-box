@@ -1,39 +1,58 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "jest": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:import/recommended",
-        "airbnb",
-        "plugin:react/jsx-runtime",
-        "prettier"
+  "env": {
+      "browser": true,
+      "es2021": true,
+      "jest": true
+  },
+  "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:import/recommended",
+      "airbnb",
+      "plugin:styled-components-a11y/recommended",
+      "plugin:react/jsx-runtime",
+      "prettier"
+  ],
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "styled-components-a11y",
+      "react",
+      "testing-library",
+      "jest-dom"
+  ],
+  "overrides": [
+      {
+        // enable eslint-plugin-testing-library rules or preset only for matching files!
+        "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+        "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+      }
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "testing-library",
-        "jest-dom"
-    ],
-    "overrides": [
-        {
-          // enable eslint-plugin-testing-library rules or preset only for matching files!
-          "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
-          "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+  "rules": {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/302
+      "jsx-a11y/label-has-associated-control": [ "error", {
+        "required": {
+          "some": [ "nesting", "id"  ]
         }
-      ],
-    "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+      }],
+      "jsx-a11y/label-has-for": [ "error", {
+        "required": {
+          "some": [ "nesting", "id"  ]
+        }
+      }],
+      "styled-components-a11y/label-has-associated-control": [ 2, {
+        // "labelComponents": [],
+        // "labelAttributes": ["label"],
+        "controlComponents": ["FormInput"],
+        "depth": 3
+      }]
     }
 }
