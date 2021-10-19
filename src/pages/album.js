@@ -1,6 +1,6 @@
 import AlbumDetails from "../components/AlbumDetails"
 import Footer from "../components/Footer"
-import Header from "../components/Header"
+import Header from "../components/Header/index"
 import ScrollToTop from "../components/utils/ScrollToTop"
 
 function Album() {

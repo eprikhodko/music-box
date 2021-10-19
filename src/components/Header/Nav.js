@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import * as ROUTES from "../constants/routes"
+import * as ROUTES from "../../constants/routes"
 
-import { ReactComponent as IconAvatar } from "../icons/icon-avatar.svg"
+import { ReactComponent as IconAvatar } from "../../icons/icon-avatar.svg"
 
 const StyledNav = styled.nav`
   display: flex;

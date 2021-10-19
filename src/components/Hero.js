@@ -2,11 +2,11 @@ import styled from "styled-components"
 
 import * as ROUTES from "../constants/routes"
 
-import ContainerMain from "./containers/ContainerMain"
-import Content from "./containers/Content"
+import ContainerMain from "./shared/containers/ContainerMain"
+import Content from "./shared/containers/Content"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
-import LinkAsButton from "./LinkAsButton"
+import LinkAsButton from "./shared/buttons/LinkAsButton"
 
 const HeroSection = styled.section`
   background-image: url(${heroImage});

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import * as ROUTES from "../constants/routes"
+import * as ROUTES from "../../constants/routes"
 
 const StyledLogo = styled.p`
   color: #000;

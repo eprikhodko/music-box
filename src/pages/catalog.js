@@ -1,11 +1,11 @@
 import { useState } from "react"
 import AlbumsGrid from "../components/AlbumsGrid"
-import Content from "../components/containers/Content"
-import ContainerMain from "../components/containers/ContainerMain"
+import Content from "../components/shared/containers/Content"
+import ContainerMain from "../components/shared/containers/ContainerMain"
 import Footer from "../components/Footer"
-import Header from "../components/Header"
-import Button from "../components/Button"
-import CenterContent from "../components/containers/CenterContent"
+import Header from "../components/Header/index"
+import Button from "../components/shared/buttons/Button"
+import CenterContent from "../components/shared/containers/CenterContent"
 
 function Catalog() {
   const [albumsSlice, setAlbumsSlice] = useState({
