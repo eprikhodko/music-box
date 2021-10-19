@@ -17,24 +17,29 @@ const StyledButton = styled.button`
   cursor: pointer;
   border: 2px solid #333;
   border-radius: 50px;
-  margin-right: 2em;
+  margin-right: ${({ marginRight }) => marginRight};
   margin-top: ${({ marginTop }) => marginTop};
   &:hover {
     background-color: #333;
     color: #fff;
   }
   &:focus {
-    /* background-color: #333; */
-    /* color: #fff; */
+    background-color: #333;
+    color: #fff;
     outline: 3px solid transparent;
     /* outline: 2px solid #333; */
     /* outline-offset: 4px; */
   }
 `
 
-function Button({ text, hero, marginTop, onClick }) {
+function Button({ text, hero, marginTop, marginRight, onClick }) {
   return (
-    <StyledButton hero={hero} marginTop={marginTop} onClick={onClick}>
+    <StyledButton
+      hero={hero}
+      marginTop={marginTop}
+      marginRight={marginRight}
+      onClick={onClick}
+    >
       {text}
     </StyledButton>
   )
@@ -45,11 +50,13 @@ Button.propTypes = {
   hero: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   marginTop: PropTypes.string,
+  marginRight: PropTypes.string,
 }
 
 Button.defaultProps = {
   hero: false,
   marginTop: "0",
+  marginRight: "2em",
 }
 
 export default Button

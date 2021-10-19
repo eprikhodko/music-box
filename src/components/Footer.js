@@ -58,7 +58,7 @@ const StyledLink = styled(Link)`
   &:focus {
     /* border-bottom: 2px solid #000; */
     color: #000;
-    outline: 3px solid transparent;
+    /* outline: 3px solid transparent; */
   }
 `
 
