@@ -2,9 +2,9 @@ import styled from "styled-components"
 import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./AlbumsGrid"
 
-import Content from "./containers/Content"
-import ContainerMain from "./containers/ContainerMain"
-import LinkAsButton from "./LinkAsButton"
+import Content from "./shared/containers/Content"
+import ContainerMain from "./shared/containers/ContainerMain"
+import LinkAsButton from "./shared/buttons/LinkAsButton"
 
 const RecentlyAddedAlbumsSection = styled.section`
   margin-top: 4.5em;

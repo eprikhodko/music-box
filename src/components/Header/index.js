@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-import ContainerMain from "./containers/ContainerMain"
-import Content from "./containers/Content"
-import ContainerFlex from "./containers/ContainerFlex"
+import ContainerMain from "../shared/containers/ContainerMain"
+import Content from "../shared/containers/Content"
+import ContainerFlex from "../shared/containers/ContainerFlex"
 import Logo from "./Logo"
 import SearchBox from "./SearchBox"
 import Nav from "./Nav"

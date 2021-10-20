@@ -1,8 +1,8 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-import { ReactComponent as SearchIcon } from "../icons/icon-search.svg"
-import { ReactComponent as ArrowIcon } from "../icons/icon-arrow-right.svg"
+import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
+import { ReactComponent as ArrowIcon } from "../../icons/icon-arrow-right.svg"
 
 const Container = styled.div`
   display: flex;

@@ -3,13 +3,13 @@ import styled from "styled-components"
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import AlbumsDataContext from "../context/albumsData"
-import ContainerMain from "./containers/ContainerMain"
-import Content from "./containers/Content"
-import LinkAsButton from "./LinkAsButton"
+import ContainerMain from "./shared/containers/ContainerMain"
+import Content from "./shared/containers/Content"
+import LinkAsButton from "./shared/buttons/LinkAsButton"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
-import Button from "./Button"
+import Button from "./shared/buttons/Button"
 
 const AlbumCover = styled.img`
   max-width: 564px;

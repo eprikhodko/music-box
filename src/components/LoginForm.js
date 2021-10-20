@@ -30,8 +30,7 @@ const StyledLink = styled(Link)`
   }
 `
 
-function SignUpForm() {
-  const [username, setUsername] = useState("")
+function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -45,23 +44,6 @@ function SignUpForm() {
       <Content>
         <CenterContent>
           <StyledForm onSubmit={handleSubmit}>
-            <ContainerFloatInput>
-              <FloatLabel htmlFor="username" isNotEmpty={username}>
-                Username
-              </FloatLabel>
-              <FloatInput
-                id="username"
-                type="text"
-                name="username"
-                aria-label="Username"
-                required
-                value={username}
-                onChange={(event) => {
-                  setUsername(event.target.value.toLowerCase())
-                }}
-              />
-            </ContainerFloatInput>
-
             <ContainerFloatInput>
               <FloatLabel htmlFor="email" isNotEmpty={email}>
                 Email
@@ -81,7 +63,7 @@ function SignUpForm() {
 
             <ContainerFloatInput>
               <FloatLabel htmlFor="pass" isNotEmpty={password}>
-                Password (6 characters minimum)
+                Password
               </FloatLabel>
               <FloatInput
                 id="pass"
@@ -97,10 +79,10 @@ function SignUpForm() {
               />
             </ContainerFloatInput>
 
-            <Button type="submit" text="Create Account" />
+            <Button type="submit" text="Log in" />
             <StyledParagraph>
-              Already have an account?{" "}
-              <StyledLink to={ROUTES.LOGIN}>Log in</StyledLink>
+              New to Music Box?{" "}
+              <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>
             </StyledParagraph>
           </StyledForm>
         </CenterContent>
@@ -109,4 +91,4 @@ function SignUpForm() {
   )
 }
 
-export default SignUpForm
+export default LoginForm
