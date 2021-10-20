@@ -1,8 +1,6 @@
 import styled from "styled-components"
 
-import ContainerMain from "../shared/containers/ContainerMain"
-import Content from "../shared/containers/Content"
-import ContainerFlex from "../shared/containers/ContainerFlex"
+import { ContainerMain, Content, ContainerFlex } from "../shared/Containers"
 import Logo from "./Logo"
 import SearchBox from "./SearchBox"
 import Nav from "./Nav"
@@ -22,7 +20,7 @@ function Header() {
   return (
     <StyledHeader>
       <ContainerMain>
-        <Content headerContent>
+        <Content justifyContent="space-between">
           <ContainerFlex>
             <Logo />
             <SearchBox />

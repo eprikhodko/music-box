@@ -12,7 +12,6 @@ function Home() {
         <RecentlyAddedAlbums />
       </main>
       <Footer />
-      {/* <div>This is home page</div> */}
     </>
   )
 }

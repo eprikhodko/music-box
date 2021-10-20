@@ -1,11 +1,10 @@
 import { useState } from "react"
 import AlbumsGrid from "../components/AlbumsGrid"
-import Content from "../components/shared/containers/Content"
-import ContainerMain from "../components/shared/containers/ContainerMain"
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
 import Button from "../components/shared/buttons/Button"
-import CenterContent from "../components/shared/containers/CenterContent"
+
+import { ContainerMain, Content } from "../components/shared/Containers"
 
 function Catalog() {
   const [albumsSlice, setAlbumsSlice] = useState({
@@ -22,15 +21,11 @@ function Catalog() {
       <Header />
       <main>
         <ContainerMain>
-          <Content>
-            <CenterContent>
-              <AlbumsGrid albumsSlice={albumsSlice} />
-              <Button
-                text="Show more"
-                marginTop="2em"
-                onClick={handleShowMore}
-              />
-            </CenterContent>
+          <Content flexDirection="column" alignItems="center">
+            {/* <CenterContent> */}
+            <AlbumsGrid albumsSlice={albumsSlice} />
+            <Button text="Show more" marginTop="2em" onClick={handleShowMore} />
+            {/* </CenterContent> */}
           </Content>
         </ContainerMain>
       </main>

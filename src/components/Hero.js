@@ -2,8 +2,7 @@ import styled from "styled-components"
 
 import * as ROUTES from "../constants/routes"
 
-import ContainerMain from "./shared/containers/ContainerMain"
-import Content from "./shared/containers/Content"
+import { ContainerMain, Content } from "./shared/Containers"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
 import LinkAsButton from "./shared/buttons/LinkAsButton"

@@ -2,8 +2,7 @@ import styled from "styled-components"
 import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./AlbumsGrid"
 
-import Content from "./shared/containers/Content"
-import ContainerMain from "./shared/containers/ContainerMain"
+import { Content, ContainerMain } from "./shared/Containers"
 import LinkAsButton from "./shared/buttons/LinkAsButton"
 
 const RecentlyAddedAlbumsSection = styled.section`

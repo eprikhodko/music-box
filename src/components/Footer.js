@@ -5,7 +5,7 @@ import { ReactComponent as IconInstagram } from "../icons/social/instagram-icon.
 import { ReactComponent as IconFacebook } from "../icons/social/facebook-icon.svg"
 import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 
-import ContainerMain from "./shared/containers/ContainerMain"
+import { ContainerMain } from "./shared/Containers"
 
 const ContainerFooter = styled.div`
   /* max-width: 1440px; */
