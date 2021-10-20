@@ -9,7 +9,7 @@ import CenterContent from "./shared/containers/CenterContent"
 import ContainerMain from "./shared/containers/ContainerMain"
 import Content from "./shared/containers/Content"
 
-import FloatInput from "./shared/form/FloatInput"
+import { FloatInput, FloatLabel, ContainerFloatInput } from "./shared/Form"
 
 const StyledForm = styled.form`
   display: flex;
@@ -17,39 +17,6 @@ const StyledForm = styled.form`
   align-items: center;
   margin-top: 10em;
   /* border: 2px solid goldenrod; */
-`
-
-const FloatLabel = styled.label`
-  font-size: 2.5rem;
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 500;
-  font-family: "Inter", sans-serif;
-  pointer-events: none;
-  position: absolute;
-  /* https://www.w3schools.com/css/css3_2dtransforms.asp */
-  transform: translate(0, 0.8em) scale(1);
-
-  transform-origin: top left;
-  transition: all 0.2s ease-out;
-
-  transform: ${({ isNotEmpty }) =>
-    isNotEmpty && "translate(0, -0.2em) scale(0.65)"};
-`
-
-const ContainerFloatInput = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 564px;
-  position: relative;
-  margin-bottom: 3.5em;
-  /* border: 1px solid green; */
-  &:focus-within ${FloatLabel} {
-    /* background-color: #fff; */
-    transform: translate(0, -0.2em) scale(0.65);
-  }
-  &:hover ${FloatInput} {
-    border-bottom: 3px solid #000;
-  }
 `
 
 const StyledParagraph = styled.p`
