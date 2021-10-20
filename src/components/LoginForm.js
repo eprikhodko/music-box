@@ -39,8 +39,7 @@ function LoginForm() {
 
   return (
     <ContainerMain>
-      <Content>
-        {/* <CenterContent> */}
+      <Content justifyContent="center">
         <StyledForm onSubmit={handleSubmit}>
           <ContainerFloatInput>
             <FloatLabel htmlFor="email" isNotEmpty={email}>
@@ -83,7 +82,6 @@ function LoginForm() {
             <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>
           </StyledParagraph>
         </StyledForm>
-        {/* </CenterContent> */}
       </Content>
     </ContainerMain>
   )

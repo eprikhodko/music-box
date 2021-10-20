@@ -22,10 +22,8 @@ function Catalog() {
       <main>
         <ContainerMain>
           <Content flexDirection="column" alignItems="center">
-            {/* <CenterContent> */}
             <AlbumsGrid albumsSlice={albumsSlice} />
             <Button text="Show more" marginTop="2em" onClick={handleShowMore} />
-            {/* </CenterContent> */}
           </Content>
         </ContainerMain>
       </main>
