@@ -1,11 +1,14 @@
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
+import LoginForm from "../components/LoginForm"
 
 function Login() {
   return (
     <>
       <Header />
-      <div>This is login page</div>
+      <main>
+        <LoginForm />
+      </main>
       <Footer />
     </>
   )

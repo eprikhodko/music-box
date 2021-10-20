@@ -1,5 +1,13 @@
 import styled from "styled-components"
 
+export const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10em;
+  /* border: 2px solid goldenrod; */
+`
+
 export const FloatInput = styled.input`
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 0.7);
