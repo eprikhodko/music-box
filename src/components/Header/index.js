@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import { ContainerMain, Content, ContainerFlex } from "../shared/Containers"
+import { ContainerMain, Content } from "../shared/Containers"
 import Logo from "./Logo"
 import SearchBox from "./SearchBox"
 import Nav from "./Nav"
@@ -14,6 +14,11 @@ const StyledHeader = styled.header`
   /* align-items: center; */
   margin: 0 auto;
   border-bottom: 3px solid #c2c2c2;
+`
+
+const ContainerFlex = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 function Header() {

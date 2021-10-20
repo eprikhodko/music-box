@@ -16,10 +16,5 @@ export const Content = styled.div`
   flex-direction: ${({ flexDirection }) => flexDirection};
   align-items: ${({ alignItems }) => alignItems};
 
-  border: 1px solid magenta;
-`
-
-export const ContainerFlex = styled.div`
-  display: flex;
-  align-items: center;
+  /* border: 1px solid magenta; */
 `
