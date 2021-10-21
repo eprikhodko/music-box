@@ -2,29 +2,26 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 import * as ROUTES from "../../constants/routes"
+import { ReactComponent as SiteLogo } from "../../icons/site-logo.svg"
 
-const StyledLogo = styled.p`
-  color: #000;
-  font-size: 3.5rem;
-  font-weight: 800;
+const StyledLogo = styled.div`
+  display: flex;
   margin: 0;
-`
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`
-
-const SpanLight = styled.span`
-  font-weight: 300;
+  svg {
+    height: 64px;
+    width: 64px;
+    /* margin-right: 0.3em; */
+    /* color: palevioletred; */
+  }
 `
 
 function Logo() {
   return (
-    <StyledLink to={ROUTES.HOME}>
+    <Link to={ROUTES.HOME}>
       <StyledLogo>
-        <SpanLight>Music</SpanLight> box
+        <SiteLogo />
       </StyledLogo>
-    </StyledLink>
+    </Link>
   )
 }
 

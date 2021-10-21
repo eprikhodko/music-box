@@ -46,5 +46,5 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  noSearchBox: true,
+  noSearchBox: false,
 }
