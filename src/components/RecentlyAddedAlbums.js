@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import * as ROUTES from "../constants/routes"
-import AlbumsGrid from "./shared/AlbumsGrid"
+import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
 import { Content, ContainerMain } from "./shared/Containers"
 import LinkAsButton from "./shared/buttons/LinkAsButton"

@@ -2,7 +2,7 @@ import Header from "../components/Header/index"
 import Footer from "../components/Footer"
 import SearchBox from "../components/Header/SearchBox"
 import { ContainerMain, Content } from "../components/shared/Containers"
-import GenresGrid from "../components/GenresGrid"
+import GenresGrid from "../components/shared/grids/GenresGrid"
 
 function Search() {
   return (

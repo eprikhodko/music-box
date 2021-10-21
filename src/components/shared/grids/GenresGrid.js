@@ -1,70 +1,21 @@
 import { useState, useEffect } from "react"
 
 import styled from "styled-components"
-import { Link } from "react-router-dom"
 
-import { Content, ContainerMain } from "./shared/Containers"
+import { Content, ContainerMain } from "../Containers"
+import {
+  AlbumContainer,
+  LinkToAlbum,
+  AlbumCover,
+  AlbumTitle,
+  StyledAlbumsGrid,
+} from "./GridElements"
 
 const Title = styled.h2`
   font-size: 4.5rem;
   color: #000;
   font-weight: 500;
-  /* text-align: center; */
   /* border: 1px solid teal; */
-`
-
-const AlbumTitle = styled.p`
-  font-size: 1.8rem;
-  color: #000;
-  font-weight: 500;
-  margin-bottom: 0;
-  margin-top: 0.6em;
-`
-
-const AlbumArtist = styled.p`
-  font-size: 1.6rem;
-  color: #000;
-  font-weight: 500;
-  margin: 0;
-`
-
-const AlbumCover = styled.img`
-  max-width: 266px;
-  /* margin-bottom: 0; */
-  &:hover {
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-  }
-`
-
-const StyledAlbumsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2em;
-  margin: 3em 0 2em;
-  /* border: 1px solid; */
-`
-
-const AlbumContainer = styled.div`
-  &:hover ${AlbumCover} {
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-  }
-`
-
-const LinkToAlbum = styled(Link)`
-  text-decoration: none;
-  color: #000;
-  &:focus {
-    outline: 3px solid transparent;
-  }
-  &:focus ${AlbumCover} {
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-  }
-  &:focus ${AlbumTitle} {
-    color: #333;
-  }
-  &:focus ${AlbumArtist} {
-    color: #333;
-  }
 `
 
 function GenresGrid() {
@@ -73,7 +24,7 @@ function GenresGrid() {
   const [isLoading, setIsLoading] = useState(true)
 
   const url =
-    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
+    "https://raw.githubusercontent.com/eprikhodko/music-box-images/3a9f2540d661ee1024ce8ef85845ce0f1744c437/genres-data/genres-data.json"
 
   const fetchGenresData = async () => {
     const res = await fetch(url)
@@ -88,7 +39,7 @@ function GenresGrid() {
         <AlbumContainer>
           <AlbumCover
             src={album.albumCover}
-            alt={`album cover for ${album.albumTitle} album`}
+            alt={`album cover for ${album.genre} album`}
           />
           <AlbumTitle>{album.genre}</AlbumTitle>
         </AlbumContainer>
@@ -105,9 +56,6 @@ function GenresGrid() {
   useEffect(() => {
     setGenresComponents(createGenresComponents())
   }, [isLoading])
-
-  console.log(genresData, isLoading)
-  console.log("this is genres components", genresComponents)
 
   return (
     <ContainerMain>
