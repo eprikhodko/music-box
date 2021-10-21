@@ -65,7 +65,21 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
 
   const { albumsData } = useContext(AlbumsDataContext)
 
+  // const [albumsData, setAlbumsData] = useState([])
   const [albumsComponents, setAlbumsComponents] = useState([])
+
+  // const url =
+  //   "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
+
+  // const fetchAlbumsData = async () => {
+  //   const res = await fetch(url)
+  //   const data = await res.json()
+  //   setAlbumsData(data)
+  // }
+
+  // useEffect(() => {
+  //   fetchAlbumsData()
+  // }, [])
 
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
