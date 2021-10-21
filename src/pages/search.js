@@ -6,7 +6,7 @@ import { ContainerMain, Content } from "../components/shared/Containers"
 function Search() {
   return (
     <>
-      <Header />
+      <Header noSearchBox />
       <main>
         <ContainerMain>
           <Content flexDirection="column" alignItems="center">

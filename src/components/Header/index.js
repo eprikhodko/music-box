@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import { ContainerMain, Content } from "../shared/Containers"
@@ -21,14 +22,14 @@ const ContainerFlex = styled.div`
   align-items: center;
 `
 
-function Header() {
+function Header({ noSearchBox }) {
   return (
     <StyledHeader>
       <ContainerMain>
         <Content justifyContent="space-between">
           <ContainerFlex>
             <Logo />
-            <SearchBox />
+            {!noSearchBox && <SearchBox />}
           </ContainerFlex>
 
           <Nav />
@@ -39,3 +40,11 @@ function Header() {
 }
 
 export default Header
+
+Header.propTypes = {
+  noSearchBox: PropTypes.bool,
+}
+
+Header.defaultProps = {
+  noSearchBox: true,
+}
