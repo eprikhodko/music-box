@@ -60,7 +60,6 @@ const ContainerArrowIcon = styled.div`
   cursor: pointer;
   &:hover {
     background-color: ${({ isEmpty }) => isEmpty && "#dbdbdb"};
-    background-color: #dbdbdb;
   }
 `
 

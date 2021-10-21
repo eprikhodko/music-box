@@ -1,5 +1,5 @@
 import { useState } from "react"
-import AlbumsGrid from "../components/AlbumsGrid"
+import AlbumsGrid from "../components/shared/AlbumsGrid"
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
 import Button from "../components/shared/buttons/Button"

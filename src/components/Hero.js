@@ -7,7 +7,7 @@ import { ContainerMain, Content } from "./shared/Containers"
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
 import LinkAsButton from "./shared/buttons/LinkAsButton"
 
-const HeroSection = styled.section`
+const HeroContent = styled.div`
   background-image: url(${heroImage});
   background-repeat: no-repeat;
   background-position: top right;
@@ -47,22 +47,24 @@ const currentUser = false
 
 function Hero() {
   return (
-    <ContainerMain>
-      <HeroSection>
-        <Content>
-          <ContainerHeroText>
-            <HeroTitle>Build your music library</HeroTitle>
-            <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
-            <ContainerHeroButtons>
-              <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
-              {!currentUser && (
-                <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
-              )}
-            </ContainerHeroButtons>
-          </ContainerHeroText>
-        </Content>
-      </HeroSection>
-    </ContainerMain>
+    <section>
+      <ContainerMain>
+        <HeroContent>
+          <Content>
+            <ContainerHeroText>
+              <HeroTitle>Build your music library</HeroTitle>
+              <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+              <ContainerHeroButtons>
+                <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
+                {!currentUser && (
+                  <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
+                )}
+              </ContainerHeroButtons>
+            </ContainerHeroText>
+          </Content>
+        </HeroContent>
+      </ContainerMain>
+    </section>
   )
 }
 

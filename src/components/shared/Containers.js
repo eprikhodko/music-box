@@ -18,3 +18,10 @@ export const Content = styled.div`
 
   /* border: 1px solid magenta; */
 `
+
+export const CenterContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+`
