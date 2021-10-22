@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { ContainerMain, Content } from "../shared/Containers"
 import Logo from "./Logo"
-import SearchBox from "./SearchBox"
+import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
 
 const StyledHeader = styled.header`
