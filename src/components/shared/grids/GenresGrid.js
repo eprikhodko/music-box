@@ -35,7 +35,10 @@ function GenresGrid() {
 
   const createGenresComponents = () => {
     const genres = genresData.map((album) => (
-      <LinkToAlbum to={`/albums/${album.albumId}`} key={album.albumId}>
+      <LinkToAlbum
+        to={`/search/${album.genre.toLowerCase()}`}
+        key={album.albumId}
+      >
         <AlbumContainer>
           <AlbumCover
             src={album.albumCover}

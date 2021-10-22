@@ -15,7 +15,7 @@ const StyledButtonLink = styled(Link)`
   /* disable padding left and right if button recieve a 'hero' prop */
   padding: ${({ $hero }) => $hero && "1em 0"};
   /* set min-width if button receive a 'hero' prop */
-  min-width: ${({ $hero }) => $hero && "169px"};
+  min-width: ${({ $hero }) => $hero && "10.5em"};
   background-color: transparent;
   /* cursor: pointer; */
   border: 2px solid #333;
@@ -32,7 +32,7 @@ const StyledButtonLink = styled(Link)`
   }
 `
 
-function LinkAsButton({ text, hero, to }) {
+function ButtonLink({ text, hero, to }) {
   return (
     // here we're pass a transient $hero prop down to StyledButtonLink component
     // transient prop (https://styled-components.com/docs/api#transient-props) means that this prop will be consumed only by styled component,
@@ -48,15 +48,15 @@ function LinkAsButton({ text, hero, to }) {
   )
 }
 
-LinkAsButton.propTypes = {
+ButtonLink.propTypes = {
   text: PropTypes.string.isRequired,
   hero: PropTypes.bool,
   to: PropTypes.string,
 }
 
-LinkAsButton.defaultProps = {
+ButtonLink.defaultProps = {
   hero: false,
   to: "#",
 }
 
-export default LinkAsButton
+export default ButtonLink

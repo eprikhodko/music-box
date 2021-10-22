@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   /* disable padding left and right if button recieve a 'hero' prop */
   padding: ${({ hero }) => hero && "1em 0"};
   /* set min-width if button receive a 'hero' prop */
-  min-width: ${({ hero }) => hero && "169px"};
+  min-width: ${({ hero }) => hero && "10.5em"};
   background-color: transparent;
   cursor: pointer;
   border: 2px solid #333;

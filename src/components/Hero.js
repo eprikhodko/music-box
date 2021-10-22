@@ -5,7 +5,7 @@ import * as ROUTES from "../constants/routes"
 import { ContainerMain, Content } from "./shared/Containers"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
-import LinkAsButton from "./shared/buttons/LinkAsButton"
+import ButtonLink from "./shared/buttons/ButtonLink"
 
 const HeroContent = styled.div`
   background-image: url(${heroImage});
@@ -55,9 +55,9 @@ function Hero() {
               <HeroTitle>Build your music library</HeroTitle>
               <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
               <ContainerHeroButtons>
-                <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
+                <ButtonLink to={ROUTES.CATALOG} hero text="View all" />
                 {!currentUser && (
-                  <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
+                  <ButtonLink to={ROUTES.LOGIN} hero text="Log in" />
                 )}
               </ContainerHeroButtons>
             </ContainerHeroText>
