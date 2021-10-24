@@ -1,3 +1,4 @@
+import Footer from "../components/Footer"
 import Header from "../components/Header/index"
 
 function NotFound() {
@@ -5,6 +6,7 @@ function NotFound() {
     <>
       <Header />
       <div>Sorry, page not found</div>
+      <Footer />
     </>
   )
 }
