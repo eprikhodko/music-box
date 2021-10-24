@@ -3,9 +3,8 @@ import styled from "styled-components"
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import AlbumsDataContext from "../context/albumsData"
-import ContainerMain from "./shared/containers/ContainerMain"
-import Content from "./shared/containers/Content"
-import LinkAsButton from "./shared/buttons/LinkAsButton"
+import { ContainerMain, Content } from "./shared/Containers"
+import ButtonLink from "./shared/buttons/ButtonLink"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
@@ -105,8 +104,8 @@ function AlbumDetails() {
                   please make an account first:
                 </ButtonsParagraph>
                 <AlbumButtons>
-                  <LinkAsButton to={ROUTES.SIGNUP} hero text="Sign up" />
-                  <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
+                  <ButtonLink to={ROUTES.SIGNUP} hero text="Sign up" />
+                  <ButtonLink to={ROUTES.LOGIN} hero text="Log in" />
                 </AlbumButtons>
               </>
             )}

@@ -1,14 +1,9 @@
 import styled from "styled-components"
 import * as ROUTES from "../constants/routes"
-import AlbumsGrid from "./AlbumsGrid"
+import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
-import Content from "./shared/containers/Content"
-import ContainerMain from "./shared/containers/ContainerMain"
-import LinkAsButton from "./shared/buttons/LinkAsButton"
-
-const RecentlyAddedAlbumsSection = styled.section`
-  margin-top: 4.5em;
-`
+import { Content, ContainerMain } from "./shared/Containers"
+import ButtonLink from "./shared/buttons/ButtonLink"
 
 const Title = styled.h2`
   font-size: 4.5rem;
@@ -18,30 +13,21 @@ const Title = styled.h2`
   /* border: 1px solid teal; */
 `
 
-const CenterContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-`
-
 function RecentlyAddedAlbums() {
   const slice = {
     start: 0,
     end: 8,
   }
   return (
-    <ContainerMain>
-      <RecentlyAddedAlbumsSection>
-        <Content>
-          <CenterContent>
-            <Title>Recently added albums</Title>
-            <AlbumsGrid albumsSlice={slice} />
-            <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
-          </CenterContent>
+    <section>
+      <ContainerMain>
+        <Content flexDirection="column" alignItems="center" marginTop="4.5em">
+          <Title>Recently added albums</Title>
+          <AlbumsGrid albumsSlice={slice} />
+          <ButtonLink to={ROUTES.CATALOG} hero text="View all" />
         </Content>
-      </RecentlyAddedAlbumsSection>
-    </ContainerMain>
+      </ContainerMain>
+    </section>
   )
 }
 

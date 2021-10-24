@@ -2,13 +2,12 @@ import styled from "styled-components"
 
 import * as ROUTES from "../constants/routes"
 
-import ContainerMain from "./shared/containers/ContainerMain"
-import Content from "./shared/containers/Content"
+import { ContainerMain, Content } from "./shared/Containers"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
-import LinkAsButton from "./shared/buttons/LinkAsButton"
+import ButtonLink from "./shared/buttons/ButtonLink"
 
-const HeroSection = styled.section`
+const HeroContent = styled.div`
   background-image: url(${heroImage});
   background-repeat: no-repeat;
   background-position: top right;
@@ -48,22 +47,24 @@ const currentUser = false
 
 function Hero() {
   return (
-    <ContainerMain>
-      <HeroSection>
-        <Content>
-          <ContainerHeroText>
-            <HeroTitle>Build your music library</HeroTitle>
-            <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
-            <ContainerHeroButtons>
-              <LinkAsButton to={ROUTES.CATALOG} hero text="View all" />
-              {!currentUser && (
-                <LinkAsButton to={ROUTES.LOGIN} hero text="Log in" />
-              )}
-            </ContainerHeroButtons>
-          </ContainerHeroText>
-        </Content>
-      </HeroSection>
-    </ContainerMain>
+    <section>
+      <ContainerMain>
+        <HeroContent>
+          <Content>
+            <ContainerHeroText>
+              <HeroTitle>Build your music library</HeroTitle>
+              <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+              <ContainerHeroButtons>
+                <ButtonLink to={ROUTES.CATALOG} hero text="View all" />
+                {!currentUser && (
+                  <ButtonLink to={ROUTES.LOGIN} hero text="Log in" />
+                )}
+              </ContainerHeroButtons>
+            </ContainerHeroText>
+          </Content>
+        </HeroContent>
+      </ContainerMain>
+    </section>
   )
 }
 
