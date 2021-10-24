@@ -16,6 +16,7 @@ const Container = styled.div`
   border: 1px solid #000;
   border-radius: 50px;
   margin-left: 2.5em;
+  margin-left: ${({ big }) => big && "0"};
   background-color: #ebebeb;
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -32,6 +33,7 @@ const TextInput = styled.input`
   font-size: ${({ big }) => big && "1.8rem"};
   background-color: transparent;
   margin-left: 0.7em;
+  margin-left: ${({ big }) => big && "0"};
   border: 0;
   font-family: inherit;
   &:focus {
