@@ -28,7 +28,7 @@ function NotFound() {
             <NotFoundSubTitle>Sorry, this page not found</NotFoundSubTitle>
             {/* <Button as="a" href="/search" text="text" /> */}
             <Button marginTop="2em">hello</Button>
-            <Button as={Link} to="/search">
+            <Button as={Link} to="/search" hero>
               go home
             </Button>
           </Content>

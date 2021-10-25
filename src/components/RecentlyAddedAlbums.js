@@ -3,7 +3,7 @@ import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
 import { Content, ContainerMain } from "./shared/Containers"
-import ButtonLink from "./shared/buttons/ButtonLink"
+import { HeroButton } from "./shared/Button"
 
 const Title = styled.h2`
   font-size: 4.5rem;
@@ -24,7 +24,7 @@ function RecentlyAddedAlbums() {
         <Content flexDirection="column" alignItems="center" marginTop="4.5em">
           <Title>Recently added albums</Title>
           <AlbumsGrid albumsSlice={slice} />
-          <ButtonLink to={ROUTES.CATALOG} hero text="View all" />
+          <HeroButton to={ROUTES.CATALOG}>View all</HeroButton>
         </Content>
       </ContainerMain>
     </section>
