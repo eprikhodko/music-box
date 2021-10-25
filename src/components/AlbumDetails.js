@@ -103,7 +103,7 @@ function AlbumDetails() {
                   please make an account first:
                 </ButtonsParagraph>
                 <AlbumButtons>
-                  <HeroButton as={Link} to={ROUTES.SIGNUP}>
+                  <HeroButton as={Link} to={ROUTES.SIGNUP} marginRight="2em">
                     Sign up
                   </HeroButton>
                   <HeroButton to={ROUTES.LOGIN}>Log in</HeroButton>

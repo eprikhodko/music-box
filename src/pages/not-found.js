@@ -1,10 +1,9 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-// import * as ROUTES from "../constants/routes"
+import * as ROUTES from "../constants/routes"
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
 import { ContainerMain, Content } from "../components/shared/Containers"
-// import Button from "../components/shared/buttons/Button"
 import { Button } from "../components/shared/Button"
 
 const NotFoundTitle = styled.h1`
@@ -23,13 +22,12 @@ function NotFound() {
       <Header />
       <main>
         <ContainerMain>
-          <Content flexDirection="column" alignItems="center" marginTop="2em">
+          <Content flexDirection="column" alignItems="center" marginTop="3em">
             <NotFoundTitle>404</NotFoundTitle>
             <NotFoundSubTitle>Sorry, this page not found</NotFoundSubTitle>
-            {/* <Button as="a" href="/search" text="text" /> */}
-            <Button marginTop="2em">hello</Button>
-            <Button as={Link} to="/search" hero>
-              go home
+
+            <Button as={Link} to={ROUTES.HOME} marginTop="2em">
+              Go Back To Home
             </Button>
           </Content>
         </ContainerMain>

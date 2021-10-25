@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
@@ -24,7 +25,9 @@ function RecentlyAddedAlbums() {
         <Content flexDirection="column" alignItems="center" marginTop="4.5em">
           <Title>Recently added albums</Title>
           <AlbumsGrid albumsSlice={slice} />
-          <HeroButton to={ROUTES.CATALOG}>View all</HeroButton>
+          <HeroButton as={Link} to={ROUTES.CATALOG}>
+            View all
+          </HeroButton>
         </Content>
       </ContainerMain>
     </section>
