@@ -1,14 +1,13 @@
 import styled from "styled-components"
 
 import { useContext } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import AlbumsDataContext from "../context/albumsData"
 import { ContainerMain, Content } from "./shared/Containers"
-import ButtonLink from "./shared/buttons/ButtonLink"
+import { Button, HeroButton } from "./shared/Button"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
-import Button from "./shared/buttons/Button"
 
 const AlbumCover = styled.img`
   max-width: 564px;
@@ -93,8 +92,8 @@ function AlbumDetails() {
             {currentUser ? (
               <>
                 <AlbumButtons currentUser={currentUser}>
-                  <Button text="Add to my collection" />
-                  <Button text="Add to my wishlist" marginTop="1.5em" />
+                  <Button>Add to my collection</Button>
+                  <Button marginTop="1.5em"> Add to my wishlist</Button>
                 </AlbumButtons>
               </>
             ) : (
@@ -104,8 +103,10 @@ function AlbumDetails() {
                   please make an account first:
                 </ButtonsParagraph>
                 <AlbumButtons>
-                  <ButtonLink to={ROUTES.SIGNUP} hero text="Sign up" />
-                  <ButtonLink to={ROUTES.LOGIN} hero text="Log in" />
+                  <HeroButton as={Link} to={ROUTES.SIGNUP} marginRight="2em">
+                    Sign up
+                  </HeroButton>
+                  <HeroButton to={ROUTES.LOGIN}>Log in</HeroButton>
                 </AlbumButtons>
               </>
             )}

@@ -1,11 +1,12 @@
 import styled from "styled-components"
 
+import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 
 import { ContainerMain, Content } from "./shared/Containers"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
-import ButtonLink from "./shared/buttons/ButtonLink"
+import { HeroButton } from "./shared/Button"
 
 const HeroContent = styled.div`
   background-image: url(${heroImage});
@@ -40,7 +41,7 @@ const HeroSubtitle = styled.h2`
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
-  margin-top: 0.5em;
+  margin-top: 0.6em;
 `
 
 const currentUser = false
@@ -55,9 +56,18 @@ function Hero() {
               <HeroTitle>Build your music library</HeroTitle>
               <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
               <ContainerHeroButtons>
-                <ButtonLink to={ROUTES.CATALOG} hero text="View all" />
+                <HeroButton
+                  as={Link}
+                  to={ROUTES.CATALOG}
+                  marginRight="2em"
+                  marginTop="0.3em"
+                >
+                  View all
+                </HeroButton>
                 {!currentUser && (
-                  <ButtonLink to={ROUTES.LOGIN} hero text="Log in" />
+                  <HeroButton as={Link} to={ROUTES.LOGIN} marginTop="0.3em">
+                    Log in
+                  </HeroButton>
                 )}
               </ContainerHeroButtons>
             </ContainerHeroText>

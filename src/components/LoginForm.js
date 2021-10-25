@@ -3,7 +3,7 @@ import { useState } from "react/cjs/react.development"
 import styled from "styled-components"
 
 import * as ROUTES from "../constants/routes"
-import Button from "./shared/buttons/Button"
+import { Button } from "./shared/Button"
 
 import { ContainerMain, Content } from "./shared/Containers"
 
@@ -76,7 +76,7 @@ function LoginForm() {
             />
           </ContainerFloatInput>
 
-          <Button type="submit" text="Log in" />
+          <Button type="submit">Log in</Button>
           <StyledParagraph>
             New to Music Box?{" "}
             <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>

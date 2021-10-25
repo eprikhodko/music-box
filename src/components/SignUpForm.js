@@ -3,7 +3,7 @@ import { useState } from "react"
 import styled from "styled-components"
 
 import * as ROUTES from "../constants/routes"
-import Button from "./shared/buttons/Button"
+import { Button } from "./shared/Button"
 
 import { ContainerMain, Content } from "./shared/Containers"
 
@@ -94,7 +94,7 @@ function SignUpForm() {
             />
           </ContainerFloatInput>
 
-          <Button type="submit" text="Create Account" />
+          <Button type="submit">Create Account</Button>
           <StyledParagraph>
             Already have an account?{" "}
             <StyledLink to={ROUTES.LOGIN}>Log in</StyledLink>

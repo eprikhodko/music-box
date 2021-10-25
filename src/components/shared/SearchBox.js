@@ -11,12 +11,9 @@ const Container = styled.div`
   justify-content: space-between;
   height: 2.5em;
   width: 14em;
-  height: ${({ big }) => big && "5.35em"};
-  width: ${({ big }) => big && "30em"};
   border: 1px solid #000;
   border-radius: 50px;
   margin-left: 2.5em;
-  margin-left: ${({ big }) => big && "0"};
   background-color: #ebebeb;
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -26,14 +23,18 @@ const Container = styled.div`
   }
 `
 
+const ContainerBig = styled(Container)`
+  height: 5.35em;
+  width: 30em;
+  margin-left: 0;
+`
+
 const TextInput = styled.input`
   /* flex: 1 0; */
   min-width: 50px;
   font-size: 1.6rem;
-  font-size: ${({ big }) => big && "1.8rem"};
   background-color: transparent;
   margin-left: 0.7em;
-  margin-left: ${({ big }) => big && "0"};
   border: 0;
   font-family: inherit;
   &:focus {
@@ -47,17 +48,27 @@ const TextInput = styled.input`
   }
 `
 
+const TextInputBig = styled(TextInput)`
+  font-size: 1.8rem;
+  margin-left: 0;
+`
+
 const ContainerSearchIcon = styled.div`
   display: flex;
   margin-left: 0.6em;
-  margin-left: ${({ big }) => big && "1.5em"};
   svg {
     height: 1em;
     width: 1em;
-    height: ${({ big }) => big && "2em"};
-    width: ${({ big }) => big && "2em"};
   }
   /* border: 1px solid green; */
+`
+
+const ContainerSearchIconBig = styled(ContainerSearchIcon)`
+  margin-left: 1.5em;
+  svg {
+    height: 2em;
+    width: 2em;
+  }
 `
 
 const ContainerArrowIcon = styled.div`
@@ -65,14 +76,11 @@ const ContainerArrowIcon = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 0.5em;
-  margin-right: ${({ big }) => big && "0.9em"};
   cursor: ${({ isEmpty }) => isEmpty && "pointer"};
   cursor: pointer;
   svg {
     height: 1.65em;
     width: 1.65em;
-    height: ${({ big }) => big && "3.5em"};
-    width: ${({ big }) => big && "3.5em"};
   }
   svg circle {
     fill: transparent;
@@ -85,7 +93,13 @@ const ContainerArrowIcon = styled.div`
   }
 `
 
-const StyledArrowIcon = styled(ArrowIcon)``
+const ContainerArrowIconBig = styled(ContainerArrowIcon)`
+  margin-right: 0.9em;
+  svg {
+    height: 3.5em;
+    width: 3.5em;
+  }
+`
 
 function SearchBox({ placeholder, big }) {
   const [searchQuery, setSearchQuery] = useState("")
@@ -101,9 +115,10 @@ function SearchBox({ placeholder, big }) {
 
   console.log(searchQuery)
 
-  return (
-    <Container big={big}>
-      <ContainerSearchIcon big={big}>
+  return !big ? (
+    // return regular sized search box, if it is rendered in header
+    <Container>
+      <ContainerSearchIcon>
         <SearchIcon onClick={handleSearchSubmit} />
       </ContainerSearchIcon>
       <TextInput
@@ -112,10 +127,25 @@ function SearchBox({ placeholder, big }) {
         onChange={handleChange}
         big={big}
       />
-      <ContainerArrowIcon isEmpty={searchQuery} big={big}>
-        <StyledArrowIcon onClick={handleSearchSubmit} />
+      <ContainerArrowIcon isEmpty={searchQuery}>
+        <ArrowIcon onClick={handleSearchSubmit} />
       </ContainerArrowIcon>
     </Container>
+  ) : (
+    // return big search box, if search box is rendered at search page body below the header, as a separate component
+    <ContainerBig>
+      <ContainerSearchIconBig>
+        <SearchIcon onClick={handleSearchSubmit} />
+      </ContainerSearchIconBig>
+      <TextInputBig
+        placeholder={placeholder}
+        value={searchQuery}
+        onChange={handleChange}
+      />
+      <ContainerArrowIconBig isEmpty={searchQuery}>
+        <ArrowIcon onClick={handleSearchSubmit} />
+      </ContainerArrowIconBig>
+    </ContainerBig>
   )
 }
 

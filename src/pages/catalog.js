@@ -2,7 +2,7 @@ import { useState } from "react"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
-import Button from "../components/shared/buttons/Button"
+import { Button } from "../components/shared/Button"
 
 import { ContainerMain, Content } from "../components/shared/Containers"
 
@@ -23,7 +23,9 @@ function Catalog() {
         <ContainerMain>
           <Content flexDirection="column" alignItems="center">
             <AlbumsGrid albumsSlice={albumsSlice} />
-            <Button text="Show more" marginTop="2em" onClick={handleShowMore} />
+            <Button marginTop="2em" onClick={handleShowMore}>
+              Show more
+            </Button>
           </Content>
         </ContainerMain>
       </main>
