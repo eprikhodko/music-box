@@ -1,6 +1,7 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+import { Link } from "react-router-dom"
 
-const Button = styled.button`
+const sharedStyle = css`
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.6rem;
@@ -13,11 +14,14 @@ const Button = styled.button`
   /* set min-width if button receive a 'hero' prop */
   min-width: ${({ hero }) => hero && "10.5em"};
   background-color: transparent;
-  cursor: pointer;
+
+  /* cursor: pointer; */
+
   border: 2px solid #333;
   border-radius: 50px;
   margin-right: ${({ marginRight }) => marginRight};
   margin-top: ${({ marginTop }) => marginTop || "10em"};
+
   &:hover {
     background-color: #333;
     color: #fff;
@@ -31,4 +35,22 @@ const Button = styled.button`
   }
 `
 
-export { Button as default }
+export const Button = styled.button`
+  ${sharedStyle}
+`
+
+export const ButtonLink = styled(Link)`
+  ${sharedStyle}
+  text-decoration: none;
+  text-align: center;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  &:focus {
+    background-color: #333;
+    color: #fff;
+    outline: 3px solid transparent;
+  }
+`
