@@ -1,8 +1,10 @@
 import styled from "styled-components"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import * as ROUTES from "../../constants/routes"
 
 import { ReactComponent as IconAvatar } from "../../icons/icon-avatar.svg"
+import UserContext from "../../context/user"
 
 const StyledNav = styled.nav`
   display: flex;
@@ -44,9 +46,9 @@ const Avatar = styled(IconAvatar)`
   }
 `
 
-const currentUser = false
-
 function Nav() {
+  const currentUser = useContext(UserContext)
+
   // return navigation for anonymous user
   return !currentUser ? (
     <StyledNav>
