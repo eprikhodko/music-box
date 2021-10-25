@@ -1,11 +1,19 @@
 import Header from "../components/Header/index"
 import Footer from "../components/Footer"
+import { ContainerMain, Content } from "../components/shared/Containers"
+import ProfileContent from "../components/ProfileContent"
 
 function Profile() {
   return (
     <>
       <Header />
-      <main>profile content goes here</main>
+      <main>
+        <ContainerMain>
+          <Content>
+            <ProfileContent />
+          </Content>
+        </ContainerMain>
+      </main>
       <Footer />
     </>
   )
