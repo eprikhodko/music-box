@@ -9,7 +9,7 @@ function Profile() {
       <Header />
       <main>
         <ContainerMain>
-          <Content>
+          <Content marginTop="5em">
             <ProfileContent />
           </Content>
         </ContainerMain>
