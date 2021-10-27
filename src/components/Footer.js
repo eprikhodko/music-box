@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import PropTypes from "prop-types"
 
 import { ReactComponent as IconInstagram } from "../icons/social/instagram-icon.svg"
 import { ReactComponent as IconFacebook } from "../icons/social/facebook-icon.svg"
@@ -10,7 +11,7 @@ import { ContainerMain } from "./shared/Containers"
 const ContainerFooter = styled.div`
   /* max-width: 1440px; */
   margin: 0 auto;
-  margin-top: 7.5em;
+  margin-top: ${({ $marginTop }) => $marginTop};
   padding: 3em 4em 1em;
   background-color: #c2c2c2;
   /* border: 1px solid magenta; */
@@ -97,11 +98,11 @@ const GridElement = styled.div`
   /* border: 1px solid green; */
 `
 
-function Footer() {
+function Footer({ $marginTop }) {
   return (
     <footer>
       <ContainerMain>
-        <ContainerFooter>
+        <ContainerFooter $marginTop={$marginTop}>
           <FooterContent>
             <GridElement>
               <p>
@@ -201,3 +202,11 @@ function Footer() {
 }
 
 export default Footer
+
+Footer.propTypes = {
+  $marginTop: PropTypes.string,
+}
+
+Footer.defaultProps = {
+  $marginTop: "7.5em",
+}

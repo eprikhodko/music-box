@@ -40,7 +40,7 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
 
-  console.log(albumsSlice)
+  // console.log(albumsSlice)
   console.log(renderAllAlbums)
 
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>

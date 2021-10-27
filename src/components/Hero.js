@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 
-import { ContainerMain, Content } from "./shared/Containers"
+import { Content } from "./shared/Containers"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
 import { HeroButton } from "./shared/Button"
@@ -48,33 +48,29 @@ const currentUser = false
 
 function Hero() {
   return (
-    <section>
-      <ContainerMain>
-        <HeroContent>
-          <Content>
-            <ContainerHeroText>
-              <HeroTitle>Build your music library</HeroTitle>
-              <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
-              <ContainerHeroButtons>
-                <HeroButton
-                  as={Link}
-                  to={ROUTES.CATALOG}
-                  marginRight="2em"
-                  marginTop="0.3em"
-                >
-                  View all
-                </HeroButton>
-                {!currentUser && (
-                  <HeroButton as={Link} to={ROUTES.LOGIN} marginTop="0.3em">
-                    Log in
-                  </HeroButton>
-                )}
-              </ContainerHeroButtons>
-            </ContainerHeroText>
-          </Content>
-        </HeroContent>
-      </ContainerMain>
-    </section>
+    <HeroContent>
+      <Content>
+        <ContainerHeroText>
+          <HeroTitle>Build your music library</HeroTitle>
+          <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+          <ContainerHeroButtons>
+            <HeroButton
+              as={Link}
+              to={ROUTES.CATALOG}
+              $marginRight="2em"
+              $marginTop="0.3em"
+            >
+              View all
+            </HeroButton>
+            {!currentUser && (
+              <HeroButton as={Link} to={ROUTES.LOGIN} $marginTop="0.3em">
+                Log in
+              </HeroButton>
+            )}
+          </ContainerHeroButtons>
+        </ContainerHeroText>
+      </Content>
+    </HeroContent>
   )
 }
 

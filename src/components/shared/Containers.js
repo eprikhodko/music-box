@@ -12,7 +12,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: ${({ justifyContent }) => justifyContent};
   margin: 0 auto;
-  margin-top: ${({ marginTop }) => marginTop};
+  margin-top: ${({ $marginTop }) => $marginTop};
   flex-direction: ${({ flexDirection }) => flexDirection};
   align-items: ${({ alignItems }) => alignItems};
 

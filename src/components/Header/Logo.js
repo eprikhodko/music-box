@@ -7,6 +7,7 @@ import { ReactComponent as SiteLogo } from "../../icons/site-logo.svg"
 const StyledLogo = styled.div`
   display: flex;
   margin: 0;
+  margin-right: 2.5em;
   svg {
     height: 64px;
     width: 64px;

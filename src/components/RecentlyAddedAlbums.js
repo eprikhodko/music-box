@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
-import { Content, ContainerMain } from "./shared/Containers"
+import { Content } from "./shared/Containers"
 import { HeroButton } from "./shared/Button"
 
 const Title = styled.h2`
@@ -20,17 +20,13 @@ function RecentlyAddedAlbums() {
     end: 8,
   }
   return (
-    <section>
-      <ContainerMain>
-        <Content flexDirection="column" alignItems="center" marginTop="4.5em">
-          <Title>Recently added albums</Title>
-          <AlbumsGrid albumsSlice={slice} />
-          <HeroButton as={Link} to={ROUTES.CATALOG}>
-            View all
-          </HeroButton>
-        </Content>
-      </ContainerMain>
-    </section>
+    <Content flexDirection="column" alignItems="center" marginTop="4.5em">
+      <Title>Recently added albums</Title>
+      <AlbumsGrid albumsSlice={slice} />
+      <HeroButton as={Link} to={ROUTES.CATALOG}>
+        View all
+      </HeroButton>
+    </Content>
   )
 }
 

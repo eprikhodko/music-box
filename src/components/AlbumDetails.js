@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { Link, useParams } from "react-router-dom"
 import AlbumsDataContext from "../context/albumsData"
 import { ContainerMain, Content } from "./shared/Containers"
-import { Button, HeroButton } from "./shared/Button"
+import { HeroButton, ButtonAlbumDetails } from "./shared/Button"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
@@ -64,9 +64,10 @@ const ButtonsParagraph = styled.p`
 
 const AlbumButtons = styled.div`
   display: flex;
+  align-items: flex-start;
   flex-direction: ${({ currentUser }) => currentUser && "column"};
   margin-top: ${({ currentUser }) => currentUser && "2em"};
-  /* border: 1px solid yellow; */
+  /* border: 1px solid green; */
 `
 
 function AlbumDetails() {
@@ -79,7 +80,7 @@ function AlbumDetails() {
   return (
     <ContainerMain>
       {!isAlbumsDataLoading && (
-        <Content marginTop="5em">
+        <Content $marginTop="5em">
           <AlbumCover
             src={album.albumCover}
             alt={`cover for ${album.albumCover} album`}
@@ -92,8 +93,10 @@ function AlbumDetails() {
             {currentUser ? (
               <>
                 <AlbumButtons currentUser={currentUser}>
-                  <Button>Add to my collection</Button>
-                  <Button marginTop="1.5em"> Add to my wishlist</Button>
+                  <ButtonAlbumDetails>Add to my collection</ButtonAlbumDetails>
+                  <ButtonAlbumDetails $marginTop="1.5em">
+                    Add to my wishlist
+                  </ButtonAlbumDetails>
                 </AlbumButtons>
               </>
             ) : (
@@ -103,7 +106,7 @@ function AlbumDetails() {
                   please make an account first:
                 </ButtonsParagraph>
                 <AlbumButtons>
-                  <HeroButton as={Link} to={ROUTES.SIGNUP} marginRight="2em">
+                  <HeroButton as={Link} to={ROUTES.SIGNUP} $marginRight="2em">
                     Sign up
                   </HeroButton>
                   <HeroButton to={ROUTES.LOGIN}>Log in</HeroButton>

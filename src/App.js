@@ -11,11 +11,14 @@ import SignUp from "./pages/signup"
 import NotFound from "./pages/not-found"
 import Upload from "./pages/upload"
 import Album from "./pages/album"
+import Profile from "./pages/profile"
+
+// context
 import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
 
 function App() {
-  const currentUser = false
+  const currentUser = true
 
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
@@ -49,6 +52,7 @@ function App() {
           <Route path={ROUTES.SIGNUP} component={SignUp} />
           <Route path={ROUTES.UPLOAD} component={Upload} />
           <Route path={ROUTES.ALBUM} component={Album} />
+          <Route path={ROUTES.PROFILE} component={Profile} />
           <Route path={ROUTES.NOT_FOUND} component={NotFound} />
         </Switch>
       </AlbumsDataContext.Provider>

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { ContainerMain, Content } from "../shared/Containers"
+import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
@@ -25,16 +25,14 @@ const ContainerFlex = styled.div`
 function Header({ noSearchBox }) {
   return (
     <StyledHeader>
-      <ContainerMain>
-        <Content justifyContent="space-between">
-          <ContainerFlex>
-            <Logo />
-            {!noSearchBox && <SearchBox />}
-          </ContainerFlex>
+      <Content justifyContent="space-between">
+        <ContainerFlex>
+          <Logo />
+          {!noSearchBox && <SearchBox />}
+        </ContainerFlex>
 
-          <Nav />
-        </Content>
-      </ContainerMain>
+        <Nav />
+      </Content>
     </StyledHeader>
   )
 }
