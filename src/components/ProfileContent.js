@@ -36,7 +36,7 @@ const ContainerFlex = styled.div`
 `
 
 const ContainerTextBlock = styled(ContainerFlex)`
-  max-width: 30em;
+  max-width: 32em;
   margin-top: 5em;
   margin-left: 19em;
 `
@@ -71,7 +71,10 @@ function ProfileContent() {
             </CenterContent>
             <ContainerTextBlock flexDirection="column">
               <HeroTitle>Build your music library</HeroTitle>
-              <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+              <HeroSubtitle>
+                Add some albums to your collection or wishlist and they will
+                appear in your profile
+              </HeroSubtitle>
               <SearchBox placeholder="Search music!" />
             </ContainerTextBlock>
           </ContainerFlex>
