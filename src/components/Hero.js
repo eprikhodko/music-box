@@ -57,13 +57,13 @@ function Hero() {
             <HeroButton
               as={Link}
               to={ROUTES.CATALOG}
-              marginRight="2em"
-              marginTop="0.3em"
+              $marginRight="2em"
+              $marginTop="0.3em"
             >
               View all
             </HeroButton>
             {!currentUser && (
-              <HeroButton as={Link} to={ROUTES.LOGIN} marginTop="0.3em">
+              <HeroButton as={Link} to={ROUTES.LOGIN} $marginTop="0.3em">
                 Log in
               </HeroButton>
             )}

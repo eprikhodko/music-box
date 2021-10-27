@@ -1,6 +1,5 @@
 import Header from "../components/Header/index"
 import Footer from "../components/Footer"
-import { ContainerMain, Content } from "../components/shared/Containers"
 import ProfileContent from "../components/ProfileContent"
 
 function Profile() {
@@ -8,13 +7,9 @@ function Profile() {
     <>
       <Header />
       <main>
-        <ContainerMain>
-          <Content marginTop="5em">
-            <ProfileContent />
-          </Content>
-        </ContainerMain>
+        <ProfileContent />
       </main>
-      <Footer />
+      <Footer $marginTop="0" />
     </>
   )
 }

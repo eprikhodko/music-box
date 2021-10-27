@@ -16,8 +16,8 @@ export const Button = styled.button`
 
   border: 2px solid #333;
   border-radius: 50px;
-  margin-right: ${({ marginRight }) => marginRight};
-  margin-top: ${({ marginTop }) => marginTop};
+  margin-right: ${({ $marginRight }) => $marginRight};
+  margin-top: ${({ $marginTop }) => $marginTop};
 
   &:hover {
     background-color: #333;
@@ -36,4 +36,7 @@ export const HeroButton = styled(Button)`
   min-width: 10.5em;
 `
 
-// export { Button as default }
+export const ButtonAlbumDetails = styled(Button)`
+  padding: 1em 0;
+  min-width: 16.5em;
+`

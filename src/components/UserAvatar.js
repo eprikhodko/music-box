@@ -13,7 +13,18 @@ const ContainerAvatar = styled.div`
   width: 30rem;
   border: 1px solid #000;
   border-radius: 999px;
+
+  will-change: transform;
+  transition: transform 450ms;
+
+  &:hover {
+    cursor: pointer;
+    /* transition: transform 125ms; */
+    transform: translateY(-10px);
+  }
 `
+
+const IconImagePlaceholder = styled(ImagePlaceholder)``
 
 function UserAvatar() {
   const [hovered, setHovered] = useState(false)
@@ -23,7 +34,7 @@ function UserAvatar() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {!hovered ? <IconPerson /> : <ImagePlaceholder />}
+      {!hovered ? <IconPerson /> : <IconImagePlaceholder />}
     </ContainerAvatar>
   )
 }
