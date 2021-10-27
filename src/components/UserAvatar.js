@@ -1,5 +1,7 @@
+import { useState } from "react"
 import styled from "styled-components"
 import { ReactComponent as IconPerson } from "../icons/person_24px.svg"
+import { ReactComponent as ImagePlaceholder } from "../icons/image-placeholder.svg"
 
 const ContainerAvatar = styled.div`
   display: flex;
@@ -14,9 +16,14 @@ const ContainerAvatar = styled.div`
 `
 
 function UserAvatar() {
+  const [hovered, setHovered] = useState(false)
+
   return (
-    <ContainerAvatar>
-      <IconPerson />
+    <ContainerAvatar
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {!hovered ? <IconPerson /> : <ImagePlaceholder />}
     </ContainerAvatar>
   )
 }
