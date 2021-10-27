@@ -94,6 +94,11 @@ function UploadForm() {
           />
         </ContainerFloatInput>
 
+        <div>
+          <label htmlFor="addToCollection">add to my collection</label>
+          <input id="addToCollection" type="checkbox" name="addToCollection" />
+        </div>
+
         <Button type="submit">Upload</Button>
       </StyledForm>
     </Content>
