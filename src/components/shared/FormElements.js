@@ -28,6 +28,14 @@ export const FloatInput = styled.input`
     border-bottom: 3px solid #000;
   }
 
+  /* disable spinners at inputs with type="number" */
+  /* https://css-tricks.com/snippets/css/turn-off-number-input-spinners/ */
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   /* below is a code that removes browser colored autofill input background
   https://selleo.com/til/posts/xhgzlfgcql-a-way-to-make-autofilled-inputs-background-transparent */
   &:-webkit-autofill,

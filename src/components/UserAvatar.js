@@ -21,10 +21,20 @@ const ContainerAvatar = styled.div`
     cursor: pointer;
     /* transition: transform 125ms; */
     transform: translateY(-10px);
+    border: 3px solid rgba(0, 0, 0, 0.5);
   }
 `
 
-const IconImagePlaceholder = styled(ImagePlaceholder)``
+const AvatarText = styled.p`
+  font-size: 2.5rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  margin-top: 0.6em;
+`
+
+const IconImagePlaceholder = styled(ImagePlaceholder)`
+  margin-top: 2em;
+`
 
 function UserAvatar() {
   const [hovered, setHovered] = useState(false)
@@ -34,7 +44,14 @@ function UserAvatar() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {!hovered ? <IconPerson /> : <IconImagePlaceholder />}
+      {!hovered ? (
+        <IconPerson />
+      ) : (
+        <>
+          <IconImagePlaceholder />
+          <AvatarText>Upload picture</AvatarText>
+        </>
+      )}
     </ContainerAvatar>
   )
 }
