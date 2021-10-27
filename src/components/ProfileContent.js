@@ -4,6 +4,7 @@ import { HeroButton } from "./shared/Button"
 import { CenterContent, ContainerMain, Content } from "./shared/Containers"
 import UserAvatar from "./UserAvatar"
 import ProfileCoverImage from "../images/profile-cover-cropped.jpg"
+import SearchBox from "./shared/SearchBox"
 
 import * as ROUTES from "../constants/routes"
 
@@ -26,6 +27,7 @@ const HeroSubtitle = styled.h2`
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   margin-top: 0.6em;
+  margin-bottom: 1.5em;
 `
 
 const ContainerFlex = styled.div`
@@ -41,6 +43,8 @@ const ContainerTextBlock = styled(ContainerFlex)`
 
 const CoverImage = styled.img`
   max-width: 100%;
+  display: block;
+  margin-top: 5em;
 `
 
 function ProfileContent() {
@@ -68,6 +72,7 @@ function ProfileContent() {
             <ContainerTextBlock flexDirection="column">
               <HeroTitle>Build your music library</HeroTitle>
               <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+              <SearchBox placeholder="Search music!" />
             </ContainerTextBlock>
           </ContainerFlex>
         </ContainerFlex>

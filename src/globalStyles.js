@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+ 
   /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
   
   /* html {

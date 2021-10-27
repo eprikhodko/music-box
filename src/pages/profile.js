@@ -5,7 +5,7 @@ import ProfileContent from "../components/ProfileContent"
 function Profile() {
   return (
     <>
-      <Header />
+      <Header noSearchBox />
       <main>
         <ProfileContent />
       </main>
