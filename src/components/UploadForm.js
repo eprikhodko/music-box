@@ -9,7 +9,8 @@ import {
 } from "./shared/FormElements"
 import { Button } from "./shared/Button"
 import { ReactComponent as ImageIcon } from "../icons/image-placeholder.svg"
-import { ReactComponent as CheckboxIcon } from "../icons/checkmark-icon.svg"
+// import { ReactComponent as CheckboxIcon } from "../icons/checkmark-icon.svg"
+import { ReactComponent as CheckCircle } from "../icons/check_circle_24px.svg"
 
 const ImageUpload = styled.div`
   width: 35em;
@@ -41,28 +42,38 @@ const UploadIconText = styled.p`
   margin-top: 0.6em;
 `
 
-const StyledCheckboxIcon = styled(CheckboxIcon)`
-  width: 5em;
-  height: 5em;
-  border: 1px solid;
+// const StyledCheckboxIcon = styled(CheckboxIcon)`
+//   width: 5em;
+//   height: 5em;
+//   border: 1px solid;
+// `
+
+const StyledLabel = styled.label`
+  cursor: pointer;
 `
 
-const Checkbox = styled.input`
-  /* -webkit-appearance: none;
-  appearance: none; */
+const StyledCheckCircle = styled(CheckCircle)`
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
 
-  &:checked + ${StyledCheckboxIcon} {
-    /* width: 2em;
-    height: 2em; */
-    border: 5px solid;
+  path {
+    fill: transparent;
+  }
+
+  * {
+    transition: all 0.1s linear;
   }
 `
 
-const StyledLabel = styled.label`
-  ${CheckboxIcon} {
-    /* width: 5em;
-    height: 5em;
-    border: 1px solid; */
+const Checkbox = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
+
+  &:checked + ${StyledCheckCircle} {
+    border: none;
+    path {
+      fill: #333333;
+    }
   }
 `
 
@@ -79,9 +90,10 @@ function UploadForm() {
 
   return (
     <Content justifyContent="center">
+      {/* <StyledCheckCircle /> */}
       <StyledLabel htmlFor="c-checkbox" className="c-custom-checkbox">
         <Checkbox type="checkbox" id="c-checkbox" />
-        <StyledCheckboxIcon />
+        <StyledCheckCircle />
         <span>The checkbox label text</span>
       </StyledLabel>
       <StyledForm onSubmit={handleSubmit} marginTop="5em">
