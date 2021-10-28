@@ -9,6 +9,7 @@ import {
 } from "./shared/FormElements"
 import { Button } from "./shared/Button"
 import { ReactComponent as ImageIcon } from "../icons/image-placeholder.svg"
+import { ReactComponent as CheckboxIcon } from "../icons/checkmark-icon.svg"
 
 const ImageUpload = styled.div`
   width: 35em;
@@ -40,30 +41,28 @@ const UploadIconText = styled.p`
   margin-top: 0.6em;
 `
 
+const StyledCheckboxIcon = styled(CheckboxIcon)`
+  width: 5em;
+  height: 5em;
+  border: 1px solid;
+`
+
 const Checkbox = styled.input`
-  -webkit-appearance: none;
-  appearance: none;
+  /* -webkit-appearance: none;
+  appearance: none; */
 
-  position: relative;
-  width: 1em;
-  height: 1em;
-  border: 1px solid gray;
-  /* Adjusts the position of the checkboxes on the text baseline */
-  vertical-align: -2px;
-  /* Set here so that Windows' High-Contrast Mode can override */
-  color: green;
-
-  &::before {
-    content: "✔";
-    position: absolute;
-    font-size: 1.2em;
-    right: -1px;
-    top: -0.3em;
-    visibility: hidden;
+  &:checked + ${StyledCheckboxIcon} {
+    /* width: 2em;
+    height: 2em; */
+    border: 5px solid;
   }
-  &:checked::before {
-    /* Use 'visibility' instead of 'display' to avoid recalculating layout */
-    visibility: visible;
+`
+
+const StyledLabel = styled.label`
+  ${CheckboxIcon} {
+    /* width: 5em;
+    height: 5em;
+    border: 1px solid; */
   }
 `
 
@@ -80,6 +79,11 @@ function UploadForm() {
 
   return (
     <Content justifyContent="center">
+      <StyledLabel htmlFor="c-checkbox" className="c-custom-checkbox">
+        <Checkbox type="checkbox" id="c-checkbox" />
+        <StyledCheckboxIcon />
+        <span>The checkbox label text</span>
+      </StyledLabel>
       <StyledForm onSubmit={handleSubmit} marginTop="5em">
         <ImageUpload>
           <ImageIcon />
