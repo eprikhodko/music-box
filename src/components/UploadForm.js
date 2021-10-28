@@ -40,7 +40,32 @@ const UploadIconText = styled.p`
   margin-top: 0.6em;
 `
 
-const Checkbox = styled.input``
+const Checkbox = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
+
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border: 1px solid gray;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -2px;
+  /* Set here so that Windows' High-Contrast Mode can override */
+  color: green;
+
+  &::before {
+    content: "✔";
+    position: absolute;
+    font-size: 1.2em;
+    right: -1px;
+    top: -0.3em;
+    visibility: hidden;
+  }
+  &:checked::before {
+    /* Use 'visibility' instead of 'display' to avoid recalculating layout */
+    visibility: visible;
+  }
+`
 
 function UploadForm() {
   const [albumName, setAlbumName] = useState("")
@@ -135,6 +160,7 @@ function UploadForm() {
             id="addToCollection"
             type="checkbox"
             name="addToCollection"
+            // checked
           />
           <label htmlFor="addToCollection">add to my collection</label>
         </div>
