@@ -4,7 +4,8 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10em;
+  /* set default margin-top for StyledForm component */
+  margin-top: ${({ marginTop }) => marginTop || "10em"};
   /* border: 2px solid goldenrod; */
 `
 
@@ -70,6 +71,8 @@ export const ContainerFloatInput = styled.div`
   min-width: 564px;
   position: relative;
   margin-bottom: 3.5em;
+  margin-top: ${({ marginTop }) => marginTop};
+
   /* border: 1px solid green; */
   &:focus-within ${FloatLabel} {
     /* background-color: #fff; */

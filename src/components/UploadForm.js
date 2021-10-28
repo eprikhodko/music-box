@@ -1,4 +1,4 @@
-// import styled from "styled-components"
+import styled from "styled-components"
 import { useState } from "react"
 import { Content } from "./shared/Containers"
 import {
@@ -8,6 +8,39 @@ import {
   ContainerFloatInput,
 } from "./shared/FormElements"
 import { Button } from "./shared/Button"
+import { ReactComponent as ImageIcon } from "../icons/image-placeholder.svg"
+
+const ImageUpload = styled.div`
+  width: 35em;
+  height: 35em;
+  background-color: #c2c2c2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  will-change: transform;
+  transition: all 450ms;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+  }
+  &:hover svg path {
+    fill: rgba(0, 0, 0, 0.3);
+  }
+`
+
+const UploadIconText = styled.p`
+  font-size: 1.8rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  margin-top: 0.6em;
+`
+
+const Checkbox = styled.input``
 
 function UploadForm() {
   const [albumName, setAlbumName] = useState("")
@@ -22,10 +55,13 @@ function UploadForm() {
 
   return (
     <Content justifyContent="center">
-      <StyledForm onSubmit={handleSubmit}>
-        <div>upload album input</div>
+      <StyledForm onSubmit={handleSubmit} marginTop="5em">
+        <ImageUpload>
+          <ImageIcon />
+          <UploadIconText>Click to upload album picture</UploadIconText>
+        </ImageUpload>
 
-        <ContainerFloatInput>
+        <ContainerFloatInput marginTop="3em">
           <FloatLabel htmlFor="albumName" isNotEmpty={albumName}>
             Album name
           </FloatLabel>
@@ -95,8 +131,17 @@ function UploadForm() {
         </ContainerFloatInput>
 
         <div>
+          <Checkbox
+            id="addToCollection"
+            type="checkbox"
+            name="addToCollection"
+          />
           <label htmlFor="addToCollection">add to my collection</label>
-          <input id="addToCollection" type="checkbox" name="addToCollection" />
+        </div>
+
+        <div>
+          <input id="addToWishlist" type="checkbox" name="addToWishlist" />
+          <label htmlFor="addToWishlist">add to my wishlist</label>
         </div>
 
         <Button type="submit">Upload</Button>
