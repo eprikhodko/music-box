@@ -8,7 +8,7 @@ import Nav from "./Nav"
 
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
-  max-width: 1440px;
+  max-width: 90em;
   width: 90%;
   /* display: flex; */
   /* justify-content: center; */

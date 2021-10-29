@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,9 +68,9 @@ export const FloatLabel = styled.label`
 export const ContainerFloatInput = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 564px;
+  width: 35em;
   position: relative;
-  margin-bottom: 3.5em;
+  margin-top: 3.5em;
   margin-top: ${({ marginTop }) => marginTop};
 
   /* border: 1px solid green; */

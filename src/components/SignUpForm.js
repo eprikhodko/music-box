@@ -11,7 +11,7 @@ import {
   FloatInput,
   FloatLabel,
   ContainerFloatInput,
-  StyledForm,
+  Form,
 } from "./shared/FormElements"
 
 const StyledParagraph = styled.p`
@@ -40,7 +40,7 @@ function SignUpForm() {
 
   return (
     <Content justifyContent="center">
-      <StyledForm onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <ContainerFloatInput>
           <FloatLabel htmlFor="username" isNotEmpty={username}>
             Username
@@ -98,7 +98,7 @@ function SignUpForm() {
           Already have an account?{" "}
           <StyledLink to={ROUTES.LOGIN}>Log in</StyledLink>
         </StyledParagraph>
-      </StyledForm>
+      </Form>
     </Content>
   )
 }

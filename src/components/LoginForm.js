@@ -11,7 +11,7 @@ import {
   FloatInput,
   FloatLabel,
   ContainerFloatInput,
-  StyledForm,
+  Form,
 } from "./shared/FormElements"
 
 const StyledParagraph = styled.p`
@@ -39,7 +39,7 @@ function LoginForm() {
 
   return (
     <Content justifyContent="center">
-      <StyledForm onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <ContainerFloatInput>
           <FloatLabel htmlFor="email" isNotEmpty={email}>
             Email
@@ -80,7 +80,7 @@ function LoginForm() {
           New to Music Box?{" "}
           <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>
         </StyledParagraph>
-      </StyledForm>
+      </Form>
     </Content>
   )
 }

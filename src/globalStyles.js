@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
 /* set base font size to 10px */
   html {
     /* 62.5% of 16px base font size is 10px */
-    font-size: 62.5%;
+    font-size: 32.5%;
   }
 
   * {box-sizing: border-box;}
