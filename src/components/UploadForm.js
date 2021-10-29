@@ -99,6 +99,15 @@ const HiddenCheckbox = styled.input`
       fill: #333333;
     }
   }
+
+  &:focus + ${CustomCheckbox} {
+    outline: 2px solid #000;
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) + ${CustomCheckbox} {
+    outline: none;
+  }
 `
 
 const ContainerCheckboxes = styled.div`
