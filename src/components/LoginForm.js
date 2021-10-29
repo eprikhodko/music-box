@@ -39,7 +39,7 @@ function LoginForm() {
 
   return (
     <Content justifyContent="center">
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} marginTop="5em">
         <ContainerFloatInput>
           <FloatLabel htmlFor="email" isNotEmpty={email}>
             Email
@@ -75,7 +75,9 @@ function LoginForm() {
           />
         </ContainerFloatInput>
 
-        <Button type="submit">Log in</Button>
+        <Button type="submit" $marginTop="4em">
+          Log in
+        </Button>
         <StyledParagraph>
           New to Music Box?{" "}
           <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>

@@ -20,7 +20,7 @@ function RecentlyAddedAlbums() {
     end: 8,
   }
   return (
-    <Content flexDirection="column" alignItems="center" marginTop="4.5em">
+    <Content flexDirection="column" alignItems="center" $marginTop="4.5em">
       <Title>Recently added albums</Title>
       <AlbumsGrid albumsSlice={slice} />
       <HeroButton as={Link} to={ROUTES.CATALOG}>

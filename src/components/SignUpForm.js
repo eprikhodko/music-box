@@ -40,7 +40,7 @@ function SignUpForm() {
 
   return (
     <Content justifyContent="center">
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} marginTop="5em">
         <ContainerFloatInput>
           <FloatLabel htmlFor="username" isNotEmpty={username}>
             Username
@@ -93,7 +93,9 @@ function SignUpForm() {
           />
         </ContainerFloatInput>
 
-        <Button type="submit">Create Account</Button>
+        <Button type="submit" $marginTop="4em">
+          Create Account
+        </Button>
         <StyledParagraph>
           Already have an account?{" "}
           <StyledLink to={ROUTES.LOGIN}>Log in</StyledLink>

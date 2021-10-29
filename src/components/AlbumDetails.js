@@ -10,7 +10,7 @@ import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
 const AlbumCover = styled.img`
-  max-width: 564px;
+  max-width: 40em;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
 `
 
