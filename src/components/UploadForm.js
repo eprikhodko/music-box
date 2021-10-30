@@ -36,6 +36,7 @@ const UploadImageStyledLabel = styled.label`
 
   will-change: transform;
   transition: all 450ms;
+
   &:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.2);
@@ -43,6 +44,17 @@ const UploadImageStyledLabel = styled.label`
   }
   &:hover svg path {
     fill: rgba(0, 0, 0, 0.3);
+  }
+
+  &:focus-within {
+    outline: 2px solid #000;
+    outline-offset: 3px;
+    /* transition-duration: 0ms; */
+  }
+
+  /* hide the focus styles for mouse users */
+  &:focus-within:not(:focus-visible) {
+    outline: none;
   }
 `
 
@@ -100,11 +112,13 @@ const HiddenCheckbox = styled.input`
     }
   }
 
+  /* visually show focus outline when the SVG receives focus */
   &:focus + ${CustomCheckbox} {
     outline: 2px solid #000;
     outline-offset: 3px;
   }
 
+  /* hide the focus styles for mouse users */
   &:focus:not(:focus-visible) + ${CustomCheckbox} {
     outline: none;
   }
