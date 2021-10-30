@@ -35,7 +35,7 @@ const UploadImageStyledLabel = styled.label`
   justify-content: center;
 
   will-change: transform;
-  transition: all 450ms;
+  transition: background-color 450ms, transform 450ms;
 
   &:hover {
     cursor: pointer;
@@ -49,12 +49,6 @@ const UploadImageStyledLabel = styled.label`
   &:focus-within {
     outline: 2px solid #000;
     outline-offset: 3px;
-    /* transition-duration: 0ms; */
-  }
-
-  /* hide the focus styles for mouse users */
-  &:focus-within:not(:focus-visible) {
-    outline: none;
   }
 `
 
