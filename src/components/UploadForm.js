@@ -14,38 +14,45 @@ const ContainerUploadForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* set default margin-top for StyledForm component */
+  /* set default margin-top of 10em for container */
   margin-top: ${({ marginTop }) => marginTop || "10em"};
   /* border: 2px solid goldenrod; */
 `
 
-const UploadImageStyledLabel = styled.label`
+// style label element to visually represent interactive upload box
+const ImageUploadBox = styled.label`
   font-size: 1.8rem;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
   margin-top: 0.6em;
 
+  /* set image upload box dimensions and background color */
   width: 31em;
   height: 31em;
   background-color: #c2c2c2;
 
+  /* center content inside of image upload box */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  /* set transition animation duration */
   will-change: transform;
   transition: background-color 450ms, transform 450ms;
 
+  /* on hover: show pointer cursor, change background color, move image upload box up for 10px */
   &:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.2);
     transform: translateY(-10px);
   }
+  /* change image icon color on hover */
   &:hover svg path {
     fill: rgba(0, 0, 0, 0.3);
   }
 
+  /* show focus outline at image upload box when hidden file input receives focus too */
   &:focus-within {
     outline: 2px solid #000;
     outline-offset: 3px;
@@ -138,11 +145,11 @@ function UploadForm() {
     <Content justifyContent="center">
       <form onSubmit={handleSubmit}>
         <ContainerUploadForm marginTop="5em">
-          <UploadImageStyledLabel htmlFor="imageUpload">
+          <ImageUploadBox htmlFor="imageUpload">
             <ImagePlaceholderIcon />
             Click to upload album picture
             <HiddenFileInput id="imageUpload" name="imageUpload" type="file" />
-          </UploadImageStyledLabel>
+          </ImageUploadBox>
 
           <ContainerFloatInput marginTop="3em">
             <FloatLabel htmlFor="albumName" isNotEmpty={albumName}>
