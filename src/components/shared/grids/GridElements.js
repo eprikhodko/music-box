@@ -17,7 +17,7 @@ export const AlbumArtist = styled.p`
 `
 
 export const AlbumCover = styled.img`
-  max-width: 266px;
+  max-width: 16.65em;
   /* margin-bottom: 0; */
   &:hover {
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);

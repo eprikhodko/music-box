@@ -1,10 +1,11 @@
 import styled from "styled-components"
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10em;
+  /* set default margin-top for StyledForm component */
+  margin-top: ${({ marginTop }) => marginTop || "10em"};
   /* border: 2px solid goldenrod; */
 `
 
@@ -26,6 +27,14 @@ export const FloatInput = styled.input`
 
   &:focus {
     border-bottom: 3px solid #000;
+  }
+
+  /* disable spinners at inputs with type="number" */
+  /* https://css-tricks.com/snippets/css/turn-off-number-input-spinners/ */
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   /* below is a code that removes browser colored autofill input background
@@ -59,9 +68,11 @@ export const FloatLabel = styled.label`
 export const ContainerFloatInput = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 564px;
+  width: 35em;
   position: relative;
-  margin-bottom: 3.5em;
+  margin-top: 3.5em;
+  margin-top: ${({ marginTop }) => marginTop};
+
   /* border: 1px solid green; */
   &:focus-within ${FloatLabel} {
     /* background-color: #fff; */

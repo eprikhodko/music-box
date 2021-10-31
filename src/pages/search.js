@@ -10,7 +10,7 @@ function Search() {
       <Header noSearchBox />
       <main>
         <ContainerMain>
-          <Content flexDirection="column" alignItems="center" marginTop="10em">
+          <Content flexDirection="column" alignItems="center" $marginTop="10em">
             <SearchBox placeholder="Search album, year, artist" big />
             <GenresGrid />
           </Content>

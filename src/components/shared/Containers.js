@@ -2,13 +2,13 @@ import styled from "styled-components"
 
 export const ContainerMain = styled.div`
   width: 90%;
-  max-width: 1440px;
+  max-width: 90em;
   margin: 0 auto;
   /* border: 5px solid goldenrod; */
 `
 
 export const Content = styled.div`
-  max-width: 1160px;
+  max-width: 72.5em;
   display: flex;
   justify-content: ${({ justifyContent }) => justifyContent};
   margin: 0 auto;

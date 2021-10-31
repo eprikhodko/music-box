@@ -1,10 +1,13 @@
 import Header from "../components/Header/index"
+import Footer from "../components/Footer"
+import UploadForm from "../components/UploadForm"
 
 function Upload() {
   return (
     <>
       <Header />
-      <div>This is upload page</div>
+      <UploadForm />
+      <Footer />
     </>
   )
 }

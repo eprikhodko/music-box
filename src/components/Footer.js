@@ -18,7 +18,7 @@ const ContainerFooter = styled.div`
 `
 
 const FooterContent = styled.div`
-  max-width: 1160px;
+  max-width: 72.5em;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -79,10 +79,9 @@ const IconContainer = styled.div`
 const StyledIcon = styled.div`
   display: flex;
   svg {
-    min-height: 22px;
-    min-width: 22px;
+    width: 1.4em;
+    height: 1.4em;
     margin-right: 0.3em;
-    color: palevioletred;
   }
   /* border: 1px solid magenta; */
 `

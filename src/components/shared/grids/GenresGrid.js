@@ -62,7 +62,7 @@ function GenresGrid() {
 
   return (
     <ContainerMain>
-      <Content flexDirection="column" alignItems="center" marginTop="7em">
+      <Content flexDirection="column" alignItems="center" $marginTop="7em">
         <Title>Genres</Title>
         <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
       </Content>

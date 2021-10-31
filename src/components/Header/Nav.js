@@ -37,6 +37,9 @@ const UserAvatar = styled.div`
 `
 
 const Avatar = styled(IconAvatar)`
+  width: 3.5em;
+  height: 3.5em;
+
   &:hover circle {
     fill: #333;
   }
