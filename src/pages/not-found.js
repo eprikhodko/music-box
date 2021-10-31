@@ -26,7 +26,7 @@ function NotFound() {
             <NotFoundTitle>404</NotFoundTitle>
             <NotFoundSubTitle>Sorry, this page not found</NotFoundSubTitle>
 
-            <Button as={Link} to={ROUTES.HOME} marginTop="2em">
+            <Button as={Link} to={ROUTES.HOME} $marginTop="2em">
               Go Back To Home
             </Button>
           </Content>
