@@ -1,20 +1,20 @@
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
 import LoginForm from "../components/LoginForm"
-import { ContainerMain } from "../components/shared/Containers"
+import { ContainerMain, PageBody } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
 
 function Login() {
   return (
     <>
       <ScrollToTop />
-      <Header />
-      <main>
-        <ContainerMain>
+      <ContainerMain>
+        <Header />
+        <PageBody>
           <LoginForm />
-        </ContainerMain>
-      </main>
-      <Footer />
+        </PageBody>
+        <Footer />
+      </ContainerMain>
     </>
   )
 }
