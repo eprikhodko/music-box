@@ -7,14 +7,17 @@ import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
 
 const StyledHeader = styled.header`
+  width: 100%;
+  /* margin: 0 auto; */
   padding: 0.5em 0 0.5em;
-  max-width: 90em;
-  width: 90%;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
   border-bottom: 3px solid #c2c2c2;
+`
+
+const HeaderContent = styled.div`
+  width: 90%;
 `
 
 const ContainerFlex = styled.div`
@@ -25,14 +28,16 @@ const ContainerFlex = styled.div`
 function Header({ noSearchBox }) {
   return (
     <StyledHeader>
-      <Content justifyContent="space-between">
-        <ContainerFlex>
-          <Logo />
-          {!noSearchBox && <SearchBox />}
-        </ContainerFlex>
+      <HeaderContent>
+        <Content justifyContent="space-between">
+          <ContainerFlex>
+            <Logo />
+            {!noSearchBox && <SearchBox />}
+          </ContainerFlex>
 
-        <Nav />
-      </Content>
+          <Nav />
+        </Content>
+      </HeaderContent>
     </StyledHeader>
   )
 }

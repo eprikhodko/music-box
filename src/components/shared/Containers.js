@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
 export const ContainerMain = styled.div`
-  width: 90%;
+  /* width: 90%;
   max-width: 90em;
-  margin: 0 auto;
+  margin: 0 auto; */
   border: 5px solid goldenrod;
 
   /* ########## make Footer stick to the bottom of the page ########## */
@@ -30,4 +30,10 @@ export const CenterContent = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+`
+
+export const PageBody = styled.main`
+  /* flex-grow defines how much a flexbox item should grow if there's space available */
+  /* make PageBody fill up all remaining space if no other flexbox item has a flex-grow value*/
+  flex-grow: 1;
 `

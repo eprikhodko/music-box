@@ -4,7 +4,11 @@ import Footer from "../components/Footer"
 import Header from "../components/Header/index"
 import { Button } from "../components/shared/Button"
 
-import { ContainerMain, Content } from "../components/shared/Containers"
+import {
+  ContainerMain,
+  Content,
+  PageBody,
+} from "../components/shared/Containers"
 
 function Catalog() {
   const [albumsSlice, setAlbumsSlice] = useState({
@@ -17,20 +21,18 @@ function Catalog() {
   }
 
   return (
-    <>
+    <ContainerMain>
       <Header />
-      <main>
-        <ContainerMain>
-          <Content flexDirection="column" alignItems="center">
-            <AlbumsGrid albumsSlice={albumsSlice} />
-            <Button marginTop="2em" onClick={handleShowMore}>
-              Show more
-            </Button>
-          </Content>
-        </ContainerMain>
-      </main>
+      <PageBody>
+        <Content flexDirection="column" alignItems="center">
+          <AlbumsGrid albumsSlice={albumsSlice} />
+          <Button marginTop="2em" onClick={handleShowMore}>
+            Show more
+          </Button>
+        </Content>
+      </PageBody>
       <Footer />
-    </>
+    </ContainerMain>
   )
 }
 

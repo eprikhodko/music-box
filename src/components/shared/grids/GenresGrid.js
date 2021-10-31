@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 import styled from "styled-components"
 
-import { Content, ContainerMain } from "../Containers"
+import { Content } from "../Containers"
 import {
   AlbumContainer,
   LinkToAlbum,
@@ -61,12 +61,10 @@ function GenresGrid() {
   }, [isLoading])
 
   return (
-    <ContainerMain>
-      <Content flexDirection="column" alignItems="center" $marginTop="7em">
-        <Title>Genres</Title>
-        <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
-      </Content>
-    </ContainerMain>
+    <Content flexDirection="column" alignItems="center" $marginTop="7em">
+      <Title>Genres</Title>
+      <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
+    </Content>
   )
 }
 

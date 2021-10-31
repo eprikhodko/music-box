@@ -11,6 +11,9 @@ import { HeroButton } from "./shared/Button"
 import UserContext from "../context/user"
 
 const HeroContent = styled.div`
+  max-width: 90em;
+  margin: 0 auto;
+
   background-image: url(${heroImage});
   background-repeat: no-repeat;
   background-position: top right;
