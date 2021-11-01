@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react"
 
-import styled from "styled-components"
-
 import { Content } from "../Containers"
 import {
   AlbumContainer,
@@ -10,13 +8,6 @@ import {
   AlbumTitle,
   StyledAlbumsGrid,
 } from "./GridElements"
-
-const Title = styled.h2`
-  font-size: 4.5rem;
-  color: #000;
-  font-weight: 500;
-  /* border: 1px solid teal; */
-`
 
 function GenresGrid() {
   const [genresData, setGenresData] = useState([])
@@ -61,8 +52,7 @@ function GenresGrid() {
   }, [isLoading])
 
   return (
-    <Content flexDirection="column" alignItems="center" $marginTop="7em">
-      <Title>Genres</Title>
+    <Content flexDirection="column" alignItems="center" $marginTop="0">
       <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
     </Content>
   )

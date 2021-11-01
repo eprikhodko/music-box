@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { HeroButton } from "./shared/Button"
 import { CenterContent, Content } from "./shared/Containers"
+import { HeroTitle } from "./shared/HeroTitle"
 import UserAvatar from "./UserAvatar"
 import SearchBox from "./shared/SearchBox"
 
@@ -12,21 +13,6 @@ const Username = styled.p`
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   margin-top: 0.6em;
-`
-
-const HeroTitle = styled.h1`
-  font-size: 7rem;
-  color: #000;
-  font-weight: 500;
-  line-height: 1.15;
-`
-
-const HeroSubtitle = styled.h2`
-  font-size: 2.5rem;
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 500;
-  margin-top: 0.6em;
-  margin-bottom: 1.5em;
 `
 
 const ContainerFlex = styled.div`
@@ -63,11 +49,11 @@ function ProfileContent() {
           </CenterContent>
           <ContainerTextBlock flexDirection="column">
             <HeroTitle>Build your music library</HeroTitle>
-            <HeroSubtitle>
+            <h3>
               Add some albums to your collection or wishlist and they will
               appear in your profile
-            </HeroSubtitle>
-            <SearchBox placeholder="Search music!" />
+            </h3>
+            <SearchBox placeholder="Search music!" marginTop="2em" />
           </ContainerTextBlock>
         </ContainerFlex>
       </ContainerFlex>

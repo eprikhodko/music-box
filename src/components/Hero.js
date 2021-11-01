@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 
 import { Content } from "./shared/Containers"
+import { HeroTitle } from "./shared/HeroTitle"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
 import { HeroButton } from "./shared/Button"
@@ -35,20 +36,6 @@ const ContainerHeroButtons = styled.div`
   /* border: 1px solid red; */
 `
 
-const HeroTitle = styled.h1`
-  font-size: 7rem;
-  color: #000;
-  font-weight: 500;
-  line-height: 1.15;
-`
-
-const HeroSubtitle = styled.h2`
-  font-size: 2.5rem;
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 500;
-  margin-top: 0.6em;
-`
-
 function Hero() {
   const { currentUser } = useContext(UserContext)
 
@@ -57,7 +44,7 @@ function Hero() {
       <Content>
         <ContainerHeroText>
           <HeroTitle>Build your music library</HeroTitle>
-          <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+          <h3>Discover and explore music with us</h3>
           <ContainerHeroButtons>
             <HeroButton
               as={Link}

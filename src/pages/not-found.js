@@ -12,12 +12,8 @@ import { Button } from "../components/shared/Button"
 
 const NotFoundTitle = styled.h1`
   font-size: 28rem;
-  line-height: 1.4;
-`
-
-const NotFoundSubTitle = styled.h2`
-  font-size: 4.5rem;
-  font-weight: 500;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.7);
 `
 
 function NotFound() {
@@ -27,7 +23,7 @@ function NotFound() {
       <PageBody>
         <Content flexDirection="column" alignItems="center" marginTop="3em">
           <NotFoundTitle>404</NotFoundTitle>
-          <NotFoundSubTitle>Sorry, this page not found</NotFoundSubTitle>
+          <h2>Sorry, this page not found</h2>
 
           <Button as={Link} to={ROUTES.HOME} $marginTop="2em">
             Go Back To Home

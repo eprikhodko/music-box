@@ -5,16 +5,17 @@ import PropTypes from "prop-types"
 import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 
-const Container = styled.div`
+const ContainerSearchBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 2.5em;
   width: 14em;
+  margin-top: ${({ marginTop }) => marginTop};
+
+  background-color: #ebebeb;
   border: 1px solid #000;
   border-radius: 50px;
-  /* margin-left: 2.5em; */
-  background-color: #ebebeb;
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
@@ -23,10 +24,11 @@ const Container = styled.div`
   }
 `
 
-const ContainerBig = styled(Container)`
+const ContainerSearchBoxBig = styled(ContainerSearchBox)`
   height: 5.35em;
   width: 30em;
   margin-left: 0;
+  margin-bottom: ${({ marginBottom }) => marginBottom};
 `
 
 const TextInput = styled.input`
@@ -101,7 +103,7 @@ const ContainerArrowIconBig = styled(ContainerArrowIcon)`
   }
 `
 
-function SearchBox({ placeholder, big }) {
+function SearchBox({ placeholder, big, marginTop, marginBottom }) {
   const [searchQuery, setSearchQuery] = useState("")
 
   const handleChange = (event) => {
@@ -117,7 +119,7 @@ function SearchBox({ placeholder, big }) {
 
   return !big ? (
     // return regular sized search box, if it is rendered in header
-    <Container>
+    <ContainerSearchBox marginTop={marginTop}>
       <ContainerSearchIcon>
         <SearchIcon onClick={handleSearchSubmit} />
       </ContainerSearchIcon>
@@ -130,10 +132,10 @@ function SearchBox({ placeholder, big }) {
       <ContainerArrowIcon isEmpty={searchQuery}>
         <ArrowIcon onClick={handleSearchSubmit} />
       </ContainerArrowIcon>
-    </Container>
+    </ContainerSearchBox>
   ) : (
     // return big search box, if search box is rendered at search page body below the header, as a separate component
-    <ContainerBig>
+    <ContainerSearchBoxBig marginBottom={marginBottom}>
       <ContainerSearchIconBig>
         <SearchIcon onClick={handleSearchSubmit} />
       </ContainerSearchIconBig>
@@ -145,7 +147,7 @@ function SearchBox({ placeholder, big }) {
       <ContainerArrowIconBig isEmpty={searchQuery}>
         <ArrowIcon onClick={handleSearchSubmit} />
       </ContainerArrowIconBig>
-    </ContainerBig>
+    </ContainerSearchBoxBig>
   )
 }
 
@@ -154,9 +156,13 @@ export default SearchBox
 SearchBox.propTypes = {
   placeholder: PropTypes.string,
   big: PropTypes.bool,
+  marginTop: PropTypes.string,
+  marginBottom: PropTypes.string,
 }
 
 SearchBox.defaultProps = {
   placeholder: "Search",
   big: false,
+  marginTop: 0,
+  marginBottom: 0,
 }

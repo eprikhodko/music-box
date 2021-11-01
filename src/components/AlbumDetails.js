@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { useContext } from "react"
 import { Link, useParams } from "react-router-dom"
 import AlbumsDataContext from "../context/albumsData"
-import { ContainerMain, Content } from "./shared/Containers"
+import { Content } from "./shared/Containers"
 import { HeroButton, ButtonAlbumDetails } from "./shared/Button"
 
 import * as ROUTES from "../constants/routes"
@@ -22,28 +22,13 @@ const AlbumDescription = styled.div`
   /* border: 1px solid; */
 `
 
-const AlbumTitle = styled.h2`
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 4.5rem;
-  color: #000;
-  margin-top: 0;
-`
-
-const AlbumArtist = styled.p`
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 2.5rem;
-  color: rgba(0, 0, 0, 0.7);
-  margin-top: 0;
-`
-
 const AlbumYear = styled.p`
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.8rem;
   color: #000;
   margin: 0;
+  margin-top: 1em;
 `
 
 const AlbumGenre = styled.p`
@@ -78,7 +63,7 @@ function AlbumDetails() {
   const album = albumsData.find((element) => element.albumId === albumId)
 
   return (
-    <ContainerMain>
+    <>
       {!isAlbumsDataLoading && (
         <Content $marginTop="5em">
           <AlbumCover
@@ -86,8 +71,8 @@ function AlbumDetails() {
             alt={`cover for ${album.albumCover} album`}
           />
           <AlbumDescription>
-            <AlbumTitle>{album.albumTitle}</AlbumTitle>
-            <AlbumArtist>{album.artist}</AlbumArtist>
+            <h2>{album.albumTitle}</h2>
+            <h3>{album.artist}</h3>
             <AlbumYear>Year: {album.year}</AlbumYear>
             <AlbumGenre>Genre: {album.genre}</AlbumGenre>
             {currentUser ? (
@@ -116,7 +101,7 @@ function AlbumDetails() {
           </AlbumDescription>
         </Content>
       )}
-    </ContainerMain>
+    </>
   )
 }
 

@@ -22,9 +22,22 @@ const GlobalStyle = createGlobalStyle`
     background-color: #dbdbdb;
   }
 
-  h1, h2, strong {
-    font-weight: 800;
+  h1, h2, h3, strong {
+    font-weight: 500;
     margin: 0;
+  }
+
+  h1, h2 {
+    color: #000;
+  }
+
+  h2 { 
+    font-size: 4.5rem;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    color: rgba(0, 0, 0, 0.7);
   }
 
  

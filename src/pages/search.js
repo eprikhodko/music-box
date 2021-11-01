@@ -14,7 +14,12 @@ function Search() {
       <Header noSearchBox />
       <PageBody>
         <Content flexDirection="column" alignItems="center" $marginTop="10em">
-          <SearchBox placeholder="Search album, year, artist" big />
+          <SearchBox
+            placeholder="Search album, year, artist"
+            big
+            marginBottom="7em"
+          />
+          <h2>Genres</h2>
           <GenresGrid />
         </Content>
       </PageBody>
