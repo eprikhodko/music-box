@@ -16,6 +16,7 @@ import Profile from "./pages/profile"
 // context
 import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
+import Collection from "./pages/collection"
 
 function App() {
   const currentUser = true
@@ -53,6 +54,7 @@ function App() {
           <Route path={ROUTES.UPLOAD} component={Upload} />
           <Route path={ROUTES.ALBUM} component={Album} />
           <Route path={ROUTES.PROFILE} component={Profile} />
+          <Route path={ROUTES.COLLECTION} component={Collection} />
           <Route path={ROUTES.NOT_FOUND} component={NotFound} />
         </Switch>
       </AlbumsDataContext.Provider>

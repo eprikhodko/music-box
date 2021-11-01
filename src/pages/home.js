@@ -2,26 +2,22 @@ import Header from "../components/Header/index"
 import Hero from "../components/Hero"
 import RecentlyAddedAlbums from "../components/RecentlyAddedAlbums"
 import Footer from "../components/Footer"
-import { ContainerMain } from "../components/shared/Containers"
+import { ContainerMain, PageBody } from "../components/shared/Containers"
 
 function Home() {
   return (
-    <>
+    <ContainerMain>
       <Header />
-      <main>
+      <PageBody>
         <section>
-          <ContainerMain>
-            <Hero />
-          </ContainerMain>
+          <Hero />
         </section>
         <section>
-          <ContainerMain>
-            <RecentlyAddedAlbums />
-          </ContainerMain>
+          <RecentlyAddedAlbums />
         </section>
-      </main>
+      </PageBody>
       <Footer />
-    </>
+    </ContainerMain>
   )
 }
 

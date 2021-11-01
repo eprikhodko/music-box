@@ -1,19 +1,23 @@
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
-import { ContainerMain } from "../components/shared/Containers"
+import {
+  ContainerMain,
+  Content,
+  PageBody,
+} from "../components/shared/Containers"
 import SignUpForm from "../components/SignUpForm"
 
 function SignUp() {
   return (
-    <>
+    <ContainerMain>
       <Header />
-      <main>
-        <ContainerMain>
+      <PageBody>
+        <Content justifyContent="center">
           <SignUpForm />
-        </ContainerMain>
-      </main>
+        </Content>
+      </PageBody>
       <Footer />
-    </>
+    </ContainerMain>
   )
 }
 

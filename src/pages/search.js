@@ -1,23 +1,30 @@
 import Header from "../components/Header/index"
 import Footer from "../components/Footer"
 import SearchBox from "../components/shared/SearchBox"
-import { ContainerMain, Content } from "../components/shared/Containers"
+import {
+  ContainerMain,
+  Content,
+  PageBody,
+} from "../components/shared/Containers"
 import GenresGrid from "../components/shared/grids/GenresGrid"
 
 function Search() {
   return (
-    <>
+    <ContainerMain>
       <Header noSearchBox />
-      <main>
-        <ContainerMain>
-          <Content flexDirection="column" alignItems="center" $marginTop="10em">
-            <SearchBox placeholder="Search album, year, artist" big />
-            <GenresGrid />
-          </Content>
-        </ContainerMain>
-      </main>
+      <PageBody>
+        <Content flexDirection="column" alignItems="center" $marginTop="10em">
+          <SearchBox
+            placeholder="Search album, year, artist"
+            big
+            marginBottom="7em"
+          />
+          <h2>Genres</h2>
+          <GenresGrid />
+        </Content>
+      </PageBody>
       <Footer />
-    </>
+    </ContainerMain>
   )
 }
 

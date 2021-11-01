@@ -1,31 +1,30 @@
 import { useState } from "react"
-import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import Footer from "../components/Footer"
-import Header from "../components/Header/index"
+import Header from "../components/Header"
+import CollectionGrid from "../components/shared/grids/CollectionGrid"
 import { Button } from "../components/shared/Button"
-
 import {
   ContainerMain,
   Content,
   PageBody,
 } from "../components/shared/Containers"
 
-function Catalog() {
+function Collection() {
   const [albumsSlice, setAlbumsSlice] = useState({
     start: 0,
-    end: 12,
+    end: 11,
   })
 
   const handleShowMore = () => {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
-
   return (
     <ContainerMain>
       <Header />
       <PageBody>
-        <Content flexDirection="column" alignItems="center">
-          <AlbumsGrid albumsSlice={albumsSlice} />
+        <Content flexDirection="column" alignItems="center" $marginTop="5em">
+          <h2>Collection</h2>
+          <CollectionGrid albumsSlice={albumsSlice} />
           <Button marginTop="2em" onClick={handleShowMore}>
             Show more
           </Button>
@@ -36,4 +35,4 @@ function Catalog() {
   )
 }
 
-export default Catalog
+export default Collection

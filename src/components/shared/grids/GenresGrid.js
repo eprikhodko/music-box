@@ -1,22 +1,13 @@
 import { useState, useEffect } from "react"
 
-import styled from "styled-components"
-
-import { Content, ContainerMain } from "../Containers"
+import { Content } from "../Containers"
 import {
   AlbumContainer,
-  LinkToAlbum,
+  StyledLink,
   AlbumCover,
   AlbumTitle,
   StyledAlbumsGrid,
 } from "./GridElements"
-
-const Title = styled.h2`
-  font-size: 4.5rem;
-  color: #000;
-  font-weight: 500;
-  /* border: 1px solid teal; */
-`
 
 function GenresGrid() {
   const [genresData, setGenresData] = useState([])
@@ -35,7 +26,7 @@ function GenresGrid() {
 
   const createGenresComponents = () => {
     const genres = genresData.map((album) => (
-      <LinkToAlbum
+      <StyledLink
         to={`/search/${album.genre.toLowerCase()}`}
         key={album.albumId}
       >
@@ -46,7 +37,7 @@ function GenresGrid() {
           />
           <AlbumTitle>{album.genre}</AlbumTitle>
         </AlbumContainer>
-      </LinkToAlbum>
+      </StyledLink>
     ))
 
     return genres
@@ -61,12 +52,9 @@ function GenresGrid() {
   }, [isLoading])
 
   return (
-    <ContainerMain>
-      <Content flexDirection="column" alignItems="center" $marginTop="7em">
-        <Title>Genres</Title>
-        <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
-      </Content>
-    </ContainerMain>
+    <Content flexDirection="column" alignItems="center" $marginTop="0">
+      <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
+    </Content>
   )
 }
 
