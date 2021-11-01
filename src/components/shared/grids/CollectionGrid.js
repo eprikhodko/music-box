@@ -13,8 +13,21 @@ import {
   StyledAlbumsGrid,
 } from "./GridElements"
 
+import { ReactComponent as Cloud } from "../../../icons/cloud_upload_24px.svg"
+
 const UploadNewAlbumBox = styled(AlbumContainer)`
-  background-color: green;
+  width: 16.65em;
+  height: 16.65em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c2c2c2;
+`
+
+const IconCloud = styled(Cloud)`
+  width: 4.5em;
+  height: 3em;
 `
 
 function CollectionGrid({ albumsSlice }) {
@@ -40,10 +53,12 @@ function CollectionGrid({ albumsSlice }) {
 
     const UploadNewAlbum = (
       <LinkToAlbum to="/upload" key="upload-album-box">
-        <UploadNewAlbumBox>
-          <div>UploadNewAlbumBody</div>
+        <AlbumContainer>
+          <UploadNewAlbumBox>
+            <IconCloud />
+          </UploadNewAlbumBox>
           <AlbumTitle>Upload new album</AlbumTitle>
-        </UploadNewAlbumBox>
+        </AlbumContainer>
       </LinkToAlbum>
     )
 

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
-import { ReactComponent as IconPerson } from "../icons/person_24px.svg"
+import { ReactComponent as IconPers } from "../icons/person_24px.svg"
 import { ReactComponent as ImagePlaceholder } from "../icons/image-placeholder.svg"
 
 const ContainerAvatar = styled.div`
@@ -9,8 +9,8 @@ const ContainerAvatar = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 30rem;
-  width: 30rem;
+  width: 19em;
+  height: 19em;
   border: 1px solid #000;
   border-radius: 999px;
 
@@ -33,7 +33,14 @@ const AvatarText = styled.p`
 `
 
 const IconImagePlaceholder = styled(ImagePlaceholder)`
+  width: 4em;
+  height: 4em;
   margin-top: 2em;
+`
+
+const IconPerson = styled(IconPers)`
+  width: 8em;
+  height: 8em;
 `
 
 function UserAvatar() {
