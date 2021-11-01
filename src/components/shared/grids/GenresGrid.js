@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Content } from "../Containers"
 import {
   AlbumContainer,
-  LinkToAlbum,
+  StyledLink,
   AlbumCover,
   AlbumTitle,
   StyledAlbumsGrid,
@@ -26,7 +26,7 @@ function GenresGrid() {
 
   const createGenresComponents = () => {
     const genres = genresData.map((album) => (
-      <LinkToAlbum
+      <StyledLink
         to={`/search/${album.genre.toLowerCase()}`}
         key={album.albumId}
       >
@@ -37,7 +37,7 @@ function GenresGrid() {
           />
           <AlbumTitle>{album.genre}</AlbumTitle>
         </AlbumContainer>
-      </LinkToAlbum>
+      </StyledLink>
     ))
 
     return genres

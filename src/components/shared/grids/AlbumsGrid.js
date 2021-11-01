@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import AlbumsDataContext from "../../../context/albumsData"
 import {
   AlbumContainer,
-  LinkToAlbum,
+  StyledLink,
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
@@ -21,7 +21,7 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
 
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
-      <LinkToAlbum to={`/albums/${album.albumId}`} key={album.albumId}>
+      <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
         <AlbumContainer>
           <AlbumCover
             src={album.albumCover}
@@ -30,7 +30,7 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
           <AlbumTitle>{album.albumTitle}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
         </AlbumContainer>
-      </LinkToAlbum>
+      </StyledLink>
     ))
 
     return albums
