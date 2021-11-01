@@ -163,6 +163,6 @@ SearchBox.propTypes = {
 SearchBox.defaultProps = {
   placeholder: "Search",
   big: false,
-  marginTop: 0,
-  marginBottom: 0,
+  marginTop: "0",
+  marginBottom: "0",
 }

@@ -1,16 +1,22 @@
 import Header from "../components/Header/index"
 import Footer from "../components/Footer"
 import ProfileContent from "../components/ProfileContent"
-import { ContainerMain, PageBody } from "../components/shared/Containers"
+import {
+  ContainerMain,
+  Content,
+  PageBody,
+} from "../components/shared/Containers"
 
 function Profile() {
   return (
     <ContainerMain>
       <Header noSearchBox />
       <PageBody>
-        <ProfileContent />
+        <Content $marginTop="5em">
+          <ProfileContent />
+        </Content>
       </PageBody>
-      <Footer $marginTop="12em" />
+      <Footer />
     </ContainerMain>
   )
 }

@@ -1,6 +1,10 @@
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
-import { ContainerMain, PageBody } from "../components/shared/Containers"
+import {
+  ContainerMain,
+  Content,
+  PageBody,
+} from "../components/shared/Containers"
 import SignUpForm from "../components/SignUpForm"
 
 function SignUp() {
@@ -8,7 +12,9 @@ function SignUp() {
     <ContainerMain>
       <Header />
       <PageBody>
-        <SignUpForm />
+        <Content justifyContent="center">
+          <SignUpForm />
+        </Content>
       </PageBody>
       <Footer />
     </ContainerMain>

@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { useState } from "react"
-import { Content } from "./shared/Containers"
 import {
   FloatLabel,
   FloatInput,
@@ -142,112 +141,110 @@ function UploadForm() {
   }
 
   return (
-    <Content justifyContent="center">
-      <form onSubmit={handleSubmit}>
-        <ContainerUploadForm marginTop="5em">
-          <ImageUploadBox htmlFor="imageUpload">
-            <ImagePlaceholderIcon />
-            Click to upload album picture
-            <HiddenFileInput id="imageUpload" name="imageUpload" type="file" />
-          </ImageUploadBox>
+    <form onSubmit={handleSubmit}>
+      <ContainerUploadForm marginTop="5em">
+        <ImageUploadBox htmlFor="imageUpload">
+          <ImagePlaceholderIcon />
+          Click to upload album picture
+          <HiddenFileInput id="imageUpload" name="imageUpload" type="file" />
+        </ImageUploadBox>
 
-          <ContainerFloatInput marginTop="3em">
-            <FloatLabel htmlFor="albumName" isNotEmpty={albumName}>
-              Album name
-            </FloatLabel>
-            <FloatInput
-              id="albumName"
-              type="text"
-              name="albumName"
-              aria-label="Album name"
-              required
-              value={albumName}
-              onChange={(event) => {
-                setAlbumName(event.target.value.toLowerCase())
-              }}
-            />
-          </ContainerFloatInput>
+        <ContainerFloatInput marginTop="3em">
+          <FloatLabel htmlFor="albumName" isNotEmpty={albumName}>
+            Album name
+          </FloatLabel>
+          <FloatInput
+            id="albumName"
+            type="text"
+            name="albumName"
+            aria-label="Album name"
+            required
+            value={albumName}
+            onChange={(event) => {
+              setAlbumName(event.target.value.toLowerCase())
+            }}
+          />
+        </ContainerFloatInput>
 
-          <ContainerFloatInput>
-            <FloatLabel htmlFor="artistName" isNotEmpty={artistName}>
-              Artist name
-            </FloatLabel>
-            <FloatInput
-              id="artistName"
-              type="text"
-              name="artistName"
-              aria-label="Artist name"
-              required
-              value={artistName}
-              onChange={(event) => {
-                setArtistName(event.target.value.toLowerCase())
-              }}
-            />
-          </ContainerFloatInput>
+        <ContainerFloatInput>
+          <FloatLabel htmlFor="artistName" isNotEmpty={artistName}>
+            Artist name
+          </FloatLabel>
+          <FloatInput
+            id="artistName"
+            type="text"
+            name="artistName"
+            aria-label="Artist name"
+            required
+            value={artistName}
+            onChange={(event) => {
+              setArtistName(event.target.value.toLowerCase())
+            }}
+          />
+        </ContainerFloatInput>
 
-          <ContainerFloatInput>
-            <FloatLabel htmlFor="albumYear" isNotEmpty={albumYear}>
-              Year
-            </FloatLabel>
-            <FloatInput
-              id="albumYear"
-              type="number"
-              name="albumYear"
-              aria-label="Album year"
-              minLength="4"
-              required
-              value={albumYear}
-              onChange={(event) => {
-                setAlbumYear(event.target.value)
-              }}
-            />
-          </ContainerFloatInput>
+        <ContainerFloatInput>
+          <FloatLabel htmlFor="albumYear" isNotEmpty={albumYear}>
+            Year
+          </FloatLabel>
+          <FloatInput
+            id="albumYear"
+            type="number"
+            name="albumYear"
+            aria-label="Album year"
+            minLength="4"
+            required
+            value={albumYear}
+            onChange={(event) => {
+              setAlbumYear(event.target.value)
+            }}
+          />
+        </ContainerFloatInput>
 
-          <ContainerFloatInput>
-            <FloatLabel htmlFor="albumGenre" isNotEmpty={albumGenre}>
-              Genre
-            </FloatLabel>
-            <FloatInput
-              id="albumGenre"
-              type="text"
-              name="albumGenre"
-              aria-label="Album genre"
-              required
-              value={albumGenre}
-              onChange={(event) => {
-                setAlbumGenre(event.target.value.toLowerCase())
-              }}
-            />
-          </ContainerFloatInput>
-        </ContainerUploadForm>
+        <ContainerFloatInput>
+          <FloatLabel htmlFor="albumGenre" isNotEmpty={albumGenre}>
+            Genre
+          </FloatLabel>
+          <FloatInput
+            id="albumGenre"
+            type="text"
+            name="albumGenre"
+            aria-label="Album genre"
+            required
+            value={albumGenre}
+            onChange={(event) => {
+              setAlbumGenre(event.target.value.toLowerCase())
+            }}
+          />
+        </ContainerFloatInput>
+      </ContainerUploadForm>
 
-        <ContainerCheckboxes>
-          <CheckboxLabel htmlFor="addToCollection">
-            <HiddenCheckbox
-              type="checkbox"
-              id="addToCollection"
-              name="addToCollection"
-            />
-            <CustomCheckbox />
-            add to my collection
-          </CheckboxLabel>
+      <ContainerCheckboxes>
+        <CheckboxLabel htmlFor="addToCollection">
+          <HiddenCheckbox
+            type="checkbox"
+            id="addToCollection"
+            name="addToCollection"
+          />
+          <CustomCheckbox />
+          add to my collection
+        </CheckboxLabel>
 
-          <CheckboxLabel htmlFor="addToWishlist">
-            <HiddenCheckbox
-              type="checkbox"
-              id="addToWishlist"
-              name="addToWishlist"
-            />
-            <CustomCheckbox />
-            add to wishlist
-          </CheckboxLabel>
-        </ContainerCheckboxes>
+        <CheckboxLabel htmlFor="addToWishlist">
+          <HiddenCheckbox
+            type="checkbox"
+            id="addToWishlist"
+            name="addToWishlist"
+          />
+          <CustomCheckbox />
+          add to wishlist
+        </CheckboxLabel>
+      </ContainerCheckboxes>
 
-        <ContainerUploadForm marginTop="3em">
-          <Button type="submit">Upload</Button>
-        </ContainerUploadForm>
-      </form>
-    </Content>
+      <ContainerUploadForm marginTop="3em">
+        <Button type="submit">Upload</Button>
+      </ContainerUploadForm>
+    </form>
   )
 }
 

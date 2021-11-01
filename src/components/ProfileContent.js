@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { HeroButton } from "./shared/Button"
-import { CenterContent, Content } from "./shared/Containers"
+import { CenterContent } from "./shared/Containers"
 import { HeroTitle } from "./shared/HeroTitle"
 import UserAvatar from "./UserAvatar"
 import SearchBox from "./shared/SearchBox"
@@ -28,36 +28,34 @@ const ContainerTextBlock = styled(ContainerFlex)`
 
 function ProfileContent() {
   return (
-    <Content $marginTop="5em">
-      <ContainerFlex flexDirection="column">
-        <ContainerFlex>
-          <CenterContent>
-            <UserAvatar />
-            <Username>Peggy</Username>
-            <HeroButton as={Link} to={ROUTES.COLLECTION}>
-              Collection
-            </HeroButton>
-            <HeroButton as={Link} to={ROUTES.WISHLIST} $marginTop="1em">
-              Wishlist
-            </HeroButton>
-            <HeroButton as={Link} to={ROUTES.UPLOAD} $marginTop="1em">
-              Upload
-            </HeroButton>
-            <HeroButton as={Link} to={ROUTES.UPLOADED_BY} $marginTop="1em">
-              My Uploads
-            </HeroButton>
-          </CenterContent>
-          <ContainerTextBlock flexDirection="column">
-            <HeroTitle>Build your music library</HeroTitle>
-            <h3>
-              Add some albums to your collection or wishlist and they will
-              appear in your profile
-            </h3>
-            <SearchBox placeholder="Search music!" marginTop="2em" />
-          </ContainerTextBlock>
-        </ContainerFlex>
+    <ContainerFlex flexDirection="column">
+      <ContainerFlex>
+        <CenterContent>
+          <UserAvatar />
+          <Username>Peggy</Username>
+          <HeroButton as={Link} to={ROUTES.COLLECTION}>
+            Collection
+          </HeroButton>
+          <HeroButton as={Link} to={ROUTES.WISHLIST} $marginTop="1em">
+            Wishlist
+          </HeroButton>
+          <HeroButton as={Link} to={ROUTES.UPLOAD} $marginTop="1em">
+            Upload
+          </HeroButton>
+          <HeroButton as={Link} to={ROUTES.UPLOADED_BY} $marginTop="1em">
+            My Uploads
+          </HeroButton>
+        </CenterContent>
+        <ContainerTextBlock flexDirection="column">
+          <HeroTitle>Build your music library</HeroTitle>
+          <h3>
+            Add some albums to your collection or wishlist and they will appear
+            in your profile
+          </h3>
+          <SearchBox placeholder="Search music!" marginTop="2em" />
+        </ContainerTextBlock>
       </ContainerFlex>
-    </Content>
+    </ContainerFlex>
   )
 }
 

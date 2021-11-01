@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import styled from "styled-components"
 
 import PropTypes from "prop-types"
 
@@ -11,6 +12,10 @@ import {
   AlbumArtist,
   StyledAlbumsGrid,
 } from "./GridElements"
+
+const UploadNewAlbumBox = styled(AlbumContainer)`
+  background-color: green;
+`
 
 function CollectionGrid({ albumsSlice }) {
   const { start, end } = albumsSlice || {}
@@ -33,14 +38,27 @@ function CollectionGrid({ albumsSlice }) {
       </LinkToAlbum>
     ))
 
+    const UploadNewAlbum = (
+      <LinkToAlbum to="/upload" key="upload-album-box">
+        <UploadNewAlbumBox>
+          <div>UploadNewAlbumBody</div>
+          <AlbumTitle>Upload new album</AlbumTitle>
+        </UploadNewAlbumBox>
+      </LinkToAlbum>
+    )
+
+    albums.push(UploadNewAlbum)
+
     return albums
   }
+
+  //   console.log(UploadNewAlbumBox)
 
   useEffect(() => {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
 
-  // console.log(albumsSlice)
+  console.log(albumsComponents)
 
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }

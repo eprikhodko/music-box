@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { useContext } from "react"
 import { Link, useParams } from "react-router-dom"
 import AlbumsDataContext from "../context/albumsData"
-import { Content } from "./shared/Containers"
 import { HeroButton, ButtonAlbumDetails } from "./shared/Button"
 
 import * as ROUTES from "../constants/routes"
@@ -65,7 +64,7 @@ function AlbumDetails() {
   return (
     <>
       {!isAlbumsDataLoading && (
-        <Content $marginTop="5em">
+        <>
           <AlbumCover
             src={album.albumCover}
             alt={`cover for ${album.albumCover} album`}
@@ -99,7 +98,7 @@ function AlbumDetails() {
               </>
             )}
           </AlbumDescription>
-        </Content>
+        </>
       )}
     </>
   )
