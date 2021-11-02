@@ -20,7 +20,7 @@ import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
 
 function App() {
-  const currentUser = true
+  const currentUser = false
 
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
