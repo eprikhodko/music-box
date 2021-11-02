@@ -12,7 +12,7 @@ import {
   StyledAlbumsGrid,
 } from "./GridElements"
 
-function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
+function AlbumsGrid({ albumsSlice }) {
   const { start, end } = albumsSlice || {}
 
   const { albumsData } = useContext(AlbumsDataContext)
@@ -40,9 +40,6 @@ function AlbumsGrid({ albumsSlice, renderAllAlbums }) {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
 
-  // console.log(albumsSlice)
-  console.log(renderAllAlbums)
-
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
 
@@ -51,11 +48,9 @@ AlbumsGrid.propTypes = {
     start: PropTypes.number,
     end: PropTypes.number,
   }),
-  renderAllAlbums: PropTypes.bool,
 }
 
 AlbumsGrid.defaultProps = {
-  renderAllAlbums: false,
   albumsSlice: {
     start: 0,
     end: 0,
