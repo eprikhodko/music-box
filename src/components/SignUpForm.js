@@ -2,12 +2,10 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import styled from "styled-components"
 
-// install firebase according to official docs: https://firebase.google.com/docs/web/setup, don't use "/lib/firebase.js"
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
-import { initializeApp } from "firebase/app"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-// import { getFirestore, collection } from "firebase/firestore"
+import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
 import { Button } from "./shared/Button"
@@ -17,15 +15,6 @@ import {
   ContainerFloatInput,
   Form,
 } from "./shared/FormElements"
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCu_RkOy-eiFqNWBPr_tEEW4zY8JVYg-tg",
-  authDomain: "music-box-e8f66.firebaseapp.com",
-  projectId: "music-box-e8f66",
-  storageBucket: "music-box-e8f66.appspot.com",
-  messagingSenderId: "1039275884942",
-  appId: "1:1039275884942:web:f643baf07a740cf5c5a4df",
-}
 
 // import FirebaseContext from "../context/firebase"
 
@@ -42,9 +31,6 @@ const StyledLink = styled(Link)`
   }
 `
 
-const app = initializeApp(firebaseConfig)
-const auth = getAuth(app)
-
 function SignUpForm() {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -54,7 +40,8 @@ function SignUpForm() {
 
   const handleSignup = async (event) => {
     event.preventDefault()
-    // const auth = getAuth()
+    const auth = getAuth(firebaseApp)
+
     try {
       // create new user account in the firebase authentication
       const createdUser = await createUserWithEmailAndPassword(
