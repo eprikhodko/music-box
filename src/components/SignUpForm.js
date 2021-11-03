@@ -39,10 +39,11 @@ function SignUpForm() {
 
   // const { firebase } = useContext(FirebaseContext)
 
+  const auth = getAuth(firebaseApp)
+  const db = getFirestore(firebaseApp)
+
   const handleSignup = async (event) => {
     event.preventDefault()
-    const auth = getAuth(firebaseApp)
-    const db = getFirestore(firebaseApp)
 
     try {
       // create new user account in the firebase authentication
@@ -51,7 +52,6 @@ function SignUpForm() {
         email,
         password
       )
-      // console.log(createdUser.user)
 
       // add new document in firestore collection "users"
       await setDoc(doc(db, "users", createdUser.user.uid), {
