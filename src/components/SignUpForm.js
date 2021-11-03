@@ -5,6 +5,7 @@ import styled from "styled-components"
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore"
 import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
@@ -41,6 +42,7 @@ function SignUpForm() {
   const handleSignup = async (event) => {
     event.preventDefault()
     const auth = getAuth(firebaseApp)
+    const db = getFirestore(firebaseApp)
 
     try {
       // create new user account in the firebase authentication
@@ -49,16 +51,15 @@ function SignUpForm() {
         email,
         password
       )
-      console.log(createdUser.user)
+      // console.log(createdUser.user)
 
-      // const db = getFirestore(firebaseApp)
-      // const createUserInFirestoreDatabase = await
-      // collection("users").doc(createdUser.user.uid).set({
-      //   userId: createdUser.user.uid,
-      //   username: username.toLowerCase(),
-      //   email: email.toLowerCase(),
-      //   dateCreated: Date.now(),
-      // })
+      // add new document in firestore collection "users"
+      await setDoc(doc(db, "users", createdUser.user.uid), {
+        userId: createdUser.user.uid,
+        username: username.toLowerCase(),
+        email: email.toLowerCase(),
+        dateCreated: serverTimestamp(),
+      })
     } catch (error) {
       console.log(error)
     }
