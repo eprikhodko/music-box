@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import { useContext } from "react"
+
 import { Link } from "react-router-dom"
+import { getAuth, signOut } from "firebase/auth"
+import firebaseApp from "../../lib/firebase"
 import * as ROUTES from "../../constants/routes"
 
 import { ReactComponent as IconAvatar } from "../../icons/icon-avatar.svg"
@@ -51,6 +54,15 @@ const Avatar = styled(IconAvatar)`
 
 function Nav() {
   const currentUser = useContext(UserContext)
+  const auth = getAuth(firebaseApp)
+
+  const handleSignOut = async () => {
+    try {
+      signOut(auth)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // return navigation for anonymous user
   return !currentUser ? (
@@ -98,7 +110,9 @@ function Nav() {
         </li>
 
         <li>
-          <NavLink to={ROUTES.HOME}>Sign out</NavLink>
+          <NavLink to={ROUTES.HOME} onClick={handleSignOut}>
+            Sign out
+          </NavLink>
         </li>
       </Ul>
       <UserAvatar>

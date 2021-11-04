@@ -30,13 +30,13 @@ function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault()
     console.log("Form submitted")
   }
 
   return (
-    <Form onSubmit={handleSubmit} marginTop="5em">
+    <Form onSubmit={handleLogin} marginTop="5em">
       <ContainerFloatInput>
         <FloatLabel htmlFor="email" isNotEmpty={email}>
           Email
