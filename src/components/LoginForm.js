@@ -1,5 +1,5 @@
-import { Link, useHistory } from "react-router-dom"
 import { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
@@ -19,7 +19,6 @@ const StyledParagraph = styled.p`
   font-size: 1.6rem;
   color: #000;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
 `
 
 const StyledLink = styled(Link)`
@@ -32,11 +31,12 @@ const StyledLink = styled(Link)`
 function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
   const history = useHistory()
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    console.log("Form submitted")
 
     const auth = getAuth(firebaseApp)
 
@@ -47,13 +47,21 @@ function LoginForm() {
     } catch (error) {
       setEmail("")
       setPassword("")
-      console.log(error)
-      // setError(error.message)
+      console.log(error.message)
+      setErrorMessage(error.message)
     }
   }
 
   return (
     <Form onSubmit={handleLogin} marginTop="5em">
+      {/* show error message if something went wrong */}
+      {errorMessage && (
+        <>
+          <p>{errorMessage}</p>
+          <p>please try again</p>
+        </>
+      )}
+
       <ContainerFloatInput>
         <FloatLabel htmlFor="email" isNotEmpty={email}>
           Email

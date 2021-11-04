@@ -62,8 +62,6 @@ function SignUpForm() {
     } catch (error) {
       console.log(error)
     }
-
-    console.log("Form submitted")
   }
 
   return (
