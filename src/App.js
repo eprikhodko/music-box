@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
 import { Switch, Route } from "react-router-dom"
 
-import { getAuth, onAuthStateChanged } from "firebase/auth"
-import firebaseApp from "./lib/firebase"
+import useAuth from "./hooks/useAuth"
 
 import * as ROUTES from "./constants/routes"
 
@@ -24,22 +23,7 @@ import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
 
 function App() {
-  const currentUser = false
-
-  const auth = getAuth(firebaseApp)
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const { uid } = user
-      // ...
-      console.log(uid)
-    } else {
-      // User is signed out
-      // ...
-    }
-  })
+  const currentUser = useAuth()
 
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)

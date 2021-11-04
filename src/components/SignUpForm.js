@@ -6,7 +6,6 @@ import styled from "styled-components"
 // import { } from 'firebase/<service>';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore"
-import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
 import { Button } from "./shared/Button"
@@ -39,8 +38,8 @@ function SignUpForm() {
 
   // const { firebase } = useContext(FirebaseContext)
 
-  const auth = getAuth(firebaseApp)
-  const db = getFirestore(firebaseApp)
+  const auth = getAuth()
+  const db = getFirestore()
 
   const handleSignup = async (event) => {
     event.preventDefault()

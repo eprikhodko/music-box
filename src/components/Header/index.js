@@ -1,10 +1,12 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
+import { useContext } from "react"
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
+import UserContext from "../../context/user"
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -26,6 +28,8 @@ const ContainerFlex = styled.div`
 `
 
 function Header({ noSearchBox }) {
+  const currentUser = useContext(UserContext)
+
   return (
     <StyledHeader>
       <HeaderContent>
@@ -35,7 +39,7 @@ function Header({ noSearchBox }) {
             {!noSearchBox && <SearchBox />}
           </ContainerFlex>
 
-          <Nav />
+          {currentUser && <Nav />}
         </Content>
       </HeaderContent>
     </StyledHeader>
