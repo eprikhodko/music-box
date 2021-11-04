@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom"
-import { useState } from "react/cjs/react.development"
+import { Link, useHistory } from "react-router-dom"
+import { useState } from "react"
 import styled from "styled-components"
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
 import { Button } from "./shared/Button"
@@ -29,10 +32,24 @@ const StyledLink = styled(Link)`
 function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const history = useHistory()
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
     console.log("Form submitted")
+
+    const auth = getAuth(firebaseApp)
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      // redirect user to the home page after successful login
+      history.push(ROUTES.HOME)
+    } catch (error) {
+      setEmail("")
+      setPassword("")
+      console.log(error)
+      // setError(error.message)
+    }
   }
 
   return (
