@@ -2,8 +2,6 @@ import { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -19,8 +17,6 @@ import {
   ContainerFloatInput,
   Form,
 } from "./shared/FormElements"
-
-// import FirebaseContext from "../context/firebase"
 
 const StyledParagraph = styled.p`
   font-size: 1.6rem;
@@ -42,8 +38,6 @@ function SignUpForm() {
   const [errorMessage, setErrorMessage] = useState("")
 
   const history = useHistory()
-
-  // const { firebase } = useContext(FirebaseContext)
 
   const auth = getAuth()
   const db = getFirestore()

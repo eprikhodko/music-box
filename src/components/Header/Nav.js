@@ -64,6 +64,15 @@ function Nav() {
     }
   }
 
+  // clean up username in order to use it as a link name to the user profile (/profile/username)
+  const cleanedUpUsername = currentUser?.displayName
+    // make username lowercase
+    .toLowerCase()
+    // remove spaces from beginning and from the end of the username
+    .trim()
+    // replace spaces in the middle of the username with dashes
+    .replace(/\s+/g, "-")
+
   // return navigation for anonymous user
   return !currentUser ? (
     <StyledNav>
@@ -116,7 +125,7 @@ function Nav() {
         </li>
       </Ul>
       <UserAvatar>
-        <Link to={ROUTES.PROFILE}>
+        <Link to={`profile/${cleanedUpUsername}`}>
           <Avatar />
         </Link>
       </UserAvatar>
