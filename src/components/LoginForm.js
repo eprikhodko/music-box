@@ -42,13 +42,14 @@ function LoginForm() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password)
+
       // redirect user to the home page after successful login
       history.push(ROUTES.HOME)
     } catch (error) {
       setEmail("")
       setPassword("")
-      console.log(error.message)
       setErrorMessage(error.message)
+      console.log(error.message)
     }
   }
 

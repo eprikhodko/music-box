@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom"
 import { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth"
 import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore"
 
 import * as ROUTES from "../constants/routes"
@@ -35,6 +39,9 @@ function SignUpForm() {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const history = useHistory()
 
   // const { firebase } = useContext(FirebaseContext)
 
@@ -52,6 +59,11 @@ function SignUpForm() {
         password
       )
 
+      // update user profile display name
+      await updateProfile(auth.currentUser, {
+        displayName: username,
+      })
+
       // add new document in firestore collection "users"
       await setDoc(doc(db, "users", createdUser.user.uid), {
         userId: createdUser.user.uid,
@@ -59,13 +71,29 @@ function SignUpForm() {
         email: email.toLowerCase(),
         dateCreated: serverTimestamp(),
       })
+
+      // redirect user to the home page after successful sign up
+      history.push(ROUTES.HOME)
     } catch (error) {
-      console.log(error)
+      // clear input fields in case of error
+      setUsername("")
+      setEmail("")
+      setPassword("")
+      // set error message
+      setErrorMessage(error.message)
+      console.log(error.message)
     }
   }
 
   return (
     <Form onSubmit={handleSignup} marginTop="5em">
+      {/* show error message if something went wrong */}
+      {errorMessage && (
+        <>
+          <p>{errorMessage}</p>
+          <p>please try again</p>
+        </>
+      )}
       <ContainerFloatInput>
         <FloatLabel htmlFor="username" isNotEmpty={username}>
           Username
