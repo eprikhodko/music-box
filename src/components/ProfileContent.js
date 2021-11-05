@@ -1,3 +1,4 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { HeroButton } from "./shared/Button"
@@ -7,6 +8,7 @@ import UserAvatar from "./UserAvatar"
 import SearchBox from "./shared/SearchBox"
 
 import * as ROUTES from "../constants/routes"
+import UserContext from "../context/user"
 
 const Username = styled.p`
   font-size: 2.5rem;
@@ -27,12 +29,15 @@ const ContainerTextBlock = styled(ContainerFlex)`
 `
 
 function ProfileContent() {
+  const currentUser = useContext(UserContext)
+  console.log(currentUser)
+
   return (
     <ContainerFlex flexDirection="column">
       <ContainerFlex>
         <CenterContent>
           <UserAvatar />
-          <Username>Peggy</Username>
+          <Username>{currentUser?.displayName}</Username>
           <HeroButton as={Link} to={ROUTES.COLLECTION}>
             Collection
           </HeroButton>

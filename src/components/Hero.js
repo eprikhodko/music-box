@@ -37,7 +37,7 @@ const ContainerHeroButtons = styled.div`
 `
 
 function Hero() {
-  const { currentUser } = useContext(UserContext)
+  const currentUser = useContext(UserContext)
 
   return (
     <HeroContent>
@@ -54,7 +54,7 @@ function Hero() {
             >
               View all
             </HeroButton>
-            {currentUser && (
+            {!currentUser && (
               <HeroButton as={Link} to={ROUTES.LOGIN} $marginTop="0.3em">
                 Log in
               </HeroButton>

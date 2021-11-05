@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import { useContext } from "react"
+
 import { Link } from "react-router-dom"
+import { getAuth, signOut } from "firebase/auth"
+import firebaseApp from "../../lib/firebase"
 import * as ROUTES from "../../constants/routes"
 
 import { ReactComponent as IconAvatar } from "../../icons/icon-avatar.svg"
@@ -51,6 +54,24 @@ const Avatar = styled(IconAvatar)`
 
 function Nav() {
   const currentUser = useContext(UserContext)
+  const auth = getAuth(firebaseApp)
+
+  const handleSignOut = async () => {
+    try {
+      signOut(auth)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  // clean up username in order to use it as a link name to the user profile (/profile/username)
+  const cleanedUpUsername = currentUser?.displayName
+    // make username lowercase
+    .toLowerCase()
+    // remove spaces from beginning and from the end of the username
+    .trim()
+    // replace spaces in the middle of the username with dashes
+    .replace(/\s+/g, "-")
 
   // return navigation for anonymous user
   return !currentUser ? (
@@ -98,11 +119,13 @@ function Nav() {
         </li>
 
         <li>
-          <NavLink to={ROUTES.HOME}>Sign out</NavLink>
+          <NavLink to={ROUTES.HOME} onClick={handleSignOut}>
+            Sign out
+          </NavLink>
         </li>
       </Ul>
       <UserAvatar>
-        <Link to={ROUTES.PROFILE}>
+        <Link to={`profile/${cleanedUpUsername}`}>
           <Avatar />
         </Link>
       </UserAvatar>

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react"
 import { Switch, Route } from "react-router-dom"
+
+import useAuth from "./hooks/useAuth"
+
 import * as ROUTES from "./constants/routes"
 
 // pages
@@ -20,7 +23,7 @@ import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
 
 function App() {
-  const currentUser = true
+  const currentUser = useAuth()
 
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)

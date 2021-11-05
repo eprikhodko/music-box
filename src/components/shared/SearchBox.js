@@ -115,7 +115,7 @@ function SearchBox({ placeholder, big, marginTop, marginBottom }) {
     console.log("search submitted")
   }
 
-  console.log(searchQuery)
+  // console.log(searchQuery)
 
   return !big ? (
     // return regular sized search box, if it is rendered in header

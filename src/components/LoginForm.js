@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom"
-import { useState } from "react/cjs/react.development"
+import { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
 import { Button } from "./shared/Button"
@@ -16,7 +19,6 @@ const StyledParagraph = styled.p`
   font-size: 1.6rem;
   color: #000;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
 `
 
 const StyledLink = styled(Link)`
@@ -29,14 +31,38 @@ const StyledLink = styled(Link)`
 function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
 
-  const handleSubmit = (event) => {
+  const history = useHistory()
+
+  const handleLogin = async (event) => {
     event.preventDefault()
-    console.log("Form submitted")
+
+    const auth = getAuth(firebaseApp)
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+
+      // redirect user to the home page after successful login
+      history.push(ROUTES.HOME)
+    } catch (error) {
+      setEmail("")
+      setPassword("")
+      setErrorMessage(error.message)
+      console.log(error.message)
+    }
   }
 
   return (
-    <Form onSubmit={handleSubmit} marginTop="5em">
+    <Form onSubmit={handleLogin} marginTop="5em">
+      {/* show error message if something went wrong */}
+      {errorMessage && (
+        <>
+          <p>{errorMessage}</p>
+          <p>please try again</p>
+        </>
+      )}
+
       <ContainerFloatInput>
         <FloatLabel htmlFor="email" isNotEmpty={email}>
           Email
