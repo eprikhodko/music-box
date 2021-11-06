@@ -76,6 +76,8 @@ const ImageUploadBox = styled.label`
   /* show focus outline at image upload box when hidden file input receives focus too */
   &:focus-within {
     background-color: rgba(0, 0, 0, 0.1);
+    outline: 2px solid #000;
+    outline-offset: 5px;
   }
 `
 
@@ -90,7 +92,6 @@ function UserAvatar() {
   const [isAvatarUpdated, setIsAvatarUpdated] = useState(false)
 
   const currentUser = useContext(UserContext)
-  console.log(currentUser?.photoURL)
 
   // clean up username in order to use it as a link name to the user profile (/profile/username)
   const cleanedUpUsername = currentUser?.displayName
@@ -101,9 +102,7 @@ function UserAvatar() {
     // replace spaces in the middle of the username with dashes
     .replace(/\s+/g, "-")
 
-  // useEffect setting state of isAvatarUpdated ca
   useEffect(() => {
-    console.log("avatar updated")
     setIsAvatarUpdated(false)
   }, [isAvatarUpdated])
 

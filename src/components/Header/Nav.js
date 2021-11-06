@@ -35,7 +35,10 @@ const NavLink = styled(Link)`
   }
 `
 
-const UserAvatar = styled.div`
+const ContainerUserAvatar = styled.div`
+  width: 3.5em;
+  height: 3.5em;
+
   margin-left: 2.5em;
 `
 
@@ -52,6 +55,23 @@ const Avatar = styled(IconAvatar)`
   }
 `
 
+const ImageAvatar = styled.div`
+  width: 3.5em;
+  height: 3.5em;
+
+  background-image: url(${({ fileUrl }) => fileUrl});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  border: 1px solid #000;
+  border-radius: 999px;
+
+  &:hover {
+    outline: 1px solid #000;
+  }
+`
+
 function Nav() {
   const currentUser = useContext(UserContext)
   const auth = getAuth(firebaseApp)
@@ -63,8 +83,6 @@ function Nav() {
       console.log(error)
     }
   }
-
-  // console.log(currentUser?.photoURL)
 
   // return navigation for anonymous user
   return !currentUser ? (
@@ -117,11 +135,16 @@ function Nav() {
           </NavLink>
         </li>
       </Ul>
-      <UserAvatar>
+      <ContainerUserAvatar>
         <Link to={`profile/${currentUser.displayName}`}>
-          <Avatar />
+          {currentUser?.photoURL ? (
+            <ImageAvatar fileUrl={currentUser?.photoURL} />
+          ) : (
+            <Avatar />
+          )}
+          {/* <Avatar /> */}
         </Link>
-      </UserAvatar>
+      </ContainerUserAvatar>
     </StyledNav>
   )
 }
