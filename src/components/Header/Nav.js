@@ -35,7 +35,10 @@ const NavLink = styled(Link)`
   }
 `
 
-const UserAvatar = styled.div`
+const ContainerUserAvatar = styled.div`
+  width: 3.5em;
+  height: 3.5em;
+
   margin-left: 2.5em;
 `
 
@@ -52,6 +55,23 @@ const Avatar = styled(IconAvatar)`
   }
 `
 
+const ImageAvatar = styled.div`
+  width: 3.5em;
+  height: 3.5em;
+
+  background-image: url(${({ fileUrl }) => fileUrl});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  border: 1px solid #000;
+  border-radius: 999px;
+
+  &:hover {
+    outline: 1px solid #000;
+  }
+`
+
 function Nav() {
   const currentUser = useContext(UserContext)
   const auth = getAuth(firebaseApp)
@@ -63,15 +83,6 @@ function Nav() {
       console.log(error)
     }
   }
-
-  // clean up username in order to use it as a link name to the user profile (/profile/username)
-  const cleanedUpUsername = currentUser?.displayName
-    // make username lowercase
-    .toLowerCase()
-    // remove spaces from beginning and from the end of the username
-    .trim()
-    // replace spaces in the middle of the username with dashes
-    .replace(/\s+/g, "-")
 
   // return navigation for anonymous user
   return !currentUser ? (
@@ -124,11 +135,16 @@ function Nav() {
           </NavLink>
         </li>
       </Ul>
-      <UserAvatar>
-        <Link to={`profile/${cleanedUpUsername}`}>
-          <Avatar />
+      <ContainerUserAvatar>
+        <Link to={`profile/${currentUser.displayName}`}>
+          {currentUser?.photoURL ? (
+            <ImageAvatar fileUrl={currentUser?.photoURL} />
+          ) : (
+            <Avatar />
+          )}
+          {/* <Avatar /> */}
         </Link>
-      </UserAvatar>
+      </ContainerUserAvatar>
     </StyledNav>
   )
 }
