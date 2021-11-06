@@ -30,7 +30,6 @@ const ContainerTextBlock = styled(ContainerFlex)`
 
 function ProfileContent() {
   const currentUser = useContext(UserContext)
-  // console.log(currentUser)
 
   return (
     <ContainerFlex flexDirection="column">

@@ -42,6 +42,19 @@ function SignUpForm() {
   const auth = getAuth()
   const db = getFirestore()
 
+  // clean up username
+  const cleanUpUsername = (inputValue) => {
+    const cleaned =
+      // make username lowercase
+      inputValue
+        .toLowerCase()
+        // remove spaces from beginning and from the end of the username
+        .trim()
+        // replace spaces in the middle of the username with dashes
+        .replace(/\s+/g, "-")
+    return cleaned
+  }
+
   const handleSignup = async (event) => {
     event.preventDefault()
 
@@ -55,13 +68,13 @@ function SignUpForm() {
 
       // update user profile display name
       await updateProfile(auth.currentUser, {
-        displayName: username,
+        displayName: cleanUpUsername(username),
       })
 
       // add new document in firestore collection "users"
       await setDoc(doc(db, "users", createdUser.user.uid), {
         userId: createdUser.user.uid,
-        username: username.toLowerCase(),
+        username,
         email: email.toLowerCase(),
         dateCreated: serverTimestamp(),
       })
@@ -100,7 +113,7 @@ function SignUpForm() {
           required
           value={username}
           onChange={(event) => {
-            setUsername(event.target.value.toLowerCase())
+            setUsername(event.target.value)
           }}
         />
       </ContainerFloatInput>

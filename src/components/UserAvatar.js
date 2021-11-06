@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import styled from "styled-components"
 
-import { getStorage, ref, uploadBytes } from "firebase/storage"
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
 import { ReactComponent as IconPers } from "../icons/person_24px.svg"
 import { ReactComponent as ImagePlaceholder } from "../icons/image-placeholder.svg"
@@ -12,6 +12,18 @@ const AvatarText = styled.p`
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   margin-top: 0.6em;
+`
+
+const AvatarImage = styled.div`
+  width: 17em;
+  height: 17em;
+
+  background-image: url(${({ fileUrl }) => fileUrl});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  border-radius: 999px;
 `
 
 const IconImagePlaceholder = styled(ImagePlaceholder)`
@@ -74,6 +86,7 @@ const HiddenFileInput = styled.input`
 
 function UserAvatar() {
   const [hovered, setHovered] = useState(false)
+  const [fileUrl, setFileUrl] = useState("")
 
   const currentUser = useContext(UserContext)
   // console.log(currentUser)
@@ -103,31 +116,41 @@ function UserAvatar() {
     // Points to 'user-avatars' folder at firebase storage
     const userAvatarsRef = ref(storageRef, `user-avatars/${cleanedUpUsername}`)
 
-    // Points to 'user-avatars/file.name'
+    // Points to 'user-avatars/username/file.name'
     // Note that you can use variables to create child values
-    const fileName = file.name
+    const fileName = file && file.name
     const avatarRef = ref(userAvatarsRef, fileName)
+    console.log("avatarRef value:", avatarRef)
 
-    // File path is 'user-avatars/fileName'
+    // File path is 'user-avatars/username/fileName'
     const path = avatarRef.fullPath
-    console.log(path)
+    console.log("file path:", path)
 
     // File name is 'fileName'
-    const { name } = avatarRef
-    console.log(name)
+    // const { name } = avatarRef
+    // console.log(name)
 
     // Points to 'user-avatars'
-    const userAvatarsRefAgain = avatarRef.parent
-    console.log(userAvatarsRefAgain)
+    // const userAvatarsRefAgain = avatarRef.parent
+    // console.log(userAvatarsRefAgain)
 
+    // upload file to the Firebase Storage
+    // 'file' comes from the Blob or File API
+    // https://firebase.google.com/docs/storage/web/upload-files#web-version-9_1
     try {
-      // upload file to the Firebase Storage
-      // 'file' comes from the Blob or File API
-      // https://firebase.google.com/docs/storage/web/upload-files#web-version-9_1
       await uploadBytes(avatarRef, file)
     } catch (error) {
       console.log(error.message)
     }
+
+    // get download url
+    try {
+      const downloadUrl = await getDownloadURL(ref(storage, path))
+      setFileUrl(downloadUrl)
+    } catch (error) {
+      console.log(error)
+    }
+    console.log(fileUrl)
 
     // after we're uploaded our file to the firebase Storage, we need to get an URL to this file. We will need this fileUrl later, when we will be creating user record with the username and avatar. We need to store this url in the state.
     //  const fileUrl = await fileReference.getDownloadURL()
@@ -143,11 +166,11 @@ function UserAvatar() {
       onMouseLeave={() => setHovered(false)}
     >
       {!hovered ? (
-        <IconPerson />
+        (!fileUrl && <IconPerson />) || <AvatarImage fileUrl={fileUrl} />
       ) : (
         <>
           <IconImagePlaceholder />
-          <AvatarText>Upload picture</AvatarText>
+          <AvatarText>Upload image</AvatarText>
         </>
       )}
       <HiddenFileInput
