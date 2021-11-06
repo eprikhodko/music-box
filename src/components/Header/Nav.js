@@ -64,6 +64,8 @@ function Nav() {
     }
   }
 
+  // console.log(currentUser?.photoURL)
+
   // return navigation for anonymous user
   return !currentUser ? (
     <StyledNav>

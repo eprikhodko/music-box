@@ -1,7 +1,8 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import { getAuth, updateProfile } from "firebase/auth"
 
 import { ReactComponent as IconPers } from "../icons/person_24px.svg"
 import { ReactComponent as ImagePlaceholder } from "../icons/image-placeholder.svg"
@@ -86,10 +87,10 @@ const HiddenFileInput = styled.input`
 
 function UserAvatar() {
   const [hovered, setHovered] = useState(false)
-  const [fileUrl, setFileUrl] = useState("")
+  const [isAvatarUpdated, setIsAvatarUpdated] = useState(false)
 
   const currentUser = useContext(UserContext)
-  // console.log(currentUser)
+  console.log(currentUser?.photoURL)
 
   // clean up username in order to use it as a link name to the user profile (/profile/username)
   const cleanedUpUsername = currentUser?.displayName
@@ -99,6 +100,12 @@ function UserAvatar() {
     .trim()
     // replace spaces in the middle of the username with dashes
     .replace(/\s+/g, "-")
+
+  // useEffect setting state of isAvatarUpdated ca
+  useEffect(() => {
+    console.log("avatar updated")
+    setIsAvatarUpdated(false)
+  }, [isAvatarUpdated])
 
   const handleFileUpload = async (event) => {
     // get file object from the file input
@@ -146,17 +153,17 @@ function UserAvatar() {
     // get download url
     try {
       const downloadUrl = await getDownloadURL(ref(storage, path))
-      setFileUrl(downloadUrl)
+
+      // update user profile photoUrl
+      const auth = getAuth()
+      await updateProfile(auth.currentUser, {
+        photoURL: downloadUrl,
+      })
+      // after user uploaded new image to the Firebase Storage, we're set isAvatarUpdated to "true", causing re-render of the main UserAvatar component. Then useEffect hook switch isAvatarUpdated state back to "false". If user decides to upload new avatar, this loop will run again, causing main UserAvatar component re-render and show us new avatar image.
+      setIsAvatarUpdated(true)
     } catch (error) {
       console.log(error)
     }
-    console.log(fileUrl)
-
-    // after we're uploaded our file to the firebase Storage, we need to get an URL to this file. We will need this fileUrl later, when we will be creating user record with the username and avatar. We need to store this url in the state.
-    //  const fileUrl = await fileReference.getDownloadURL()
-    // save URL in the state
-    //  setFileUrl(fileUrl)
-    //  setFileName(file.name)
   }
 
   return (
@@ -166,7 +173,9 @@ function UserAvatar() {
       onMouseLeave={() => setHovered(false)}
     >
       {!hovered ? (
-        (!fileUrl && <IconPerson />) || <AvatarImage fileUrl={fileUrl} />
+        (!currentUser?.photoURL && <IconPerson />) || (
+          <AvatarImage fileUrl={currentUser?.photoURL} />
+        )
       ) : (
         <>
           <IconImagePlaceholder />
