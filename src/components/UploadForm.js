@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import { useState } from "react"
+
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
+
 import {
   FloatLabel,
   FloatInput,
@@ -140,13 +143,67 @@ function UploadForm() {
     console.log("Form submitted")
   }
 
+  const handleFileUpload = async (event) => {
+    // get file object from the file input
+    const file = event.target.files[0]
+    console.log(file)
+
+    // Get a reference to the storage service, which is used to create references in your storage bucket
+    const storage = getStorage()
+
+    // Create a storage reference from our storage service
+    // Points to the root reference
+    const storageRef = ref(storage)
+    console.log(storageRef)
+
+    // Points to 'user-avatars' folder at firebase storage
+    const userAvatarsRef = ref(storageRef, `albums-covers`)
+
+    // Points to 'user-avatars/username/file.name'
+    // Note that you can use variables to create child values
+    const fileName = file && file.name
+    const albumCoverRef = ref(userAvatarsRef, fileName)
+    console.log("avatarRef value:", albumCoverRef)
+
+    // File path is 'user-avatars/username/fileName'
+    const path = albumCoverRef.fullPath
+    console.log("file path:", path)
+
+    try {
+      await uploadBytes(albumCoverRef, file)
+    } catch (error) {
+      console.log(error.message)
+    }
+
+    // get download url
+    try {
+      const downloadUrl = await getDownloadURL(ref(storage, path))
+      console.log(downloadUrl)
+
+      // update user profile photoUrl
+      // const auth = getAuth()
+      // await updateProfile(auth.currentUser, {
+      //   photoURL: downloadUrl,
+      // })
+      // after user uploaded new image to the Firebase Storage, we're set isAvatarUpdated to "true", causing re-render of the main UserAvatar component. Then useEffect hook switch isAvatarUpdated state back to "false". If user decides to upload new avatar, this loop will run again, causing main UserAvatar component re-render and show us new avatar image.
+      // setIsAlbumCoverUpdated(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <ContainerUploadForm marginTop="5em">
         <ImageUploadBox htmlFor="imageUpload">
           <ImagePlaceholderIcon />
           Click to upload album picture
-          <HiddenFileInput id="imageUpload" name="imageUpload" type="file" />
+          <HiddenFileInput
+            id="imageUpload"
+            name="imageUpload"
+            type="file"
+            onChange={handleFileUpload}
+          />
         </ImageUploadBox>
 
         <ContainerFloatInput marginTop="3em">
