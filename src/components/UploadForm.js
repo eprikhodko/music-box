@@ -1,7 +1,14 @@
 import styled from "styled-components"
-import { useState } from "react"
+import { useContext, useState } from "react"
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore"
 
 import {
   FloatLabel,
@@ -11,6 +18,7 @@ import {
 import { Button } from "./shared/Button"
 import { ReactComponent as IconImagePlaceholder } from "../icons/image-placeholder.svg"
 import { ReactComponent as CheckboxCircleIcon } from "../icons/check_circle_24px.svg"
+import UserContext from "../context/user"
 
 const ContainerUploadForm = styled.div`
   display: flex;
@@ -27,6 +35,11 @@ const ImageUploadBox = styled.label`
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
   margin-top: 0.6em;
+
+  background-image: url(${({ fileUrl }) => fileUrl});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
   /* set image upload box dimensions and background color */
   width: 31em;
@@ -133,15 +146,14 @@ const ContainerCheckboxes = styled.div`
 `
 
 function UploadForm() {
+  const [fileDownloadUrl, setFileDownloadUrl] = useState("")
+  const [albumCoverFileName, setAlbumCoverFileName] = useState("")
   const [albumName, setAlbumName] = useState("")
-  const [artistName, setArtistName] = useState("")
-  const [albumYear, setAlbumYear] = useState("")
-  const [albumGenre, setAlbumGenre] = useState("")
+  const [artist, setArtist] = useState("")
+  const [year, setYear] = useState("")
+  const [genre, setGenre] = useState("")
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log("Form submitted")
-  }
+  const currentUser = useContext(UserContext)
 
   const handleFileUpload = async (event) => {
     // get file object from the file input
@@ -156,48 +168,87 @@ function UploadForm() {
     const storageRef = ref(storage)
     console.log(storageRef)
 
-    // Points to 'user-avatars' folder at firebase storage
-    const userAvatarsRef = ref(storageRef, `albums-covers`)
+    // Points to 'albums-covers' folder at firebase storage
+    const albumsCoversRef = ref(storageRef, `albums-covers`)
 
-    // Points to 'user-avatars/username/file.name'
+    // Points to 'albums-covers/file.name'
     // Note that you can use variables to create child values
     const fileName = file && file.name
-    const albumCoverRef = ref(userAvatarsRef, fileName)
-    console.log("avatarRef value:", albumCoverRef)
+    setAlbumCoverFileName(fileName)
+    const albumCoverRef = ref(albumsCoversRef, fileName)
+    console.log("albumCoverRef value:", albumCoverRef)
 
     // File path is 'user-avatars/username/fileName'
     const path = albumCoverRef.fullPath
     console.log("file path:", path)
 
+    // upload image to the Firebase Storage
     try {
       await uploadBytes(albumCoverRef, file)
     } catch (error) {
       console.log(error.message)
     }
 
-    // get download url
+    // get download url of an image
     try {
       const downloadUrl = await getDownloadURL(ref(storage, path))
       console.log(downloadUrl)
 
-      // update user profile photoUrl
-      // const auth = getAuth()
-      // await updateProfile(auth.currentUser, {
-      //   photoURL: downloadUrl,
-      // })
-      // after user uploaded new image to the Firebase Storage, we're set isAvatarUpdated to "true", causing re-render of the main UserAvatar component. Then useEffect hook switch isAvatarUpdated state back to "false". If user decides to upload new avatar, this loop will run again, causing main UserAvatar component re-render and show us new avatar image.
-      // setIsAlbumCoverUpdated(true)
+      // save file download url in the state
+      setFileDownloadUrl(downloadUrl)
     } catch (error) {
       console.log(error)
     }
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const db = getFirestore()
+
+    // <<-- Create document in Firestore -->>
+    // check Add data chapter in Firebase docs
+    // https://firebase.google.com/docs/firestore/manage-data/add-data#web-v8_11
+
+    // In some cases, it can be useful to create a document reference with an auto-generated ID, then use the reference later. For this use case, you can call doc():
+    // Add a new document with a generated id.
+    try {
+      const newAlbumRef = await doc(collection(db, "albums"))
+      console.log(newAlbumRef)
+
+      // set album data
+      const albumData = {
+        albumId: newAlbumRef.id,
+        albumName,
+        artist,
+        year,
+        genre,
+        albumCover: fileDownloadUrl,
+        albumCoverFileName,
+        uploadedBy: currentUser.uid,
+        dateCreated: serverTimestamp(),
+      }
+
+      // later...
+      // add new document in firestore collection "albums"
+      await setDoc(newAlbumRef, albumData)
+    } catch (error) {
+      console.log(error)
+    }
+
+    console.log("Form submitted")
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <ContainerUploadForm marginTop="5em">
-        <ImageUploadBox htmlFor="imageUpload">
-          <ImagePlaceholderIcon />
-          Click to upload album picture
+        <ImageUploadBox htmlFor="imageUpload" fileUrl={fileDownloadUrl}>
+          {!fileDownloadUrl && (
+            <>
+              <ImagePlaceholderIcon /> Click to upload album picture
+            </>
+          )}
+
           <HiddenFileInput
             id="imageUpload"
             name="imageUpload"
@@ -218,13 +269,13 @@ function UploadForm() {
             required
             value={albumName}
             onChange={(event) => {
-              setAlbumName(event.target.value.toLowerCase())
+              setAlbumName(event.target.value)
             }}
           />
         </ContainerFloatInput>
 
         <ContainerFloatInput>
-          <FloatLabel htmlFor="artistName" isNotEmpty={artistName}>
+          <FloatLabel htmlFor="artistName" isNotEmpty={artist}>
             Artist name
           </FloatLabel>
           <FloatInput
@@ -233,15 +284,15 @@ function UploadForm() {
             name="artistName"
             aria-label="Artist name"
             required
-            value={artistName}
+            value={artist}
             onChange={(event) => {
-              setArtistName(event.target.value.toLowerCase())
+              setArtist(event.target.value)
             }}
           />
         </ContainerFloatInput>
 
         <ContainerFloatInput>
-          <FloatLabel htmlFor="albumYear" isNotEmpty={albumYear}>
+          <FloatLabel htmlFor="albumYear" isNotEmpty={year}>
             Year
           </FloatLabel>
           <FloatInput
@@ -251,15 +302,15 @@ function UploadForm() {
             aria-label="Album year"
             minLength="4"
             required
-            value={albumYear}
+            value={year}
             onChange={(event) => {
-              setAlbumYear(event.target.value)
+              setYear(event.target.value)
             }}
           />
         </ContainerFloatInput>
 
         <ContainerFloatInput>
-          <FloatLabel htmlFor="albumGenre" isNotEmpty={albumGenre}>
+          <FloatLabel htmlFor="albumGenre" isNotEmpty={genre}>
             Genre
           </FloatLabel>
           <FloatInput
@@ -268,9 +319,9 @@ function UploadForm() {
             name="albumGenre"
             aria-label="Album genre"
             required
-            value={albumGenre}
+            value={genre}
             onChange={(event) => {
-              setAlbumGenre(event.target.value.toLowerCase())
+              setGenre(event.target.value)
             }}
           />
         </ContainerFloatInput>
