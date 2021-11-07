@@ -7,6 +7,7 @@ import {
   collection,
   doc,
   setDoc,
+  addDoc,
   serverTimestamp,
 } from "firebase/firestore"
 
@@ -152,6 +153,11 @@ function UploadForm() {
   const [artist, setArtist] = useState("")
   const [year, setYear] = useState("")
   const [genre, setGenre] = useState("")
+  // const [addToCollection, setAddToCollection] = useState(false)
+  const [checkboxes, setCheckboxes] = useState({
+    addToCollection: false,
+    addToWishList: false,
+  })
 
   const currentUser = useContext(UserContext)
 
@@ -232,11 +238,56 @@ function UploadForm() {
       // later...
       // add new document in firestore collection "albums"
       await setDoc(newAlbumRef, albumData)
+
+      // add album to user collection if user checked 'add to my collection' checkbox
+      if (checkboxes.addToCollection) {
+        const docRef = doc(
+          db,
+          "users",
+          currentUser.uid,
+          "albumsInUserCollection",
+          newAlbumRef.id
+        )
+        console.log("hey, this is docRef for album in collection:", docRef)
+        await setDoc(docRef, {
+          albumId: newAlbumRef.id,
+          dateAdded: serverTimestamp(),
+        })
+        // console.log(addedAlbum)
+        // console.log("Document written with ID: ", addedAlbum.id)
+      }
+
+      // add to wishlist
+      // add album to user collection if user checked 'add to my collection' checkbox
+      if (checkboxes.addToWishList) {
+        const docRef = doc(db, "users", currentUser.uid, "albumsInUserWishlist")
+        console.log("hey, this is docRef for album in collection:", docRef)
+        await addDoc(docRef, {
+          albumId: newAlbumRef.id,
+          dateAdded: serverTimestamp(),
+        })
+        // console.log(addedAlbum)
+        // console.log("Document written with ID: ", addedAlbum.id)
+      }
     } catch (error) {
       console.log(error)
     }
 
+    // checkboxes.addToUserCollection && db.collection("users").doc(currentUser.uid).collection("albumsInUserCollection")
+    // .add({
+    //   albumId: newAlbumRef.id,
+    //   dateAdded: firebase.firestore.FieldValue.serverTimestamp()
+    // })
+
     console.log("Form submitted")
+  }
+
+  const handleChange = (event) => {
+    const { name, checked } = event.target
+    setCheckboxes({
+      ...checkboxes,
+      [name]: checked,
+    })
   }
 
   return (
@@ -333,16 +384,22 @@ function UploadForm() {
             type="checkbox"
             id="addToCollection"
             name="addToCollection"
+            checked={checkboxes.addToCollection}
+            onChange={handleChange}
           />
           <CustomCheckbox />
           add to my collection
         </CheckboxLabel>
 
-        <CheckboxLabel htmlFor="addToWishlist">
+        <CheckboxLabel htmlFor="addToWishList">
           <HiddenCheckbox
             type="checkbox"
-            id="addToWishlist"
-            name="addToWishlist"
+            id="addToWishList"
+            // a small remark: be shure that 'name' property matching checked property, or checkbox wouldn't be work at all.
+            // addToWishlist and addToWishList are not the same! Watch for case and 'L' letter!
+            name="addToWishList"
+            checked={checkboxes.addToWishList}
+            onChange={handleChange}
           />
           <CustomCheckbox />
           add to wishlist
