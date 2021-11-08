@@ -7,7 +7,6 @@ import {
   collection,
   doc,
   setDoc,
-  addDoc,
   serverTimestamp,
 } from "firebase/firestore"
 
@@ -239,6 +238,7 @@ function UploadForm() {
       // add new document in firestore collection "albums"
       await setDoc(newAlbumRef, albumData)
 
+      // add to collection
       // add album to user collection if user checked 'add to my collection' checkbox
       if (checkboxes.addToCollection) {
         const docRef = doc(
@@ -253,31 +253,27 @@ function UploadForm() {
           albumId: newAlbumRef.id,
           dateAdded: serverTimestamp(),
         })
-        // console.log(addedAlbum)
-        // console.log("Document written with ID: ", addedAlbum.id)
       }
 
       // add to wishlist
       // add album to user collection if user checked 'add to my collection' checkbox
       if (checkboxes.addToWishList) {
-        const docRef = doc(db, "users", currentUser.uid, "albumsInUserWishlist")
-        console.log("hey, this is docRef for album in collection:", docRef)
-        await addDoc(docRef, {
+        const docRef = doc(
+          db,
+          "users",
+          currentUser.uid,
+          "albumsInUserWishlist",
+          newAlbumRef.id
+        )
+        console.log("hey, this is docRef for album in wishlist:", docRef)
+        await setDoc(docRef, {
           albumId: newAlbumRef.id,
           dateAdded: serverTimestamp(),
         })
-        // console.log(addedAlbum)
-        // console.log("Document written with ID: ", addedAlbum.id)
       }
     } catch (error) {
       console.log(error)
     }
-
-    // checkboxes.addToUserCollection && db.collection("users").doc(currentUser.uid).collection("albumsInUserCollection")
-    // .add({
-    //   albumId: newAlbumRef.id,
-    //   dateAdded: firebase.firestore.FieldValue.serverTimestamp()
-    // })
 
     console.log("Form submitted")
   }
