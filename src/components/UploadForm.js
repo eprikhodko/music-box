@@ -81,7 +81,7 @@ const ImagePlaceholderIcon = styled(IconImagePlaceholder)`
 `
 
 const HiddenFileInput = styled.input`
-  height: 0;
+  /* height: 0; */
   padding: 0;
   opacity: 0;
 `
@@ -248,7 +248,6 @@ function UploadForm() {
           "albumsInUserCollection",
           newAlbumRef.id
         )
-        console.log("hey, this is docRef for album in collection:", docRef)
         await setDoc(docRef, {
           albumId: newAlbumRef.id,
           dateAdded: serverTimestamp(),
@@ -265,7 +264,6 @@ function UploadForm() {
           "albumsInUserWishlist",
           newAlbumRef.id
         )
-        console.log("hey, this is docRef for album in wishlist:", docRef)
         await setDoc(docRef, {
           albumId: newAlbumRef.id,
           dateAdded: serverTimestamp(),
@@ -300,6 +298,7 @@ function UploadForm() {
             id="imageUpload"
             name="imageUpload"
             type="file"
+            required
             onChange={handleFileUpload}
           />
         </ImageUploadBox>
@@ -391,7 +390,7 @@ function UploadForm() {
           <HiddenCheckbox
             type="checkbox"
             id="addToWishList"
-            // a small remark: be shure that 'name' property matching checked property, or checkbox wouldn't be work at all.
+            // a small note: be shure that 'name' property matching checked property, or checkbox wouldn't work at all.
             // addToWishlist and addToWishList are not the same! Watch for case and 'L' letter!
             name="addToWishList"
             checked={checkboxes.addToWishList}
