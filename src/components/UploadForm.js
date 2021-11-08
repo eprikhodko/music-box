@@ -152,7 +152,6 @@ function UploadForm() {
   const [artist, setArtist] = useState("")
   const [year, setYear] = useState("")
   const [genre, setGenre] = useState("")
-  // const [addToCollection, setAddToCollection] = useState(false)
   const [checkboxes, setCheckboxes] = useState({
     addToCollection: false,
     addToWishList: false,
@@ -273,6 +272,17 @@ function UploadForm() {
       console.log(error)
     }
 
+    // reset inputs after file was uploaded to the database
+    setFileDownloadUrl("")
+    setAlbumCoverFileName("")
+    setAlbumName("")
+    setArtist("")
+    setYear("")
+    setGenre("")
+    setCheckboxes({
+      addToCollection: false,
+      addToWishList: false,
+    })
     console.log("Form submitted")
   }
 
