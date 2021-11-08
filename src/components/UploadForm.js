@@ -142,7 +142,32 @@ const HiddenCheckbox = styled.input`
 
 const ContainerCheckboxes = styled.div`
   display: flex;
-  /* border: 1px solid green; */
+`
+
+const Message = styled.p`
+  opacity: ${({ showMessage }) => (showMessage ? "1" : "0")};
+  transition: all 250ms linear 0.5s; // <- the last value defines transition-delay
+  cursor: default;
+  /* animation: fadeOut 2s forwards;
+  animation-delay: 5s;
+  background: red;
+  color: white;
+  padding: 10px;
+  text-align: center;
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  } */
+`
+
+const MessageController = styled.div`
+  transition: all 250ms linear 5s; // <- the last value defines transition-delay
+  color: ${({ showMessage }) => (showMessage ? "green" : "yellow")};
 `
 
 function UploadForm() {
@@ -156,6 +181,7 @@ function UploadForm() {
     addToCollection: false,
     addToWishList: false,
   })
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
   const currentUser = useContext(UserContext)
 
@@ -283,6 +309,9 @@ function UploadForm() {
       addToCollection: false,
       addToWishList: false,
     })
+
+    // set state to true if upload was successful
+    setShowSuccessMessage(true)
     console.log("Form submitted")
   }
 
@@ -413,6 +442,17 @@ function UploadForm() {
 
       <ContainerUploadForm marginTop="3em">
         <Button type="submit">Upload</Button>
+
+        {/* this is an empty div that controls how much time <Message /> will be showing to the user */}
+        <MessageController
+          showMessage={showSuccessMessage}
+          onTransitionEnd={() => setShowSuccessMessage(false)}
+        />
+
+        {/* a hidden message that will show itself to user if upload to the database was successful */}
+        <Message showMessage={showSuccessMessage}>
+          You&apos;re successfully uploaded album to the database!
+        </Message>
       </ContainerUploadForm>
     </form>
   )
