@@ -16,8 +16,9 @@ export const Button = styled.button`
 
   border: 2px solid #333;
   border-radius: 50px;
-  margin-right: ${({ $marginRight }) => $marginRight};
   margin-top: ${({ $marginTop }) => $marginTop};
+  margin-right: ${({ $marginRight }) => $marginRight};
+  margin-left: ${({ $marginLeft }) => $marginLeft};
 
   &:hover {
     background-color: #333;

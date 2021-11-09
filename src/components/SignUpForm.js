@@ -74,7 +74,7 @@ function SignUpForm() {
       // add new document in firestore collection "users"
       await setDoc(doc(db, "users", createdUser.user.uid), {
         userId: createdUser.user.uid,
-        username,
+        username: cleanUpUsername(username),
         email: email.toLowerCase(),
         dateCreated: serverTimestamp(),
       })

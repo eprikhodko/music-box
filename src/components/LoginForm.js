@@ -2,7 +2,11 @@ import { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth"
 import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
@@ -28,17 +32,22 @@ const StyledLink = styled(Link)`
   }
 `
 
+const ContainerFlex = styled.div`
+  display: flex;
+`
+
 function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const [isPasswordWrong, setIsPasswordWrong] = useState(false)
 
   const history = useHistory()
 
+  const auth = getAuth(firebaseApp)
+
   const handleLogin = async (event) => {
     event.preventDefault()
-
-    const auth = getAuth(firebaseApp)
 
     try {
       await signInWithEmailAndPassword(auth, email, password)
@@ -46,10 +55,22 @@ function LoginForm() {
       // redirect user to the home page after successful login
       history.push(ROUTES.HOME)
     } catch (error) {
-      setEmail("")
       setPassword("")
-      setErrorMessage(error.message)
+      // remove 'Firebase' from the beginning of the string with 'slice()' method
+      setErrorMessage(error.message.slice(9))
+      if (error.code === "auth/wrong-password") {
+        setIsPasswordWrong(true)
+      }
       console.log(error.message)
+    }
+  }
+
+  const handlePasswordReset = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email)
+      console.log("password reset email sent!")
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -98,9 +119,22 @@ function LoginForm() {
         />
       </ContainerFloatInput>
 
-      <Button type="submit" $marginTop="4em">
-        Log in
-      </Button>
+      <ContainerFlex>
+        <Button type="submit" $marginTop="4em">
+          Log in
+        </Button>
+        {/* Show 'send password reset email' button if user typed in incorrect password */}
+        {isPasswordWrong && (
+          <Button
+            type="button"
+            $marginTop="4em"
+            $marginLeft="2em"
+            onClick={handlePasswordReset}
+          >
+            Send password reset email
+          </Button>
+        )}
+      </ContainerFlex>
       <StyledParagraph>
         New to Music Box?{" "}
         <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>
