@@ -24,7 +24,8 @@ function Catalog() {
     <ContainerMain>
       <Header />
       <PageBody>
-        <Content flexDirection="column" alignItems="center">
+        <Content flexDirection="column" alignItems="center" $marginTop="5em">
+          <h2>Catalog</h2>
           <AlbumsGrid albumsSlice={albumsSlice} />
           <Button marginTop="2em" onClick={handleShowMore}>
             Show more

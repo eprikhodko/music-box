@@ -25,9 +25,9 @@ function AlbumsGrid({ albumsSlice }) {
         <AlbumContainer>
           <AlbumCover
             src={album.albumCover}
-            alt={`album cover for ${album.albumTitle} album`}
+            alt={`album cover for ${album.albumName} album`}
           />
-          <AlbumTitle>{album.albumTitle}</AlbumTitle>
+          <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
         </AlbumContainer>
       </StyledLink>

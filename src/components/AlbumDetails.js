@@ -70,7 +70,7 @@ function AlbumDetails() {
             alt={`cover for ${album.albumCover} album`}
           />
           <AlbumDescription>
-            <h2>{album.albumTitle}</h2>
+            <h2>{album.albumName}</h2>
             <h3>{album.artist}</h3>
             <AlbumYear>Year: {album.year}</AlbumYear>
             <AlbumGenre>Genre: {album.genre}</AlbumGenre>
