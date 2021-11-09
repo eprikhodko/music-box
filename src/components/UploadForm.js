@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 import styled from "styled-components"
 import { useContext, useState } from "react"
 
@@ -156,7 +158,7 @@ const Message = styled.p`
   cursor: default;
 `
 
-function UploadForm() {
+function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
   const [fileDownloadUrl, setFileDownloadUrl] = useState("")
   const [albumCoverFileName, setAlbumCoverFileName] = useState("")
   const [albumName, setAlbumName] = useState("")
@@ -167,7 +169,6 @@ function UploadForm() {
     addToCollection: false,
     addToWishList: false,
   })
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
   const currentUser = useContext(UserContext)
 
@@ -291,7 +292,7 @@ function UploadForm() {
       })
 
       // set state to true if upload was successful
-      setShowSuccessMessage(true)
+      setIsUploadSuccessful(true)
     } catch (error) {
       console.log(error)
     }
@@ -430,30 +431,30 @@ function UploadForm() {
         {/* <<-- Show message to the user after successful upload-->> */}
         {/* this is an empty div that controls how long <Message /> componet will be showing to the user */}
         <MessageController
-          triggerTransition={showSuccessMessage}
-          onTransitionEnd={() => setShowSuccessMessage(false)}
+          triggerTransition={isUploadSuccessful}
+          onTransitionEnd={() => setIsUploadSuccessful(false)}
         />
 
         {/* <<-- a hidden message that will be shown to the user if upload to the database was successful -->>
 
-        // <Message /> is a Styled Component. Visibility of this component controlled by 'opacity:' property inside this component, and 'opacity:' property value controlled by 'showMessage' prop
-        // if 'showMessage' is 'false', opacity is '0'. If 'showMessage' is 'true', opacity is '1'
+        // <Message /> is a Styled Component. Visibility of this component controlled by 'opacity:' property inside this component, and 'opacity:' property value controlled by 'showMessage' prop value
+        // if 'showMessage' value is 'false', opacity is '0'. If 'showMessage' value is 'true', opacity is '1'
 
-        // 'showMessage' value equal and depends on 'showSuccessMessage' state
-        // 'showSuccessMessage' state is 'false' by default. This means that 'showMessage' prop recieves 'false', so opacity of <Message /> component is 0, and it won't visible at the screen.
+        // 'showMessage' value equal and depends on 'isUploadSuccessful' state
+        // 'isUploadSuccessful' state is 'false' by default. This means that 'showMessage' prop recieves 'false', so opacity of <Message /> component is 0, and it won't visible at the screen.
 
-        // after user submit upload form, in case of successful upload, 'showSuccessMessage' state changes to 'true'. Opacity of <Message /> changes to 1, and <Message /> appear at the screen. 
+        // after user submit upload form, in case of successful upload, 'isUploadSuccessful' state changes to 'true'. Opacity of <Message /> changes to 1, and <Message /> appear at the screen. 
 
-        // the duration of how long <Message /> is showing at screen controlled by <MessageController /> Styled Component, by its 'transition:' property
+        // the duration of how long <Message /> is showing at screen controlled by <MessageController /> Styled Component by its 'transition:' property
         // for example, if we have 'transition: all 5s linear;', this means that transition duration is five seconds 
-        // we trigger transition by passing 'showSuccessMessage' state value to the 'triggerTransition' prop like we did in the <Message /> component
+        // we trigger transition by passing 'isUploadSuccessful' state value to the 'triggerTransition' prop like we did in the <Message /> component
         // 'triggerTransition' prop simply changes 'color:' property of <MessageController /> component from 'green' to 'red' 
         // when 'color:' property changes, transition is triggered 
-        // transition lasts for 5 seconds and after it ends, 'onTransitionEnd' event of <MessageController /> component fire 'setShowSuccessMessage' hook and set state to 'false', so now our <Message /> component dissapears because now 'showMessage' prop receieves 'false' too
+        // transition lasts for 5 seconds and after it ends, 'onTransitionEnd' event of <MessageController /> component fire 'setIsUploadSuccessful' hook and set state to 'false', so now our <Message /> component dissapears because now 'showMessage' prop receieves 'false' value
 
         // check https://stackoverflow.com/questions/42733986/react-how-to-wait-and-fade-out for more info
         */}
-        <Message showMessage={showSuccessMessage}>
+        <Message showMessage={isUploadSuccessful}>
           You&apos;re successfully uploaded album to the database!
         </Message>
       </ContainerUploadForm>
@@ -462,3 +463,8 @@ function UploadForm() {
 }
 
 export default UploadForm
+
+UploadForm.propTypes = {
+  isUploadSuccessful: PropTypes.bool.isRequired,
+  setIsUploadSuccessful: PropTypes.func.isRequired,
+}

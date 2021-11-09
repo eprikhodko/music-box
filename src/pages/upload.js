@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 import Header from "../components/Header/index"
 import Footer from "../components/Footer"
 import UploadForm from "../components/UploadForm"
@@ -8,7 +10,7 @@ import {
   PageBody,
 } from "../components/shared/Containers"
 
-function Upload() {
+function Upload({ isUploadSuccessful, setIsUploadSuccessful }) {
   return (
     <>
       <ScrollToTop />
@@ -16,7 +18,10 @@ function Upload() {
         <Header />
         <PageBody>
           <Content justifyContent="center">
-            <UploadForm />
+            <UploadForm
+              isUploadSuccessful={isUploadSuccessful}
+              setIsUploadSuccessful={setIsUploadSuccessful}
+            />
           </Content>
         </PageBody>
         <Footer />
@@ -26,3 +31,8 @@ function Upload() {
 }
 
 export default Upload
+
+Upload.propTypes = {
+  isUploadSuccessful: PropTypes.bool.isRequired,
+  setIsUploadSuccessful: PropTypes.func.isRequired,
+}
