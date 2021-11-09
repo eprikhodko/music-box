@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { Switch, Route } from "react-router-dom"
 
+import { getFirestore, collection, getDocs } from "firebase/firestore"
+
 import useAuth from "./hooks/useAuth"
 
 import * as ROUTES from "./constants/routes"
@@ -29,13 +31,13 @@ function App() {
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
   const albumsValue = { albumsData, isAlbumsDataLoading }
 
-  const url =
-    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
+  const db = getFirestore()
 
   const fetchAlbumsData = async () => {
-    const res = await fetch(url)
-    const data = await res.json()
-    setAlbumsData(data)
+    const querySnapshot = await getDocs(collection(db, "albums"))
+    const docsData = querySnapshot.docs.map((doc) => doc.data())
+
+    setAlbumsData(docsData)
     setIsAlbumsDataLoading(false)
   }
 
