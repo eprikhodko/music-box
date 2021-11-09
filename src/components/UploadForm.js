@@ -144,30 +144,16 @@ const ContainerCheckboxes = styled.div`
   display: flex;
 `
 
-const Message = styled.p`
-  opacity: ${({ showMessage }) => (showMessage ? "1" : "0")};
-  transition: all 250ms linear 0.5s; // <- the last value defines transition-delay
-  cursor: default;
-  /* animation: fadeOut 2s forwards;
-  animation-delay: 5s;
-  background: red;
-  color: white;
-  padding: 10px;
-  text-align: center;
-
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  } */
+const MessageController = styled.div`
+  /* property name | duration */
+  transition: color 5s; // <- the second value defines transition duration
+  color: ${({ triggerTransition }) => (triggerTransition ? "red" : "green")};
 `
 
-const MessageController = styled.div`
-  transition: all 250ms linear 5s; // <- the last value defines transition-delay
-  color: ${({ showMessage }) => (showMessage ? "green" : "yellow")};
+const Message = styled.p`
+  opacity: ${({ showMessage }) => (showMessage ? "1" : "0")};
+  transition: all 250ms linear 0.5s; // <- the last value defines transition-delay, so 'opacity:' changes after half a second
+  cursor: default;
 `
 
 function UploadForm() {
@@ -237,9 +223,6 @@ function UploadForm() {
     const db = getFirestore()
 
     // <<-- Create document in Firestore -->>
-    // check Add data chapter in Firebase docs
-    // https://firebase.google.com/docs/firestore/manage-data/add-data#web-v8_11
-
     // In some cases, it can be useful to create a document reference with an auto-generated ID, then use the reference later. For this use case, you can call doc():
     // Add a new document with a generated id.
     try {
@@ -294,24 +277,25 @@ function UploadForm() {
           dateAdded: serverTimestamp(),
         })
       }
+
+      // reset inputs after file was uploaded to the database
+      setFileDownloadUrl("")
+      setAlbumCoverFileName("")
+      setAlbumName("")
+      setArtist("")
+      setYear("")
+      setGenre("")
+      setCheckboxes({
+        addToCollection: false,
+        addToWishList: false,
+      })
+
+      // set state to true if upload was successful
+      setShowSuccessMessage(true)
     } catch (error) {
       console.log(error)
     }
 
-    // reset inputs after file was uploaded to the database
-    setFileDownloadUrl("")
-    setAlbumCoverFileName("")
-    setAlbumName("")
-    setArtist("")
-    setYear("")
-    setGenre("")
-    setCheckboxes({
-      addToCollection: false,
-      addToWishList: false,
-    })
-
-    // set state to true if upload was successful
-    setShowSuccessMessage(true)
     console.log("Form submitted")
   }
 
@@ -443,13 +427,32 @@ function UploadForm() {
       <ContainerUploadForm marginTop="3em">
         <Button type="submit">Upload</Button>
 
-        {/* this is an empty div that controls how much time <Message /> will be showing to the user */}
+        {/* <<-- Show message to the user after successful upload-->> */}
+        {/* this is an empty div that controls how long <Message /> componet will be showing to the user */}
         <MessageController
-          showMessage={showSuccessMessage}
+          triggerTransition={showSuccessMessage}
           onTransitionEnd={() => setShowSuccessMessage(false)}
         />
 
-        {/* a hidden message that will show itself to user if upload to the database was successful */}
+        {/* <<-- a hidden message that will be shown to the user if upload to the database was successful -->>
+
+        // <Message /> is a Styled Component. Visibility of this component controlled by 'opacity:' property inside this component, and 'opacity:' property value controlled by 'showMessage' prop
+        // if 'showMessage' is 'false', opacity is '0'. If 'showMessage' is 'true', opacity is '1'
+
+        // 'showMessage' value equal and depends on 'showSuccessMessage' state
+        // 'showSuccessMessage' state is 'false' by default. This means that 'showMessage' prop recieves 'false', so opacity of <Message /> component is 0, and it won't visible at the screen.
+
+        // after user submit upload form, in case of successful upload, 'showSuccessMessage' state changes to 'true'. Opacity of <Message /> changes to 1, and <Message /> appear at the screen. 
+
+        // the duration of how long <Message /> is showing at screen controlled by <MessageController /> Styled Component, by its 'transition:' property
+        // for example, if we have 'transition: all 5s linear;', this means that transition duration is five seconds 
+        // we trigger transition by passing 'showSuccessMessage' state value to the 'triggerTransition' prop like we did in the <Message /> component
+        // 'triggerTransition' prop simply changes 'color:' property of <MessageController /> component from 'green' to 'red' 
+        // when 'color:' property changes, transition is triggered 
+        // transition lasts for 5 seconds and after it ends, 'onTransitionEnd' event of <MessageController /> component fire 'setShowSuccessMessage' hook and set state to 'false', so now our <Message /> component dissapears because now 'showMessage' prop receieves 'false' too
+
+        // check https://stackoverflow.com/questions/42733986/react-how-to-wait-and-fade-out for more info
+        */}
         <Message showMessage={showSuccessMessage}>
           You&apos;re successfully uploaded album to the database!
         </Message>
