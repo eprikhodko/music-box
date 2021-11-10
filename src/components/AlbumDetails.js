@@ -51,7 +51,6 @@ const AlbumButtons = styled.div`
   align-items: flex-start;
   flex-direction: ${({ currentUser }) => currentUser && "column"};
   margin-top: ${({ currentUser }) => currentUser && "2em"};
-  /* border: 1px solid green; */
 `
 
 function AlbumDetails() {
@@ -59,9 +58,11 @@ function AlbumDetails() {
   const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
   const currentUser = useContext(UserContext)
 
-  console.log(currentUser)
+  // console.log(currentUser.uid)
 
-  const album = albumsData.find((element) => element.albumId === albumId)
+  const album = albumsData.find((item) => item.albumId === albumId)
+
+  // console.log(album.uploadedBy)
 
   return (
     <>
@@ -83,6 +84,13 @@ function AlbumDetails() {
                   <ButtonAlbumDetails $marginTop="1.5em">
                     Add to my wishlist
                   </ButtonAlbumDetails>
+
+                  {/* show 'Remove from database' button if user uploaded this album to the database himself */}
+                  {album.uploadedBy === currentUser.uid && (
+                    <ButtonAlbumDetails $marginTop="1.5em">
+                      Remove from database
+                    </ButtonAlbumDetails>
+                  )}
                 </AlbumButtons>
               </>
             ) : (
