@@ -172,10 +172,11 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
 
   const currentUser = useContext(UserContext)
 
+  // <<-- Upload image to Firebase Storage -->>
   const handleFileUpload = async (event) => {
     // get file object from the file input
     const file = event.target.files[0]
-    console.log(file)
+    // console.log(file)
 
     // Get a reference to the storage service, which is used to create references in your storage bucket
     const storage = getStorage()
@@ -183,7 +184,7 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
     // Create a storage reference from our storage service
     // Points to the root reference
     const storageRef = ref(storage)
-    console.log(storageRef)
+    // console.log(storageRef)
 
     // Points to 'albums-covers' folder at firebase storage
     const albumsCoversRef = ref(storageRef, `albums-covers`)
@@ -191,11 +192,15 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
     // Points to 'albums-covers/file.name'
     // Note that you can use variables to create child values
     const fileName = file && file.name
-    setAlbumCoverFileName(fileName)
-    const albumCoverRef = ref(albumsCoversRef, fileName)
+    const date = Date.now()
+
+    const updatedFileName = fileName.concat(date) // make file name unique
+    console.log(updatedFileName)
+    setAlbumCoverFileName(updatedFileName)
+    const albumCoverRef = ref(albumsCoversRef, updatedFileName)
     console.log("albumCoverRef value:", albumCoverRef)
 
-    // File path is 'user-avatars/username/fileName'
+    // File path is 'album-covers/username/updatedFileName'
     const path = albumCoverRef.fullPath
     console.log("file path:", path)
 

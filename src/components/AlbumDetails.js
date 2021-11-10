@@ -59,6 +59,8 @@ function AlbumDetails() {
   const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
   const currentUser = useContext(UserContext)
 
+  console.log(currentUser)
+
   const album = albumsData.find((element) => element.albumId === albumId)
 
   return (
