@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react"
 
 import PropTypes from "prop-types"
 
+import styled from "styled-components"
+
 import AlbumsDataContext from "../../../context/albumsData"
 import {
   AlbumContainer,
@@ -10,7 +12,13 @@ import {
   AlbumTitle,
   AlbumArtist,
   StyledAlbumsGrid,
+  IconImageBroken,
+  IconContainer,
 } from "./GridElements"
+
+const StyledParagraph = styled.p`
+  color: rgba(0, 0, 0, 0.5);
+`
 
 function AlbumsGrid({ albumsSlice }) {
   const { start, end } = albumsSlice || {}
@@ -23,10 +31,18 @@ function AlbumsGrid({ albumsSlice }) {
     const albums = albumsData.slice(a, b).map((album) => (
       <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
         <AlbumContainer>
-          <AlbumCover
-            src={album.albumCover}
-            alt={`album cover for ${album.albumName} album`}
-          />
+          {album.albumCover ? (
+            <AlbumCover
+              src={album.albumCover}
+              alt={`album cover for ${album.albumName} album`}
+            />
+          ) : (
+            <IconContainer>
+              <IconImageBroken />
+              <StyledParagraph>sorry, image broken</StyledParagraph>
+            </IconContainer>
+          )}
+
           <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
         </AlbumContainer>

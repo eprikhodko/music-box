@@ -20,6 +20,14 @@ import { ReactComponent as Cloud } from "../../../icons/cloud_upload_24px.svg"
 const IconCloud = styled(Cloud)`
   width: 4.5em;
   height: 3em;
+
+  margin-bottom: 1em;
+`
+
+const StyledParagraph = styled.p`
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  margin: 0;
 `
 
 function CollectionGrid({ albumsSlice }) {
@@ -48,6 +56,7 @@ function CollectionGrid({ albumsSlice }) {
         <AlbumContainer>
           <UploadNewAlbumBox>
             <IconCloud />
+            <StyledParagraph>Upload</StyledParagraph>
           </UploadNewAlbumBox>
           <AlbumTitle>Upload new album</AlbumTitle>
         </AlbumContainer>

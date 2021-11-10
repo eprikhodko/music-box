@@ -53,6 +53,8 @@ function App() {
   }
 
   useEffect(() => {
+    // fetch albums data if user uploaded new album
+    // if we won't fetch albums data after user uploaded new album, user should have manually refresh page to trigger useEffect hook to fetch albums data so that albums on the page will be updated too
     fetchAlbumsData()
   }, [isUploadSuccessful])
 
