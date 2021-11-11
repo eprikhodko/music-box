@@ -2,6 +2,9 @@ import styled from "styled-components"
 
 import { useContext } from "react"
 import { Link, useParams } from "react-router-dom"
+
+import { getStorage, ref, deleteObject } from "firebase/storage"
+
 import AlbumsDataContext from "../context/albumsData"
 import { HeroButton, ButtonAlbumDetails } from "./shared/Button"
 
@@ -58,11 +61,19 @@ function AlbumDetails() {
   const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
   const currentUser = useContext(UserContext)
 
-  // console.log(currentUser.uid)
-
   const album = albumsData.find((item) => item.albumId === albumId)
 
-  // console.log(album.uploadedBy)
+  const removeAlbumFromDatabase = async () => {
+    const storage = getStorage()
+    const httpsReference = ref(storage, album.albumCover)
+
+    try {
+      await deleteObject(httpsReference)
+      console.log("album removed from database")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -87,7 +98,10 @@ function AlbumDetails() {
 
                   {/* show 'Remove from database' button if user uploaded this album to the database himself */}
                   {album.uploadedBy === currentUser.uid && (
-                    <ButtonAlbumDetails $marginTop="1.5em">
+                    <ButtonAlbumDetails
+                      $marginTop="1.5em"
+                      onClick={removeAlbumFromDatabase}
+                    >
                       Remove from database
                     </ButtonAlbumDetails>
                   )}

@@ -1,8 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 
 import PropTypes from "prop-types"
 
 import styled from "styled-components"
+
+import fallbackImage from "../../../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
 
 import AlbumsDataContext from "../../../context/albumsData"
 import {
@@ -20,43 +22,62 @@ const StyledParagraph = styled.p`
   color: rgba(0, 0, 0, 0.5);
 `
 
-function AlbumsGrid({ albumsSlice }) {
-  const { start, end } = albumsSlice || {}
+function AlbumsGrid() {
+  // const { start, end } = albumsSlice || {}
 
   const { albumsData } = useContext(AlbumsDataContext)
 
-  const [albumsComponents, setAlbumsComponents] = useState([])
+  // const [albumsComponents, setAlbumsComponents] = useState([])
+  // const [imgSrc, setImgSrc] = useState("")
 
-  const createAlbumsComponents = (a, b) => {
-    const albums = albumsData.slice(a, b).map((album) => (
-      <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
-        <AlbumContainer>
-          {album.albumCover ? (
-            <AlbumCover
-              src={album.albumCover}
-              alt={`album cover for ${album.albumName} album`}
-            />
-          ) : (
-            <IconContainer>
-              <IconImageBroken />
-              <StyledParagraph>sorry, image broken</StyledParagraph>
-            </IconContainer>
-          )}
+  // const handleEvent = (e) => {
+  //   e.currentTarget.src = fallbackImage
+  //   console.log(e.currentTarget.src)
 
-          <AlbumTitle>{album.albumName}</AlbumTitle>
-          <AlbumArtist>{album.artist}</AlbumArtist>
-        </AlbumContainer>
-      </StyledLink>
-    ))
+  // }
 
-    return albums
-  }
+  console.log(fallbackImage)
 
-  useEffect(() => {
-    setAlbumsComponents(createAlbumsComponents(start, end))
-  }, [albumsData, albumsSlice])
+  // const createAlbumsComponents = (a, b) => {
+  const albums = albumsData.slice(0, 8).map((album) => (
+    <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
+      {/* {setImgSrc(album.ablumCover)} */}
+      <AlbumContainer>
+        <AlbumCover
+          src={album.albumCover}
+          alt={`album cover for ${album.albumName}`}
+          // onMouseEnter={handleEvent}
+          // onError={(e) => {
+          //   e.target.onError = null
+          //   e.currentTarget.src = fallbackImage
+          // }}
+          onError={(e) => {
+            if (e.target.src !== "image_path_here") {
+              e.target.onerror = null
+              e.target.src = fallbackImage
+            }
+          }}
+        />
 
-  return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
+        <IconContainer>
+          <IconImageBroken />
+          <StyledParagraph>sorry, image not found</StyledParagraph>
+        </IconContainer>
+
+        <AlbumTitle>{album.albumName}</AlbumTitle>
+        <AlbumArtist>{album.artist}</AlbumArtist>
+      </AlbumContainer>
+    </StyledLink>
+  ))
+
+  //   return albums
+  // }
+
+  // useEffect(() => {
+  //   setAlbumsComponents(createAlbumsComponents(start, end))
+  // }, [albumsData, albumsSlice])
+
+  return <StyledAlbumsGrid>{albums}</StyledAlbumsGrid>
 }
 
 AlbumsGrid.propTypes = {
