@@ -89,7 +89,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
   const currentUser = useContext(UserContext)
 
   const [isAlbumInUserCollection, setIsAlbumInUserCollection] = useState(false)
-  // const [isAlbumInUserWishlist, setIsAlbumInUserWishlist] = useState(false)
+  const [isAlbumInUserWishlist, setIsAlbumInUserWishlist] = useState(false)
 
   const history = useHistory()
 
@@ -97,18 +97,53 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
 
   const album = albumsData.find((item) => item.albumId === albumId)
 
-  const checkIfAlbumIsInUserCollection = async () => {
-    const docRef = doc(
-      db,
-      "users",
-      currentUser.uid,
-      "albumsInUserCollection",
-      albumId
-    )
+  // const checkIfAlbumIsInUserCollection = async () => {
+  //   const docRef = doc(
+  //     db,
+  //     "users",
+  //     currentUser.uid,
+  //     "albumsInUserCollection",
+  //     albumId
+  //   )
+  //   const docSnap = await getDoc(docRef)
+
+  //   if (docSnap.exists()) {
+  //     setIsAlbumInUserCollection(true)
+  //     console.log("Document data:", docSnap.data())
+  //   } else {
+  //     // doc.data() will be undefined in this case
+  //     console.log("No such document!")
+  //   }
+  // }
+
+  // const checkIfAlbumIsInUserWishlist = async () => {
+  //   const docRef = doc(
+  //     db,
+  //     "users",
+  //     currentUser.uid,
+  //     "albumsInUserWishlist",
+  //     albumId
+  //   )
+  //   const docSnap = await getDoc(docRef)
+
+  //   if (docSnap.exists()) {
+  //     setIsAlbumInUserWishlist(true)
+  //     console.log("Document data:", docSnap.data())
+  //   } else {
+  //     // doc.data() will be undefined in this case
+  //     console.log("No such document!")
+  //   }
+  // }
+
+  const checkIfAlbumIsInUserCollectionOrWishlist = async (
+    collection,
+    providedUseStateFunction
+  ) => {
+    const docRef = doc(db, "users", currentUser.uid, collection, albumId)
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-      setIsAlbumInUserCollection(true)
+      providedUseStateFunction(true)
       console.log("Document data:", docSnap.data())
     } else {
       // doc.data() will be undefined in this case
@@ -118,34 +153,6 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
 
   const setDisplayToNone = (e) => {
     e.target.style.display = "none"
-  }
-
-  const removeAlbumFromDatabase = async () => {
-    const storage = getStorage()
-    const httpsReference = ref(storage, album.albumCover)
-
-    // remove album cover image from Firebase Storage
-    try {
-      await deleteObject(httpsReference)
-      console.log("album removed from database")
-    } catch (error) {
-      console.log(error)
-    }
-
-    // remove album reference record from user collection
-
-    // remove album reference record from user wishlist
-
-    // remove actual album document from database
-    try {
-      await deleteDoc(doc(db, "albums", album.albumId))
-      setIsAlbumRemovedFromDatabase(true)
-      console.log("album was successfully removed from database")
-      history.push(`/`)
-      // history.push(`/uploaded-by/${currentUser.displayName}`)
-    } catch (error) {
-      console.log(error)
-    }
   }
 
   const removeAlbumFromCollection = async () => {
@@ -161,6 +168,54 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
 
       setIsAlbumInUserCollection(false)
       console.log("album removed from user collection")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const removeAlbumFromWishlist = async () => {
+    try {
+      const docRef = doc(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserWishlist",
+        albumId
+      )
+      await deleteDoc(docRef)
+
+      setIsAlbumInUserWishlist(false)
+      console.log("album removed from user wishlist")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const removeAlbumFromDatabase = async () => {
+    const storage = getStorage()
+    const httpsReference = ref(storage, album.albumCover)
+
+    // remove album cover image from Firebase Storage
+    try {
+      await deleteObject(httpsReference)
+      console.log("album removed from database")
+    } catch (error) {
+      console.log(error)
+    }
+
+    // remove album reference record from user collection
+    removeAlbumFromCollection()
+
+    // remove album reference record from user wishlist
+    removeAlbumFromWishlist()
+
+    // remove actual album document from database
+    try {
+      await deleteDoc(doc(db, "albums", album.albumId))
+      setIsAlbumRemovedFromDatabase(true)
+      console.log("album was successfully removed from database")
+      history.push(`/`)
+      // history.push(`/uploaded-by/${currentUser.displayName}`)
     } catch (error) {
       console.log(error)
     }
@@ -186,8 +241,37 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
     }
   }
 
+  const addAlbumToWishlist = async () => {
+    try {
+      const docRef = doc(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserWishlist",
+        albumId
+      )
+      await setDoc(docRef, {
+        albumId,
+        dateAdded: serverTimestamp(),
+      })
+
+      setIsAlbumInUserWishlist(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    if (currentUser) checkIfAlbumIsInUserCollection()
+    if (currentUser) {
+      checkIfAlbumIsInUserCollectionOrWishlist(
+        "albumsInUserCollection",
+        setIsAlbumInUserCollection
+      )
+      checkIfAlbumIsInUserCollectionOrWishlist(
+        "albumsInUserWishlist",
+        setIsAlbumInUserWishlist
+      )
+    }
   }, [isAlbumsDataLoading])
 
   // if (currentUser) checkIfAlbumIsInUserCollection()
@@ -221,9 +305,21 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
                     </ButtonAlbum>
                   )}
 
-                  <ButtonAlbum $marginTop="1.5em">
-                    Add to my wishlist
-                  </ButtonAlbum>
+                  {isAlbumInUserWishlist ? (
+                    <ButtonAlbum
+                      $marginTop="1.5em"
+                      onClick={removeAlbumFromWishlist}
+                    >
+                      Remove from my wishlist
+                    </ButtonAlbum>
+                  ) : (
+                    <ButtonAlbum
+                      $marginTop="1.5em"
+                      onClick={addAlbumToWishlist}
+                    >
+                      Add to my wishlist
+                    </ButtonAlbum>
+                  )}
 
                   {/* show 'Remove from database' button only if user uploaded this album to the database himself */}
                   {album.uploadedBy === currentUser.uid && (
