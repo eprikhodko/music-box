@@ -1,9 +1,22 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { ReactComponent as IconPokerFace } from "../../../icons/sentiment_neutral_24px.svg"
+import IconImagePlaceholder from "../../../icons/image-placeholder-fallback.svg"
 
 const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
+
+export const FallbackBackgroundImage = styled.div`
+  ${SharedDimensionsStyle}
+  background-image: url(${IconImagePlaceholder});
+  background-size: 20% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #c2c2c2;
+
+  &:hover {
+    ${SharedBoxShadowStyle}
+  }
+`
 
 export const AlbumCover = styled.img`
   ${SharedDimensionsStyle}
@@ -27,34 +40,11 @@ export const UploadNewAlbumBox = styled.div`
   }
 `
 
-export const IconImageBroken = styled(IconPokerFace)`
-  width: 4em;
-  height: 4em;
-
-  path {
-    fill: #959696;
-  }
-`
-
-export const IconContainer = styled.div`
-  ${SharedDimensionsStyle}
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background-color: #c2c2c2;
-`
-
 export const AlbumContainer = styled.div`
   &:hover ${AlbumCover} {
     ${SharedBoxShadowStyle}
   }
   &:hover ${UploadNewAlbumBox} {
-    ${SharedBoxShadowStyle}
-  }
-  &:hover ${IconContainer} {
     ${SharedBoxShadowStyle}
   }
 `
