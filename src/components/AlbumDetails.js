@@ -2,14 +2,21 @@ import PropTypes from "prop-types"
 
 import styled from "styled-components"
 
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { Link, useParams, useHistory } from "react-router-dom"
 
-import { doc, deleteDoc, getFirestore } from "firebase/firestore"
+import {
+  doc,
+  getDoc,
+  setDoc,
+  deleteDoc,
+  getFirestore,
+  serverTimestamp,
+} from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
 import AlbumsDataContext from "../context/albumsData"
-import { HeroButton, ButtonAlbumDetails } from "./shared/Button"
+import { HeroButton, ButtonAlbum } from "./shared/Button"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
@@ -81,16 +88,39 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
 
   const currentUser = useContext(UserContext)
 
+  const [isAlbumInUserCollection, setIsAlbumInUserCollection] = useState(false)
+  // const [isAlbumInUserWishlist, setIsAlbumInUserWishlist] = useState(false)
+
   const history = useHistory()
+
+  const db = getFirestore()
 
   const album = albumsData.find((item) => item.albumId === albumId)
 
-  const handleError = (e) => {
+  const checkIfAlbumIsInUserCollection = async () => {
+    const docRef = doc(
+      db,
+      "users",
+      currentUser.uid,
+      "albumsInUserCollection",
+      albumId
+    )
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      setIsAlbumInUserCollection(true)
+      console.log("Document data:", docSnap.data())
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!")
+    }
+  }
+
+  const setDisplayToNone = (e) => {
     e.target.style.display = "none"
   }
 
   const removeAlbumFromDatabase = async () => {
-    const db = getFirestore()
     const storage = getStorage()
     const httpsReference = ref(storage, album.albumCover)
 
@@ -118,6 +148,50 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
     }
   }
 
+  const removeAlbumFromCollection = async () => {
+    try {
+      const docRef = doc(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserCollection",
+        albumId
+      )
+      await deleteDoc(docRef)
+
+      setIsAlbumInUserCollection(false)
+      console.log("album removed from user collection")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const addAlbumToCollection = async () => {
+    try {
+      const docRef = doc(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserCollection",
+        albumId
+      )
+      await setDoc(docRef, {
+        albumId,
+        dateAdded: serverTimestamp(),
+      })
+
+      setIsAlbumInUserCollection(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    if (currentUser) checkIfAlbumIsInUserCollection()
+  }, [isAlbumsDataLoading])
+
+  // if (currentUser) checkIfAlbumIsInUserCollection()
+
   return (
     <>
       {!isAlbumsDataLoading && (
@@ -126,7 +200,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
             <AlbumCover
               src={album.albumCover}
               alt={`cover for ${album.albumCover} album`}
-              onError={handleError}
+              onError={setDisplayToNone}
             />
           </FallbackBackgroundImage>
           <AlbumDescription>
@@ -137,19 +211,28 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
             {currentUser ? (
               <>
                 <AlbumButtons currentUser={currentUser}>
-                  <ButtonAlbumDetails>Add to my collection</ButtonAlbumDetails>
-                  <ButtonAlbumDetails $marginTop="1.5em">
-                    Add to my wishlist
-                  </ButtonAlbumDetails>
+                  {isAlbumInUserCollection ? (
+                    <ButtonAlbum onClick={removeAlbumFromCollection}>
+                      Remove from my collection
+                    </ButtonAlbum>
+                  ) : (
+                    <ButtonAlbum onClick={addAlbumToCollection}>
+                      Add to my collection
+                    </ButtonAlbum>
+                  )}
 
-                  {/* show 'Remove from database' button if user uploaded this album to the database himself */}
+                  <ButtonAlbum $marginTop="1.5em">
+                    Add to my wishlist
+                  </ButtonAlbum>
+
+                  {/* show 'Remove from database' button only if user uploaded this album to the database himself */}
                   {album.uploadedBy === currentUser.uid && (
-                    <ButtonAlbumDetails
+                    <ButtonAlbum
                       $marginTop="1.5em"
                       onClick={removeAlbumFromDatabase}
                     >
                       Remove from database
-                    </ButtonAlbumDetails>
+                    </ButtonAlbum>
                   )}
                 </AlbumButtons>
               </>
