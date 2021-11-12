@@ -38,6 +38,8 @@ function App() {
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
 
   const [isUploadSuccessful, setIsUploadSuccessful] = useState(false)
+  const [isAlbumRemovedFromDatabase, setIsAlbumRemovedFromDatabase] =
+    useState(false)
   const albumsValue = { albumsData, isAlbumsDataLoading }
 
   const fetchAlbumsData = async () => {
@@ -56,7 +58,7 @@ function App() {
     // fetch albums data if user uploaded new album
     // if we won't fetch albums data after user uploaded new album, user should have manually refresh page to trigger useEffect hook to fetch albums data so that albums on the page will be updated too
     fetchAlbumsData()
-  }, [isUploadSuccessful])
+  }, [isUploadSuccessful, isAlbumRemovedFromDatabase])
 
   return (
     // <Router>
@@ -64,7 +66,9 @@ function App() {
       <AlbumsDataContext.Provider value={albumsValue}>
         <Switch>
           <Route path={ROUTES.HOME} exact>
-            <Home />
+            <Home
+              setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+            />
           </Route>
           <Route path={ROUTES.CATALOG} component={Catalog} />
           <Route path={ROUTES.SEARCH} component={Search} />
@@ -76,7 +80,11 @@ function App() {
               setIsUploadSuccessful={setIsUploadSuccessful}
             />
           </Route>
-          <Route path={ROUTES.ALBUM} component={Album} />
+          <Route path={ROUTES.ALBUM}>
+            <Album
+              setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+            />
+          </Route>
           <Route path={ROUTES.PROFILE} component={Profile} />
           <Route path={ROUTES.COLLECTION} component={Collection} />
           <Route path={ROUTES.WISHLIST} component={Wishlist} />

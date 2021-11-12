@@ -1,8 +1,11 @@
+import PropTypes from "prop-types"
+
 import styled from "styled-components"
 
 import { useContext } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useHistory } from "react-router-dom"
 
+import { doc, deleteDoc, getFirestore } from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
 import AlbumsDataContext from "../context/albumsData"
@@ -11,9 +14,25 @@ import { HeroButton, ButtonAlbumDetails } from "./shared/Button"
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
+import IconImagePlaceholder from "../icons/image-placeholder-fallback.svg"
+
+const SharedDimensionsStyle = " width: 40em; height: 40em;"
+const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
+
+const FallbackBackgroundImage = styled.div`
+  ${SharedDimensionsStyle}
+  /* ${SharedBoxShadowStyle} */
+
+  background-image: url(${IconImagePlaceholder});
+  background-size: 20% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #c2c2c2;
+`
+
 const AlbumCover = styled.img`
-  max-width: 40em;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+  ${SharedDimensionsStyle}
+  ${SharedBoxShadowStyle}
 `
 
 const AlbumDescription = styled.div`
@@ -56,20 +75,44 @@ const AlbumButtons = styled.div`
   margin-top: ${({ currentUser }) => currentUser && "2em"};
 `
 
-function AlbumDetails() {
+function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
   const { albumId } = useParams()
   const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
+
   const currentUser = useContext(UserContext)
+
+  const history = useHistory()
 
   const album = albumsData.find((item) => item.albumId === albumId)
 
+  const handleError = (e) => {
+    e.target.style.display = "none"
+  }
+
   const removeAlbumFromDatabase = async () => {
+    const db = getFirestore()
     const storage = getStorage()
     const httpsReference = ref(storage, album.albumCover)
 
+    // remove album cover image from Firebase Storage
     try {
       await deleteObject(httpsReference)
       console.log("album removed from database")
+    } catch (error) {
+      console.log(error)
+    }
+
+    // remove album reference record from user collection
+
+    // remove album reference record from user wishlist
+
+    // remove actual album document from database
+    try {
+      await deleteDoc(doc(db, "albums", album.albumId))
+      setIsAlbumRemovedFromDatabase(true)
+      console.log("album was successfully removed from database")
+      history.push(`/`)
+      // history.push(`/uploaded-by/${currentUser.displayName}`)
     } catch (error) {
       console.log(error)
     }
@@ -79,10 +122,13 @@ function AlbumDetails() {
     <>
       {!isAlbumsDataLoading && (
         <>
-          <AlbumCover
-            src={album.albumCover}
-            alt={`cover for ${album.albumCover} album`}
-          />
+          <FallbackBackgroundImage>
+            <AlbumCover
+              src={album.albumCover}
+              alt={`cover for ${album.albumCover} album`}
+              onError={handleError}
+            />
+          </FallbackBackgroundImage>
           <AlbumDescription>
             <h2>{album.albumName}</h2>
             <h3>{album.artist}</h3>
@@ -129,3 +175,7 @@ function AlbumDetails() {
 }
 
 export default AlbumDetails
+
+AlbumDetails.propTypes = {
+  setIsAlbumRemovedFromDatabase: PropTypes.func.isRequired,
+}

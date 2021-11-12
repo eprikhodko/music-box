@@ -52,6 +52,8 @@ function AlbumsGrid({ albumsSlice }) {
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
 
+export default AlbumsGrid
+
 AlbumsGrid.propTypes = {
   albumsSlice: PropTypes.shape({
     start: PropTypes.number,
@@ -65,5 +67,3 @@ AlbumsGrid.defaultProps = {
     end: 0,
   },
 }
-
-export default AlbumsGrid
