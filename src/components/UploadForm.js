@@ -269,7 +269,7 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
       }
 
       // add to wishlist
-      // add album to user collection if user checked 'add to my collection' checkbox
+      // add album to user wishlist if user checked 'add to my wishlist' checkbox
       if (checkboxes.addToWishList) {
         const docRef = doc(
           db,
@@ -311,6 +311,10 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
       ...checkboxes,
       [name]: checked,
     })
+  }
+
+  const handleYearChange = (event) => {
+    if (event.target.value.match("^[0-9]*$")) setYear(event.target.value)
   }
 
   return (
@@ -372,15 +376,14 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
           </FloatLabel>
           <FloatInput
             id="albumYear"
-            type="number"
+            type="text"
             name="albumYear"
             aria-label="Album year"
             minLength="4"
+            maxLength="4"
             required
             value={year}
-            onChange={(event) => {
-              setYear(event.target.value)
-            }}
+            onChange={handleYearChange}
           />
         </ContainerFloatInput>
 
