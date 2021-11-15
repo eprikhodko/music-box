@@ -74,7 +74,7 @@ function CollectionGrid({ albumsSlice }) {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
 
-  console.log(albumsComponents)
+  // console.log(albumsComponents)
 
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
