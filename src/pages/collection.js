@@ -48,28 +48,23 @@ function Collection() {
     // map through albums and return new array with albums ids
     const albumsIDsList = querySnapshot.docs.map((doc) => doc.data().albumId)
 
-    console.log(albumsIDsList)
-
     // create new filteredAlbums array which consists of albums which ids match ids in albumsIDsList array
     const filteredAlbums = albumsData.filter((album) =>
       // run code below for each album in albumsData array and return only those albums which ids match with ids in albumsIDsList
       albumsIDsList.includes(album.albumId)
     )
 
-    console.log(filteredAlbums)
-
-    // function sortFunc(a, b) {
-    //   const sortOrderArray = albumsIDsList
-    //   return (
-    //     sortOrderArray.indexOf(a.albumId) - sortOrderArray.indexOf(b.albumId)
-    //   )
-    // }
-    // const sortedAlbums = filteredAlbums.sort(sortFunc)
-    setAlbums(filteredAlbums)
+    // sort albums according to provided sorting array
+    const sortFunc = (a, b) => {
+      const sortOrderArray = albumsIDsList
+      return (
+        sortOrderArray.indexOf(a.albumId) - sortOrderArray.indexOf(b.albumId)
+      )
+    }
+    // sort albums
+    const sortedAlbums = filteredAlbums.sort(sortFunc)
+    setAlbums(sortedAlbums)
   }
-
-  // console.log(iDs)
-  console.log(albumsData)
 
   useEffect(() => {
     // fetch albums which are in user collection
