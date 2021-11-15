@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import PropTypes from "prop-types"
 import * as ROUTES from "../../../constants/routes"
 
-import AlbumsDataContext from "../../../context/albumsData"
 import {
   AlbumContainer,
   StyledLink,
@@ -30,10 +29,8 @@ const StyledParagraph = styled.p`
   margin: 0;
 `
 
-function CollectionGrid({ albumsSlice }) {
+function CollectionGrid({ albumsSlice, albumsData }) {
   const { start, end } = albumsSlice || {}
-
-  const { albumsData } = useContext(AlbumsDataContext)
 
   const [albumsComponents, setAlbumsComponents] = useState([])
 
@@ -43,9 +40,9 @@ function CollectionGrid({ albumsSlice }) {
         <AlbumContainer>
           <AlbumCover
             src={album.albumCover}
-            alt={`album cover for ${album.albumTitle} album`}
+            alt={`album cover for ${album.albumName} album`}
           />
-          <AlbumTitle>{album.albumTitle}</AlbumTitle>
+          <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
         </AlbumContainer>
       </StyledLink>
@@ -80,6 +77,14 @@ function CollectionGrid({ albumsSlice }) {
 }
 
 CollectionGrid.propTypes = {
+  albumsData: PropTypes.arrayOf(
+    PropTypes.shape({
+      albumCover: PropTypes.string.isRequired,
+      albumId: PropTypes.string.isRequired,
+      albumName: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   albumsSlice: PropTypes.shape({
     start: PropTypes.number,
     end: PropTypes.number,
@@ -87,6 +92,7 @@ CollectionGrid.propTypes = {
 }
 
 CollectionGrid.defaultProps = {
+  // albumsData: [],
   albumsSlice: {
     start: 0,
     end: 0,
