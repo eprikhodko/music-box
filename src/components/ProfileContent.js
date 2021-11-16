@@ -37,7 +37,7 @@ function ProfileContent() {
         <CenterContent>
           <UserAvatar />
           <Username>{currentUser?.displayName}</Username>
-          <HeroButton as={Link} to={ROUTES.COLLECTION}>
+          <HeroButton as={Link} to={`/collection/${currentUser?.displayName}`}>
             Collection
           </HeroButton>
           <HeroButton as={Link} to={ROUTES.WISHLIST} $marginTop="1em">

@@ -91,14 +91,11 @@ function Collection() {
   useEffect(() => {
     // fetch albums which are in user collection
     if (currentUser && albumsData) fetchAlbumsInUserCollection()
-    // acceptance criteria:
-    // if albums in the collection <1 , show text block "add some albums to your collection and they will show up here"
-    // if albums in the collection <12, don't show "show more" button
 
     // fetch albums in user collection after albumsData loaded to the state
   }, [albumsData])
 
-  const handleShowMore = () => {
+  const ShowMore = () => {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
   return (
@@ -113,9 +110,9 @@ function Collection() {
                 albumsSlice={albumsSlice}
                 albumsData={albumsInUserCollection}
               />
-              {/* Show 'Show more' button only if there is more then 12 albums in user collection */}
+              {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
               {albumsInUserCollection.length > 11 && (
-                <Button marginTop="2em" onClick={handleShowMore}>
+                <Button marginTop="2em" onClick={ShowMore}>
                   Show more
                 </Button>
               )}

@@ -194,7 +194,7 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
     const fileName = file && file.name
     const date = Date.now()
 
-    const updatedFileName = fileName.concat(date) // make file name unique
+    const updatedFileName = file && fileName.concat(date) // make file name unique
     console.log(updatedFileName)
     setAlbumCoverFileName(updatedFileName)
     const albumCoverRef = ref(albumsCoversRef, updatedFileName)
