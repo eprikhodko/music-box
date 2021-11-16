@@ -95,7 +95,7 @@ function Collection() {
     // fetch albums in user collection after albumsData loaded to the state
   }, [albumsData])
 
-  const ShowMore = () => {
+  const showMore = () => {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
   return (
@@ -112,7 +112,7 @@ function Collection() {
               />
               {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
               {albumsInUserCollection.length > 11 && (
-                <Button marginTop="2em" onClick={ShowMore}>
+                <Button marginTop="2em" onClick={showMore}>
                   Show more
                 </Button>
               )}

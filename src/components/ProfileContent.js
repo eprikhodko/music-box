@@ -40,7 +40,11 @@ function ProfileContent() {
           <HeroButton as={Link} to={`/collection/${currentUser?.displayName}`}>
             Collection
           </HeroButton>
-          <HeroButton as={Link} to={ROUTES.WISHLIST} $marginTop="1em">
+          <HeroButton
+            as={Link}
+            to={`/wishlist/${currentUser?.displayName}`}
+            $marginTop="1em"
+          >
             Wishlist
           </HeroButton>
           <HeroButton as={Link} to={ROUTES.UPLOAD} $marginTop="1em">

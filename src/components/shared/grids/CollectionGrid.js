@@ -65,13 +65,9 @@ function CollectionGrid({ albumsSlice, albumsData }) {
     return albums
   }
 
-  //   console.log(UploadNewAlbumBox)
-
   useEffect(() => {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
-
-  // console.log(albumsComponents)
 
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
@@ -92,7 +88,6 @@ CollectionGrid.propTypes = {
 }
 
 CollectionGrid.defaultProps = {
-  // albumsData: [],
   albumsSlice: {
     start: 0,
     end: 0,
