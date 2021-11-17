@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 
 import styled from "styled-components"
 
-import { useContext, useState, useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { Link, useParams, useHistory } from "react-router-dom"
 
 import {
@@ -82,74 +82,23 @@ const AlbumButtons = styled.div`
   margin-top: ${({ currentUser }) => currentUser && "2em"};
 `
 
-function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
+function AlbumDetails({
+  setIsAlbumRemovedFromDatabase,
+  isAlbumInUserCollection,
+  setIsAlbumInUserCollection,
+  isAlbumInUserWishlist,
+  setIsAlbumInUserWishlist,
+}) {
   const { albumId } = useParams()
   const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
 
   const currentUser = useContext(UserContext)
-
-  const [isAlbumInUserCollection, setIsAlbumInUserCollection] = useState(false)
-  const [isAlbumInUserWishlist, setIsAlbumInUserWishlist] = useState(false)
 
   const history = useHistory()
 
   const db = getFirestore()
 
   const album = albumsData.find((item) => item.albumId === albumId)
-
-  // const checkIfAlbumIsInUserCollection = async () => {
-  //   const docRef = doc(
-  //     db,
-  //     "users",
-  //     currentUser.uid,
-  //     "albumsInUserCollection",
-  //     albumId
-  //   )
-  //   const docSnap = await getDoc(docRef)
-
-  //   if (docSnap.exists()) {
-  //     setIsAlbumInUserCollection(true)
-  //     console.log("Document data:", docSnap.data())
-  //   } else {
-  //     // doc.data() will be undefined in this case
-  //     console.log("No such document!")
-  //   }
-  // }
-
-  // const checkIfAlbumIsInUserWishlist = async () => {
-  //   const docRef = doc(
-  //     db,
-  //     "users",
-  //     currentUser.uid,
-  //     "albumsInUserWishlist",
-  //     albumId
-  //   )
-  //   const docSnap = await getDoc(docRef)
-
-  //   if (docSnap.exists()) {
-  //     setIsAlbumInUserWishlist(true)
-  //     console.log("Document data:", docSnap.data())
-  //   } else {
-  //     // doc.data() will be undefined in this case
-  //     console.log("No such document!")
-  //   }
-  // }
-
-  const checkIfAlbumIsInUserCollectionOrWishlist = async (
-    collection,
-    providedUseStateFunction
-  ) => {
-    const docRef = doc(db, "users", currentUser.uid, collection, albumId)
-    const docSnap = await getDoc(docRef)
-
-    if (docSnap.exists()) {
-      providedUseStateFunction(true)
-      console.log("Document data:", docSnap.data())
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!")
-    }
-  }
 
   const setDisplayToNone = (e) => {
     e.target.style.display = "none"
@@ -262,15 +211,46 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
   }
 
   useEffect(() => {
-    if (currentUser) {
-      checkIfAlbumIsInUserCollectionOrWishlist(
+    const checkIfAlbumIsInUserCollection = async () => {
+      const docRef = doc(
+        db,
+        "users",
+        currentUser.uid,
         "albumsInUserCollection",
-        setIsAlbumInUserCollection
+        albumId
       )
-      checkIfAlbumIsInUserCollectionOrWishlist(
+      const docSnap = await getDoc(docRef)
+
+      if (docSnap.exists()) {
+        setIsAlbumInUserCollection(true)
+        console.log("Document data:", docSnap.data())
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!")
+      }
+    }
+
+    const checkIfAlbumIsInUserWishlist = async () => {
+      const docRef = doc(
+        db,
+        "users",
+        currentUser.uid,
         "albumsInUserWishlist",
-        setIsAlbumInUserWishlist
+        albumId
       )
+      const docSnap = await getDoc(docRef)
+
+      if (docSnap.exists()) {
+        setIsAlbumInUserWishlist(true)
+        console.log("Document data:", docSnap.data())
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!")
+      }
+    }
+    if (currentUser && setIsAlbumInUserCollection) {
+      checkIfAlbumIsInUserCollection()
+      checkIfAlbumIsInUserWishlist()
     }
   }, [isAlbumsDataLoading])
 
@@ -357,4 +337,12 @@ export default AlbumDetails
 
 AlbumDetails.propTypes = {
   setIsAlbumRemovedFromDatabase: PropTypes.func.isRequired,
+  isAlbumInUserCollection: PropTypes.bool,
+  setIsAlbumInUserCollection: PropTypes.func.isRequired,
+  isAlbumInUserWishlist: PropTypes.bool.isRequired,
+  setIsAlbumInUserWishlist: PropTypes.func.isRequired,
+}
+
+AlbumDetails.defaultProps = {
+  isAlbumInUserCollection: false,
 }

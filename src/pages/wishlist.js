@@ -27,6 +27,16 @@ import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 import AlbumsDataContext from "../context/albumsData"
 
+const StyledParagraph = styled.p`
+  font-size: 2.5rem;
+  text-align: center;
+  width: 40em;
+`
+
+const StyledLink = styled(Link)`
+  color: #000;
+`
+
 function Wishlist() {
   const currentUser = useContext(UserContext)
   const { albumsData } = useContext(AlbumsDataContext)
@@ -37,16 +47,6 @@ function Wishlist() {
     start: 0,
     end: 11,
   })
-
-  const StyledParagraph = styled.p`
-    font-size: 2.5rem;
-    text-align: center;
-    width: 40em;
-  `
-
-  const StyledLink = styled(Link)`
-    color: #000;
-  `
 
   const fetchAlbumsInUserWishlist = async () => {
     const db = getFirestore()
@@ -109,7 +109,7 @@ function Wishlist() {
                 albumsSlice={albumsSlice}
                 albumsData={albumsInUserWishlist}
               />
-              {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
+              {/* Show 'Show more' button only if there is more then 11 albums in user wishlist */}
               {albumsInUserWishlist.length > 11 && (
                 <Button marginTop="2em" onClick={showMore}>
                   Show more

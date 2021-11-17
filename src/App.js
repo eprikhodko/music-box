@@ -36,29 +36,82 @@ function App() {
 
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
+  const [albumsInUserCollection, setAlbumsInUserCollection] = useState([])
 
+  const [isAlbumInUserCollection, setIsAlbumInUserCollection] = useState(false)
+  const [isAlbumInUserWishlist, setIsAlbumInUserWishlist] = useState(false)
   const [isUploadSuccessful, setIsUploadSuccessful] = useState(false)
   const [isAlbumRemovedFromDatabase, setIsAlbumRemovedFromDatabase] =
     useState(false)
   const albumsValue = { albumsData, isAlbumsDataLoading }
 
-  const fetchAlbumsData = async () => {
-    const db = getFirestore()
-
-    const albumsRef = collection(db, "albums")
-    const q = query(albumsRef, orderBy("dateCreated", "desc"), limit(500))
-    const querySnapshot = await getDocs(q)
-    const docsData = querySnapshot.docs.map((doc) => doc.data())
-
-    setAlbumsData(docsData)
-    setIsAlbumsDataLoading(false)
-  }
-
   useEffect(() => {
+    const fetchAlbumsData = async () => {
+      const db = getFirestore()
+
+      const albumsRef = collection(db, "albums")
+      const q = query(albumsRef, orderBy("dateCreated", "desc"), limit(500))
+      const querySnapshot = await getDocs(q)
+      const docsData = querySnapshot.docs.map((doc) => doc.data())
+
+      setAlbumsData(docsData)
+      setIsAlbumsDataLoading(false)
+    }
     // fetch albums data if user uploaded new album
     // if we won't fetch albums data after user uploaded new album, user should have manually refresh page to trigger useEffect hook to fetch albums data so that albums on the page will be updated too
     fetchAlbumsData()
   }, [isUploadSuccessful, isAlbumRemovedFromDatabase])
+
+  useEffect(() => {
+    const fetchAlbumsInUserCollection = async () => {
+      const db = getFirestore()
+      // const querySnap = await getDocs(
+      //   collection(db, "users", currentUser.uid, "albumsInUserCollection")
+      // )
+      // const docsData = querySnap.docs.map((doc) => doc.data())
+
+      const albumsRef = collection(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserCollection"
+      )
+      const q = query(albumsRef, orderBy("dateAdded", "desc"), limit(100))
+      const querySnapshot = await getDocs(q)
+
+      // map through albums and return new array with albums ids
+      const albumsIDsList = querySnapshot.docs.map((doc) => doc.data().albumId)
+
+      // create new filteredAlbums array which consists of albums which ids match ids in albumsIDsList array
+      const filteredAlbums = albumsData.filter((album) =>
+        // run code below for each album in albumsData array and return only those albums which ids match with ids in albumsIDsList
+        // for each album in albumsData array test if this album.albumId is in provided albumsIDsList array
+        // if true, then .includes() method will return true, and therefore .filter() will return this album to the filteredAlbums array
+        // .includes() method takes albumsIDsList and compare each id inside albumsIDsList with provided album.albumId
+        // if album.albumId matches with id inside albumsIDsList, then .includes() will return 'true'
+        // then if .includes() method returned 'true', the album inside albumsData which albumId matched with id in albumsIDsList will appear in filteredAlbums array
+        albumsIDsList.includes(album.albumId)
+      )
+
+      // sort albums according to provided sorting array
+      const sortFunc = (a, b) => {
+        const sortOrderArray = albumsIDsList
+        return (
+          sortOrderArray.indexOf(a.albumId) - sortOrderArray.indexOf(b.albumId)
+        )
+      }
+      // sort albums
+      const sortedAlbums = filteredAlbums.sort(sortFunc)
+
+      // write sorted albums to the state
+      setAlbumsInUserCollection(sortedAlbums)
+    }
+
+    // fetch albums which are in user collection
+    if (currentUser && albumsData) fetchAlbumsInUserCollection()
+
+    // fetch albums in user collection after albumsData loaded to the state
+  }, [albumsData, isAlbumInUserCollection])
 
   return (
     // <Router>
@@ -83,10 +136,19 @@ function App() {
           <Route path={ROUTES.ALBUM}>
             <Album
               setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+              isAlbumInUserCollection={isAlbumInUserCollection}
+              setIsAlbumInUserCollection={setIsAlbumInUserCollection}
+              isAlbumInUserWishlist={isAlbumInUserWishlist}
+              setIsAlbumInUserWishlist={setIsAlbumInUserWishlist}
             />
           </Route>
           <Route path={ROUTES.PROFILE} component={Profile} />
-          <Route path={ROUTES.COLLECTION} component={Collection} />
+          <Route path={ROUTES.COLLECTION}>
+            <Collection
+              albumsInUserCollection={albumsInUserCollection}
+              setAlbumsInUserCollection={setAlbumsInUserCollection}
+            />
+          </Route>
           <Route path={ROUTES.WISHLIST} component={Wishlist} />
 
           <Route path={ROUTES.NOT_FOUND} component={NotFound} />

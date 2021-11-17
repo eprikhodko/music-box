@@ -10,7 +10,13 @@ import {
 } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
 
-function Album({ setIsAlbumRemovedFromDatabase }) {
+function Album({
+  setIsAlbumRemovedFromDatabase,
+  isAlbumInUserCollection,
+  setIsAlbumInUserCollection,
+  isAlbumInUserWishlist,
+  setIsAlbumInUserWishlist,
+}) {
   return (
     <>
       <ScrollToTop />
@@ -20,6 +26,10 @@ function Album({ setIsAlbumRemovedFromDatabase }) {
           <Content $marginTop="5em">
             <AlbumDetails
               setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+              isAlbumInUserCollection={isAlbumInUserCollection}
+              setIsAlbumInUserCollection={setIsAlbumInUserCollection}
+              isAlbumInUserWishlist={isAlbumInUserWishlist}
+              setIsAlbumInUserWishlist={setIsAlbumInUserWishlist}
             />
           </Content>
         </PageBody>
@@ -33,4 +43,8 @@ export default Album
 
 Album.propTypes = {
   setIsAlbumRemovedFromDatabase: PropTypes.func.isRequired,
+  isAlbumInUserCollection: PropTypes.bool.isRequired,
+  setIsAlbumInUserCollection: PropTypes.func.isRequired,
+  isAlbumInUserWishlist: PropTypes.bool.isRequired,
+  setIsAlbumInUserWishlist: PropTypes.func.isRequired,
 }
