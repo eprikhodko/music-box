@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
@@ -28,8 +30,16 @@ const ContainerTextBlock = styled(ContainerFlex)`
   margin-left: 19em;
 `
 
-function ProfileContent() {
+// fetch 5 last albums in user collection
+// fetch 5 last albums in user wishlist
+// merge this arrays
+// sort by doc.dateAdded
+
+function ProfileContent({ albumsInUserCollection, albumsInUserWishlist }) {
   const currentUser = useContext(UserContext)
+
+  console.log("albumsInUserCollection", albumsInUserCollection)
+  console.log("albumsInUserWishlist", albumsInUserWishlist)
 
   return (
     <ContainerFlex flexDirection="column">
@@ -68,3 +78,22 @@ function ProfileContent() {
 }
 
 export default ProfileContent
+
+ProfileContent.propTypes = {
+  albumsInUserCollection: PropTypes.arrayOf(
+    PropTypes.shape({
+      albumCover: PropTypes.string.isRequired,
+      albumId: PropTypes.string.isRequired,
+      albumName: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  albumsInUserWishlist: PropTypes.arrayOf(
+    PropTypes.shape({
+      albumCover: PropTypes.string.isRequired,
+      albumId: PropTypes.string.isRequired,
+      albumName: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+}

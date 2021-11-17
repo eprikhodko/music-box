@@ -37,6 +37,7 @@ function App() {
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
   const [albumsInUserCollection, setAlbumsInUserCollection] = useState([])
+  const [albumsInUserWishlist, setAlbumsInUserWishlist] = useState([])
 
   const [isAlbumInUserCollection, setIsAlbumInUserCollection] = useState(false)
   const [isAlbumInUserWishlist, setIsAlbumInUserWishlist] = useState(false)
@@ -50,7 +51,7 @@ function App() {
       const db = getFirestore()
 
       const albumsRef = collection(db, "albums")
-      const q = query(albumsRef, orderBy("dateCreated", "desc"), limit(500))
+      const q = query(albumsRef, orderBy("dateCreated", "desc"), limit(200))
       const querySnapshot = await getDocs(q)
       const docsData = querySnapshot.docs.map((doc) => doc.data())
 
@@ -63,6 +64,7 @@ function App() {
   }, [isUploadSuccessful, isAlbumRemovedFromDatabase])
 
   useEffect(() => {
+    // fetch array of IDs of albums in user collection
     const fetchAlbumsInUserCollection = async () => {
       const db = getFirestore()
       // const querySnap = await getDocs(
@@ -111,7 +113,53 @@ function App() {
     if (currentUser && albumsData) fetchAlbumsInUserCollection()
 
     // fetch albums in user collection after albumsData loaded to the state
-  }, [albumsData, isAlbumInUserCollection])
+  }, [albumsData, isAlbumInUserCollection, currentUser])
+
+  useEffect(() => {
+    const fetchAlbumsInUserWishlist = async () => {
+      const db = getFirestore()
+
+      const albumsRef = collection(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserWishlist"
+      )
+      const q = query(albumsRef, orderBy("dateAdded", "desc"), limit(100))
+      const querySnapshot = await getDocs(q)
+
+      // map through albums and return new array with albums ids
+      const albumsIDsList = querySnapshot.docs.map((doc) => doc.data().albumId)
+
+      // create new filteredAlbums array which consists of albums which ids match ids in albumsIDsList array
+      const filteredAlbums = albumsData.filter((album) =>
+        // run code below for each album in albumsData array and return only those albums which ids match with ids in albumsIDsList
+        // for each album in albumsData array test if this album.albumId is in provided albumsIDsList array
+        // if true, then .includes() method will return true, and therefore .filter() will return this album to the filteredAlbums array
+        // .includes() method takes albumsIDsList and compare each id inside albumsIDsList with provided album.albumId
+        // if album.albumId matches with id inside albumsIDsList, then .includes() will return 'true'
+        // then if .includes() method returned 'true', the album inside albumsData which albumId matched with id in albumsIDsList will appear in filteredAlbums array
+        albumsIDsList.includes(album.albumId)
+      )
+
+      // sort albums according to provided sorting array
+      const sortFunc = (a, b) => {
+        const sortOrderArray = albumsIDsList
+        return (
+          sortOrderArray.indexOf(a.albumId) - sortOrderArray.indexOf(b.albumId)
+        )
+      }
+      // sort albums
+      const sortedAlbums = filteredAlbums.sort(sortFunc)
+
+      // write sorted albums to the state
+      setAlbumsInUserWishlist(sortedAlbums)
+    }
+    // fetch albums which are in user collection
+    if (currentUser && albumsData) fetchAlbumsInUserWishlist()
+
+    // fetch albums in user wishlist after albumsData loaded to the state
+  }, [albumsData, isAlbumInUserWishlist, currentUser])
 
   return (
     // <Router>
@@ -142,14 +190,18 @@ function App() {
               setIsAlbumInUserWishlist={setIsAlbumInUserWishlist}
             />
           </Route>
-          <Route path={ROUTES.PROFILE} component={Profile} />
-          <Route path={ROUTES.COLLECTION}>
-            <Collection
+          <Route path={ROUTES.PROFILE}>
+            <Profile
               albumsInUserCollection={albumsInUserCollection}
-              setAlbumsInUserCollection={setAlbumsInUserCollection}
+              albumsInUserWishlist={albumsInUserWishlist}
             />
           </Route>
-          <Route path={ROUTES.WISHLIST} component={Wishlist} />
+          <Route path={ROUTES.COLLECTION}>
+            <Collection albumsInUserCollection={albumsInUserCollection} />
+          </Route>
+          <Route path={ROUTES.WISHLIST}>
+            <Wishlist albumsInUserWishlist={albumsInUserWishlist} />
+          </Route>
 
           <Route path={ROUTES.NOT_FOUND} component={NotFound} />
         </Switch>

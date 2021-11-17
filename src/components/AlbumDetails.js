@@ -316,7 +316,7 @@ function AlbumDetails({
               <>
                 <ButtonsParagraph>
                   If you want to add this album to your collection or wishlist,
-                  please make an account first:
+                  please sign up or login first:
                 </ButtonsParagraph>
                 <AlbumButtons>
                   <HeroButton as={Link} to={ROUTES.SIGNUP} $marginRight="2em">
