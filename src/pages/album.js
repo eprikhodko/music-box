@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 import AlbumDetails from "../components/AlbumDetails"
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
@@ -8,7 +10,7 @@ import {
 } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
 
-function Album() {
+function Album({ setIsAlbumRemovedFromDatabase }) {
   return (
     <>
       <ScrollToTop />
@@ -16,7 +18,9 @@ function Album() {
         <Header />
         <PageBody>
           <Content $marginTop="5em">
-            <AlbumDetails />
+            <AlbumDetails
+              setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+            />
           </Content>
         </PageBody>
         <Footer />
@@ -26,3 +30,7 @@ function Album() {
 }
 
 export default Album
+
+Album.propTypes = {
+  setIsAlbumRemovedFromDatabase: PropTypes.func.isRequired,
+}

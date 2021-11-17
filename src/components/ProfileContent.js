@@ -1,6 +1,13 @@
-import PropTypes from "prop-types"
-
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  // where
+} from "firebase/firestore"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { HeroButton } from "./shared/Button"
@@ -30,27 +37,85 @@ const ContainerTextBlock = styled(ContainerFlex)`
   margin-left: 19em;
 `
 
-// fetch 5 last albums in user collection
-// fetch 5 last albums in user wishlist
+// fetch 5 last albums ids from albumsInUserCollection
+// fetch 5 last albums ids from albumsInUserWishlist
 // merge this arrays
-// sort by doc.dateAdded
+// sort by doc.dateCreated
+// fetch 5 last albums from that merged array from albums collection
 
-function ProfileContent({ albumsInUserCollection, albumsInUserWishlist }) {
+function ProfileContent() {
   const currentUser = useContext(UserContext)
 
-  console.log("albumsInUserCollection", albumsInUserCollection)
-  console.log("albumsInUserWishlist", albumsInUserWishlist)
-  console.log(albumsInUserCollection.concat(albumsInUserWishlist))
+  const [albumsInUserCollection, setAlbumsInUserCollection] = useState([])
+  const [albumsInUserWishlist, setAlbumsInUserWishlist] = useState([])
+  const [albumsIDs, setAlbumsIDs] = useState([])
 
-  const mergedArray = albumsInUserCollection.concat(albumsInUserWishlist)
+  useEffect(() => {
+    const fetchAlbumsInUserCollection = async () => {
+      const db = getFirestore()
 
-  // sort albums according to provided sorting array
-  const sortFunc = (a, b) =>
-    mergedArray.indexOf(a.dateCreated) - mergedArray.indexOf(b.dateCreated)
+      const albumsRef = collection(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserCollection"
+      )
+      const q = query(albumsRef, orderBy("dateAdded", "desc"), limit(5))
+      const querySnapshot = await getDocs(q)
 
-  // sort albums
-  const sortedAlbums = mergedArray.sort(sortFunc)
-  console.log("sorted albums", sortedAlbums)
+      // map through albums and return new array with albums ids
+      const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
+
+      // write sorted albums to the state
+      return setAlbumsInUserCollection(albumsIDsList)
+    }
+
+    const fetchAlbumsInUserWishlist = async () => {
+      const db = getFirestore()
+
+      const albumsRef = collection(
+        db,
+        "users",
+        currentUser.uid,
+        "albumsInUserWishlist"
+      )
+      const q = query(albumsRef, orderBy("dateAdded", "desc"), limit(5))
+      const querySnapshot = await getDocs(q)
+
+      // map through albums and return new array with albums ids
+      const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
+
+      // write sorted albums to the state
+      return setAlbumsInUserWishlist(albumsIDsList)
+    }
+    // fetch albums
+    if (currentUser) {
+      fetchAlbumsInUserCollection()
+      fetchAlbumsInUserWishlist()
+    }
+  }, [currentUser])
+
+  useEffect(() => {
+    const mergedArray = albumsInUserCollection.concat(albumsInUserWishlist)
+    const firstFiveAlbums = mergedArray.slice(0, 5)
+
+    // sort albums according to provided sorting array
+    const sortFunc = (a, b) =>
+      firstFiveAlbums.indexOf(a.dateCreated) -
+      firstFiveAlbums.indexOf(b.dateCreated)
+
+    // sort albums
+    const sortedAlbums = firstFiveAlbums.sort(sortFunc)
+    console.log("sorted albums", sortedAlbums)
+
+    // extract albums IDs
+    const iDs = sortedAlbums.map((album) => album.albumId)
+    console.log("albums ids", iDs)
+
+    setAlbumsIDs(iDs)
+  }, [albumsInUserCollection, albumsInUserWishlist])
+
+  console.log("this is albums ids state", albumsIDs)
 
   return (
     <ContainerFlex flexDirection="column">
@@ -89,22 +154,3 @@ function ProfileContent({ albumsInUserCollection, albumsInUserWishlist }) {
 }
 
 export default ProfileContent
-
-ProfileContent.propTypes = {
-  albumsInUserCollection: PropTypes.arrayOf(
-    PropTypes.shape({
-      albumCover: PropTypes.string.isRequired,
-      albumId: PropTypes.string.isRequired,
-      albumName: PropTypes.string.isRequired,
-      artist: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  albumsInUserWishlist: PropTypes.arrayOf(
-    PropTypes.shape({
-      albumCover: PropTypes.string.isRequired,
-      albumId: PropTypes.string.isRequired,
-      albumName: PropTypes.string.isRequired,
-      artist: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-}
