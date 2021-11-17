@@ -40,6 +40,17 @@ function ProfileContent({ albumsInUserCollection, albumsInUserWishlist }) {
 
   console.log("albumsInUserCollection", albumsInUserCollection)
   console.log("albumsInUserWishlist", albumsInUserWishlist)
+  console.log(albumsInUserCollection.concat(albumsInUserWishlist))
+
+  const mergedArray = albumsInUserCollection.concat(albumsInUserWishlist)
+
+  // sort albums according to provided sorting array
+  const sortFunc = (a, b) =>
+    mergedArray.indexOf(a.dateCreated) - mergedArray.indexOf(b.dateCreated)
+
+  // sort albums
+  const sortedAlbums = mergedArray.sort(sortFunc)
+  console.log("sorted albums", sortedAlbums)
 
   return (
     <ContainerFlex flexDirection="column">
