@@ -49,6 +49,7 @@ function ProfileContent() {
   const [albumsInUserCollection, setAlbumsInUserCollection] = useState([])
   const [albumsInUserWishlist, setAlbumsInUserWishlist] = useState([])
   const [albumsIDs, setAlbumsIDs] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchAlbumsInUserCollection = async () => {
@@ -67,7 +68,8 @@ function ProfileContent() {
       const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
 
       // write sorted albums to the state
-      return setAlbumsInUserCollection(albumsIDsList)
+      setAlbumsInUserCollection(albumsIDsList)
+      setIsLoading(false)
     }
 
     const fetchAlbumsInUserWishlist = async () => {
@@ -86,7 +88,8 @@ function ProfileContent() {
       const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
 
       // write sorted albums to the state
-      return setAlbumsInUserWishlist(albumsIDsList)
+      setAlbumsInUserWishlist(albumsIDsList)
+      setIsLoading(false)
     }
     // fetch albums
     if (currentUser) {
@@ -94,6 +97,8 @@ function ProfileContent() {
       fetchAlbumsInUserWishlist()
     }
   }, [currentUser])
+
+  // console.log("this is loading state", isLoading)
 
   useEffect(() => {
     const mergedArray = albumsInUserCollection.concat(albumsInUserWishlist)
@@ -106,14 +111,14 @@ function ProfileContent() {
 
     // sort albums
     const sortedAlbums = firstFiveAlbums.sort(sortFunc)
-    console.log("sorted albums", sortedAlbums)
+    // console.log("sorted albums", sortedAlbums)
 
     // extract albums IDs
     const iDs = sortedAlbums.map((album) => album.albumId)
-    console.log("albums ids", iDs)
+    // console.log("albums ids", iDs)
 
     setAlbumsIDs(iDs)
-  }, [albumsInUserCollection, albumsInUserWishlist])
+  }, [isLoading])
 
   console.log("this is albums ids state", albumsIDs)
 
