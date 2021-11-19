@@ -83,10 +83,22 @@ function ProfileContent() {
       const querySnapshot = await getDocs(q)
 
       // map through albums and return new array with albums data
-      const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
+      // const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
+      // console.log("albums ids list with server date", albumsIDsList)
+      // console.log("test time", albumsIDsList[0].dateAdded.toMillis())
+
+      const iDs = querySnapshot.docs.map((doc) => doc.data().albumId)
+      const timestamps = querySnapshot.docs.map((doc) =>
+        doc.data().dateAdded.toDate()
+      )
+
+      const newArray = iDs.map((id, index) => ({
+        albumId: id,
+        dateAdded: timestamps[index],
+      }))
 
       // write sorted albums to the state
-      setAlbumsInUserCollection(albumsIDsList)
+      setAlbumsInUserCollection(newArray)
       // setIsLoading(false)
     }
 
@@ -103,18 +115,24 @@ function ProfileContent() {
       const querySnapshot = await getDocs(q)
 
       // map through albums and return new array with albums data
-      const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
-      console.log("albums ids list with server date", albumsIDsList)
-      console.log("test time", albumsIDsList[0].dateAdded.toMillis())
+      // const albumsIDsList = querySnapshot.docs.map((doc) => doc.data())
+      // console.log("albums ids list with server date", albumsIDsList)
+      // console.log("test time", albumsIDsList[0].dateAdded.toMillis())
 
-      // const iDs = querySnapshot.docs.map((doc) => doc.data().albumId)
+      const iDs = querySnapshot.docs.map((doc) => doc.data().albumId)
       const timestamps = querySnapshot.docs.map((doc) =>
-        doc.data().dateAdded.toMillis()
+        doc.data().dateAdded.toDate()
       )
-      console.log(timestamps)
+
+      const newArray = iDs.map((id, index) => ({
+        albumId: id,
+        dateAdded: timestamps[index],
+      }))
+
+      // console.log("this is new array", newArray)
 
       // write sorted albums to the state
-      setAlbumsInUserWishlist(albumsIDsList)
+      setAlbumsInUserWishlist(newArray)
       // setIsLoading(false)
     }
     // fetch albums
@@ -131,18 +149,22 @@ function ProfileContent() {
     console.log("albums in user collection", albumsInUserCollection)
     console.log("albums in user wishlist", albumsInUserWishlist)
 
-    const sortFunc = (a, b) =>
-      mergedArray.indexOf(a.dateAdded) - mergedArray.indexOf(b.dateAdded)
+    // const sortFunc = (a, b) =>
+    //   mergedArray.indexOf(a.dateAdded) - mergedArray.indexOf(b.dateAdded)
+
+    const sortFunction = (a, b) => b.dateAdded - a.dateAdded
 
     // sort albums
-    const sortedAlbums = mergedArray.sort(sortFunc)
+    const sortedAlbums = mergedArray.sort(sortFunction)
     console.log("sorted albums", sortedAlbums)
 
     // extract albums IDs
     const iDs = sortedAlbums.map((album) => album.albumId)
     console.log("albums ids", iDs)
+    const uniqueIDs = [...new Set(iDs)]
+    console.log("unique ids", uniqueIDs)
 
-    const firstFiveAlbums = iDs.slice(0, 5)
+    const firstFiveAlbums = uniqueIDs.slice(0, 5)
 
     setAlbumsIDs(firstFiveAlbums)
   }, [albumsInUserCollection, albumsInUserWishlist])
