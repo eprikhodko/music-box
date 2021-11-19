@@ -23,7 +23,7 @@ import UserContext from "../context/user"
 
 import IconImagePlaceholder from "../icons/image-placeholder-fallback.svg"
 
-const SharedDimensionsStyle = "width: 40em; height: 40em;"
+const SharedDimensionsStyle = "width: 35em; height: 35em;"
 const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 
 export const FallbackBackgroundImage = styled.div`

@@ -11,10 +11,8 @@ import {
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { HeroButton } from "./shared/Button"
-import { CenterContent } from "./shared/Containers"
 import { HeroTitle } from "./shared/HeroTitle"
 import UserAvatar from "./UserAvatar"
-import SearchBox from "./shared/SearchBox"
 
 import {
   AlbumContainer,
@@ -40,6 +38,14 @@ const Username = styled.p`
 const ContainerFlex = styled.div`
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
+  justify-content: ${({ justifyContent }) => justifyContent};
+`
+
+export const CenterContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 0 auto; */
 `
 
 const ContainerTextBlock = styled(ContainerFlex)`
@@ -49,8 +55,30 @@ const ContainerTextBlock = styled(ContainerFlex)`
 `
 
 const HeroAlbumCover = styled(AlbumCover)`
-  width: 40em;
-  height: 40em;
+  width: 35em;
+  height: 35em;
+`
+
+const FallbackImage = styled(FallbackBackgroundImage)`
+  margin-top: 1em;
+`
+
+const AlbumName = styled.p`
+  font-size: 1.8rem;
+  color: #000;
+  margin: 0;
+  margin-top: 0.8em;
+`
+
+const AlbumArtistName = styled.p`
+  font-size: 1.6rem;
+  color: #000;
+  margin: 0;
+  //
+`
+
+const AddAlbumsLink = styled(StyledLink)`
+  text-decoration: underline;
 `
 
 // fetch 5 last albums ids from albumsInUserCollection
@@ -161,6 +189,7 @@ function ProfileContent() {
     // extract albums IDs
     const iDs = sortedAlbums.map((album) => album.albumId)
     console.log("albums ids", iDs)
+    // remove duplicate ids
     const uniqueIDs = [...new Set(iDs)]
     console.log("unique ids", uniqueIDs)
 
@@ -229,8 +258,8 @@ function ProfileContent() {
   }
 
   return (
-    <ContainerFlex flexDirection="column">
-      <ContainerFlex>
+    <>
+      <ContainerFlex justifyContent="space-between">
         <CenterContent>
           <UserAvatar />
           <Username>{currentUser?.displayName}</Username>
@@ -252,41 +281,42 @@ function ProfileContent() {
           </HeroButton>
         </CenterContent>
 
-        {albumsComponents ? (
-          <>
+        {albumsComponents.length > 0 ? (
+          <ContainerFlex flexDirection="column">
+            <h2>Recently added albums</h2>
             <StyledLink
               to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
             >
-              <FallbackBackgroundImage>
+              <FallbackImage>
                 <HeroAlbumCover
                   src={albumsData[0] && albumsData[0].albumCover}
                   alt="cover for album"
                   onError={setDisplayToNone}
                 />
-              </FallbackBackgroundImage>
+              </FallbackImage>
             </StyledLink>
 
-            {/* <AlbumDescription>
-                <h2>{album.albumName}</h2>
-                <h3>{album.artist}</h3>
-                <AlbumYear>Year: {album.year}</AlbumYear>
-                <AlbumGenre>Genre: {album.genre}</AlbumGenre>
-                    
-              </AlbumDescription> */}
-          </>
+            <AlbumName>{albumsData[0] && albumsData[0].albumName}</AlbumName>
+            <AlbumArtistName>
+              {albumsData[0] && albumsData[0].artist}
+            </AlbumArtistName>
+          </ContainerFlex>
         ) : (
           <ContainerTextBlock flexDirection="column">
             <HeroTitle>Build your music library</HeroTitle>
             <h3>
-              Add some albums to your collection or wishlist and they will
-              appear in your profile
+              <AddAlbumsLink to={ROUTES.CATALOG}>Add some albums</AddAlbumsLink>{" "}
+              to your collection or wishlist and they will appear in your
+              profile
             </h3>
-            <SearchBox placeholder="Search music!" marginTop="2em" />
           </ContainerTextBlock>
         )}
       </ContainerFlex>
-      <StyledAlbumsGrid>{albumsComponents.slice(1, 5)}</StyledAlbumsGrid>
-    </ContainerFlex>
+
+      {albumsComponents.length > 1 && (
+        <StyledAlbumsGrid>{albumsComponents.slice(1, 5)}</StyledAlbumsGrid>
+      )}
+    </>
   )
 }
 

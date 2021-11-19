@@ -10,9 +10,13 @@ import {
 function Profile() {
   return (
     <ContainerMain>
-      <Header noSearchBox />
+      <Header />
       <PageBody>
-        <Content $marginTop="5em">
+        <Content
+          $marginTop="5em"
+          // justifyContent="space-between"
+          flexDirection="column"
+        >
           <ProfileContent />
         </Content>
       </PageBody>
