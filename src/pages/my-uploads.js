@@ -8,11 +8,10 @@ import {
   getDocs,
   query,
   where,
-  //   orderBy,
+  orderBy,
   limit,
 } from "firebase/firestore"
 import UserContext from "../context/user"
-import AlbumsDataContext from "../context/albumsData"
 
 import * as ROUTES from "../constants/routes"
 import Footer from "../components/Footer"
@@ -37,7 +36,6 @@ const StyledLink = styled(Link)`
 
 function MyUploads() {
   const currentUser = useContext(UserContext)
-  const { albumsData } = useContext(AlbumsDataContext)
 
   const [albumsUploadedByCurrentUser, setAlbumsUploadedByCurrentUser] =
     useState([])
@@ -54,27 +52,22 @@ function MyUploads() {
       const q = query(
         albumsRef,
         where("uploadedBy", "==", currentUser.uid),
-        // orderBy("dateCreated", "desc"),
+        orderBy("dateCreated", "desc"),
         limit(100)
       )
-      //   const q = query(albumsRef, orderBy("dateAdded", "desc"), limit(100))
-
       const querySnapshot = await getDocs(q)
-      console.log(querySnapshot)
 
       // map through albums and return new array with albums data
       const albumsDocs = querySnapshot.docs.map((doc) => doc.data())
-      console.log(albumsDocs)
 
-      // write sorted albums to the state
-      // return albumsIDsList
+      // write albums to the state
       setAlbumsUploadedByCurrentUser(albumsDocs)
     }
     // fetch albums which are in user collection
-    if (currentUser && albumsData) fetchAlbumsUploadedByCurrentUser()
+    if (currentUser) fetchAlbumsUploadedByCurrentUser()
 
     // fetch albums in user collection after albumsData loaded to the state
-  }, [albumsData])
+  }, [currentUser])
 
   const showMore = () => {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
@@ -100,10 +93,8 @@ function MyUploads() {
             </>
           ) : (
             <StyledParagraph>
-              There is no albums in your collection yet. Would you like to add
-              some from <StyledLink to={ROUTES.CATALOG}>catalog</StyledLink> or
-              maybe <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new
-              album yourself?
+              There is no albums in your uploads yet. Would you like to{" "}
+              <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new one?
             </StyledParagraph>
           )}
         </Content>
