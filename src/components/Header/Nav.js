@@ -136,13 +136,12 @@ function Nav() {
         </li>
       </Ul>
       <ContainerUserAvatar>
-        <Link to={`profile/${currentUser.displayName}`}>
+        <Link to={`/profile/${currentUser.displayName}`}>
           {currentUser?.photoURL ? (
             <ImageAvatar fileUrl={currentUser?.photoURL} />
           ) : (
             <Avatar />
           )}
-          {/* <Avatar /> */}
         </Link>
       </ContainerUserAvatar>
     </StyledNav>

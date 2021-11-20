@@ -10,6 +10,7 @@ import {
   AlbumTitle,
   AlbumArtist,
   StyledAlbumsGrid,
+  FallbackBackgroundImage,
 } from "./GridElements"
 
 function AlbumsGrid({ albumsSlice }) {
@@ -19,15 +20,23 @@ function AlbumsGrid({ albumsSlice }) {
 
   const [albumsComponents, setAlbumsComponents] = useState([])
 
+  const handleError = (e) => {
+    e.target.style.display = "none"
+  }
+
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
       <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
         <AlbumContainer>
-          <AlbumCover
-            src={album.albumCover}
-            alt={`album cover for ${album.albumTitle} album`}
-          />
-          <AlbumTitle>{album.albumTitle}</AlbumTitle>
+          <FallbackBackgroundImage>
+            <AlbumCover
+              src={album.albumCover}
+              alt={`album cover for ${album.albumName}`}
+              onError={handleError}
+            />
+          </FallbackBackgroundImage>
+
+          <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
         </AlbumContainer>
       </StyledLink>
@@ -43,6 +52,8 @@ function AlbumsGrid({ albumsSlice }) {
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
 
+export default AlbumsGrid
+
 AlbumsGrid.propTypes = {
   albumsSlice: PropTypes.shape({
     start: PropTypes.number,
@@ -56,5 +67,3 @@ AlbumsGrid.defaultProps = {
     end: 0,
   },
 }
-
-export default AlbumsGrid

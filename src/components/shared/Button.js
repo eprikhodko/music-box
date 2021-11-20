@@ -37,7 +37,7 @@ export const HeroButton = styled(Button)`
   min-width: 10.5em;
 `
 
-export const ButtonAlbumDetails = styled(Button)`
+export const ButtonAlbum = styled(Button)`
   padding: 1em 0;
   min-width: 16.5em;
 `

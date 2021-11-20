@@ -7,7 +7,7 @@ export const ALBUM = "/albums/:albumId"
 export const PROFILE = "/profile/:username"
 export const COLLECTION = "/collection/:username"
 export const WISHLIST = "/wishlist/:username"
-export const UPLOADED_BY = "/uploaded-by/:username"
+export const MY_UPLOADS = "/my-uploads/:username"
 
 export const SEARCH = "/search"
 export const NOT_FOUND = ""

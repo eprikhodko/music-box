@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react"
 import { Switch, Route } from "react-router-dom"
 
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore"
+
 import useAuth from "./hooks/useAuth"
 
 import * as ROUTES from "./constants/routes"
 
-// pages
+// import pages
 import Catalog from "./pages/catalog"
 import Home from "./pages/home"
 import Search from "./pages/search"
@@ -18,30 +27,38 @@ import Profile from "./pages/profile"
 import Collection from "./pages/collection"
 import Wishlist from "./pages/wishlist"
 
-// context
+// import context
 import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
+import MyUploads from "./pages/my-uploads"
 
 function App() {
   const currentUser = useAuth()
 
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
+
+  const [isUploadSuccessful, setIsUploadSuccessful] = useState(false)
+  const [isAlbumRemovedFromDatabase, setIsAlbumRemovedFromDatabase] =
+    useState(false)
   const albumsValue = { albumsData, isAlbumsDataLoading }
 
-  const url =
-    "https://raw.githubusercontent.com/eprikhodko/music-box-images/main/albums-data.json"
-
-  const fetchAlbumsData = async () => {
-    const res = await fetch(url)
-    const data = await res.json()
-    setAlbumsData(data)
-    setIsAlbumsDataLoading(false)
-  }
-
   useEffect(() => {
+    const fetchAlbumsData = async () => {
+      const db = getFirestore()
+
+      const albumsRef = collection(db, "albums")
+      const q = query(albumsRef, orderBy("dateCreated", "desc"), limit(500))
+      const querySnapshot = await getDocs(q)
+      const docsData = querySnapshot.docs.map((doc) => doc.data())
+
+      setAlbumsData(docsData)
+      setIsAlbumsDataLoading(false)
+    }
+    // fetch albums data if user uploaded new album
+    // if we won't fetch albums data after user uploaded new album, user should have manually refresh page to trigger useEffect hook to fetch albums data so that albums on the page will be updated too
     fetchAlbumsData()
-  }, [])
+  }, [isUploadSuccessful, isAlbumRemovedFromDatabase])
 
   return (
     // <Router>
@@ -49,18 +66,29 @@ function App() {
       <AlbumsDataContext.Provider value={albumsValue}>
         <Switch>
           <Route path={ROUTES.HOME} exact>
-            <Home />
+            <Home
+              setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+            />
           </Route>
           <Route path={ROUTES.CATALOG} component={Catalog} />
           <Route path={ROUTES.SEARCH} component={Search} />
           <Route path={ROUTES.LOGIN} component={Login} />
           <Route path={ROUTES.SIGNUP} component={SignUp} />
-          <Route path={ROUTES.UPLOAD} component={Upload} />
-          <Route path={ROUTES.ALBUM} component={Album} />
+          <Route path={ROUTES.UPLOAD}>
+            <Upload
+              isUploadSuccessful={isUploadSuccessful}
+              setIsUploadSuccessful={setIsUploadSuccessful}
+            />
+          </Route>
+          <Route path={ROUTES.ALBUM}>
+            <Album
+              setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+            />
+          </Route>
           <Route path={ROUTES.PROFILE} component={Profile} />
           <Route path={ROUTES.COLLECTION} component={Collection} />
           <Route path={ROUTES.WISHLIST} component={Wishlist} />
-
+          <Route path={ROUTES.MY_UPLOADS} component={MyUploads} />
           <Route path={ROUTES.NOT_FOUND} component={NotFound} />
         </Switch>
       </AlbumsDataContext.Provider>

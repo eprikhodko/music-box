@@ -3,6 +3,7 @@ import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
 import { Button } from "../components/shared/Button"
+import ScrollToTop from "../components/utils/ScrollToTop"
 
 import {
   ContainerMain,
@@ -21,18 +22,22 @@ function Catalog() {
   }
 
   return (
-    <ContainerMain>
-      <Header />
-      <PageBody>
-        <Content flexDirection="column" alignItems="center">
-          <AlbumsGrid albumsSlice={albumsSlice} />
-          <Button marginTop="2em" onClick={handleShowMore}>
-            Show more
-          </Button>
-        </Content>
-      </PageBody>
-      <Footer />
-    </ContainerMain>
+    <>
+      <ScrollToTop />
+      <ContainerMain>
+        <Header />
+        <PageBody>
+          <Content flexDirection="column" alignItems="center" $marginTop="5em">
+            <h2>Catalog</h2>
+            <AlbumsGrid albumsSlice={albumsSlice} />
+            <Button marginTop="2em" onClick={handleShowMore}>
+              Show more
+            </Button>
+          </Content>
+        </PageBody>
+        <Footer />
+      </ContainerMain>
+    </>
   )
 }
 

@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import PropTypes from "prop-types"
 import * as ROUTES from "../../../constants/routes"
 
-import AlbumsDataContext from "../../../context/albumsData"
 import {
   AlbumContainer,
   StyledLink,
@@ -20,12 +19,18 @@ import { ReactComponent as Cloud } from "../../../icons/cloud_upload_24px.svg"
 const IconCloud = styled(Cloud)`
   width: 4.5em;
   height: 3em;
+
+  margin-bottom: 1em;
 `
 
-function CollectionGrid({ albumsSlice }) {
-  const { start, end } = albumsSlice || {}
+const StyledParagraph = styled.p`
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  margin: 0;
+`
 
-  const { albumsData } = useContext(AlbumsDataContext)
+function CollectionGrid({ albumsSlice, albumsData }) {
+  const { start, end } = albumsSlice || {}
 
   const [albumsComponents, setAlbumsComponents] = useState([])
 
@@ -35,9 +40,9 @@ function CollectionGrid({ albumsSlice }) {
         <AlbumContainer>
           <AlbumCover
             src={album.albumCover}
-            alt={`album cover for ${album.albumTitle} album`}
+            alt={`album cover for ${album.albumName} album`}
           />
-          <AlbumTitle>{album.albumTitle}</AlbumTitle>
+          <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
         </AlbumContainer>
       </StyledLink>
@@ -48,6 +53,7 @@ function CollectionGrid({ albumsSlice }) {
         <AlbumContainer>
           <UploadNewAlbumBox>
             <IconCloud />
+            <StyledParagraph>Upload</StyledParagraph>
           </UploadNewAlbumBox>
           <AlbumTitle>Upload new album</AlbumTitle>
         </AlbumContainer>
@@ -59,18 +65,22 @@ function CollectionGrid({ albumsSlice }) {
     return albums
   }
 
-  //   console.log(UploadNewAlbumBox)
-
   useEffect(() => {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
-
-  console.log(albumsComponents)
 
   return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
 }
 
 CollectionGrid.propTypes = {
+  albumsData: PropTypes.arrayOf(
+    PropTypes.shape({
+      albumCover: PropTypes.string.isRequired,
+      albumId: PropTypes.string.isRequired,
+      albumName: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   albumsSlice: PropTypes.shape({
     start: PropTypes.number,
     end: PropTypes.number,
