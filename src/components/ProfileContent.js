@@ -276,7 +276,11 @@ function ProfileContent() {
           <HeroButton as={Link} to={ROUTES.UPLOAD} $marginTop="1em">
             Upload
           </HeroButton>
-          <HeroButton as={Link} to={ROUTES.UPLOADED_BY} $marginTop="1em">
+          <HeroButton
+            as={Link}
+            to={`/my-uploads/${currentUser.uid}`}
+            $marginTop="1em"
+          >
             My Uploads
           </HeroButton>
         </CenterContent>

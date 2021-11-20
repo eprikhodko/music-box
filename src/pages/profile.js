@@ -12,11 +12,7 @@ function Profile() {
     <ContainerMain>
       <Header />
       <PageBody>
-        <Content
-          $marginTop="5em"
-          // justifyContent="space-between"
-          flexDirection="column"
-        >
+        <Content $marginTop="5em" flexDirection="column">
           <ProfileContent />
         </Content>
       </PageBody>

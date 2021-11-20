@@ -30,6 +30,7 @@ import Wishlist from "./pages/wishlist"
 // import context
 import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
+import MyUploads from "./pages/my-uploads"
 
 function App() {
   const currentUser = useAuth()
@@ -87,7 +88,7 @@ function App() {
           <Route path={ROUTES.PROFILE} component={Profile} />
           <Route path={ROUTES.COLLECTION} component={Collection} />
           <Route path={ROUTES.WISHLIST} component={Wishlist} />
-
+          <Route path={ROUTES.MY_UPLOADS} component={MyUploads} />
           <Route path={ROUTES.NOT_FOUND} component={NotFound} />
         </Switch>
       </AlbumsDataContext.Provider>
