@@ -23,6 +23,7 @@ import {
   Content,
   PageBody,
 } from "../components/shared/Containers"
+import ScrollToTop from "../components/utils/ScrollToTop"
 
 const StyledParagraph = styled.p`
   font-size: 2.5rem;
@@ -73,34 +74,37 @@ function MyUploads() {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
   return (
-    <ContainerMain>
-      <Header />
-      <PageBody>
-        <Content flexDirection="column" alignItems="center" $marginTop="5em">
-          <h2>My Uploads</h2>
-          {albumsUploadedByCurrentUser.length > 0 ? (
-            <>
-              <CollectionGrid
-                albumsSlice={albumsSlice}
-                albumsData={albumsUploadedByCurrentUser}
-              />
-              {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
-              {albumsUploadedByCurrentUser.length > 11 && (
-                <Button marginTop="2em" onClick={showMore}>
-                  Show more
-                </Button>
-              )}
-            </>
-          ) : (
-            <StyledParagraph>
-              There is no albums in your uploads yet. Would you like to{" "}
-              <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new one?
-            </StyledParagraph>
-          )}
-        </Content>
-      </PageBody>
-      <Footer />
-    </ContainerMain>
+    <>
+      <ScrollToTop />
+      <ContainerMain>
+        <Header />
+        <PageBody>
+          <Content flexDirection="column" alignItems="center" $marginTop="5em">
+            <h2>My Uploads</h2>
+            {albumsUploadedByCurrentUser.length > 0 ? (
+              <>
+                <CollectionGrid
+                  albumsSlice={albumsSlice}
+                  albumsData={albumsUploadedByCurrentUser}
+                />
+                {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
+                {albumsUploadedByCurrentUser.length > 11 && (
+                  <Button marginTop="2em" onClick={showMore}>
+                    Show more
+                  </Button>
+                )}
+              </>
+            ) : (
+              <StyledParagraph>
+                There is no albums in your uploads yet. Would you like to{" "}
+                <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new one?
+              </StyledParagraph>
+            )}
+          </Content>
+        </PageBody>
+        <Footer />
+      </ContainerMain>
+    </>
   )
 }
 

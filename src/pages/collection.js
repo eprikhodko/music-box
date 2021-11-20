@@ -23,6 +23,7 @@ import {
   Content,
   PageBody,
 } from "../components/shared/Containers"
+import ScrollToTop from "../components/utils/ScrollToTop"
 
 const StyledParagraph = styled.p`
   font-size: 2.5rem;
@@ -98,36 +99,39 @@ function Collection() {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
   return (
-    <ContainerMain>
-      <Header />
-      <PageBody>
-        <Content flexDirection="column" alignItems="center" $marginTop="5em">
-          <h2>Collection</h2>
-          {albumsInUserCollection.length > 0 ? (
-            <>
-              <CollectionGrid
-                albumsSlice={albumsSlice}
-                albumsData={albumsInUserCollection}
-              />
-              {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
-              {albumsInUserCollection.length > 11 && (
-                <Button marginTop="2em" onClick={showMore}>
-                  Show more
-                </Button>
-              )}
-            </>
-          ) : (
-            <StyledParagraph>
-              There is no albums in your collection yet. Would you like to add
-              some from <StyledLink to={ROUTES.CATALOG}>catalog</StyledLink> or
-              maybe <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new
-              album yourself?
-            </StyledParagraph>
-          )}
-        </Content>
-      </PageBody>
-      <Footer />
-    </ContainerMain>
+    <>
+      <ScrollToTop />
+      <ContainerMain>
+        <Header />
+        <PageBody>
+          <Content flexDirection="column" alignItems="center" $marginTop="5em">
+            <h2>Collection</h2>
+            {albumsInUserCollection.length > 0 ? (
+              <>
+                <CollectionGrid
+                  albumsSlice={albumsSlice}
+                  albumsData={albumsInUserCollection}
+                />
+                {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
+                {albumsInUserCollection.length > 11 && (
+                  <Button marginTop="2em" onClick={showMore}>
+                    Show more
+                  </Button>
+                )}
+              </>
+            ) : (
+              <StyledParagraph>
+                There is no albums in your collection yet. Would you like to add
+                some from <StyledLink to={ROUTES.CATALOG}>catalog</StyledLink>{" "}
+                or maybe <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a
+                new album yourself?
+              </StyledParagraph>
+            )}
+          </Content>
+        </PageBody>
+        <Footer />
+      </ContainerMain>
+    </>
   )
 }
 
