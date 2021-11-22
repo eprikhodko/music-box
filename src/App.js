@@ -17,7 +17,7 @@ import * as ROUTES from "./constants/routes"
 // import pages
 import Catalog from "./pages/catalog"
 import Home from "./pages/home"
-import Search from "./pages/search"
+import Search from "./pages/search/search"
 import Login from "./pages/login"
 import SignUp from "./pages/signup"
 import NotFound from "./pages/not-found"
@@ -26,11 +26,11 @@ import Album from "./pages/album"
 import Profile from "./pages/profile"
 import Collection from "./pages/collection"
 import Wishlist from "./pages/wishlist"
+import MyUploads from "./pages/my-uploads"
 
 // import context
 import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
-import MyUploads from "./pages/my-uploads"
 
 function App() {
   const currentUser = useAuth()
@@ -72,6 +72,7 @@ function App() {
           </Route>
           <Route path={ROUTES.CATALOG} component={Catalog} />
           <Route path={ROUTES.SEARCH} component={Search} />
+
           <Route path={ROUTES.LOGIN} component={Login} />
           <Route path={ROUTES.SIGNUP} component={SignUp} />
           <Route path={ROUTES.UPLOAD}>
