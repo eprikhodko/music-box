@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-import { Content } from "../Containers"
+// import { Content } from "../Containers"
 import {
   AlbumContainer,
   StyledLink,
@@ -52,13 +52,11 @@ function GenresGrid() {
   }, [isLoading])
 
   return (
-    <Content flexDirection="column" alignItems="center" $marginTop="0">
-      <>
-        <h2>Genres</h2>
+    <>
+      <h2>Genres</h2>
 
-        <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
-      </>
-    </Content>
+      <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
+    </>
   )
 }
 
