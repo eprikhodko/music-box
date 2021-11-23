@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 
 import AlbumsDataContext from "../../context/albumsData"
@@ -35,7 +35,10 @@ const PokerFace = styled.div`
 `
 
 function SearchResults() {
+  // { searchQuery } should match with <Route path="/search/:searchQuery">
   const { searchQuery } = useParams()
+  const { searchQuer } = useParams()
+  console.log(searchQuer)
 
   const { albumsData } = useContext(AlbumsDataContext)
 
@@ -44,13 +47,47 @@ function SearchResults() {
     end: 12,
   })
 
+  const [filteredAlbums, setFilteredAlbums] = useState([])
+
   const showMore = () => {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
 
-  const filteredAlbums = albumsData.filter((album) =>
-    album.genre.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  // const filteredAlbums = albumsData.filter((album) =>
+  //   album.genre.toLowerCase().includes(searchQuery.toLowerCase())
+  // )
+
+  // console.log(albumsData)
+  console.log(searchQuery)
+
+  useEffect(() => {
+    // const filterAlbums = () => {
+    //   const filtered = albumsData.filter((album) =>
+    //     album.genre.toLowerCase().includes(searchQuery.toLowerCase())
+    //   )
+    //   return filtered
+    // }
+
+    // setFilteredAlbums(filterAlbums())
+
+    const filterAlbums = () => {
+      const filteredByGenre = albumsData.filter((album) =>
+        album.genre.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+
+      const filteredByAlbumName = albumsData.filter((album) =>
+        album.albumName.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+
+      if (filteredByGenre.length < 1) {
+        setFilteredAlbums(filteredByAlbumName)
+      } else {
+        setFilteredAlbums(filteredByGenre)
+      }
+    }
+
+    filterAlbums()
+  }, [albumsData, searchQuery])
 
   console.log(filteredAlbums)
 

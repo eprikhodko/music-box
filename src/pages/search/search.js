@@ -36,6 +36,10 @@ function Search() {
               <GenresGrid />
             </Route>
 
+            <Route path="/search/genres/:searchQuery">
+              <SearchResults searchQuery={searchQuery} />
+            </Route>
+
             <Route path="/search/:searchQuery">
               <SearchResults searchQuery={searchQuery} />
             </Route>

@@ -42,7 +42,7 @@ function GenresGrid() {
     const createGenresComponents = () => {
       const genres = genresData.map((doc) => (
         <StyledLink
-          to={`/search/${doc.genreName.toLowerCase()}`}
+          to={`/search/genres/${doc.genreName.toLowerCase()}`}
           key={doc.genreId}
         >
           <AlbumContainer>
