@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Switch, Route } from "react-router-dom"
 
 import Header from "../../components/Header/index"
@@ -12,6 +13,11 @@ import GenresGrid from "../../components/shared/grids/GenresGrid"
 import SearchResults from "./search-results"
 
 function Search() {
+  const [searchQuery, setSearchQuery] = useState("")
+  const handleChange = (event) => {
+    setSearchQuery(event.target.value)
+  }
+
   return (
     <ContainerMain>
       <Header noSearchBox />
@@ -21,6 +27,8 @@ function Search() {
             placeholder="Search album, year, artist"
             big
             marginBottom="7em"
+            searchQuery={searchQuery}
+            handleChange={handleChange}
           />
           <Switch>
             <Route exact path="/search">
@@ -28,7 +36,7 @@ function Search() {
             </Route>
 
             <Route path="/search/:searchQuery">
-              <SearchResults />
+              <SearchResults searchQuery={searchQuery} />
             </Route>
           </Switch>
         </Content>

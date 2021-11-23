@@ -1,6 +1,7 @@
-import { useState } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
+
+import { useHistory } from "react-router-dom"
 
 import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
@@ -103,19 +104,24 @@ const ContainerArrowIconBig = styled(ContainerArrowIcon)`
   }
 `
 
-function SearchBox({ placeholder, big, marginTop, marginBottom }) {
-  const [searchQuery, setSearchQuery] = useState("")
-
-  const handleChange = (event) => {
-    setSearchQuery(event.target.value)
-  }
-
+function SearchBox({
+  placeholder,
+  big,
+  marginTop,
+  marginBottom,
+  searchQuery,
+  handleChange,
+}) {
+  const history = useHistory()
   const handleSearchSubmit = (event) => {
     event.preventDefault()
     console.log("search submitted")
+    event.stopPropagation()
+    history.push(`/search/${searchQuery.toLowerCase()}`)
   }
 
-  // console.log(searchQuery)
+  console.log(searchQuery)
+  // console.log(handleChange)
 
   return !big ? (
     // return regular sized search box, if it is rendered in header
@@ -158,6 +164,8 @@ SearchBox.propTypes = {
   big: PropTypes.bool,
   marginTop: PropTypes.string,
   marginBottom: PropTypes.string,
+  searchQuery: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
 }
 
 SearchBox.defaultProps = {
@@ -165,4 +173,5 @@ SearchBox.defaultProps = {
   big: false,
   marginTop: "0",
   marginBottom: "0",
+  searchQuery: "",
 }
