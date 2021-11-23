@@ -111,23 +111,38 @@ function SearchBox({
   marginBottom,
   searchQuery,
   handleChange,
+  setSearchQuery,
 }) {
   const history = useHistory()
+
   const handleSearchSubmit = (event) => {
     event.preventDefault()
     console.log("search submitted")
     event.stopPropagation()
-    history.push(`/search/${searchQuery.toLowerCase()}`)
+    const cleanedSearchQuery = searchQuery
+      // make search query lowercase
+      .toLowerCase()
+      // remove white spaces from the start and from the end of a string
+      .trim()
+      // replace multiple spaces with a single space
+      .replace(/\s\s+/g, " ")
+    history.push(`/search/${cleanedSearchQuery}`)
+    // replace messy search query in search box with cleaned one
+    setSearchQuery(cleanedSearchQuery)
   }
-
-  console.log(searchQuery)
-  // console.log(handleChange)
 
   return !big ? (
     // return regular sized search box, if it is rendered in header
     <ContainerSearchBox marginTop={marginTop}>
       <ContainerSearchIcon>
-        <SearchIcon onClick={handleSearchSubmit} />
+        <SearchIcon
+          onClick={handleSearchSubmit}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              handleSearchSubmit()
+            }
+          }}
+        />
       </ContainerSearchIcon>
       <TextInput
         placeholder={placeholder}
@@ -166,6 +181,7 @@ SearchBox.propTypes = {
   marginBottom: PropTypes.string,
   searchQuery: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
 }
 
 SearchBox.defaultProps = {
