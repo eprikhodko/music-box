@@ -52,6 +52,8 @@ function SearchResults() {
     album.genre.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
+  console.log(filteredAlbums)
+
   return (
     <>
       <ScrollToTop />
