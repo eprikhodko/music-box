@@ -9,7 +9,6 @@ const ContainerSearchBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 2.5em;
   width: 14em;
   margin-top: ${({ marginTop }) => marginTop};
 
@@ -25,7 +24,6 @@ const ContainerSearchBox = styled.div`
 `
 
 const ContainerSearchBoxBig = styled(ContainerSearchBox)`
-  height: 5.35em;
   width: 30em;
   margin-left: 0;
   margin-bottom: ${({ marginBottom }) => marginBottom};
@@ -33,6 +31,7 @@ const ContainerSearchBoxBig = styled(ContainerSearchBox)`
 
 const TextInput = styled.input`
   /* flex: 1 0; */
+  padding: 0.6em 0;
   min-width: 50px;
   font-size: 1.6rem;
   background-color: transparent;
@@ -51,8 +50,9 @@ const TextInput = styled.input`
 `
 
 const TextInputBig = styled(TextInput)`
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   margin-left: 0;
+  padding: 1.3em 1em;
 `
 
 const ContainerSearchIcon = styled.div`

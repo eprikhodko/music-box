@@ -17,23 +17,17 @@ function Search() {
       <Header noSearchBox />
       <PageBody>
         <Content flexDirection="column" alignItems="center" $marginTop="10em">
+          <SearchBox
+            placeholder="Search album, year, artist"
+            big
+            marginBottom="7em"
+          />
           <Switch>
             <Route exact path="/search">
-              <SearchBox
-                placeholder="Search album, year, artist"
-                big
-                marginBottom="7em"
-              />
               <GenresGrid />
             </Route>
 
             <Route path="/search/:searchQuery">
-              <SearchBox
-                placeholder="Search album, year, artist"
-                big
-                marginBottom="7em"
-              />
-
               <SearchResults />
             </Route>
           </Switch>
