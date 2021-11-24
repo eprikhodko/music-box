@@ -32,6 +32,7 @@ function Header({ noSearchBox }) {
         <Content justifyContent="space-between">
           <ContainerFlex>
             <Logo />
+            {/* hide search box if Header receieved 'noSearchBox' prop */}
             {!noSearchBox && <SearchBox />}
           </ContainerFlex>
 

@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useContext } from "react"
+
 import { Switch, Route } from "react-router-dom"
 
 import Header from "../../components/Header/index"
@@ -11,12 +12,11 @@ import {
 } from "../../components/shared/Containers"
 import GenresGrid from "../../components/shared/grids/GenresGrid"
 import SearchResults from "./search-results"
+import SearchContext from "../../context/search"
 
 function Search() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const handleChange = (event) => {
-    setSearchQuery(event.target.value)
-  }
+  // take searchQuery, setSearchQuery, handleChange values from context
+  const { searchQuery } = useContext(SearchContext)
 
   return (
     <ContainerMain>
@@ -24,12 +24,12 @@ function Search() {
       <PageBody>
         <Content flexDirection="column" alignItems="center" $marginTop="10em">
           <SearchBox
-            placeholder="Search album, year, artist"
+            placeholder="Search genre, album, year, artist"
             big
             marginBottom="7em"
-            searchQuery={searchQuery}
-            handleChange={handleChange}
-            setSearchQuery={setSearchQuery}
+            // searchQuery={searchQuery}
+            // handleChange={handleChange}
+            // setSearchQuery={setSearchQuery}
           />
           <Switch>
             <Route exact path="/search">

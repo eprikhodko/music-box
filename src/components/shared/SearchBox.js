@@ -1,10 +1,14 @@
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
+import { useContext } from "react"
+
 import { useHistory } from "react-router-dom"
 
 import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
+
+import SearchContext from "../../context/search"
 
 const ContainerSearchBox = styled.div`
   display: flex;
@@ -25,7 +29,7 @@ const ContainerSearchBox = styled.div`
 `
 
 const ContainerSearchBoxBig = styled(ContainerSearchBox)`
-  width: 30em;
+  width: 35em;
   margin-left: 0;
   margin-bottom: ${({ marginBottom }) => marginBottom};
 `
@@ -104,21 +108,19 @@ const ContainerArrowIconBig = styled(ContainerArrowIcon)`
   }
 `
 
-function SearchBox({
-  placeholder,
-  big,
-  marginTop,
-  marginBottom,
-  searchQuery,
-  handleChange,
-  setSearchQuery,
-}) {
+function SearchBox({ placeholder, big, marginTop, marginBottom }) {
+  // take searchQuery, setSearchQuery, handleChange values from context
+  const { searchQuery, setSearchQuery, handleChange } =
+    useContext(SearchContext)
+
   const history = useHistory()
 
   const handleSearchSubmit = (event) => {
     event.preventDefault()
     console.log("search submitted")
     event.stopPropagation()
+
+    // clean up search query
     const cleanedSearchQuery = searchQuery
       // make search query lowercase
       .toLowerCase()
@@ -126,9 +128,10 @@ function SearchBox({
       .trim()
       // replace multiple spaces with a single space
       .replace(/\s\s+/g, " ")
+
     history.push(`/search/${cleanedSearchQuery}`)
-    // replace messy search query in search box with cleaned one
-    setSearchQuery(cleanedSearchQuery)
+    // reset input in search box
+    setSearchQuery("")
   }
 
   return !big ? (
@@ -179,9 +182,6 @@ SearchBox.propTypes = {
   big: PropTypes.bool,
   marginTop: PropTypes.string,
   marginBottom: PropTypes.string,
-  searchQuery: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
-  setSearchQuery: PropTypes.func.isRequired,
 }
 
 SearchBox.defaultProps = {
@@ -189,5 +189,4 @@ SearchBox.defaultProps = {
   big: false,
   marginTop: "0",
   marginBottom: "0",
-  searchQuery: "",
 }

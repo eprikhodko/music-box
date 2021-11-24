@@ -53,23 +53,10 @@ function SearchResults() {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
 
-  // const filteredAlbums = albumsData.filter((album) =>
-  //   album.genre.toLowerCase().includes(searchQuery.toLowerCase())
-  // )
-
   // console.log(albumsData)
   console.log(searchQuery)
 
   useEffect(() => {
-    // const filterAlbums = () => {
-    //   const filtered = albumsData.filter((album) =>
-    //     album.genre.toLowerCase().includes(searchQuery.toLowerCase())
-    //   )
-    //   return filtered
-    // }
-
-    // setFilteredAlbums(filterAlbums())
-
     const filterAlbums = () => {
       const filteredByGenre = albumsData.filter((album) =>
         album.genre.toLowerCase().includes(searchQuery.toLowerCase())
@@ -86,12 +73,6 @@ function SearchResults() {
       const filteredByArtist = albumsData.filter((album) =>
         album.artist.toLowerCase().includes(searchQuery.toLowerCase())
       )
-
-      // if (filteredByGenre.length < 1) {
-      //   setFilteredAlbums(filteredByAlbumName)
-      // } else {
-      //   setFilteredAlbums(filteredByGenre)
-      // }
 
       const filtered = filteredByGenre.concat(
         filteredByAlbumName,
