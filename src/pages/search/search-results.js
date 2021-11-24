@@ -79,11 +79,29 @@ function SearchResults() {
         album.albumName.toLowerCase().includes(searchQuery.toLowerCase())
       )
 
-      if (filteredByGenre.length < 1) {
-        setFilteredAlbums(filteredByAlbumName)
-      } else {
-        setFilteredAlbums(filteredByGenre)
-      }
+      const filteredByYear = albumsData.filter((album) =>
+        album.year.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+
+      const filteredByArtist = albumsData.filter((album) =>
+        album.artist.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+
+      // if (filteredByGenre.length < 1) {
+      //   setFilteredAlbums(filteredByAlbumName)
+      // } else {
+      //   setFilteredAlbums(filteredByGenre)
+      // }
+
+      const filtered = filteredByGenre.concat(
+        filteredByAlbumName,
+        filteredByArtist,
+        filteredByYear
+      )
+
+      // create new array which contains only unique values. All duplicate albums will not appear in the array
+      const uniqueAlbums = [...new Set(filtered)]
+      setFilteredAlbums(uniqueAlbums)
     }
 
     filterAlbums()
