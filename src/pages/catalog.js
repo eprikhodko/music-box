@@ -14,12 +14,46 @@ import {
   PageBody,
 } from "../components/shared/Containers"
 
+import { ReactComponent as ArrowIcon } from "../icons/search-arrow-icon.svg"
+
 const ButtonsContainer = styled.div`
   margin-top: 3em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
-  border: 1px solid;
+  /* border: 1px solid; */
+`
+
+const ContainerArrowIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  svg {
+    height: 1.65em;
+    width: 1.65em;
+  }
+  svg circle {
+    fill: transparent;
+    stroke-width: 1px;
+  }
+  &:hover {
+    svg circle {
+      fill: #000;
+    }
+    svg path {
+      fill: #fff;
+    }
+  }
+`
+
+const ContainerArrowIconBig = styled(ContainerArrowIcon)`
+  margin-left: auto;
+  svg {
+    height: 3.5em;
+    width: 3.5em;
+    transform: rotate(270deg);
+  }
 `
 
 function Catalog({ albumsData }) {
@@ -57,10 +91,14 @@ function Catalog({ albumsData }) {
                   Show more
                 </Button>
               )}
-              {albumsSlice.end > 12 && (
-                <Button $marginLeft="auto" onClick={handleShowMore}>
-                  Back to top
-                </Button>
+              {albumsSlice.end > 24 && (
+                <ContainerArrowIconBig
+                  style={{
+                    gridColumnStart: "3",
+                  }}
+                >
+                  <ArrowIcon onClick={() => window.scrollTo(0, 0)} />
+                </ContainerArrowIconBig>
               )}
             </ButtonsContainer>
           </Content>
