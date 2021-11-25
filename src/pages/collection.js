@@ -17,6 +17,7 @@ import * as ROUTES from "../constants/routes"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
+import UploadNewAlbum from "../components/shared/UploadNewAlbum"
 import { Button } from "../components/shared/Button"
 import {
   ContainerMain,
@@ -24,7 +25,6 @@ import {
   PageBody,
 } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
-import UploadNewAlbum from "../components/shared/UploadNewAlbum"
 
 const StyledParagraph = styled.p`
   font-size: 2.5rem;
