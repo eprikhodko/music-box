@@ -27,9 +27,6 @@ function Search() {
             placeholder="Search genre, album, year, artist"
             big
             marginBottom="7em"
-            // searchQuery={searchQuery}
-            // handleChange={handleChange}
-            // setSearchQuery={setSearchQuery}
           />
           <Switch>
             <Route exact path="/search">

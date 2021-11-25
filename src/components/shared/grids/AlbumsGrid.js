@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import PropTypes from "prop-types"
 
-import AlbumsDataContext from "../../../context/albumsData"
+// import AlbumsDataContext from "../../../context/albumsData"
 import {
   AlbumContainer,
   StyledLink,
@@ -13,10 +13,10 @@ import {
   FallbackBackgroundImage,
 } from "./GridElements"
 
-function AlbumsGrid({ albumsSlice }) {
+function AlbumsGrid({ albumsSlice, albumsData }) {
   const { start, end } = albumsSlice || {}
 
-  const { albumsData } = useContext(AlbumsDataContext)
+  // const { albumsData } = useContext(AlbumsDataContext)
 
   const [albumsComponents, setAlbumsComponents] = useState([])
 
@@ -59,6 +59,14 @@ AlbumsGrid.propTypes = {
     start: PropTypes.number,
     end: PropTypes.number,
   }),
+  albumsData: PropTypes.arrayOf(
+    PropTypes.shape({
+      albumCover: PropTypes.string.isRequired,
+      albumId: PropTypes.string.isRequired,
+      albumName: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 }
 
 AlbumsGrid.defaultProps = {

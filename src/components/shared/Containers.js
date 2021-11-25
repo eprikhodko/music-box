@@ -12,7 +12,7 @@ export const ContainerMain = styled.div`
 
 export const Content = styled.div`
   max-width: 72.5em;
-  display: flex;
+  display: ${({ display }) => display || "flex"};
   justify-content: ${({ justifyContent }) => justifyContent};
   margin: 0 auto;
   margin-top: ${({ $marginTop }) => $marginTop};

@@ -79,7 +79,9 @@ function App() {
                 setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
               />
             </Route>
-            <Route path={ROUTES.CATALOG} component={Catalog} />
+            <Route path={ROUTES.CATALOG}>
+              <Catalog albumsData={albumsData} />
+            </Route>
             <Route path={ROUTES.SEARCH} component={Search} />
 
             <Route path={ROUTES.LOGIN} component={Login} />
