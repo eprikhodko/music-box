@@ -13,7 +13,7 @@ import {
   FallbackBackgroundImage,
 } from "./GridElements"
 
-function AlbumsGrid({ albumsSlice, albumsData }) {
+function AlbumsGrid({ albumsSlice, albumsData, children }) {
   const { start, end } = albumsSlice || {}
 
   // const { albumsData } = useContext(AlbumsDataContext)
@@ -49,7 +49,12 @@ function AlbumsGrid({ albumsSlice, albumsData }) {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
 
-  return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
+  return (
+    <StyledAlbumsGrid>
+      {albumsComponents}
+      {children}
+    </StyledAlbumsGrid>
+  )
 }
 
 export default AlbumsGrid
@@ -67,6 +72,7 @@ AlbumsGrid.propTypes = {
       artist: PropTypes.string.isRequired,
     })
   ).isRequired,
+  children: PropTypes.node,
 }
 
 AlbumsGrid.defaultProps = {
@@ -74,4 +80,5 @@ AlbumsGrid.defaultProps = {
     start: 0,
     end: 0,
   },
+  children: null,
 }

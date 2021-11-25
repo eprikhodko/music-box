@@ -1,7 +1,6 @@
-import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import Footer from "../components/Footer"
 import Header from "../components/Header/index"
@@ -15,6 +14,7 @@ import {
 } from "../components/shared/Containers"
 
 import { ReactComponent as ArrowIcon } from "../icons/search-arrow-icon.svg"
+import AlbumsDataContext from "../context/albumsData"
 
 const ButtonsContainer = styled.div`
   margin-top: 3em;
@@ -56,7 +56,7 @@ const ContainerArrowIconBig = styled(ContainerArrowIcon)`
   }
 `
 
-function Catalog({ albumsData }) {
+function Catalog() {
   const [albumsSlice, setAlbumsSlice] = useState({
     start: 0,
     end: 12,
@@ -66,8 +66,10 @@ function Catalog({ albumsData }) {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
 
-  console.log(albumsData.length)
-  console.log(albumsSlice)
+  const { albumsData } = useContext(AlbumsDataContext)
+
+  // console.log(albumsData.length)
+  // console.log(albumsSlice)
 
   return (
     <>
@@ -110,14 +112,3 @@ function Catalog({ albumsData }) {
 }
 
 export default Catalog
-
-Catalog.propTypes = {
-  albumsData: PropTypes.arrayOf(
-    PropTypes.shape({
-      albumCover: PropTypes.string.isRequired,
-      albumId: PropTypes.string.isRequired,
-      albumName: PropTypes.string.isRequired,
-      artist: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-}

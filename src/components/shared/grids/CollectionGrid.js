@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
-import styled from "styled-components"
 
 import PropTypes from "prop-types"
-import * as ROUTES from "../../../constants/routes"
 
 import {
   AlbumContainer,
@@ -11,23 +9,9 @@ import {
   AlbumTitle,
   AlbumArtist,
   StyledAlbumsGrid,
-  UploadNewAlbumBox,
 } from "./GridElements"
 
-import { ReactComponent as Cloud } from "../../../icons/cloud_upload_24px.svg"
-
-const IconCloud = styled(Cloud)`
-  width: 4.5em;
-  height: 3em;
-
-  margin-bottom: 1em;
-`
-
-const StyledParagraph = styled.p`
-  color: rgba(0, 0, 0, 0.5);
-  line-height: 1;
-  margin: 0;
-`
+import UploadNewAlbum from "../UploadNewAlbum"
 
 function CollectionGrid({ albumsSlice, albumsData }) {
   const { start, end } = albumsSlice || {}
@@ -48,19 +32,7 @@ function CollectionGrid({ albumsSlice, albumsData }) {
       </StyledLink>
     ))
 
-    const UploadNewAlbum = (
-      <StyledLink to={ROUTES.UPLOAD} key="upload-album-box">
-        <AlbumContainer>
-          <UploadNewAlbumBox>
-            <IconCloud />
-            <StyledParagraph>Upload</StyledParagraph>
-          </UploadNewAlbumBox>
-          <AlbumTitle>Upload new album</AlbumTitle>
-        </AlbumContainer>
-      </StyledLink>
-    )
-
-    albums.push(UploadNewAlbum)
+    // albums.push(UploadNewAlbum)
 
     return albums
   }
@@ -69,7 +41,12 @@ function CollectionGrid({ albumsSlice, albumsData }) {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
 
-  return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
+  return (
+    <StyledAlbumsGrid>
+      {albumsComponents}
+      <UploadNewAlbum />
+    </StyledAlbumsGrid>
+  )
 }
 
 CollectionGrid.propTypes = {

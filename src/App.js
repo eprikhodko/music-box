@@ -80,7 +80,7 @@ function App() {
               />
             </Route>
             <Route path={ROUTES.CATALOG}>
-              <Catalog albumsData={albumsData} />
+              <Catalog />
             </Route>
             <Route path={ROUTES.SEARCH} component={Search} />
 

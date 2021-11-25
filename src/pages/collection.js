@@ -16,7 +16,7 @@ import AlbumsDataContext from "../context/albumsData"
 import * as ROUTES from "../constants/routes"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
-import CollectionGrid from "../components/shared/grids/CollectionGrid"
+import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import { Button } from "../components/shared/Button"
 import {
   ContainerMain,
@@ -24,6 +24,7 @@ import {
   PageBody,
 } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
+import UploadNewAlbum from "../components/shared/UploadNewAlbum"
 
 const StyledParagraph = styled.p`
   font-size: 2.5rem;
@@ -108,13 +109,16 @@ function Collection() {
             <h2>Collection</h2>
             {albumsInUserCollection.length > 0 ? (
               <>
-                <CollectionGrid
+                {/* use component composition here, and pass <UploadNewAlbum /> as {children} to the <AlbumsGrid /> */}
+                <AlbumsGrid
                   albumsSlice={albumsSlice}
                   albumsData={albumsInUserCollection}
-                />
+                >
+                  <UploadNewAlbum />
+                </AlbumsGrid>
                 {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
                 {albumsInUserCollection.length > 11 && (
-                  <Button marginTop="2em" onClick={showMore}>
+                  <Button $marginTop="2em" onClick={showMore}>
                     Show more
                   </Button>
                 )}
