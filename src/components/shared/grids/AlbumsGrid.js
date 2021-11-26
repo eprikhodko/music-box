@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 
 import PropTypes from "prop-types"
 
-// import AlbumsDataContext from "../../../context/albumsData"
 import {
   AlbumContainer,
   StyledLink,
@@ -15,8 +14,6 @@ import {
 
 function AlbumsGrid({ albumsSlice, albumsData, children }) {
   const { start, end } = albumsSlice || {}
-
-  // const { albumsData } = useContext(AlbumsDataContext)
 
   const [albumsComponents, setAlbumsComponents] = useState([])
 
