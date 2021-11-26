@@ -17,7 +17,7 @@ import { ReactComponent as ArrowIcon } from "../icons/search-arrow-icon.svg"
 import AlbumsDataContext from "../context/albumsData"
 
 const ButtonsContainer = styled.div`
-  margin-top: 3em;
+  margin-top: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;

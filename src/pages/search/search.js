@@ -15,7 +15,7 @@ import SearchResults from "./search-results"
 import SearchContext from "../../context/search"
 
 function Search() {
-  // take searchQuery, setSearchQuery, handleChange values from context
+  // take searchQuery value from context
   const { searchQuery } = useContext(SearchContext)
 
   return (
