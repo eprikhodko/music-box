@@ -18,7 +18,8 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
   const [albumsComponents, setAlbumsComponents] = useState([])
 
   useEffect(() => {
-    setComponentsCount(document.querySelectorAll(".component-count").length)
+    if (setComponentsCount)
+      setComponentsCount(document.querySelectorAll(".component-count").length)
   }, [albumsComponents])
 
   const handleError = (e) => {
@@ -77,7 +78,7 @@ AlbumsGrid.propTypes = {
       artist: PropTypes.string.isRequired,
     })
   ).isRequired,
-  setComponentsCount: PropTypes.func.isRequired,
+  setComponentsCount: PropTypes.func,
   children: PropTypes.node,
 }
 
@@ -86,5 +87,6 @@ AlbumsGrid.defaultProps = {
     start: 0,
     end: 0,
   },
+  setComponentsCount: () => {},
   children: null,
 }

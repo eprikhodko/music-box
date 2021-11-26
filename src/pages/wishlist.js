@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import { useState, useContext, useEffect } from "react"
@@ -16,7 +17,6 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
-import { Button } from "../components/shared/Button"
 import {
   ContainerMain,
   Content,
@@ -28,6 +28,7 @@ import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 import AlbumsDataContext from "../context/albumsData"
 import ScrollToTop from "../components/utils/ScrollToTop"
+import ShowMoreAndBackToTopButtons from "../components/shared/ShowMoreAndBackToTopButtons"
 
 const StyledParagraph = styled.p`
   font-size: 2.5rem;
@@ -39,7 +40,7 @@ const StyledLink = styled(Link)`
   color: #000;
 `
 
-function Wishlist() {
+function Wishlist({ componentsCount, setComponentsCount }) {
   const currentUser = useContext(UserContext)
   const { albumsData } = useContext(AlbumsDataContext)
 
@@ -96,9 +97,6 @@ function Wishlist() {
     // fetch albums in user wishlist after albumsData loaded to the state
   }, [albumsData])
 
-  const showMore = () => {
-    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
-  }
   return (
     <>
       <ScrollToTop />
@@ -113,15 +111,17 @@ function Wishlist() {
                 <AlbumsGrid
                   albumsSlice={albumsSlice}
                   albumsData={albumsInUserWishlist}
+                  setComponentsCount={setComponentsCount}
                 >
                   <UploadNewAlbum />
                 </AlbumsGrid>
                 {/* Show 'Show more' button only if there is more then 11 albums in user wishlist */}
-                {albumsInUserWishlist.length > 11 && (
-                  <Button marginTop="2em" onClick={showMore}>
-                    Show more
-                  </Button>
-                )}
+                <ShowMoreAndBackToTopButtons
+                  albumsSlice={albumsSlice}
+                  setAlbumsSlice={setAlbumsSlice}
+                  albumsData={albumsInUserWishlist}
+                  componentsCount={componentsCount}
+                />
               </>
             ) : (
               <StyledParagraph>
@@ -140,3 +140,12 @@ function Wishlist() {
 }
 
 export default Wishlist
+
+Wishlist.propTypes = {
+  componentsCount: PropTypes.number,
+  setComponentsCount: PropTypes.func.isRequired,
+}
+
+Wishlist.defaultProps = {
+  componentsCount: "",
+}

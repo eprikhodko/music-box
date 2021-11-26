@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -18,13 +20,13 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
-import { Button } from "../components/shared/Button"
 import {
   ContainerMain,
   Content,
   PageBody,
 } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
+import ShowMoreAndBackToTopButtons from "../components/shared/ShowMoreAndBackToTopButtons"
 
 const StyledParagraph = styled.p`
   font-size: 2.5rem;
@@ -36,7 +38,7 @@ const StyledLink = styled(Link)`
   color: #000;
 `
 
-function MyUploads() {
+function MyUploads({ componentsCount, setComponentsCount }) {
   const currentUser = useContext(UserContext)
 
   const [albumsUploadedByCurrentUser, setAlbumsUploadedByCurrentUser] =
@@ -71,9 +73,6 @@ function MyUploads() {
     // fetch albums in user collection after albumsData loaded to the state
   }, [currentUser])
 
-  const showMore = () => {
-    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
-  }
   return (
     <>
       <ScrollToTop />
@@ -88,15 +87,18 @@ function MyUploads() {
                 <AlbumsGrid
                   albumsSlice={albumsSlice}
                   albumsData={albumsUploadedByCurrentUser}
+                  componentsCount={componentsCount}
+                  setComponentsCount={setComponentsCount}
                 >
                   <UploadNewAlbum />
                 </AlbumsGrid>
                 {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
-                {albumsUploadedByCurrentUser.length > 11 && (
-                  <Button marginTop="2em" onClick={showMore}>
-                    Show more
-                  </Button>
-                )}
+                <ShowMoreAndBackToTopButtons
+                  albumsSlice={albumsSlice}
+                  setAlbumsSlice={setAlbumsSlice}
+                  albumsData={albumsUploadedByCurrentUser}
+                  componentsCount={componentsCount}
+                />
               </>
             ) : (
               <StyledParagraph>
@@ -113,3 +115,12 @@ function MyUploads() {
 }
 
 export default MyUploads
+
+MyUploads.propTypes = {
+  componentsCount: PropTypes.number,
+  setComponentsCount: PropTypes.func.isRequired,
+}
+
+MyUploads.defaultProps = {
+  componentsCount: "",
+}

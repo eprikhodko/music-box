@@ -114,8 +114,18 @@ function App() {
                 setComponentsCount={setComponentsCount}
               />
             </Route>
-            <Route path={ROUTES.WISHLIST} component={Wishlist} />
-            <Route path={ROUTES.MY_UPLOADS} component={MyUploads} />
+            <Route path={ROUTES.WISHLIST}>
+              <Wishlist
+                componentsCount={componentsCount}
+                setComponentsCount={setComponentsCount}
+              />
+            </Route>
+            <Route path={ROUTES.MY_UPLOADS}>
+              <MyUploads
+                componentsCount={componentsCount}
+                setComponentsCount={setComponentsCount}
+              />
+            </Route>
             <Route path={ROUTES.NOT_FOUND} component={NotFound} />
           </Switch>
         </AlbumsDataContext.Provider>
