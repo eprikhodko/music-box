@@ -102,7 +102,6 @@ function SearchResults({ componentsCount, setComponentsCount }) {
             setAlbumsSlice={setAlbumsSlice}
             albumsData={filteredAlbums}
             componentsCount={componentsCount}
-            setComponentsCount={setComponentsCount}
           />
         </>
       ) : (

@@ -56,6 +56,9 @@ function ShowMoreAndBackToTopButtons({
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
 
+  //   console.log(componentsCount)
+  //   console.log(albumsData)
+
   return (
     <ButtonsContainer>
       {componentsCount < albumsData.length && (

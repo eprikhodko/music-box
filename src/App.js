@@ -82,7 +82,10 @@ function App() {
               />
             </Route>
             <Route path={ROUTES.CATALOG}>
-              <Catalog />
+              <Catalog
+                componentsCount={componentsCount}
+                setComponentsCount={setComponentsCount}
+              />
             </Route>
             <Route path={ROUTES.SEARCH}>
               <Search
@@ -105,7 +108,12 @@ function App() {
               />
             </Route>
             <Route path={ROUTES.PROFILE} component={Profile} />
-            <Route path={ROUTES.COLLECTION} component={Collection} />
+            <Route path={ROUTES.COLLECTION}>
+              <Collection
+                componentsCount={componentsCount}
+                setComponentsCount={setComponentsCount}
+              />
+            </Route>
             <Route path={ROUTES.WISHLIST} component={Wishlist} />
             <Route path={ROUTES.MY_UPLOADS} component={MyUploads} />
             <Route path={ROUTES.NOT_FOUND} component={NotFound} />
