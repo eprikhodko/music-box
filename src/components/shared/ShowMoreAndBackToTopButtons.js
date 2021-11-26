@@ -4,6 +4,8 @@ import { Button } from "./Button"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 
 const ButtonsContainer = styled.div`
+  /* set width to 100% to avoid shrinking because of alignItems="center" at parent <Content /> component */
+  width: 100%;
   margin-top: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -43,10 +45,21 @@ const ContainerArrowIconBig = styled(ContainerArrowIcon)`
   }
 `
 
-function ShowMoreAndBackToTopButtons({ showMore, albumsSlice, albumsData }) {
+function ShowMoreAndBackToTopButtons({
+  albumsSlice,
+  setAlbumsSlice,
+  albumsData,
+}) {
+  const showMore = () => {
+    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
+  }
+
+  console.log("albums slice:", albumsSlice.end)
+  console.log("albumsData.length:", albumsData.length)
+
   return (
     <ButtonsContainer>
-      {albumsSlice.end < albumsData.length && (
+      {albumsSlice.end <= albumsData.length && (
         <Button
           onClick={showMore}
           style={{
@@ -72,7 +85,7 @@ function ShowMoreAndBackToTopButtons({ showMore, albumsSlice, albumsData }) {
 export default ShowMoreAndBackToTopButtons
 
 ShowMoreAndBackToTopButtons.propTypes = {
-  showMore: PropTypes.func.isRequired,
+  setAlbumsSlice: PropTypes.func.isRequired,
   albumsSlice: PropTypes.shape({
     start: PropTypes.number,
     end: PropTypes.number,

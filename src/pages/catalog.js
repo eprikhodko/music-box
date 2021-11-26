@@ -19,10 +19,6 @@ function Catalog() {
     end: 12,
   })
 
-  const showMore = () => {
-    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
-  }
-
   const { albumsData } = useContext(AlbumsDataContext)
 
   // console.log(albumsData.length)
@@ -37,11 +33,10 @@ function Catalog() {
           <Content flexDirection="column" alignItems="center" $marginTop="5em">
             <h2>Catalog</h2>
             <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
-          </Content>
-          <Content display="block">
+            {/* because of alignItems="center" on <Content /> parent component, go to <ShowMoreAndBackToTopButtons /> and set width: 100% to prevent <ShowMoreAndBackToTopButtons /> component shrinking */}
             <ShowMoreAndBackToTopButtons
-              showMore={showMore}
               albumsSlice={albumsSlice}
+              setAlbumsSlice={setAlbumsSlice}
               albumsData={albumsData}
             />
           </Content>

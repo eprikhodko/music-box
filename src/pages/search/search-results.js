@@ -6,7 +6,8 @@ import { useParams, Link } from "react-router-dom"
 import AlbumsDataContext from "../../context/albumsData"
 
 import AlbumsGrid from "../../components/shared/grids/AlbumsGrid"
-import { Button } from "../../components/shared/Button"
+// import { Content } from "../../components/shared/Containers"
+import ShowMoreAndBackToTopButtons from "../../components/shared/ShowMoreAndBackToTopButtons"
 import { ReactComponent as IconNeutralFace } from "../../icons/sentiment_neutral_24px.svg"
 
 import * as ROUTES from "../../constants/routes"
@@ -48,10 +49,6 @@ function SearchResults() {
   })
 
   const [filteredAlbums, setFilteredAlbums] = useState([])
-
-  const showMore = () => {
-    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
-  }
 
   // console.log(albumsData)
   console.log(searchQuery)
@@ -98,11 +95,11 @@ function SearchResults() {
         <>
           <AlbumsGrid albumsSlice={albumsSlice} albumsData={filteredAlbums} />
           {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
-          {filteredAlbums.length > 11 && (
-            <Button $marginTop="2em" onClick={showMore}>
-              Show more
-            </Button>
-          )}
+          <ShowMoreAndBackToTopButtons
+            albumsSlice={albumsSlice}
+            setAlbumsSlice={setAlbumsSlice}
+            albumsData={albumsData}
+          />
         </>
       ) : (
         <>
