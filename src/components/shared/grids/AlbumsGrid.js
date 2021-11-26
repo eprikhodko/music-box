@@ -12,10 +12,14 @@ import {
   FallbackBackgroundImage,
 } from "./GridElements"
 
-function AlbumsGrid({ albumsSlice, albumsData, children }) {
+function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
   const { start, end } = albumsSlice || {}
 
   const [albumsComponents, setAlbumsComponents] = useState([])
+
+  useEffect(() => {
+    setComponentsCount(document.querySelectorAll(".component-count").length)
+  }, [albumsComponents])
 
   const handleError = (e) => {
     e.target.style.display = "none"
@@ -23,7 +27,11 @@ function AlbumsGrid({ albumsSlice, albumsData, children }) {
 
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
-      <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
+      <StyledLink
+        to={`/albums/${album.albumId}`}
+        key={album.albumId}
+        className="component-count"
+      >
         <AlbumContainer>
           <FallbackBackgroundImage>
             <AlbumCover
@@ -69,6 +77,7 @@ AlbumsGrid.propTypes = {
       artist: PropTypes.string.isRequired,
     })
   ).isRequired,
+  setComponentsCount: PropTypes.func.isRequired,
   children: PropTypes.node,
 }
 

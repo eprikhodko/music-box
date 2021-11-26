@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import { useContext, useState, useEffect } from "react"
@@ -35,7 +36,7 @@ const PokerFace = styled.div`
   }
 `
 
-function SearchResults() {
+function SearchResults({ componentsCount, setComponentsCount }) {
   // { searchQuery } should match with <Route path="/search/:searchQuery">
   const { searchQuery } = useParams()
   const { searchQuer } = useParams()
@@ -50,7 +51,6 @@ function SearchResults() {
 
   const [filteredAlbums, setFilteredAlbums] = useState([])
 
-  // console.log(albumsData)
   console.log(searchQuery)
 
   useEffect(() => {
@@ -85,20 +85,24 @@ function SearchResults() {
     filterAlbums()
   }, [albumsData, searchQuery])
 
-  console.log(filteredAlbums)
-
   return (
     <>
       <ScrollToTop />
       <h2>search results for &quot;{searchQuery}&quot;</h2>
       {filteredAlbums.length > 0 ? (
         <>
-          <AlbumsGrid albumsSlice={albumsSlice} albumsData={filteredAlbums} />
+          <AlbumsGrid
+            albumsSlice={albumsSlice}
+            albumsData={filteredAlbums}
+            setComponentsCount={setComponentsCount}
+          />
           {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
           <ShowMoreAndBackToTopButtons
             albumsSlice={albumsSlice}
             setAlbumsSlice={setAlbumsSlice}
-            albumsData={albumsData}
+            albumsData={filteredAlbums}
+            componentsCount={componentsCount}
+            setComponentsCount={setComponentsCount}
           />
         </>
       ) : (
@@ -117,3 +121,12 @@ function SearchResults() {
 }
 
 export default SearchResults
+
+SearchResults.propTypes = {
+  componentsCount: PropTypes.number,
+  setComponentsCount: PropTypes.func.isRequired,
+}
+
+SearchResults.defaultProps = {
+  componentsCount: "",
+}

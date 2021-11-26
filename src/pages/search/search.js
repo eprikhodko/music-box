@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { useContext } from "react"
 
 import { Switch, Route } from "react-router-dom"
@@ -14,7 +15,7 @@ import GenresGrid from "../../components/shared/grids/GenresGrid"
 import SearchResults from "./search-results"
 import SearchContext from "../../context/search"
 
-function Search() {
+function Search({ componentsCount, setComponentsCount }) {
   // take searchQuery value from context
   const { searchQuery } = useContext(SearchContext)
 
@@ -34,11 +35,19 @@ function Search() {
             </Route>
 
             <Route path="/search/genres/:searchQuery">
-              <SearchResults searchQuery={searchQuery} />
+              <SearchResults
+                searchQuery={searchQuery}
+                componentsCount={componentsCount}
+                setComponentsCount={setComponentsCount}
+              />
             </Route>
 
             <Route path="/search/:searchQuery">
-              <SearchResults searchQuery={searchQuery} />
+              <SearchResults
+                searchQuery={searchQuery}
+                componentsCount={componentsCount}
+                setComponentsCount={setComponentsCount}
+              />
             </Route>
           </Switch>
         </Content>
@@ -49,3 +58,12 @@ function Search() {
 }
 
 export default Search
+
+Search.propTypes = {
+  componentsCount: PropTypes.number,
+  setComponentsCount: PropTypes.func.isRequired,
+}
+
+Search.defaultProps = {
+  componentsCount: "",
+}

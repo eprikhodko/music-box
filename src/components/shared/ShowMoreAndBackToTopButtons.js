@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
+// import { useEffect, useState } from "react"
 import { Button } from "./Button"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 
@@ -49,17 +50,15 @@ function ShowMoreAndBackToTopButtons({
   albumsSlice,
   setAlbumsSlice,
   albumsData,
+  componentsCount,
 }) {
   const showMore = () => {
     setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
   }
 
-  console.log("albums slice:", albumsSlice.end)
-  console.log("albumsData.length:", albumsData.length)
-
   return (
     <ButtonsContainer>
-      {albumsSlice.end <= albumsData.length && (
+      {componentsCount < albumsData.length && (
         <Button
           onClick={showMore}
           style={{
@@ -98,4 +97,9 @@ ShowMoreAndBackToTopButtons.propTypes = {
       artist: PropTypes.string.isRequired,
     })
   ).isRequired,
+  componentsCount: PropTypes.number,
+}
+
+ShowMoreAndBackToTopButtons.defaultProps = {
+  componentsCount: "",
 }

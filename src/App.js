@@ -39,6 +39,8 @@ function App() {
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
 
+  const [componentsCount, setComponentsCount] = useState(null)
+
   const [isUploadSuccessful, setIsUploadSuccessful] = useState(false)
   const [isAlbumRemovedFromDatabase, setIsAlbumRemovedFromDatabase] =
     useState(false)
@@ -82,7 +84,12 @@ function App() {
             <Route path={ROUTES.CATALOG}>
               <Catalog />
             </Route>
-            <Route path={ROUTES.SEARCH} component={Search} />
+            <Route path={ROUTES.SEARCH}>
+              <Search
+                componentsCount={componentsCount}
+                setComponentsCount={setComponentsCount}
+              />
+            </Route>
 
             <Route path={ROUTES.LOGIN} component={Login} />
             <Route path={ROUTES.SIGNUP} component={SignUp} />
