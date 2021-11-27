@@ -14,7 +14,7 @@ import {
 } from "firebase/firestore"
 
 import Footer from "../components/Footer"
-import Header from "../components/Header"
+import Header from "../components/Header/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
 import {

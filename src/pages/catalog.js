@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import { useState, useContext } from "react"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import Footer from "../components/Footer"
-import Header from "../components/Header/index"
+import Header from "../components/Header/Header"
 import ScrollToTop from "../components/utils/ScrollToTop"
 
 import {

@@ -3,7 +3,7 @@ import { useContext } from "react"
 
 import { Switch, Route } from "react-router-dom"
 
-import Header from "../../components/Header/index"
+import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer"
 import SearchBox from "../../components/shared/SearchBox"
 import {
