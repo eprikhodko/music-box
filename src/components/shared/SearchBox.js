@@ -1,14 +1,12 @@
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-import { useContext } from "react"
+import { useState } from "react"
 
 import { useHistory } from "react-router-dom"
 
 import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
-
-import SearchContext from "../../context/search"
 
 const ContainerSearchBox = styled.div`
   display: flex;
@@ -107,9 +105,10 @@ const ButtonArrowBig = styled(ButtonArrow)`
 `
 
 function SearchBox({ placeholder, big, marginTop, marginBottom }) {
-  // take searchQuery, setSearchQuery, handleChange values from context
-  const { searchQuery, setSearchQuery, handleChange } =
-    useContext(SearchContext)
+  const [searchQuery, setSearchQuery] = useState("")
+  const handleChange = (event) => {
+    setSearchQuery(event.target.value)
+  }
 
   const history = useHistory()
 
@@ -134,35 +133,48 @@ function SearchBox({ placeholder, big, marginTop, marginBottom }) {
 
   return !big ? (
     // return regular sized search box, if it is rendered in header
-    <ContainerSearchBox marginTop={marginTop}>
-      <ContainerSearchIcon>
-        <SearchIcon onClick={handleSearchSubmit} />
-      </ContainerSearchIcon>
-      <TextInput
-        placeholder={placeholder}
-        value={searchQuery}
-        onChange={handleChange}
-        big={big}
-      />
-      <ButtonArrow isEmpty={searchQuery} onClick={handleSearchSubmit}>
-        <ArrowIcon />
-      </ButtonArrow>
-    </ContainerSearchBox>
+    <form onSubmit={handleSearchSubmit}>
+      <ContainerSearchBox marginTop={marginTop}>
+        <ContainerSearchIcon>
+          <SearchIcon onClick={handleSearchSubmit} />
+        </ContainerSearchIcon>
+        <TextInput
+          placeholder={placeholder}
+          value={searchQuery}
+          onChange={handleChange}
+          big={big}
+        />
+        <ButtonArrow
+          type="submit"
+          isEmpty={searchQuery}
+          onClick={handleSearchSubmit}
+        >
+          <ArrowIcon />
+        </ButtonArrow>
+      </ContainerSearchBox>
+    </form>
   ) : (
     // return big search box, if search box is rendered at search page body below the header, as a separate component
-    <ContainerSearchBoxBig marginBottom={marginBottom}>
-      <ContainerSearchIconBig>
-        <SearchIcon onClick={handleSearchSubmit} />
-      </ContainerSearchIconBig>
-      <TextInputBig
-        placeholder={placeholder}
-        value={searchQuery}
-        onChange={handleChange}
-      />
-      <ButtonArrowBig isEmpty={searchQuery} onClick={handleSearchSubmit}>
-        <ArrowIcon />
-      </ButtonArrowBig>
-    </ContainerSearchBoxBig>
+    <form onSubmit={handleSearchSubmit}>
+      <ContainerSearchBoxBig marginBottom={marginBottom}>
+        <ContainerSearchIconBig>
+          <SearchIcon onClick={handleSearchSubmit} />
+        </ContainerSearchIconBig>
+        <TextInputBig
+          // type="submit"
+          placeholder={placeholder}
+          value={searchQuery}
+          onChange={handleChange}
+        />
+        <ButtonArrowBig
+          type="submit"
+          isEmpty={searchQuery}
+          onClick={handleSearchSubmit}
+        >
+          <ArrowIcon />
+        </ButtonArrowBig>
+      </ContainerSearchBoxBig>
+    </form>
   )
 }
 

@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import { useContext } from "react"
 
 import { Switch, Route } from "react-router-dom"
 
@@ -13,12 +12,8 @@ import {
 } from "../../components/shared/Containers"
 import GenresGrid from "../../components/shared/grids/GenresGrid"
 import SearchResults from "./search-results"
-import SearchContext from "../../context/search"
 
 function Search({ componentsCount, setComponentsCount }) {
-  // take searchQuery value from context
-  const { searchQuery } = useContext(SearchContext)
-
   return (
     <ContainerMain>
       <Header noSearchBox />
@@ -36,7 +31,6 @@ function Search({ componentsCount, setComponentsCount }) {
 
             <Route path="/search/genres/:searchQuery">
               <SearchResults
-                searchQuery={searchQuery}
                 componentsCount={componentsCount}
                 setComponentsCount={setComponentsCount}
               />
@@ -44,7 +38,6 @@ function Search({ componentsCount, setComponentsCount }) {
 
             <Route path="/search/:searchQuery">
               <SearchResults
-                searchQuery={searchQuery}
                 componentsCount={componentsCount}
                 setComponentsCount={setComponentsCount}
               />

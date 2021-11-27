@@ -38,9 +38,8 @@ const PokerFace = styled.div`
 
 function SearchResults({ componentsCount, setComponentsCount }) {
   // { searchQuery } should match with <Route path="/search/:searchQuery">
+  // looks like react router takes value from ':searchQuery', from search page
   const { searchQuery } = useParams()
-  const { searchQuer } = useParams()
-  console.log(searchQuer)
 
   const { albumsData } = useContext(AlbumsDataContext)
 

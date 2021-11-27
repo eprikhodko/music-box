@@ -31,7 +31,6 @@ import MyUploads from "./pages/my-uploads"
 // import context
 import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
-import SearchContext from "./context/search"
 
 function App() {
   const currentUser = useAuth()
@@ -45,13 +44,7 @@ function App() {
   const [isAlbumRemovedFromDatabase, setIsAlbumRemovedFromDatabase] =
     useState(false)
 
-  const [searchQuery, setSearchQuery] = useState("")
-  const handleChange = (event) => {
-    setSearchQuery(event.target.value)
-  }
-
   const albumsValue = { albumsData, isAlbumsDataLoading }
-  const searchValue = { searchQuery, setSearchQuery, handleChange }
 
   useEffect(() => {
     const fetchAlbumsData = async () => {
@@ -73,63 +66,61 @@ function App() {
   return (
     // <Router>
     <UserContext.Provider value={currentUser}>
-      <SearchContext.Provider value={searchValue}>
-        <AlbumsDataContext.Provider value={albumsValue}>
-          <Switch>
-            <Route path={ROUTES.HOME} exact>
-              <Home
-                setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
-              />
-            </Route>
-            <Route path={ROUTES.CATALOG}>
-              <Catalog
-                componentsCount={componentsCount}
-                setComponentsCount={setComponentsCount}
-              />
-            </Route>
-            <Route path={ROUTES.SEARCH}>
-              <Search
-                componentsCount={componentsCount}
-                setComponentsCount={setComponentsCount}
-              />
-            </Route>
+      <AlbumsDataContext.Provider value={albumsValue}>
+        <Switch>
+          <Route path={ROUTES.HOME} exact>
+            <Home
+              setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+            />
+          </Route>
+          <Route path={ROUTES.CATALOG}>
+            <Catalog
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+          <Route path={ROUTES.SEARCH}>
+            <Search
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
 
-            <Route path={ROUTES.LOGIN} component={Login} />
-            <Route path={ROUTES.SIGNUP} component={SignUp} />
-            <Route path={ROUTES.UPLOAD}>
-              <Upload
-                isUploadSuccessful={isUploadSuccessful}
-                setIsUploadSuccessful={setIsUploadSuccessful}
-              />
-            </Route>
-            <Route path={ROUTES.ALBUM}>
-              <Album
-                setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
-              />
-            </Route>
-            <Route path={ROUTES.PROFILE} component={Profile} />
-            <Route path={ROUTES.COLLECTION}>
-              <Collection
-                componentsCount={componentsCount}
-                setComponentsCount={setComponentsCount}
-              />
-            </Route>
-            <Route path={ROUTES.WISHLIST}>
-              <Wishlist
-                componentsCount={componentsCount}
-                setComponentsCount={setComponentsCount}
-              />
-            </Route>
-            <Route path={ROUTES.MY_UPLOADS}>
-              <MyUploads
-                componentsCount={componentsCount}
-                setComponentsCount={setComponentsCount}
-              />
-            </Route>
-            <Route path={ROUTES.NOT_FOUND} component={NotFound} />
-          </Switch>
-        </AlbumsDataContext.Provider>
-      </SearchContext.Provider>
+          <Route path={ROUTES.LOGIN} component={Login} />
+          <Route path={ROUTES.SIGNUP} component={SignUp} />
+          <Route path={ROUTES.UPLOAD}>
+            <Upload
+              isUploadSuccessful={isUploadSuccessful}
+              setIsUploadSuccessful={setIsUploadSuccessful}
+            />
+          </Route>
+          <Route path={ROUTES.ALBUM}>
+            <Album
+              setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+            />
+          </Route>
+          <Route path={ROUTES.PROFILE} component={Profile} />
+          <Route path={ROUTES.COLLECTION}>
+            <Collection
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+          <Route path={ROUTES.WISHLIST}>
+            <Wishlist
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+          <Route path={ROUTES.MY_UPLOADS}>
+            <MyUploads
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+          <Route path={ROUTES.NOT_FOUND} component={NotFound} />
+        </Switch>
+      </AlbumsDataContext.Provider>
     </UserContext.Provider>
 
     // </Router>
