@@ -78,16 +78,14 @@ const ContainerSearchIconBig = styled(ContainerSearchIcon)`
   }
 `
 
-const ContainerArrowIcon = styled.div`
+const ButtonArrow = styled.button`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 0.5em;
-  cursor: ${({ isEmpty }) => isEmpty && "pointer"};
   cursor: pointer;
+  background: transparent;
+  border: 0;
   svg {
-    height: 1.65em;
-    width: 1.65em;
+    height: 2.15em;
+    width: 2.15em;
   }
   svg circle {
     fill: transparent;
@@ -100,22 +98,11 @@ const ContainerArrowIcon = styled.div`
   }
 `
 
-const ButtonArrow = styled.button`
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  &:hover {
-    svg circle {
-      fill: ${({ isEmpty }) => isEmpty && "#dbdbdb"};
-    }
-  }
-`
-
-const ContainerArrowIconBig = styled(ContainerArrowIcon)`
-  margin-right: 0.9em;
+const ButtonArrowBig = styled(ButtonArrow)`
+  margin-right: 0.7em;
   svg {
-    height: 3.5em;
-    width: 3.5em;
+    height: 4.2em;
+    width: 4.2em;
   }
 `
 
@@ -149,14 +136,7 @@ function SearchBox({ placeholder, big, marginTop, marginBottom }) {
     // return regular sized search box, if it is rendered in header
     <ContainerSearchBox marginTop={marginTop}>
       <ContainerSearchIcon>
-        <SearchIcon
-          onClick={handleSearchSubmit}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              handleSearchSubmit()
-            }
-          }}
-        />
+        <SearchIcon onClick={handleSearchSubmit} />
       </ContainerSearchIcon>
       <TextInput
         placeholder={placeholder}
@@ -179,9 +159,9 @@ function SearchBox({ placeholder, big, marginTop, marginBottom }) {
         value={searchQuery}
         onChange={handleChange}
       />
-      <ContainerArrowIconBig isEmpty={searchQuery}>
-        <ArrowIcon onClick={handleSearchSubmit} />
-      </ContainerArrowIconBig>
+      <ButtonArrowBig isEmpty={searchQuery} onClick={handleSearchSubmit}>
+        <ArrowIcon />
+      </ButtonArrowBig>
     </ContainerSearchBoxBig>
   )
 }
