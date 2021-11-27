@@ -100,6 +100,17 @@ const ContainerArrowIcon = styled.div`
   }
 `
 
+const ButtonArrow = styled.button`
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  &:hover {
+    svg circle {
+      fill: ${({ isEmpty }) => isEmpty && "#dbdbdb"};
+    }
+  }
+`
+
 const ContainerArrowIconBig = styled(ContainerArrowIcon)`
   margin-right: 0.9em;
   svg {
@@ -153,9 +164,9 @@ function SearchBox({ placeholder, big, marginTop, marginBottom }) {
         onChange={handleChange}
         big={big}
       />
-      <ContainerArrowIcon isEmpty={searchQuery}>
-        <ArrowIcon onClick={handleSearchSubmit} />
-      </ContainerArrowIcon>
+      <ButtonArrow isEmpty={searchQuery} onClick={handleSearchSubmit}>
+        <ArrowIcon />
+      </ButtonArrow>
     </ContainerSearchBox>
   ) : (
     // return big search box, if search box is rendered at search page body below the header, as a separate component
