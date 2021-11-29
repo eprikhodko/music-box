@@ -106,6 +106,7 @@ const ButtonArrowBig = styled(ButtonArrow)`
 
 function SearchBox({ placeholder, big, marginTop, marginBottom }) {
   const [searchQuery, setSearchQuery] = useState("")
+
   const handleChange = (event) => {
     setSearchQuery(event.target.value)
   }

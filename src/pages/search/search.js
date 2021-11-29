@@ -20,9 +20,9 @@ function Search({ componentsCount, setComponentsCount }) {
       <PageBody>
         <Content flexDirection="column" alignItems="center" $marginTop="10em">
           <SearchBox
-            placeholder="Search genre, album, year, artist"
+            placeholder="Search genre, album, artist"
             big
-            marginBottom="7em"
+            marginBottom="4em"
           />
           <Switch>
             <Route exact path="/search">
