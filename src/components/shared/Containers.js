@@ -11,7 +11,7 @@ export const ContainerMain = styled.div`
 `
 
 export const Content = styled.div`
-  width: 90%;
+  width: 95%; /* <-- set padding to the edges of the content so it won't stick to the device screen edges */
   max-width: 72.5em;
   display: ${({ display }) => display || "flex"};
   justify-content: ${({ justifyContent }) => justifyContent};
