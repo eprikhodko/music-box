@@ -7,7 +7,6 @@ import { useParams, Link } from "react-router-dom"
 import AlbumsDataContext from "../../context/albumsData"
 
 import AlbumsGrid from "../../components/shared/grids/AlbumsGrid"
-// import { Content } from "../../components/shared/Containers"
 import ShowMoreAndBackToTopButtons from "../../components/shared/ShowMoreAndBackToTopButtons"
 import { ReactComponent as IconNeutralFace } from "../../icons/sentiment_neutral_24px.svg"
 
@@ -39,17 +38,19 @@ const PokerFace = styled.div`
 
 const FilterAlbumsButtons = styled.div`
   display: flex;
+  align-items: center;
   margin: 2em 0;
 `
 
 const FilterAlbumsTitle = styled.h3`
-  margin-top: 1em;
+  margin-right: 1em;
 `
 
 function SearchResults({ componentsCount, setComponentsCount }) {
   // { searchQuery } should match with <Route path="/search/:searchQuery">
   // looks like react router takes value from ':searchQuery', from search page
   const { searchQuery } = useParams()
+  console.log(searchQuery)
 
   const { albumsData } = useContext(AlbumsDataContext)
 
@@ -63,12 +64,6 @@ function SearchResults({ componentsCount, setComponentsCount }) {
   const [filteredByAlbumName, setFilteredByAlbumName] = useState([])
   const [filteredByArtist, setFilteredByArtist] = useState([])
   const [allAlbums, setAllAlbums] = useState([])
-  const [
-    isAtLeastTwoCategoriesArePresent,
-    setIsAtLeastTwoCategoriesArePresent,
-  ] = useState(false)
-
-  console.log(searchQuery)
 
   useEffect(() => {
     const filterAlbums = () => {
@@ -106,30 +101,6 @@ function SearchResults({ componentsCount, setComponentsCount }) {
     filterAlbums()
   }, [albumsData, searchQuery])
 
-  console.log(filteredByGenre)
-  console.log(filteredByAlbumName)
-  console.log(filteredByArtist)
-
-  useEffect(() => {
-    const checkIfAtLeastTwoCategoriesPresent = () => {
-      if (
-        (filteredByGenre.length > 0 && filteredByAlbumName.length > 0) ||
-        (filteredByAlbumName.length > 0 && filteredByArtist.length > 0) ||
-        (filteredByGenre.length > 0 && filteredByArtist.length > 0)
-      ) {
-        console.log("show buttons")
-        return setIsAtLeastTwoCategoriesArePresent(true)
-      } else {
-        console.log("don't show buttons")
-        return setIsAtLeastTwoCategoriesArePresent(false)
-      }
-    }
-
-    checkIfAtLeastTwoCategoriesPresent()
-  }, [filteredAlbums, searchQuery])
-
-  console.log(isAtLeastTwoCategoriesArePresent)
-
   const filterByGenre = () => {
     const filtered = albumsData.filter((album) =>
       album.genre.toLowerCase().includes(searchQuery.toLowerCase())
@@ -158,39 +129,36 @@ function SearchResults({ componentsCount, setComponentsCount }) {
       <ScrollToTop />
       <h2>search results for &quot;{searchQuery}&quot;</h2>
 
-      {/* show filter buttons if at least two categories of 'genre', 'artist' or 'album name' are present */}
-      {isAtLeastTwoCategoriesArePresent && (
-        <>
-          <FilterAlbumsTitle>filter albums by:</FilterAlbumsTitle>
-          <FilterAlbumsButtons>
-            {filteredByGenre.length > 0 && (
-              <Button type="button" $marginRight="2em" onClick={filterByGenre}>
-                genre
-              </Button>
-            )}
-
-            {filteredByAlbumName.length > 0 && (
-              <Button
-                type="button"
-                $marginRight="2em"
-                onClick={filterByAlbumName}
-              >
-                album name
-              </Button>
-            )}
-
-            {filteredByArtist.length > 0 && (
-              <Button type="button" $marginRight="2em" onClick={filterByArtist}>
-                artist
-              </Button>
-            )}
-
-            <Button type="button" onClick={showAllAlbums}>
-              all albums
+      <>
+        <FilterAlbumsButtons>
+          <FilterAlbumsTitle>filter albums:</FilterAlbumsTitle>
+          {filteredByGenre.length > 0 && (
+            <Button type="button" $marginRight="2em" onClick={filterByGenre}>
+              genre
             </Button>
-          </FilterAlbumsButtons>
-        </>
-      )}
+          )}
+
+          {filteredByAlbumName.length > 0 && (
+            <Button
+              type="button"
+              $marginRight="2em"
+              onClick={filterByAlbumName}
+            >
+              album name
+            </Button>
+          )}
+
+          {filteredByArtist.length > 0 && (
+            <Button type="button" $marginRight="2em" onClick={filterByArtist}>
+              artist
+            </Button>
+          )}
+
+          <Button type="button" onClick={showAllAlbums}>
+            all albums
+          </Button>
+        </FilterAlbumsButtons>
+      </>
 
       {filteredAlbums.length > 0 ? (
         <>
