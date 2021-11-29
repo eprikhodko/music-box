@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import PropTypes from "prop-types"
 
-import AlbumsDataContext from "../../../context/albumsData"
 import {
   AlbumContainer,
   StyledLink,
@@ -13,12 +12,15 @@ import {
   FallbackBackgroundImage,
 } from "./GridElements"
 
-function AlbumsGrid({ albumsSlice }) {
+function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
   const { start, end } = albumsSlice || {}
 
-  const { albumsData } = useContext(AlbumsDataContext)
-
   const [albumsComponents, setAlbumsComponents] = useState([])
+
+  useEffect(() => {
+    if (setComponentsCount)
+      setComponentsCount(document.querySelectorAll(".component-count").length)
+  }, [albumsComponents])
 
   const handleError = (e) => {
     e.target.style.display = "none"
@@ -26,7 +28,11 @@ function AlbumsGrid({ albumsSlice }) {
 
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
-      <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
+      <StyledLink
+        to={`/albums/${album.albumId}`}
+        key={album.albumId}
+        className="component-count"
+      >
         <AlbumContainer>
           <FallbackBackgroundImage>
             <AlbumCover
@@ -49,7 +55,12 @@ function AlbumsGrid({ albumsSlice }) {
     setAlbumsComponents(createAlbumsComponents(start, end))
   }, [albumsData, albumsSlice])
 
-  return <StyledAlbumsGrid>{albumsComponents}</StyledAlbumsGrid>
+  return (
+    <StyledAlbumsGrid>
+      {albumsComponents}
+      {children}
+    </StyledAlbumsGrid>
+  )
 }
 
 export default AlbumsGrid
@@ -59,6 +70,16 @@ AlbumsGrid.propTypes = {
     start: PropTypes.number,
     end: PropTypes.number,
   }),
+  albumsData: PropTypes.arrayOf(
+    PropTypes.shape({
+      albumCover: PropTypes.string.isRequired,
+      albumId: PropTypes.string.isRequired,
+      albumName: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  setComponentsCount: PropTypes.func,
+  children: PropTypes.node,
 }
 
 AlbumsGrid.defaultProps = {
@@ -66,4 +87,6 @@ AlbumsGrid.defaultProps = {
     start: 0,
     end: 0,
   },
+  setComponentsCount: () => {},
+  children: null,
 }

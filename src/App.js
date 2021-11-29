@@ -17,7 +17,7 @@ import * as ROUTES from "./constants/routes"
 // import pages
 import Catalog from "./pages/catalog"
 import Home from "./pages/home"
-import Search from "./pages/search"
+import Search from "./pages/search/search"
 import Login from "./pages/login"
 import SignUp from "./pages/signup"
 import NotFound from "./pages/not-found"
@@ -26,11 +26,11 @@ import Album from "./pages/album"
 import Profile from "./pages/profile"
 import Collection from "./pages/collection"
 import Wishlist from "./pages/wishlist"
+import MyUploads from "./pages/my-uploads"
 
 // import context
 import AlbumsDataContext from "./context/albumsData"
 import UserContext from "./context/user"
-import MyUploads from "./pages/my-uploads"
 
 function App() {
   const currentUser = useAuth()
@@ -38,9 +38,12 @@ function App() {
   const [albumsData, setAlbumsData] = useState([])
   const [isAlbumsDataLoading, setIsAlbumsDataLoading] = useState(true)
 
+  const [componentsCount, setComponentsCount] = useState(null)
+
   const [isUploadSuccessful, setIsUploadSuccessful] = useState(false)
   const [isAlbumRemovedFromDatabase, setIsAlbumRemovedFromDatabase] =
     useState(false)
+
   const albumsValue = { albumsData, isAlbumsDataLoading }
 
   useEffect(() => {
@@ -70,8 +73,19 @@ function App() {
               setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
             />
           </Route>
-          <Route path={ROUTES.CATALOG} component={Catalog} />
-          <Route path={ROUTES.SEARCH} component={Search} />
+          <Route path={ROUTES.CATALOG}>
+            <Catalog
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+          <Route path={ROUTES.SEARCH}>
+            <Search
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+
           <Route path={ROUTES.LOGIN} component={Login} />
           <Route path={ROUTES.SIGNUP} component={SignUp} />
           <Route path={ROUTES.UPLOAD}>
@@ -86,9 +100,24 @@ function App() {
             />
           </Route>
           <Route path={ROUTES.PROFILE} component={Profile} />
-          <Route path={ROUTES.COLLECTION} component={Collection} />
-          <Route path={ROUTES.WISHLIST} component={Wishlist} />
-          <Route path={ROUTES.MY_UPLOADS} component={MyUploads} />
+          <Route path={ROUTES.COLLECTION}>
+            <Collection
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+          <Route path={ROUTES.WISHLIST}>
+            <Wishlist
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+          <Route path={ROUTES.MY_UPLOADS}>
+            <MyUploads
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
           <Route path={ROUTES.NOT_FOUND} component={NotFound} />
         </Switch>
       </AlbumsDataContext.Provider>

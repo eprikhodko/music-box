@@ -10,4 +10,5 @@ export const WISHLIST = "/wishlist/:username"
 export const MY_UPLOADS = "/my-uploads/:username"
 
 export const SEARCH = "/search"
+export const SEARCH_RESULTS = "/search/search-results/:searchQuery"
 export const NOT_FOUND = ""

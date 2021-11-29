@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import Footer from "../components/Footer"
-import Header from "../components/Header/index"
+import Header from "../components/Header/Header"
 import {
   ContainerMain,
   Content,

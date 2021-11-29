@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 
-import Header from "../components/Header/index"
+import Header from "../components/Header/Header"
 import Footer from "../components/Footer"
 import UploadForm from "../components/UploadForm"
 import ScrollToTop from "../components/utils/ScrollToTop"

@@ -278,7 +278,7 @@ function ProfileContent() {
           </HeroButton>
           <HeroButton
             as={Link}
-            to={`/my-uploads/${currentUser.uid}`}
+            to={`/my-uploads/${currentUser?.displayName}`}
             $marginTop="1em"
           >
             My Uploads

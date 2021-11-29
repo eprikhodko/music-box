@@ -1,8 +1,8 @@
-import { useState } from "react"
+import PropTypes from "prop-types"
+import { useState, useContext } from "react"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import Footer from "../components/Footer"
-import Header from "../components/Header/index"
-import { Button } from "../components/shared/Button"
+import Header from "../components/Header/Header"
 import ScrollToTop from "../components/utils/ScrollToTop"
 
 import {
@@ -11,15 +11,19 @@ import {
   PageBody,
 } from "../components/shared/Containers"
 
-function Catalog() {
+import AlbumsDataContext from "../context/albumsData"
+import ShowMoreAndBackToTopButtons from "../components/shared/ShowMoreAndBackToTopButtons"
+
+function Catalog({ componentsCount, setComponentsCount }) {
   const [albumsSlice, setAlbumsSlice] = useState({
     start: 0,
     end: 12,
   })
 
-  const handleShowMore = () => {
-    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
-  }
+  const { albumsData } = useContext(AlbumsDataContext)
+
+  // console.log(albumsData.length)
+  // console.log(albumsSlice)
 
   return (
     <>
@@ -29,10 +33,18 @@ function Catalog() {
         <PageBody>
           <Content flexDirection="column" alignItems="center" $marginTop="5em">
             <h2>Catalog</h2>
-            <AlbumsGrid albumsSlice={albumsSlice} />
-            <Button marginTop="2em" onClick={handleShowMore}>
-              Show more
-            </Button>
+            <AlbumsGrid
+              albumsSlice={albumsSlice}
+              albumsData={albumsData}
+              setComponentsCount={setComponentsCount}
+            />
+            {/* because of alignItems="center" on <Content /> parent component, go to <ShowMoreAndBackToTopButtons /> and set width: 100% to prevent <ShowMoreAndBackToTopButtons /> component shrinking */}
+            <ShowMoreAndBackToTopButtons
+              albumsSlice={albumsSlice}
+              setAlbumsSlice={setAlbumsSlice}
+              albumsData={albumsData}
+              componentsCount={componentsCount}
+            />
           </Content>
         </PageBody>
         <Footer />
@@ -42,3 +54,12 @@ function Catalog() {
 }
 
 export default Catalog
+
+Catalog.propTypes = {
+  componentsCount: PropTypes.number,
+  setComponentsCount: PropTypes.func.isRequired,
+}
+
+Catalog.defaultProps = {
+  componentsCount: "",
+}

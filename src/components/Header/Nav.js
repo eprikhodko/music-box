@@ -11,6 +11,7 @@ import UserContext from "../../context/user"
 
 const StyledNav = styled.nav`
   display: flex;
+  align-items: center;
 `
 
 const Ul = styled.ul`

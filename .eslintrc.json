@@ -53,6 +53,7 @@
         // "labelAttributes": ["label"],
         "controlComponents": ["FormInput"],
         "depth": 3
-      }]
+      }],
+      "no-else-return": ["off", { "allowElseIf": true }]
     }
 }
