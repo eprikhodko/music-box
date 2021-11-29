@@ -19,6 +19,7 @@ const HeroContent = styled.div`
   background-repeat: no-repeat;
   background-position: top right;
   background-size: contain;
+
   /* border: 5px solid yellow; */
 `
 

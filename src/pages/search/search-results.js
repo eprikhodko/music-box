@@ -124,41 +124,46 @@ function SearchResults({ componentsCount, setComponentsCount }) {
 
   const showAllAlbums = () => setFilteredAlbums(allAlbums)
 
+  console.log(filteredAlbums)
+
   return (
     <>
       <ScrollToTop />
       <h2>search results for &quot;{searchQuery}&quot;</h2>
 
-      <>
-        <FilterAlbumsButtons>
-          <FilterAlbumsTitle>filter albums:</FilterAlbumsTitle>
-          {filteredByGenre.length > 0 && (
-            <Button type="button" $marginRight="2em" onClick={filterByGenre}>
-              genre
-            </Button>
-          )}
+      {/* show filter buttons only if filteredAlbums is not empty. If nothing found on search, don't show filter buttons */}
+      {filteredAlbums.length > 0 && (
+        <>
+          <FilterAlbumsButtons>
+            <FilterAlbumsTitle>filter albums:</FilterAlbumsTitle>
+            {filteredByGenre.length > 0 && (
+              <Button type="button" $marginRight="2em" onClick={filterByGenre}>
+                genre
+              </Button>
+            )}
 
-          {filteredByAlbumName.length > 0 && (
-            <Button
-              type="button"
-              $marginRight="2em"
-              onClick={filterByAlbumName}
-            >
-              album name
-            </Button>
-          )}
+            {filteredByAlbumName.length > 0 && (
+              <Button
+                type="button"
+                $marginRight="2em"
+                onClick={filterByAlbumName}
+              >
+                album name
+              </Button>
+            )}
 
-          {filteredByArtist.length > 0 && (
-            <Button type="button" $marginRight="2em" onClick={filterByArtist}>
-              artist
-            </Button>
-          )}
+            {filteredByArtist.length > 0 && (
+              <Button type="button" $marginRight="2em" onClick={filterByArtist}>
+                artist
+              </Button>
+            )}
 
-          <Button type="button" onClick={showAllAlbums}>
-            all albums
-          </Button>
-        </FilterAlbumsButtons>
-      </>
+            <Button type="button" onClick={showAllAlbums}>
+              all albums
+            </Button>
+          </FilterAlbumsButtons>
+        </>
+      )}
 
       {filteredAlbums.length > 0 ? (
         <>

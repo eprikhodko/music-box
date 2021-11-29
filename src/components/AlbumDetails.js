@@ -312,7 +312,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
               <>
                 <ButtonsParagraph>
                   If you want to add this album to your collection or wishlist,
-                  please make an account first:
+                  please log in or make an account first:
                 </ButtonsParagraph>
                 <AlbumButtons>
                   <HeroButton as={Link} to={ROUTES.SIGNUP} $marginRight="2em">
