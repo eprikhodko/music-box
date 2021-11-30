@@ -5,6 +5,7 @@ import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
+import useMatchMedia from "../../hooks/useMatchMedia"
 
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
@@ -17,16 +18,20 @@ const ContainerFlex = styled.div`
 `
 
 function Header({ noSearchBox }) {
+  const isDesktopResolution = useMatchMedia("(min-width: 400px)", false)
+  console.log(isDesktopResolution)
+
+  const showSearchBox = !noSearchBox
+
   return (
     <StyledHeader>
       <Content justifyContent="space-between">
         <ContainerFlex>
           <Logo />
-          {/* hide search box if Header receieved 'noSearchBox' prop */}
-          {!noSearchBox && <SearchBox />}
+          {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
+          {isDesktopResolution && showSearchBox && <SearchBox />}
         </ContainerFlex>
-
-        <Nav />
+        {isDesktopResolution ? <Nav /> : <div>hamburger</div>}
       </Content>
     </StyledHeader>
   )

@@ -14,10 +14,21 @@ import UserContext from "../context/user"
 const HeroTitle = styled.h1`
   font-size: 7rem;
   line-height: 1.15;
-  margin-bottom: 0.2em;
+  /* margin-bottom: 0.2em; */
 
   font-size: 4.8rem;
+  color: #333;
   text-align: center;
+
+  margin-top: 1em;
+`
+
+const HeroSubtitle = styled.h3`
+  font-size: 1.6rem;
+  color: rgba(51, 51, 51, 0.7);
+  text-align: center;
+
+  margin: 1em 0;
 `
 
 const HeroContent = styled.div`
@@ -78,18 +89,18 @@ function Hero() {
       <GridContainer>
         {/* <ContainerHeroText> */}
         <HeroTitle>Build your music library</HeroTitle>
-        <h3>Discover and explore music with us</h3>
+        <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
         {/* <ContainerHeroButtons> */}
         <HeroButton
           as={Link}
           to={ROUTES.CATALOG}
           // $marginRight="2em"
-          $marginTop="0.3em"
+          $marginTop="1.5em"
         >
           View catalog
         </HeroButton>
         {!currentUser && (
-          <HeroButton as={Link} to={ROUTES.LOGIN} $marginTop="0.3em">
+          <HeroButton as={Link} to={ROUTES.LOGIN} $marginTop="1em">
             Log in
           </HeroButton>
         )}
