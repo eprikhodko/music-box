@@ -24,6 +24,10 @@ const ContainerSearchBox = styled.div`
   &:focus-within {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
+
+  @media (max-width: 940px) {
+    display: none;
+  }
 `
 
 const ContainerSearchBoxBig = styled(ContainerSearchBox)`

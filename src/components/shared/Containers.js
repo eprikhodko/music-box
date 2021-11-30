@@ -7,7 +7,7 @@ export const ContainerMain = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 5px solid goldenrod;
+  /* border: 5px solid goldenrod; */
 `
 
 export const Content = styled.div`

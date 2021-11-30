@@ -9,12 +9,8 @@ function Home() {
     <ContainerMain>
       <Header />
       <PageBody>
-        <section>
-          <Hero />
-        </section>
-        <section>
-          <RecentlyAddedAlbums />
-        </section>
+        <Hero />
+        <RecentlyAddedAlbums />
       </PageBody>
       <Footer />
     </ContainerMain>

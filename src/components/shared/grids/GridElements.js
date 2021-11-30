@@ -3,15 +3,16 @@ import { Link } from "react-router-dom"
 import IconImagePlaceholder from "../../../icons/image-placeholder-fallback.svg"
 
 const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
-const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
+// const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
+const SharedDimensionsStyle = "max-width: 16.65em; "
 
 export const FallbackBackgroundImage = styled.div`
-  ${SharedDimensionsStyle}
-  background-image: url(${IconImagePlaceholder});
+  /* ${SharedDimensionsStyle} */
+  /* background-image: url(${IconImagePlaceholder});
   background-size: 20% auto;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #c2c2c2;
+  background-color: #c2c2c2; */
 
   &:hover {
     ${SharedBoxShadowStyle}
@@ -66,7 +67,7 @@ export const AlbumArtist = styled.p`
 
 export const StyledAlbumsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 2em;
   margin: 3em 0 2em;
 `
