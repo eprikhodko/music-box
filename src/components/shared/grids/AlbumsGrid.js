@@ -1,3 +1,5 @@
+// import styled from "styled-components"
+
 import { useEffect, useState } from "react"
 
 import PropTypes from "prop-types"
@@ -6,7 +8,7 @@ import {
   AlbumContainer,
   StyledLink,
   StyledAlbumsGrid,
-  FallbackBackgroundImage,
+  // FallbackBackgroundImage,
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
@@ -22,9 +24,9 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
       setComponentsCount(document.querySelectorAll(".component-count").length)
   }, [albumsComponents])
 
-  const handleError = (e) => {
-    e.target.style.display = "none"
-  }
+  // const handleError = (e) => {
+  //   e.target.style.display = "none"
+  // }
 
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
@@ -34,13 +36,7 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
         className="component-count"
       >
         <AlbumContainer>
-          <FallbackBackgroundImage>
-            <AlbumCover
-              src={album.albumCover}
-              alt={`album cover for ${album.albumName}`}
-              onError={handleError}
-            />
-          </FallbackBackgroundImage>
+          <AlbumCover albumCoverUrl={album.albumCover} />
 
           <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
