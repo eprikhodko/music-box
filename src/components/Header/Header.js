@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
+import { ReactComponent as Hamburger } from "../../icons/burger.svg"
 import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
 import useMatchMedia from "../../hooks/useMatchMedia"
@@ -25,13 +26,19 @@ function Header({ noSearchBox }) {
 
   return (
     <StyledHeader>
-      <Content justifyContent="space-between">
+      <Content justifyContent="space-between" alignItems="center">
         <ContainerFlex>
           <Logo />
           {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
           {isDesktopResolution && showSearchBox && <SearchBox />}
         </ContainerFlex>
-        {isDesktopResolution ? <Nav /> : <div>hamburger</div>}
+        {isDesktopResolution ? (
+          <Nav />
+        ) : (
+          <div>
+            <Hamburger />
+          </div>
+        )}
       </Content>
     </StyledHeader>
   )
