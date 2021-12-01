@@ -8,7 +8,7 @@ import {
   Content,
   PageBody,
 } from "../components/shared/Containers"
-import { Button } from "../components/shared/Button"
+import { Button } from "../components/shared/Buttons"
 
 const NotFoundTitle = styled.h1`
   font-size: 28rem;

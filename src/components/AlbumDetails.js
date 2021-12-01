@@ -16,7 +16,7 @@ import {
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
 import AlbumsDataContext from "../context/albumsData"
-import { HeroButton, ButtonAlbum } from "./shared/Button"
+import { HeroButton, ButtonAlbum } from "./shared/Buttons"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"

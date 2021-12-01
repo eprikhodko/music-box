@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 // import { useEffect, useState } from "react"
-import { Button } from "./Button"
+import { Button } from "./Buttons"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 
 const ButtonsContainer = styled.div`

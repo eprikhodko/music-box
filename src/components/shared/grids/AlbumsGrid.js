@@ -5,11 +5,11 @@ import PropTypes from "prop-types"
 import {
   AlbumContainer,
   StyledLink,
+  StyledAlbumsGrid,
+  FallbackBackgroundImage,
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
-  StyledAlbumsGrid,
-  FallbackBackgroundImage,
 } from "./GridElements"
 
 function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {

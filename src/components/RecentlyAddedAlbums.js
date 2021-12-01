@@ -1,11 +1,18 @@
+import styled from "styled-components"
+
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
 import { Content } from "./shared/Containers"
-import { HeroButton } from "./shared/Button"
+import { HeroButton } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
+
+const Subtitle = styled.h2`
+  font-size: 3rem;
+  text-align: center;
+`
 
 function RecentlyAddedAlbums() {
   const slice = {
@@ -16,13 +23,16 @@ function RecentlyAddedAlbums() {
   const { albumsData } = useContext(AlbumsDataContext)
 
   return (
-    <Content flexDirection="column" alignItems="center" $marginTop="4.5em">
-      <h2>Recently added albums</h2>
-      <AlbumsGrid albumsSlice={slice} albumsData={albumsData} />
-      <HeroButton as={Link} to={ROUTES.CATALOG}>
-        View all
-      </HeroButton>
-    </Content>
+    <>
+      {/* <Content flexDirection="column" alignItems="center" $marginTop="4.5em"> */}
+      <Content flexDirection="column" alignItems="center" $marginTop="4.5em">
+        <Subtitle>Recently added albums</Subtitle>
+        <AlbumsGrid albumsSlice={slice} albumsData={albumsData} />
+        <HeroButton as={Link} to={ROUTES.CATALOG}>
+          View all
+        </HeroButton>
+      </Content>
+    </>
   )
 }
 

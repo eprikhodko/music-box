@@ -10,7 +10,7 @@ import {
 import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore"
 
 import * as ROUTES from "../constants/routes"
-import { Button } from "./shared/Button"
+import { Button } from "./shared/Buttons"
 import {
   FloatInput,
   FloatLabel,

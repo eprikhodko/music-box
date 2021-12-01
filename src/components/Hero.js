@@ -8,7 +8,7 @@ import * as ROUTES from "../constants/routes"
 // import { HeroTitle } from "./shared/HeroTitle"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
-import { HeroButton } from "./shared/Button"
+import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
 const HeroTitle = styled.h1`
@@ -74,10 +74,11 @@ const GridContainer = styled.div`
   width: 95%; /* <-- set padding to the edges of the content so it won't stick to the device screen edges */
   max-width: 72.5em;
   margin: 0 auto;
-  border: 1px solid magenta;
+  border: 1px solid green;
 
   display: grid;
   grid-template-rows: auto auto auto auto;
+  justify-items: center;
 `
 
 function Hero() {

@@ -10,7 +10,7 @@ import {
 import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
-import { Button } from "./shared/Button"
+import { Button } from "./shared/Buttons"
 
 import {
   FloatInput,

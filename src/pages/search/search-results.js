@@ -12,7 +12,7 @@ import { ReactComponent as IconNeutralFace } from "../../icons/sentiment_neutral
 
 import * as ROUTES from "../../constants/routes"
 import ScrollToTop from "../../components/utils/ScrollToTop"
-import { Button } from "../../components/shared/Button"
+import { Button } from "../../components/shared/Buttons"
 
 const StyledParagraph = styled.p`
   font-size: 4.5rem;

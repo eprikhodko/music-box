@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { HeroButton } from "./shared/Button"
+import { HeroButton } from "./shared/Buttons"
 import { HeroTitle } from "./shared/HeroTitle"
 import UserAvatar from "./UserAvatar"
 
