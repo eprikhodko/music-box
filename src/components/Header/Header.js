@@ -1,6 +1,8 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
+import { useState } from "react"
+
 import { Link } from "react-router-dom"
 import * as ROUTES from "../../constants/routes"
 
@@ -21,6 +23,9 @@ const StyledHeader = styled.header`
 const ContainerFlex = styled.div`
   display: flex;
   align-items: center;
+
+  /* background-color: ${({ showHamburgerMenu }) =>
+    showHamburgerMenu && "green"}; */
 `
 
 const HamburgerMenu = styled.div`
@@ -30,9 +35,27 @@ const HamburgerMenu = styled.div`
   height: 100vh;
   position: fixed;
   top: 0;
-  right: 0;
+  /* right: 0; */
   /* right: -25%; */
-  /* right: -100%; */
+  right: -100%;
+  /* align-items: ${({ alignItems }) => alignItems}; */
+  /* ${({ $showHamburgerMenu }) => {
+    if ($showHamburgerMenu) {
+      return `
+      right: 0;
+
+      `
+    } else {
+      return `
+      right: -100%;
+
+      `
+    }
+  }} */
+
+  right: ${({ showHamburgerMenu }) => showHamburgerMenu && "0;"};
+  transition: 500ms;
+
   z-index: 1;
 
   display: flex;
@@ -92,18 +115,22 @@ const NavLink = styled(Link)`
 
 function Header({ noSearchBox }) {
   const isDesktopResolution = useMatchMedia("(min-width: 400px)", false)
-  console.log(isDesktopResolution)
+  // console.log(isDesktopResolution)
 
   const showSearchBox = !noSearchBox
 
+  const [showHamburgerMenu, setShowHamburgerMenu] = useState(false)
+
   const handleClick = () => {
-    console.log("clicked")
+    // console.log("clicked")
+    setShowHamburgerMenu((prevState) => !prevState)
+    console.log(showHamburgerMenu)
   }
 
   return (
     <StyledHeader>
       <Content justifyContent="space-between" alignItems="center">
-        <ContainerFlex>
+        <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
           <Logo />
           {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
           {isDesktopResolution && showSearchBox && <SearchBox />}
@@ -111,12 +138,12 @@ function Header({ noSearchBox }) {
         {isDesktopResolution ? (
           <Nav />
         ) : (
-          <div>
-            <Hamburger onClick={handleClick} />
-          </div>
+          <button type="button" onClick={handleClick}>
+            <Hamburger />
+          </button>
         )}
 
-        <HamburgerMenu>
+        <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
           <Container>
             <CloseBurger>
               <HamburgerClose onClick={handleClick} />
