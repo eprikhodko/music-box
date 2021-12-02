@@ -7,6 +7,8 @@ import * as ROUTES from "../../constants/routes"
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 import { ReactComponent as Hamburger } from "../../icons/burger.svg"
+import { ReactComponent as HamburgerClose } from "../../icons/burger-close.svg"
+
 import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
 import useMatchMedia from "../../hooks/useMatchMedia"
@@ -21,7 +23,7 @@ const ContainerFlex = styled.div`
   align-items: center;
 `
 
-const HamburgerMenu = styled.nav`
+const HamburgerMenu = styled.div`
   background-color: #333;
   width: 200px;
   width: 100vw;
@@ -32,13 +34,43 @@ const HamburgerMenu = styled.nav`
   /* right: -25%; */
   /* right: -100%; */
   z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+
+  /* border: 1px solid white; */
 `
+
+const Container = styled.div`
+  width: 90%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  /* border: 1px dashed white; */
+`
+
+const CloseBurger = styled.div`
+  /* margin: 1em 1em 0 auto; */
+  display: flex;
+  align-self: flex-end;
+  margin: 1em 0;
+`
+
+const HamburgerNavigation = styled.nav``
 
 const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
-  padding: 0 1em;
+
+  margin: 0;
+  margin-bottom: 5em;
+  padding: 0;
+
+  /* border: 1px solid wheat; */
 `
 
 const NavLink = styled(Link)`
@@ -83,28 +115,37 @@ function Header({ noSearchBox }) {
             <Hamburger onClick={handleClick} />
           </div>
         )}
+
         <HamburgerMenu>
-          <Ul aria-label="Header navigation" role="navigation">
-            <li>
-              <NavLink to={ROUTES.HOME}>Home</NavLink>
-            </li>
+          <Container>
+            <CloseBurger>
+              <HamburgerClose onClick={handleClick} />
+            </CloseBurger>
+            <HamburgerNavigation>
+              <Ul aria-label="Header navigation" role="navigation">
+                <li>
+                  <NavLink to={ROUTES.HOME}>Home</NavLink>
+                </li>
 
-            <li>
-              <NavLink to={ROUTES.CATALOG}>Catalog</NavLink>
-            </li>
+                <li>
+                  <NavLink to={ROUTES.CATALOG}>Catalog</NavLink>
+                </li>
 
-            <li>
-              <NavLink to={ROUTES.SEARCH}>Search</NavLink>
-            </li>
+                <li>
+                  <NavLink to={ROUTES.SEARCH}>Search</NavLink>
+                </li>
 
-            <li>
-              <NavLink to={ROUTES.LOGIN}>Log in</NavLink>
-            </li>
+                <li>
+                  <NavLink to={ROUTES.LOGIN}>Log in</NavLink>
+                </li>
 
-            <li>
-              <NavLink to={ROUTES.SIGNUP}>Sign up</NavLink>
-            </li>
-          </Ul>
+                <li>
+                  <NavLink to={ROUTES.SIGNUP}>Sign up</NavLink>
+                </li>
+              </Ul>
+            </HamburgerNavigation>
+            <Logo />
+          </Container>
         </HamburgerMenu>
       </Content>
     </StyledHeader>
