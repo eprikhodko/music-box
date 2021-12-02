@@ -10,7 +10,6 @@ export const AlbumCover = styled.div`
   background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
     url(${IconImagePlaceholder});
 
-  /* background-size: 20% auto; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -49,6 +48,11 @@ export const AlbumTitle = styled.p`
   font-size: 1.8rem;
   color: #000;
   font-weight: 500;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
   margin-bottom: 0;
   margin-top: 0.6em;
 `
@@ -57,6 +61,11 @@ export const AlbumArtist = styled.p`
   font-size: 1.6rem;
   color: #000;
   font-weight: 500;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
   margin: 0;
 `
 
@@ -64,7 +73,10 @@ export const StyledAlbumsGrid = styled.div`
   width: 100%;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */
+  grid-template-columns: 1fr 1fr;
+  /* we need to configure our columns with minmax(0, 1fr) to make text overflow work */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-gap: 2em;
   margin: 3em 0 2em;
 
