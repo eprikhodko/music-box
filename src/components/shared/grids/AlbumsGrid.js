@@ -8,7 +8,6 @@ import {
   AlbumContainer,
   StyledLink,
   StyledAlbumsGrid,
-  // FallbackBackgroundImage,
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
@@ -23,10 +22,6 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
     if (setComponentsCount)
       setComponentsCount(document.querySelectorAll(".component-count").length)
   }, [albumsComponents])
-
-  // const handleError = (e) => {
-  //   e.target.style.display = "none"
-  // }
 
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (

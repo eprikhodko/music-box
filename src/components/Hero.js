@@ -74,11 +74,12 @@ const GridContainer = styled.div`
   width: 95%; /* <-- set padding to the edges of the content so it won't stick to the device screen edges */
   max-width: 72.5em;
   margin: 0 auto;
-  border: 1px solid green;
 
   display: grid;
   grid-template-rows: auto auto auto auto;
   justify-items: center;
+
+  /* border: 1px solid green; */
 `
 
 function Hero() {

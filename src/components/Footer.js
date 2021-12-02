@@ -8,21 +8,23 @@ import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 
 const ContainerFooter = styled.div`
   /* max-width: 1440px; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   margin-top: ${({ $marginTop }) => $marginTop};
-  padding: 3em 4em 1em;
+  /* padding: 3em 4em 1em; */
   background-color: #c2c2c2;
   /* border: 1px solid magenta; */
 `
 
 const FooterContent = styled.div`
+  width: 90%;
   max-width: 72.5em;
   margin: 0 auto;
+  padding: 3em 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5em;
-  /* align-self: center; */
-  /* justify-items: center; */
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  /* grid-gap: 5em; */
+
   /* border: 1px solid; */
 `
 
@@ -87,7 +89,7 @@ const StyledIcon = styled.div`
 const Copyright = styled.p`
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.5);
-  margin-top: 5em;
+  /* margin-top: 5em; */
   /* border: 1px solid green; */
 `
 

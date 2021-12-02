@@ -6,6 +6,20 @@ import IconImagePlaceholder from "../../../icons/image-placeholder-album-cover-g
 const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 // const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
 
+export const StyledAlbumsGrid = styled.div`
+  width: 100%;
+
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */
+  grid-template-columns: 1fr 1fr;
+  /* we need to configure our columns with minmax(0, 1fr) to make text overflow work */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-gap: 2em;
+  margin: 3em 0 2em;
+
+  /* border: 1px solid green; */
+`
+
 export const AlbumCover = styled.div`
   background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
     url(${IconImagePlaceholder});
@@ -67,20 +81,6 @@ export const AlbumArtist = styled.p`
   white-space: nowrap;
 
   margin: 0;
-`
-
-export const StyledAlbumsGrid = styled.div`
-  width: 100%;
-
-  display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */
-  grid-template-columns: 1fr 1fr;
-  /* we need to configure our columns with minmax(0, 1fr) to make text overflow work */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-gap: 2em;
-  margin: 3em 0 2em;
-
-  border: 1px solid green;
 `
 
 export const StyledLink = styled(Link)`

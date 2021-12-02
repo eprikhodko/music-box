@@ -23,16 +23,13 @@ function RecentlyAddedAlbums() {
   const { albumsData } = useContext(AlbumsDataContext)
 
   return (
-    <>
-      {/* <Content flexDirection="column" alignItems="center" $marginTop="4.5em"> */}
-      <Content flexDirection="column" alignItems="center" $marginTop="4.5em">
-        <Subtitle>Recently added albums</Subtitle>
-        <AlbumsGrid albumsSlice={slice} albumsData={albumsData} />
-        <HeroButton as={Link} to={ROUTES.CATALOG}>
-          View all
-        </HeroButton>
-      </Content>
-    </>
+    <Content flexDirection="column" alignItems="center" $marginTop="4.5em">
+      <Subtitle>Recently added albums</Subtitle>
+      <AlbumsGrid albumsSlice={slice} albumsData={albumsData} />
+      <HeroButton as={Link} to={ROUTES.CATALOG} $marginTop="2em">
+        View all
+      </HeroButton>
+    </Content>
   )
 }
 

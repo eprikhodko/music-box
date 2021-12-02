@@ -20,7 +20,7 @@ export const Content = styled.div`
   flex-direction: ${({ flexDirection }) => flexDirection};
   align-items: ${({ alignItems }) => alignItems};
 
-  border: 1px solid magenta;
+  /* border: 1px solid magenta; */
 `
 
 export const CenterContent = styled.div`
