@@ -25,7 +25,7 @@ const ContainerFlex = styled.div`
 
 const HamburgerMenu = styled.div`
   background-color: #333;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
