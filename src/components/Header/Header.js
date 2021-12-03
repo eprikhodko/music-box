@@ -3,9 +3,6 @@ import styled from "styled-components"
 
 import { useState } from "react"
 
-import { Link } from "react-router-dom"
-import * as ROUTES from "../../constants/routes"
-
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 import { ReactComponent as IconHamburger } from "../../icons/burger.svg"
@@ -14,6 +11,7 @@ import { ReactComponent as IconCloseHamburger } from "../../icons/burger-close.s
 import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
 import useMatchMedia from "../../hooks/useMatchMedia"
+import MobileNavigation from "./MobileNavigation"
 
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
@@ -27,17 +25,15 @@ const ContainerFlex = styled.div`
 
 const HamburgerMenu = styled.div`
   background-color: #333;
-  width: 200px;
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
-  right: -100%;
-
-  right: ${({ showHamburgerMenu }) => showHamburgerMenu && "0;"};
-  transition: 500ms;
-
+  /* default value for 'right' is -100% */
+  right: ${({ showHamburgerMenu }) => (showHamburgerMenu && "0;") || "-100%;"};
   z-index: 1;
+
+  transition: 500ms;
 
   display: flex;
   flex-direction: column;
@@ -53,35 +49,6 @@ const Container = styled.div`
   flex-direction: column;
 
   /* border: 1px dashed white; */
-`
-
-const HamburgerNavigation = styled.nav``
-
-const Ul = styled.ul`
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-
-  margin: 0;
-  margin-bottom: 5em;
-  padding: 0;
-
-  /* border: 1px solid wheat; */
-`
-
-const NavLink = styled(Link)`
-  color: #fff;
-  font-size: 3rem;
-  font-weight: 600;
-  text-decoration: none;
-
-  &:hover {
-    border-bottom: 2px solid #000;
-  }
-  &:focus {
-    border-bottom: 2px solid #000;
-    outline: 3px solid transparent;
-  }
 `
 
 const ButtonHamburger = styled.button`
@@ -102,7 +69,7 @@ function Header({ noSearchBox }) {
 
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false)
 
-  const handleHamburgerMenuOpenOrClose = () => {
+  const toggleHamburgerMenuOpenOrClose = () => {
     setShowHamburgerMenu((prevState) => !prevState)
 
     // disable scroll if hamburger menu is open
@@ -126,7 +93,7 @@ function Header({ noSearchBox }) {
         ) : (
           <ButtonHamburger
             type="button"
-            onClick={handleHamburgerMenuOpenOrClose}
+            onClick={toggleHamburgerMenuOpenOrClose}
           >
             <IconHamburger />
           </ButtonHamburger>
@@ -136,33 +103,15 @@ function Header({ noSearchBox }) {
           <Container>
             <ButtonCloseHamburger
               type="button"
-              onClick={handleHamburgerMenuOpenOrClose}
+              onClick={toggleHamburgerMenuOpenOrClose}
             >
               <IconCloseHamburger />
             </ButtonCloseHamburger>
-            <HamburgerNavigation>
-              <Ul aria-label="Header navigation" role="navigation">
-                <li>
-                  <NavLink to={ROUTES.HOME}>Home</NavLink>
-                </li>
 
-                <li>
-                  <NavLink to={ROUTES.CATALOG}>Catalog</NavLink>
-                </li>
+            <MobileNavigation
+              toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
+            />
 
-                <li>
-                  <NavLink to={ROUTES.SEARCH}>Search</NavLink>
-                </li>
-
-                <li>
-                  <NavLink to={ROUTES.LOGIN}>Log in</NavLink>
-                </li>
-
-                <li>
-                  <NavLink to={ROUTES.SIGNUP}>Sign up</NavLink>
-                </li>
-              </Ul>
-            </HamburgerNavigation>
             <Logo />
           </Container>
         </HamburgerMenu>
