@@ -75,7 +75,7 @@ const ImageAvatar = styled.div`
   }
 `
 
-function Nav() {
+function Navigation() {
   const currentUser = useContext(UserContext)
   const auth = getAuth(firebaseApp)
 
@@ -132,4 +132,4 @@ function Nav() {
   )
 }
 
-export default Nav
+export default Navigation

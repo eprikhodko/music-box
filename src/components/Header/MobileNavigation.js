@@ -11,7 +11,7 @@ import { navLinksDataAnonymous, navLinksDataRegistered } from "./NavLinksData"
 
 import UserContext from "../../context/user"
 
-const Ul = styled.ul`
+const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -70,21 +70,21 @@ function MobileNavigation({ toggleHamburgerMenuOpenOrClose }) {
   // return navigation for anonymous user
   return !currentUser ? (
     <nav>
-      <Ul aria-label="Header navigation" role="navigation">
+      <NavList aria-label="Header navigation" role="navigation">
         {navLinksAnonymous}
-      </Ul>
+      </NavList>
     </nav>
   ) : (
     // return navigation for authorized user
     <nav>
-      <Ul aria-label="Header navigation" role="navigation">
+      <NavList aria-label="Header navigation" role="navigation">
         {navLinksRegistered}
         <li>
           <NavLink to={ROUTES.HOME} onClick={handleSignOut}>
             Sign out
           </NavLink>
         </li>
-      </Ul>
+      </NavList>
     </nav>
   )
 }

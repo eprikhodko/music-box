@@ -9,7 +9,7 @@ import { ReactComponent as IconHamburger } from "../../icons/burger.svg"
 import { ReactComponent as IconCloseHamburger } from "../../icons/burger-close.svg"
 
 import SearchBox from "../shared/SearchBox"
-import Nav from "./Nav"
+import Navigation from "./Navigation"
 import useMatchMedia from "../../hooks/useMatchMedia"
 import MobileNavigation from "./MobileNavigation"
 
@@ -89,7 +89,7 @@ function Header({ noSearchBox }) {
           {isDesktopResolution && showSearchBox && <SearchBox />}
         </ContainerFlex>
         {isDesktopResolution ? (
-          <Nav />
+          <Navigation />
         ) : (
           <ButtonHamburger
             type="button"
