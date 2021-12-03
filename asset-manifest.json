@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.js": "/music-box/static/js/main.91497db3.chunk.js",
+    "main.js.map": "/music-box/static/js/main.91497db3.chunk.js.map",
+    "runtime-main.js": "/music-box/static/js/runtime-main.90f42bcb.js",
+    "runtime-main.js.map": "/music-box/static/js/runtime-main.90f42bcb.js.map",
+    "static/js/2.7f21c68b.chunk.js": "/music-box/static/js/2.7f21c68b.chunk.js",
+    "static/js/2.7f21c68b.chunk.js.map": "/music-box/static/js/2.7f21c68b.chunk.js.map",
+    "index.html": "/music-box/index.html",
+    "static/js/2.7f21c68b.chunk.js.LICENSE.txt": "/music-box/static/js/2.7f21c68b.chunk.js.LICENSE.txt",
+    "static/media/burger-close.aa819249.svg": "/music-box/static/media/burger-close.aa819249.svg",
+    "static/media/burger.a2b8a5d9.svg": "/music-box/static/media/burger.a2b8a5d9.svg",
+    "static/media/check_circle_24px.6e6713d3.svg": "/music-box/static/media/check_circle_24px.6e6713d3.svg",
+    "static/media/cloud_upload_24px.f976338c.svg": "/music-box/static/media/cloud_upload_24px.f976338c.svg",
+    "static/media/facebook-icon.c9f43824.svg": "/music-box/static/media/facebook-icon.c9f43824.svg",
+    "static/media/florencia-viadana-F7W1QP62psQ-unsplash-optimized.d421dc6a.jpg": "/music-box/static/media/florencia-viadana-F7W1QP62psQ-unsplash-optimized.d421dc6a.jpg",
+    "static/media/icon-avatar.b1483c9f.svg": "/music-box/static/media/icon-avatar.b1483c9f.svg",
+    "static/media/icon-search.16b763cb.svg": "/music-box/static/media/icon-search.16b763cb.svg",
+    "static/media/image-placeholder-album-cover-grid.767311d3.svg": "/music-box/static/media/image-placeholder-album-cover-grid.767311d3.svg",
+    "static/media/image-placeholder-fallback.e73304f0.svg": "/music-box/static/media/image-placeholder-fallback.e73304f0.svg",
+    "static/media/image-placeholder.4c60c8b2.svg": "/music-box/static/media/image-placeholder.4c60c8b2.svg",
+    "static/media/instagram-icon.3f1fb93f.svg": "/music-box/static/media/instagram-icon.3f1fb93f.svg",
+    "static/media/person_24px.d465e367.svg": "/music-box/static/media/person_24px.d465e367.svg",
+    "static/media/search-arrow-icon.df3287b1.svg": "/music-box/static/media/search-arrow-icon.df3287b1.svg",
+    "static/media/sentiment_neutral_24px.d383df02.svg": "/music-box/static/media/sentiment_neutral_24px.d383df02.svg",
+    "static/media/site-logo.5ad86e14.svg": "/music-box/static/media/site-logo.5ad86e14.svg",
+    "static/media/twitter-icon.f1dd512a.svg": "/music-box/static/media/twitter-icon.f1dd512a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.90f42bcb.js",
+    "static/js/2.7f21c68b.chunk.js",
+    "static/js/main.91497db3.chunk.js"
+  ]
+}
