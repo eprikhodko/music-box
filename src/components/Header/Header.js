@@ -8,8 +8,8 @@ import * as ROUTES from "../../constants/routes"
 
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
-import { ReactComponent as Hamburger } from "../../icons/burger.svg"
-import { ReactComponent as HamburgerClose } from "../../icons/burger-close.svg"
+import { ReactComponent as IconHamburger } from "../../icons/burger.svg"
+import { ReactComponent as IconCloseHamburger } from "../../icons/burger-close.svg"
 
 import SearchBox from "../shared/SearchBox"
 import Nav from "./Nav"
@@ -23,9 +23,6 @@ const StyledHeader = styled.header`
 const ContainerFlex = styled.div`
   display: flex;
   align-items: center;
-
-  /* background-color: ${({ showHamburgerMenu }) =>
-    showHamburgerMenu && "green"}; */
 `
 
 const HamburgerMenu = styled.div`
@@ -35,23 +32,7 @@ const HamburgerMenu = styled.div`
   height: 100vh;
   position: fixed;
   top: 0;
-  /* right: 0; */
-  /* right: -25%; */
   right: -100%;
-  /* align-items: ${({ alignItems }) => alignItems}; */
-  /* ${({ $showHamburgerMenu }) => {
-    if ($showHamburgerMenu) {
-      return `
-      right: 0;
-
-      `
-    } else {
-      return `
-      right: -100%;
-
-      `
-    }
-  }} */
 
   right: ${({ showHamburgerMenu }) => showHamburgerMenu && "0;"};
   transition: 500ms;
@@ -60,7 +41,6 @@ const HamburgerMenu = styled.div`
 
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 
   /* border: 1px solid white; */
 `
@@ -73,13 +53,6 @@ const Container = styled.div`
   flex-direction: column;
 
   /* border: 1px dashed white; */
-`
-
-const CloseBurger = styled.div`
-  /* margin: 1em 1em 0 auto; */
-  display: flex;
-  align-self: flex-end;
-  margin: 1em 0;
 `
 
 const HamburgerNavigation = styled.nav``
@@ -101,8 +74,6 @@ const NavLink = styled(Link)`
   font-size: 3rem;
   font-weight: 600;
   text-decoration: none;
-  /* padding-bottom: 0.2em; */
-  /* margin-left: 2.5em; */
 
   &:hover {
     border-bottom: 2px solid #000;
@@ -113,18 +84,33 @@ const NavLink = styled(Link)`
   }
 `
 
+const ButtonHamburger = styled.button`
+  background: transparent;
+  border: 0;
+`
+
+const ButtonCloseHamburger = styled(ButtonHamburger)`
+  display: flex;
+  align-self: flex-end;
+  margin: 1em 0;
+`
+
 function Header({ noSearchBox }) {
   const isDesktopResolution = useMatchMedia("(min-width: 400px)", false)
-  // console.log(isDesktopResolution)
 
   const showSearchBox = !noSearchBox
 
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false)
 
-  const handleClick = () => {
-    // console.log("clicked")
+  const handleHamburgerMenuOpenOrClose = () => {
     setShowHamburgerMenu((prevState) => !prevState)
-    console.log(showHamburgerMenu)
+
+    // disable scroll if hamburger menu is open
+    if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "scroll"
+    }
   }
 
   return (
@@ -138,16 +124,22 @@ function Header({ noSearchBox }) {
         {isDesktopResolution ? (
           <Nav />
         ) : (
-          <button type="button" onClick={handleClick}>
-            <Hamburger />
-          </button>
+          <ButtonHamburger
+            type="button"
+            onClick={handleHamburgerMenuOpenOrClose}
+          >
+            <IconHamburger />
+          </ButtonHamburger>
         )}
 
         <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
           <Container>
-            <CloseBurger>
-              <HamburgerClose onClick={handleClick} />
-            </CloseBurger>
+            <ButtonCloseHamburger
+              type="button"
+              onClick={handleHamburgerMenuOpenOrClose}
+            >
+              <IconCloseHamburger />
+            </ButtonCloseHamburger>
             <HamburgerNavigation>
               <Ul aria-label="Header navigation" role="navigation">
                 <li>
