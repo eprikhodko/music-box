@@ -46,10 +46,8 @@ function GenresGrid() {
           key={doc.genreId}
         >
           <AlbumContainer>
-            <AlbumCover
-              src={doc.albumCover}
-              alt={`album cover for ${doc.genreName} album`}
-            />
+            <AlbumCover albumCoverUrl={doc.albumCover} />
+
             <AlbumTitle>{doc.genreName}</AlbumTitle>
           </AlbumContainer>
         </StyledLink>

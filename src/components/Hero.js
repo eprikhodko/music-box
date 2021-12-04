@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useContext } from "react/cjs/react.development"
+import { useContext } from "react"
 
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"

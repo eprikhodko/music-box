@@ -11,7 +11,7 @@ import GlobalStyle from "./globalStyles"
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
-    <Router>
+    <Router basename="/music-box">
       {/* <FirebaseContext.Provider value={firebase}> */}
       <App />
       {/* </FirebaseContext.Provider> */}
