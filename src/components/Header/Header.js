@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
@@ -10,7 +10,7 @@ import { ReactComponent as IconCloseHamburger } from "../../icons/burger-close.s
 
 import SearchBox from "../shared/SearchBox"
 import Navigation from "./Navigation"
-import useMatchMedia from "../../hooks/useMatchMedia"
+// import useMatchMedia from "../../hooks/useMatchMedia"
 import MobileNavigation from "./MobileNavigation"
 
 const StyledHeader = styled.header`
@@ -63,7 +63,45 @@ const ButtonCloseHamburger = styled(ButtonHamburger)`
 `
 
 function Header({ noSearchBox }) {
-  const isDesktopResolution = useMatchMedia("(min-width: 400px)", false)
+  // set isDesktopResolution initial value to true, so hamburger menu icon won't flicker at the top right corner of the screen
+
+  const [isLoading, setIsLoading] = useState(true)
+
+  const useMatchMedia = (mediaQuery, initialValue) => {
+    const [isMatching, setIsMatching] = useState(initialValue)
+
+    useEffect(() => {
+      const watcher = window.matchMedia(mediaQuery)
+      setIsMatching(watcher.matches)
+      const listener = (matches) => {
+        setIsMatching(matches.matches)
+      }
+
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 3000)
+
+      if (watcher.addEventListener) {
+        watcher.addEventListener("change", listener)
+      } else {
+        watcher.addListener(listener)
+      }
+
+      return () => {
+        if (watcher.removeEventListener) {
+          return watcher.removeEventListener("change", listener)
+        } else {
+          return watcher.removeListener(listener)
+        }
+      }
+    }, [mediaQuery])
+
+    return isMatching
+  }
+
+  const isDesktopResolution = useMatchMedia("(min-width: 400px)", true)
+
+  console.log("isDesktopResolution loading?", isLoading)
 
   const showSearchBox = !noSearchBox
 
@@ -80,15 +118,20 @@ function Header({ noSearchBox }) {
     }
   }
 
+  console.log(isDesktopResolution)
+
+  /* eslint-disable */
   return (
     <StyledHeader>
       <Content justifyContent="space-between" alignItems="center">
         <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
           <Logo />
           {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
-          {isDesktopResolution && showSearchBox && <SearchBox />}
+          {!isLoading && isDesktopResolution && showSearchBox && <SearchBox />}
         </ContainerFlex>
-        {isDesktopResolution ? (
+        {isLoading ? (
+          <div>Loading</div>
+        ) : isDesktopResolution ? (
           <Navigation />
         ) : (
           <ButtonHamburger
