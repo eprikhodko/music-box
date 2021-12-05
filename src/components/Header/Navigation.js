@@ -16,18 +16,13 @@ const StyledNav = styled.nav`
   align-items: center;
 `
 
-const NavList = styled.ul`
-  display: flex;
-  list-style: none;
-`
-
 const NavLink = styled(Link)`
   text-decoration: none;
   color: #000;
   font-size: 1.8rem;
   font-weight: 500;
   padding-bottom: 0.2em;
-  margin-left: 2.5em;
+  margin-right: 2.5em;
 
   &:hover {
     border-bottom: 2px solid #000;
@@ -38,6 +33,14 @@ const NavLink = styled(Link)`
   }
 `
 
+const NavList = styled.ul`
+  display: flex;
+  list-style: none;
+
+  & li:last-child ${NavLink} {
+    margin-right: 0;
+  }
+`
 const ContainerUserAvatar = styled.div`
   width: 3.5em;
   height: 3.5em;

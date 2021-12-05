@@ -1,7 +1,6 @@
 import { useState, useLayoutEffect } from "react"
 
 const useMatchMedia = (mediaQuery, initialValue) => {
-  const [isLoading, setIsLoading] = useState(true)
   const [isMatching, setIsMatching] = useState(initialValue)
 
   useLayoutEffect(() => {
@@ -10,12 +9,6 @@ const useMatchMedia = (mediaQuery, initialValue) => {
     const listener = (matches) => {
       setIsMatching(matches.matches)
     }
-
-    // setTimeout(() => {
-    //   setIsLoading(false)
-    // }, 1200)
-
-    setIsLoading(false)
 
     if (watcher.addEventListener) {
       watcher.addEventListener("change", listener)
@@ -34,7 +27,7 @@ const useMatchMedia = (mediaQuery, initialValue) => {
 
   const isDesktopResolution = isMatching
 
-  return { isDesktopResolution, isLoading }
+  return isDesktopResolution
 }
 
 export default useMatchMedia

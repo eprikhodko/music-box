@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 
-import SearchBox from "../shared/SearchBox"
+// import SearchBox from "../shared/SearchBox"
 import Navigation from "./Navigation"
 import MobileNavigation from "./MobileNavigation"
 import useMatchMedia from "../../hooks/useMatchMedia"
@@ -29,14 +29,10 @@ const ContainerFlex = styled.div`
 `
 
 function Header({ noSearchBox }) {
-  // set isDesktopResolution initial value to true, so hamburger menu icon won't flicker at the top right corner of the screen
-
-  const { isDesktopResolution, isLoading } = useMatchMedia(
-    "(min-width: 400px)",
-    true
-  )
+  const isDesktopResolution = useMatchMedia("(min-width: 500px)", true)
 
   const showSearchBox = !noSearchBox
+  console.log(showSearchBox)
 
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false)
 
@@ -51,31 +47,22 @@ function Header({ noSearchBox }) {
     }
   }
 
-  const renderNavigationLinksOrHamburgerMenuIcon = () => {
-    // useMatchMedia hook should figure out device screen resolution first.
-    // if (isLoading) {
-    //   return null
-    if (isDesktopResolution) {
-      return <Navigation />
-    } else {
-      return (
-        <ButtonHamburger
-          toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
-        />
-      )
-    }
-  }
-
-  /* eslint-disable no-nested-ternary */
   return (
     <StyledHeader>
       <Content justifyContent="space-between" alignItems="center">
         <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
           <Logo />
           {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
-          {!isLoading && isDesktopResolution && showSearchBox && <SearchBox />}
+          {/* {isDesktopResolution && showSearchBox && <SearchBox />} */}
         </ContainerFlex>
-        {renderNavigationLinksOrHamburgerMenuIcon()}
+
+        {isDesktopResolution ? (
+          <Navigation />
+        ) : (
+          <ButtonHamburger
+            toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
+          />
+        )}
 
         <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
           <Container>
