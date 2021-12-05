@@ -1,17 +1,22 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
-import { ReactComponent as IconHamburger } from "../../icons/burger.svg"
-import { ReactComponent as IconCloseHamburger } from "../../icons/burger-close.svg"
 
 import SearchBox from "../shared/SearchBox"
 import Navigation from "./Navigation"
-// import useMatchMedia from "../../hooks/useMatchMedia"
 import MobileNavigation from "./MobileNavigation"
+import useMatchMedia from "../../hooks/useMatchMedia"
+
+import {
+  Container,
+  HamburgerMenu,
+  ButtonHamburger,
+  ButtonCloseHamburger,
+} from "./MobileMenu"
 
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
@@ -23,85 +28,13 @@ const ContainerFlex = styled.div`
   align-items: center;
 `
 
-const HamburgerMenu = styled.div`
-  background-color: #333;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  /* default value for 'right' is -100% */
-  right: ${({ showHamburgerMenu }) => (showHamburgerMenu && "0;") || "-100%;"};
-  z-index: 1;
-
-  transition: 500ms;
-
-  display: flex;
-  flex-direction: column;
-
-  /* border: 1px solid white; */
-`
-
-const Container = styled.div`
-  width: 90%;
-  margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
-
-  /* border: 1px dashed white; */
-`
-
-const ButtonHamburger = styled.button`
-  background: transparent;
-  border: 0;
-`
-
-const ButtonCloseHamburger = styled(ButtonHamburger)`
-  display: flex;
-  align-self: flex-end;
-  margin: 1em 0;
-`
-
 function Header({ noSearchBox }) {
   // set isDesktopResolution initial value to true, so hamburger menu icon won't flicker at the top right corner of the screen
 
-  const [isLoading, setIsLoading] = useState(true)
-
-  const useMatchMedia = (mediaQuery, initialValue) => {
-    const [isMatching, setIsMatching] = useState(initialValue)
-
-    useEffect(() => {
-      const watcher = window.matchMedia(mediaQuery)
-      setIsMatching(watcher.matches)
-      const listener = (matches) => {
-        setIsMatching(matches.matches)
-      }
-
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 3000)
-
-      if (watcher.addEventListener) {
-        watcher.addEventListener("change", listener)
-      } else {
-        watcher.addListener(listener)
-      }
-
-      return () => {
-        if (watcher.removeEventListener) {
-          return watcher.removeEventListener("change", listener)
-        } else {
-          return watcher.removeListener(listener)
-        }
-      }
-    }, [mediaQuery])
-
-    return isMatching
-  }
-
-  const isDesktopResolution = useMatchMedia("(min-width: 400px)", true)
-
-  console.log("isDesktopResolution loading?", isLoading)
+  const { isDesktopResolution, isLoading } = useMatchMedia(
+    "(min-width: 400px)",
+    true
+  )
 
   const showSearchBox = !noSearchBox
 
@@ -118,9 +51,7 @@ function Header({ noSearchBox }) {
     }
   }
 
-  console.log(isDesktopResolution)
-
-  /* eslint-disable */
+  /* eslint-disable no-nested-ternary */
   return (
     <StyledHeader>
       <Content justifyContent="space-between" alignItems="center">
@@ -135,26 +66,18 @@ function Header({ noSearchBox }) {
           <Navigation />
         ) : (
           <ButtonHamburger
-            type="button"
-            onClick={toggleHamburgerMenuOpenOrClose}
-          >
-            <IconHamburger />
-          </ButtonHamburger>
+            toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
+          />
         )}
 
         <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
           <Container>
             <ButtonCloseHamburger
-              type="button"
-              onClick={toggleHamburgerMenuOpenOrClose}
-            >
-              <IconCloseHamburger />
-            </ButtonCloseHamburger>
-
+              toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
+            />
             <MobileNavigation
               toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
             />
-
             <Logo />
           </Container>
         </HamburgerMenu>
