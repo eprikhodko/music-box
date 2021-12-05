@@ -48,6 +48,8 @@ function MobileNavigation({ toggleHamburgerMenuOpenOrClose }) {
     } catch (error) {
       console.log(error)
     }
+
+    toggleHamburgerMenuOpenOrClose()
   }
 
   // create links components

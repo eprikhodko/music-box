@@ -8,6 +8,7 @@ import AlbumsGrid from "./shared/grids/AlbumsGrid"
 import { Content } from "./shared/Containers"
 import { HeroButton } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
+import useMatchMedia from "../hooks/useMatchMedia"
 
 const Subtitle = styled.h2`
   font-size: 3rem;
@@ -15,17 +16,68 @@ const Subtitle = styled.h2`
 `
 
 function RecentlyAddedAlbums() {
-  const slice = {
-    start: 0,
-    end: 8,
+  const isTabletOrMobile = useMatchMedia("(min-width: 600px)", true)
+  const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
+
+  console.log(isTabletOrMobile, isDesktopResolution)
+
+  // const checkAlbumsCount = () => {
+  //  let slice = {
+  //     start: 0,
+  //     end: 8,
+  //   }
+  //   // console.log("default value, render 8")
+  //   if (isTabletOrMobile && isDesktopResolution) {
+  //     let slice = {
+  //       start: 0,
+  //       end: 8,
+  //     }
+  //     // console.log("render 8")
+  //   } else if (isTabletOrMobile) {
+  //     let slice = {
+  //       start: 0,
+  //       end: 9,
+  //     }
+  //     // console.log("render 9")
+  //   }
+  //   return slice
+  // }
+
+  // console.log(checkAlbumsCount())
+
+  const howManyAlbumsToShow = () => {
+    let slice = {
+      start: 0,
+      end: 8,
+    }
+    console.log("default value, render 8 albums")
+
+    if (isTabletOrMobile && isDesktopResolution) {
+      slice = {
+        start: 0,
+        end: 8,
+      }
+      console.log("render 8 albums")
+    } else if (isTabletOrMobile) {
+      slice = {
+        start: 0,
+        end: 9,
+      }
+      console.log("render 9 albums")
+    }
+    return slice
   }
+
+  // console.log(howManyAlbumsToShow(isTabletOrMobile))
+
+  const albumsSlice = howManyAlbumsToShow(isTabletOrMobile)
 
   const { albumsData } = useContext(AlbumsDataContext)
 
   return (
     <Content flexDirection="column" alignItems="center" $marginTop="4.5em">
       <Subtitle>Recently added albums</Subtitle>
-      <AlbumsGrid albumsSlice={slice} albumsData={albumsData} />
+      <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
       <HeroButton as={Link} to={ROUTES.CATALOG} $marginTop="2em">
         View all
       </HeroButton>

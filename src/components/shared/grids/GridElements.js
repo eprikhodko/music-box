@@ -13,10 +13,19 @@ export const StyledAlbumsGrid = styled.div`
   /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */
   grid-template-columns: 1fr 1fr;
   /* we need to configure our columns with minmax(0, 1fr) to make text overflow work */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
   grid-gap: 2em;
   margin: 3em 0 2em;
 
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
   /* border: 1px solid green; */
 `
 
