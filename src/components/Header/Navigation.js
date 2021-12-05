@@ -21,7 +21,7 @@ const NavLink = styled(Link)`
   color: #000;
   font-size: 1.8rem;
   font-weight: 500;
-  padding-bottom: 0.2em;
+  padding-bottom: 0.2em; /* <-- push link border-bottom down with padding bottom */
   margin-right: 2.5em;
 
   &:hover {
@@ -36,6 +36,7 @@ const NavLink = styled(Link)`
 const NavList = styled.ul`
   display: flex;
   list-style: none;
+  padding: 0;
 
   & li:last-child ${NavLink} {
     margin-right: 0;

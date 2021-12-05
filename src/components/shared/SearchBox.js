@@ -14,6 +14,7 @@ const ContainerSearchBox = styled.div`
   justify-content: space-between;
   width: 14em;
   margin-top: ${({ marginTop }) => marginTop};
+  margin-right: 2em;
 
   background-color: #ebebeb;
   border: 1px solid #000;

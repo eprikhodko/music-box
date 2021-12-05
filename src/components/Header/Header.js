@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 
-// import SearchBox from "../shared/SearchBox"
+import SearchBox from "../shared/SearchBox"
 import Navigation from "./Navigation"
 import MobileNavigation from "./MobileNavigation"
 import useMatchMedia from "../../hooks/useMatchMedia"
@@ -29,7 +29,8 @@ const ContainerFlex = styled.div`
 `
 
 function Header({ noSearchBox }) {
-  const isDesktopResolution = useMatchMedia("(min-width: 500px)", true)
+  const isTabletOrMobile = useMatchMedia("(min-width: 750px)", true)
+  const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
   const showSearchBox = !noSearchBox
   console.log(showSearchBox)
@@ -53,10 +54,10 @@ function Header({ noSearchBox }) {
         <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
           <Logo />
           {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
-          {/* {isDesktopResolution && showSearchBox && <SearchBox />} */}
+          {isDesktopResolution && showSearchBox && <SearchBox />}
         </ContainerFlex>
 
-        {isDesktopResolution ? (
+        {isTabletOrMobile ? (
           <Navigation />
         ) : (
           <ButtonHamburger
