@@ -51,6 +51,21 @@ function Header({ noSearchBox }) {
     }
   }
 
+  const renderNavigationLinksOrHamburgerMenuIcon = () => {
+    // useMatchMedia hook should figure out device screen resolution first.
+    // if (isLoading) {
+    //   return null
+    if (isDesktopResolution) {
+      return <Navigation />
+    } else {
+      return (
+        <ButtonHamburger
+          toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
+        />
+      )
+    }
+  }
+
   /* eslint-disable no-nested-ternary */
   return (
     <StyledHeader>
@@ -60,15 +75,7 @@ function Header({ noSearchBox }) {
           {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
           {!isLoading && isDesktopResolution && showSearchBox && <SearchBox />}
         </ContainerFlex>
-        {isLoading ? (
-          <div>Loading</div>
-        ) : isDesktopResolution ? (
-          <Navigation />
-        ) : (
-          <ButtonHamburger
-            toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
-          />
-        )}
+        {renderNavigationLinksOrHamburgerMenuIcon()}
 
         <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
           <Container>

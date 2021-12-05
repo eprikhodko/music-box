@@ -1,19 +1,21 @@
-import { useState, useEffect } from "react"
+import { useState, useLayoutEffect } from "react"
 
 const useMatchMedia = (mediaQuery, initialValue) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isMatching, setIsMatching] = useState(initialValue)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const watcher = window.matchMedia(mediaQuery)
     setIsMatching(watcher.matches)
     const listener = (matches) => {
       setIsMatching(matches.matches)
     }
 
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 1200)
+    // setTimeout(() => {
+    //   setIsLoading(false)
+    // }, 1200)
+
+    setIsLoading(false)
 
     if (watcher.addEventListener) {
       watcher.addEventListener("change", listener)
