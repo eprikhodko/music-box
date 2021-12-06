@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/music-box/static/js/main.9aa7e16c.chunk.js",
-    "main.js.map": "/music-box/static/js/main.9aa7e16c.chunk.js.map",
+    "main.js": "/music-box/static/js/main.9b00ab46.chunk.js",
+    "main.js.map": "/music-box/static/js/main.9b00ab46.chunk.js.map",
     "runtime-main.js": "/music-box/static/js/runtime-main.90f42bcb.js",
     "runtime-main.js.map": "/music-box/static/js/runtime-main.90f42bcb.js.map",
-    "static/js/2.4fbb016f.chunk.js": "/music-box/static/js/2.4fbb016f.chunk.js",
-    "static/js/2.4fbb016f.chunk.js.map": "/music-box/static/js/2.4fbb016f.chunk.js.map",
+    "static/js/2.e7c44e5c.chunk.js": "/music-box/static/js/2.e7c44e5c.chunk.js",
+    "static/js/2.e7c44e5c.chunk.js.map": "/music-box/static/js/2.e7c44e5c.chunk.js.map",
     "index.html": "/music-box/index.html",
-    "static/js/2.4fbb016f.chunk.js.LICENSE.txt": "/music-box/static/js/2.4fbb016f.chunk.js.LICENSE.txt",
+    "static/js/2.e7c44e5c.chunk.js.LICENSE.txt": "/music-box/static/js/2.e7c44e5c.chunk.js.LICENSE.txt",
     "static/media/burger-close.aa819249.svg": "/music-box/static/media/burger-close.aa819249.svg",
     "static/media/burger.a2b8a5d9.svg": "/music-box/static/media/burger.a2b8a5d9.svg",
     "static/media/check_circle_24px.6e6713d3.svg": "/music-box/static/media/check_circle_24px.6e6713d3.svg",
@@ -28,7 +28,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.90f42bcb.js",
-    "static/js/2.4fbb016f.chunk.js",
-    "static/js/main.9aa7e16c.chunk.js"
+    "static/js/2.e7c44e5c.chunk.js",
+    "static/js/main.9b00ab46.chunk.js"
   ]
 }
