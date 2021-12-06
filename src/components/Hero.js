@@ -142,11 +142,11 @@ const ButtonLogin = styled(HeroButton)`
 // `
 
 const HeroImage = styled.img`
-  width: 100%;
+  max-width: 100%;
   object-fit: cover;
   /* border: 3px solid rebeccapurple; */
 
-  /* justify-self: end; */
+  justify-self: end;
   grid-column: 6 / 7;
   grid-row: 1 / 5;
   display: none;
