@@ -21,11 +21,16 @@ const GridContainer = styled.div`
   /* grid-template-rows: auto auto auto auto; */
   justify-items: center;
 
-  @media (min-width: ${screenSize.tablet}) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     /* grid-template-rows: auto auto auto auto; */
-    grid-template-columns: 1fr 2em 1fr 1fr;
+    grid-template-columns: auto 2em 1fr 1fr;
+    /* margin-left: 10em; */
   }
 
+  @media (min-width: ${screenSize.tabletMedium}) {
+    /* grid-template-columns: auto 2em 1fr 1fr; */
+    grid-template-rows: auto auto auto auto;
+  }
   /* border: 1px solid green; */
 `
 
@@ -41,10 +46,12 @@ const HeroTitle = styled.h1`
 
   margin-top: 1em;
 
-  @media (min-width: ${screenSize.tablet}) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     grid-column: 1/4;
     justify-self: start;
+
     text-align: left;
+    font-size: 7rem;
   }
 `
 
@@ -55,29 +62,34 @@ const HeroSubtitle = styled.h3`
 
   margin: 1em 0;
 
-  @media (min-width: ${screenSize.tablet}) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     grid-column: 1/4;
     justify-self: start;
+
+    font-size: 2.5rem;
+    color: rgba(0, 0, 0, 0.7);
   }
 `
 
 const ButtonViewCatalog = styled(HeroButton)`
   margin-top: 1.5em;
-  @media (min-width: ${screenSize.tablet}) {
+
+  @media (min-width: ${screenSize.tabletSmall}) {
     grid-column: 1/2;
     justify-self: start;
 
-    margin-top: 0;
+    margin-top: 2em;
   }
 `
 
 const ButtonLogin = styled(HeroButton)`
   margin-top: 1em;
-  @media (min-width: ${screenSize.tablet}) {
+
+  @media (min-width: ${screenSize.tabletSmall}) {
     grid-column: 3/4;
     justify-self: start;
 
-    margin-top: 0;
+    margin-top: 2em;
   }
 `
 
@@ -123,8 +135,14 @@ const HeroImage = styled.img`
   object-fit: cover;
   /* border: 3px solid rebeccapurple; */
 
-  /* grid-column: 3 / 4; */
+  justify-self: end;
+  grid-column: 4 / 5;
+  grid-row: 1 / 3;
   display: none;
+
+  @media (min-width: ${screenSize.tabletMedium}) {
+    display: block;
+  }
 `
 
 function Hero() {

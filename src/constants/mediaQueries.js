@@ -1,5 +1,6 @@
 const screenSize = {
-  tablet: "500px",
+  tabletSmall: "500px",
+  tabletMedium: "1024px",
 }
 
 export default screenSize
