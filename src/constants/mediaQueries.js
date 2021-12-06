@@ -1,5 +1,5 @@
 const screenSize = {
-  tabletSmall: "500px",
+  mobileLarge: "500px",
   tabletMedium: "1024px",
 }
 

@@ -22,7 +22,7 @@ const FooterContent = styled.div`
   padding: 3em 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
   /* grid-gap: 5em; */
 
   /* border: 1px solid; */

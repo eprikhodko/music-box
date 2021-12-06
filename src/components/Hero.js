@@ -18,13 +18,10 @@ const GridContainer = styled.div`
   margin: 0 auto;
 
   display: grid;
-  /* grid-template-rows: auto auto auto auto; */
   justify-items: center;
 
-  @media (min-width: ${screenSize.tabletSmall}) {
-    /* grid-template-rows: auto auto auto auto; */
+  @media (min-width: ${screenSize.mobileLarge}) {
     grid-template-columns: auto 2em 1fr 1fr;
-    /* margin-left: 10em; */
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
@@ -32,25 +29,21 @@ const GridContainer = styled.div`
     max-width: 90em;
 
     grid-template-columns: 1.6em auto 2em auto 3em 1fr;
-    grid-template-rows: auto auto auto 2em;
   }
   /* border: 1px solid green; */
 `
 
 const HeroTitle = styled.h1`
-  max-width: 7.8em;
-  font-size: 7rem;
-  line-height: 1.15;
-  /* margin-bottom: 0.2em; */
-
   font-size: 4.8rem;
   color: #333;
+  line-height: 1.15;
   text-align: center;
 
+  max-width: 7.8em;
   margin-top: 1em;
 
-  @media (min-width: ${screenSize.tabletSmall}) {
-    grid-column: 1/4;
+  @media (min-width: ${screenSize.mobileLarge}) {
+    grid-column: 1/5;
     justify-self: start;
 
     text-align: left;
@@ -63,8 +56,6 @@ const HeroTitle = styled.h1`
 
     color: #000;
     margin-top: 1.3em;
-
-    /* border: 1px solid; */
   }
 `
 
@@ -75,34 +66,46 @@ const HeroSubtitle = styled.h3`
 
   margin: 1em 0;
 
-  @media (min-width: ${screenSize.tabletSmall}) {
-    grid-column: 2/5;
+  @media (min-width: ${screenSize.mobileLarge}) {
+    grid-column: 1/5;
     justify-self: start;
 
     font-size: 2.5rem;
     color: rgba(0, 0, 0, 0.7);
+  }
+
+  @media (min-width: ${screenSize.tabletMedium}) {
+    grid-column: 2/5;
   }
 `
 
 const ButtonViewCatalog = styled(HeroButton)`
   margin-top: 1.5em;
 
-  @media (min-width: ${screenSize.tabletSmall}) {
-    grid-column: 2/3;
+  @media (min-width: ${screenSize.mobileLarge}) {
+    grid-column: 1/2;
     justify-self: start;
 
     margin-top: 2em;
+  }
+
+  @media (min-width: ${screenSize.tabletMedium}) {
+    grid-column: 2/3;
   }
 `
 
 const ButtonLogin = styled(HeroButton)`
   margin-top: 1em;
 
-  @media (min-width: ${screenSize.tabletSmall}) {
-    grid-column: 4/5;
+  @media (min-width: ${screenSize.mobileLarge}) {
+    grid-column: 3/4;
     justify-self: start;
 
     margin-top: 2em;
+  }
+
+  @media (min-width: ${screenSize.tabletMedium}) {
+    grid-column: 4/5;
   }
 `
 
@@ -145,7 +148,7 @@ const HeroImage = styled.img`
 
   /* justify-self: end; */
   grid-column: 6 / 7;
-  grid-row: 1 / 7;
+  grid-row: 1 / 5;
   display: none;
 
   @media (min-width: ${screenSize.tabletMedium}) {

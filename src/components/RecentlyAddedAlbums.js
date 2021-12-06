@@ -9,10 +9,15 @@ import { Content } from "./shared/Containers"
 import { HeroButton } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
 import useMatchMedia from "../hooks/useMatchMedia"
+import screenSize from "../constants/mediaQueries"
 
 const Subtitle = styled.h2`
   font-size: 3rem;
   text-align: center;
+
+  @media (min-width: ${screenSize.tabletMedium}) {
+    font-size: 4.5rem;
+  }
 `
 
 function RecentlyAddedAlbums() {
