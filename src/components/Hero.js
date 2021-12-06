@@ -28,7 +28,10 @@ const GridContainer = styled.div`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    /* grid-template-columns: auto 2em 1fr 1fr; */
+    width: 100%;
+    max-width: 90em;
+
+    grid-template-columns: 1em auto 2em auto 10em 1fr;
     grid-template-rows: auto auto auto auto;
   }
   /* border: 1px solid green; */
@@ -53,6 +56,13 @@ const HeroTitle = styled.h1`
     text-align: left;
     font-size: 7rem;
   }
+
+  @media (min-width: ${screenSize.tabletMedium}) {
+    max-width: 6.2em;
+    grid-column: 2/5;
+
+    /* border: 1px solid; */
+  }
 `
 
 const HeroSubtitle = styled.h3`
@@ -63,7 +73,7 @@ const HeroSubtitle = styled.h3`
   margin: 1em 0;
 
   @media (min-width: ${screenSize.tabletSmall}) {
-    grid-column: 1/4;
+    grid-column: 2/5;
     justify-self: start;
 
     font-size: 2.5rem;
@@ -75,7 +85,7 @@ const ButtonViewCatalog = styled(HeroButton)`
   margin-top: 1.5em;
 
   @media (min-width: ${screenSize.tabletSmall}) {
-    grid-column: 1/2;
+    grid-column: 2/3;
     justify-self: start;
 
     margin-top: 2em;
@@ -86,25 +96,20 @@ const ButtonLogin = styled(HeroButton)`
   margin-top: 1em;
 
   @media (min-width: ${screenSize.tabletSmall}) {
-    grid-column: 3/4;
+    grid-column: 4/5;
     justify-self: start;
 
     margin-top: 2em;
   }
 `
 
-const HeroContent = styled.div`
-  max-width: 90em;
-  margin: 0 auto;
+// const HeroContent = styled.div`
+//   max-width: 90em;
+//   margin: 0 auto;
 
-  /* background-repeat: no-repeat;
-  background-position: top right;
-  background-size: contain;  */
+//   border: 5px solid yellow;
 
-  /* border: 5px solid yellow; */
-
-  position: relative;
-`
+// `
 //  background-image: url(${heroImage});
 
 // const ContainerHeroText = styled.div`
@@ -131,13 +136,13 @@ const HeroContent = styled.div`
 // `
 
 const HeroImage = styled.img`
-  /* width: 100%; */
+  width: 100%;
   object-fit: cover;
   /* border: 3px solid rebeccapurple; */
 
-  justify-self: end;
-  grid-column: 4 / 5;
-  grid-row: 1 / 3;
+  /* justify-self: end; */
+  grid-column: 6 / 7;
+  grid-row: 1 / 5;
   display: none;
 
   @media (min-width: ${screenSize.tabletMedium}) {
@@ -149,7 +154,7 @@ function Hero() {
   const currentUser = useContext(UserContext)
 
   return (
-    <HeroContent>
+    <>
       {/* <Content> */}
       <GridContainer>
         {/* <ContainerHeroText> */}
@@ -169,7 +174,7 @@ function Hero() {
         <HeroImage src={heroImage} alt="shelf full of vinyl records" />
       </GridContainer>
       {/* </Content> */}
-    </HeroContent>
+    </>
   )
 }
 
