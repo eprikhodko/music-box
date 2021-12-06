@@ -3,6 +3,7 @@ import { useContext } from "react"
 
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
+import screenSize from "../constants/mediaQueries"
 
 // import { Content } from "./shared/Containers"
 // import { HeroTitle } from "./shared/HeroTitle"
@@ -20,15 +21,16 @@ const GridContainer = styled.div`
   /* grid-template-rows: auto auto auto auto; */
   justify-items: center;
 
-  @media (min-width: 700px) {
+  @media (min-width: ${screenSize.tablet}) {
     /* grid-template-rows: auto auto auto auto; */
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr 2em 1fr 1fr;
   }
 
   /* border: 1px solid green; */
 `
 
 const HeroTitle = styled.h1`
+  max-width: 7.8em;
   font-size: 7rem;
   line-height: 1.15;
   /* margin-bottom: 0.2em; */
@@ -39,8 +41,8 @@ const HeroTitle = styled.h1`
 
   margin-top: 1em;
 
-  @media (min-width: 700px) {
-    grid-column: 1/3;
+  @media (min-width: ${screenSize.tablet}) {
+    grid-column: 1/4;
     justify-self: start;
     text-align: left;
   }
@@ -53,15 +55,15 @@ const HeroSubtitle = styled.h3`
 
   margin: 1em 0;
 
-  @media (min-width: 700px) {
-    grid-column: 1/3;
+  @media (min-width: ${screenSize.tablet}) {
+    grid-column: 1/4;
     justify-self: start;
   }
 `
 
 const ButtonViewCatalog = styled(HeroButton)`
   margin-top: 1.5em;
-  @media (min-width: 700px) {
+  @media (min-width: ${screenSize.tablet}) {
     grid-column: 1/2;
     justify-self: start;
 
@@ -71,8 +73,8 @@ const ButtonViewCatalog = styled(HeroButton)`
 
 const ButtonLogin = styled(HeroButton)`
   margin-top: 1em;
-  @media (min-width: 700px) {
-    grid-column: 2/3;
+  @media (min-width: ${screenSize.tablet}) {
+    grid-column: 3/4;
     justify-self: start;
 
     margin-top: 0;
