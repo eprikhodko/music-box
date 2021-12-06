@@ -11,6 +11,23 @@ import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimize
 import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
+const GridContainer = styled.div`
+  width: 95%; /* <-- set padding to the edges of the content so it won't stick to the device screen edges */
+  max-width: 72.5em;
+  margin: 0 auto;
+
+  display: grid;
+  /* grid-template-rows: auto auto auto auto; */
+  justify-items: center;
+
+  @media (min-width: 700px) {
+    /* grid-template-rows: auto auto auto auto; */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* border: 1px solid green; */
+`
+
 const HeroTitle = styled.h1`
   font-size: 7rem;
   line-height: 1.15;
@@ -21,6 +38,12 @@ const HeroTitle = styled.h1`
   text-align: center;
 
   margin-top: 1em;
+
+  @media (min-width: 700px) {
+    grid-column: 1/3;
+    justify-self: start;
+    text-align: left;
+  }
 `
 
 const HeroSubtitle = styled.h3`
@@ -29,6 +52,31 @@ const HeroSubtitle = styled.h3`
   text-align: center;
 
   margin: 1em 0;
+
+  @media (min-width: 700px) {
+    grid-column: 1/3;
+    justify-self: start;
+  }
+`
+
+const ButtonViewCatalog = styled(HeroButton)`
+  margin-top: 1.5em;
+  @media (min-width: 700px) {
+    grid-column: 1/2;
+    justify-self: start;
+
+    margin-top: 0;
+  }
+`
+
+const ButtonLogin = styled(HeroButton)`
+  margin-top: 1em;
+  @media (min-width: 700px) {
+    grid-column: 2/3;
+    justify-self: start;
+
+    margin-top: 0;
+  }
 `
 
 const HeroContent = styled.div`
@@ -56,9 +104,16 @@ const HeroContent = styled.div`
 // `
 
 // const ContainerHeroButtons = styled.div`
-//   display: flex;
+//   /* display: flex;
+//   align-items: center;
+//   justify-content: center; */
 //   margin-top: 3em;
-//   /* border: 1px solid red; */
+
+//   grid-column: 1/4;
+//   /* grid-row: 4/5; */
+
+//   justify-items: stretch;
+//   border: 1px solid red;
 // `
 
 const HeroImage = styled.img`
@@ -68,18 +123,6 @@ const HeroImage = styled.img`
 
   /* grid-column: 3 / 4; */
   display: none;
-`
-
-const GridContainer = styled.div`
-  width: 95%; /* <-- set padding to the edges of the content so it won't stick to the device screen edges */
-  max-width: 72.5em;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-rows: auto auto auto auto;
-  justify-items: center;
-
-  /* border: 1px solid green; */
 `
 
 function Hero() {
@@ -93,18 +136,13 @@ function Hero() {
         <HeroTitle>Build your music library</HeroTitle>
         <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
         {/* <ContainerHeroButtons> */}
-        <HeroButton
-          as={Link}
-          to={ROUTES.CATALOG}
-          // $marginRight="2em"
-          $marginTop="1.5em"
-        >
+        <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
           View catalog
-        </HeroButton>
+        </ButtonViewCatalog>
         {!currentUser && (
-          <HeroButton as={Link} to={ROUTES.LOGIN} $marginTop="1em">
+          <ButtonLogin as={Link} to={ROUTES.LOGIN}>
             Log in
-          </HeroButton>
+          </ButtonLogin>
         )}
         {/* </ContainerHeroButtons> */}
         {/* </ContainerHeroText> */}

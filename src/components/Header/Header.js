@@ -33,7 +33,7 @@ function Header({ noSearchBox }) {
   const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
   const showSearchBox = !noSearchBox
-  console.log(showSearchBox)
+  // console.log(showSearchBox)
 
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false)
 

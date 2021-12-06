@@ -19,58 +19,33 @@ function RecentlyAddedAlbums() {
   const isTabletOrMobile = useMatchMedia("(min-width: 600px)", true)
   const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
-  console.log(isTabletOrMobile, isDesktopResolution)
-
-  // const checkAlbumsCount = () => {
-  //  let slice = {
-  //     start: 0,
-  //     end: 8,
-  //   }
-  //   // console.log("default value, render 8")
-  //   if (isTabletOrMobile && isDesktopResolution) {
-  //     let slice = {
-  //       start: 0,
-  //       end: 8,
-  //     }
-  //     // console.log("render 8")
-  //   } else if (isTabletOrMobile) {
-  //     let slice = {
-  //       start: 0,
-  //       end: 9,
-  //     }
-  //     // console.log("render 9")
-  //   }
-  //   return slice
-  // }
-
-  // console.log(checkAlbumsCount())
+  // console.log(isTabletOrMobile, isDesktopResolution)
 
   const howManyAlbumsToShow = () => {
+    // show 8 albums by default
     let slice = {
       start: 0,
       end: 8,
     }
-    console.log("default value, render 8 albums")
+    // console.log("default value, render 8 albums")
 
     if (isTabletOrMobile && isDesktopResolution) {
       slice = {
         start: 0,
         end: 8,
       }
-      console.log("render 8 albums")
+      // console.log("render 8 albums")
     } else if (isTabletOrMobile) {
       slice = {
         start: 0,
         end: 9,
       }
-      console.log("render 9 albums")
+      // console.log("render 9 albums")
     }
     return slice
   }
 
-  // console.log(howManyAlbumsToShow(isTabletOrMobile))
-
-  const albumsSlice = howManyAlbumsToShow(isTabletOrMobile)
+  const albumsSlice = howManyAlbumsToShow()
 
   const { albumsData } = useContext(AlbumsDataContext)
 
