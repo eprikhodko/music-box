@@ -31,8 +31,8 @@ const GridContainer = styled.div`
     width: 100%;
     max-width: 90em;
 
-    grid-template-columns: 1em auto 2em auto 10em 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-columns: 1.6em auto 2em auto 3em 1fr;
+    grid-template-rows: auto auto auto 2em;
   }
   /* border: 1px solid green; */
 `
@@ -58,8 +58,11 @@ const HeroTitle = styled.h1`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    max-width: 6.2em;
     grid-column: 2/5;
+    max-width: 6.2em;
+
+    color: #000;
+    margin-top: 1.3em;
 
     /* border: 1px solid; */
   }
@@ -142,7 +145,7 @@ const HeroImage = styled.img`
 
   /* justify-self: end; */
   grid-column: 6 / 7;
-  grid-row: 1 / 5;
+  grid-row: 1 / 7;
   display: none;
 
   @media (min-width: ${screenSize.tabletMedium}) {
