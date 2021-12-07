@@ -11,7 +11,8 @@ export const ContainerMain = styled.div`
 `
 
 export const Content = styled.div`
-  width: 95%; /* <-- set padding to the edges of the content so it won't stick to the device screen edges */
+  /* set padding to the edges of the content so it won't stick to the device screen edges */
+  /* width: ${({ $width }) => $width || "95%"}; */
   max-width: 72.5em;
   display: ${({ display }) => display || "flex"};
   justify-content: ${({ justifyContent }) => justifyContent};
@@ -34,4 +35,6 @@ export const PageBody = styled.main`
   /* flex-grow defines how much a flexbox item should grow if there's space available */
   /* make PageBody fill up all remaining space if no other flexbox item has a flex-grow value*/
   flex-grow: 1;
+
+  grid-column: 2/3;
 `

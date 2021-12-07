@@ -55,7 +55,12 @@ function RecentlyAddedAlbums() {
   const { albumsData } = useContext(AlbumsDataContext)
 
   return (
-    <Content flexDirection="column" alignItems="center" $marginTop="4.5em">
+    <Content
+      flexDirection="column"
+      alignItems="center"
+      $marginTop="4.5em"
+      $width="100%"
+    >
       <Subtitle>Recently added albums</Subtitle>
       <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
       <HeroButton as={Link} to={ROUTES.CATALOG} $marginTop="2em">

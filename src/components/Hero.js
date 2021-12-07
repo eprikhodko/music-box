@@ -20,6 +20,10 @@ const GridContainer = styled.div`
   display: grid;
   justify-items: center;
 
+  grid-column: 2/4;
+
+  border: 1px solid green;
+
   @media (min-width: ${screenSize.mobileLarge}) {
     grid-template-columns: auto 2em 1fr 1fr;
   }
@@ -28,8 +32,17 @@ const GridContainer = styled.div`
     width: 100%;
     max-width: 90em;
 
-    grid-template-columns: 1.6em auto 2em auto 3em 1fr;
+    grid-template-columns: auto 2em auto 3em 1fr;
+    grid-template-rows: 1.5fr auto auto 1fr;
   }
+
+  /* @media (min-width: 1212px) {
+    width: 100%;
+    max-width: 90em;
+
+    grid-template-columns: 0.16fr auto 2em auto 3em 1fr;
+    grid-template-rows: 1.5fr auto auto 1fr;
+  } */
   /* border: 1px solid green; */
 `
 
@@ -55,7 +68,8 @@ const HeroTitle = styled.h1`
     max-width: 6.2em;
 
     color: #000;
-    margin-top: 1.3em;
+    /* margin-top: 1.3em; */
+    align-self: end;
   }
 `
 
@@ -142,7 +156,7 @@ const ButtonLogin = styled(HeroButton)`
 // `
 
 const HeroImage = styled.img`
-  max-width: 100%;
+  max-width: 100%; /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
   object-fit: cover;
   /* border: 3px solid rebeccapurple; */
 
@@ -160,27 +174,19 @@ function Hero() {
   const currentUser = useContext(UserContext)
 
   return (
-    <>
-      {/* <Content> */}
-      <GridContainer>
-        {/* <ContainerHeroText> */}
-        <HeroTitle>Build your music library</HeroTitle>
-        <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
-        {/* <ContainerHeroButtons> */}
-        <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
-          View catalog
-        </ButtonViewCatalog>
-        {!currentUser && (
-          <ButtonLogin as={Link} to={ROUTES.LOGIN}>
-            Log in
-          </ButtonLogin>
-        )}
-        {/* </ContainerHeroButtons> */}
-        {/* </ContainerHeroText> */}
-        <HeroImage src={heroImage} alt="shelf full of vinyl records" />
-      </GridContainer>
-      {/* </Content> */}
-    </>
+    <GridContainer>
+      <HeroTitle>Build your music library</HeroTitle>
+      <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+      <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
+        View catalog
+      </ButtonViewCatalog>
+      {!currentUser && (
+        <ButtonLogin as={Link} to={ROUTES.LOGIN}>
+          Log in
+        </ButtonLogin>
+      )}
+      <HeroImage src={heroImage} alt="shelf full of vinyl records" />
+    </GridContainer>
   )
 }
 

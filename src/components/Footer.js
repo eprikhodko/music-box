@@ -6,6 +6,10 @@ import { ReactComponent as IconInstagram } from "../icons/social/instagram-icon.
 import { ReactComponent as IconFacebook } from "../icons/social/facebook-icon.svg"
 import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 
+const StyledFooter = styled.footer`
+  grid-column: 2/3;
+`
+
 const ContainerFooter = styled.div`
   /* max-width: 1440px; */
   /* margin: 0 auto; */
@@ -99,7 +103,7 @@ const GridElement = styled.div`
 
 function Footer({ $marginTop }) {
   return (
-    <footer>
+    <StyledFooter>
       <ContainerFooter $marginTop={$marginTop}>
         <FooterContent>
           <GridElement>
@@ -194,7 +198,7 @@ function Footer({ $marginTop }) {
           <Copyright>© Copyright MusicBox</Copyright>
         </FooterContent>
       </ContainerFooter>
-    </footer>
+    </StyledFooter>
   )
 }
 
