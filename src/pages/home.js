@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
 import Header from "../components/Header/Header"
-import Hero from "../components/Hero"
+// import Hero from "../components/Hero"
 import RecentlyAddedAlbums from "../components/RecentlyAddedAlbums"
 import Footer from "../components/Footer"
-import { PageBody } from "../components/shared/Containers"
+// import { PageBody } from "../components/shared/Containers"
 // import useMatchMedia from "../hooks/useMatchMedia"
 
 // const Container = styled.div`
@@ -16,11 +16,14 @@ const ContainerMain = styled.div`
   /* width: 95%; */
   max-width: 90em;
   margin: 0 auto;
+  /* margin-left: 10em; */
 
   display: grid;
   /* grid-template-columns: 5em 90em 5em; */
-  grid-template-columns: 1fr 72.5em 1fr;
-  grid-gap: 1em;
+  grid-template-columns: 1fr fit-content(72.5em) 1fr;
+  grid-template-columns: 1fr auto 1fr;
+
+  /* grid-gap: 1em; */
 
   /* border: 3px solid coral; */
 `
@@ -31,15 +34,15 @@ function Home() {
   return (
     // <Container>
     <>
+      <Header />
       <ContainerMain>
-        <Header />
-        <Hero />
-        <PageBody>
-          {/* {isMobileResolution && <RecentlyAddedAlbums />} */}
-          <RecentlyAddedAlbums />
-        </PageBody>
-        <Footer />
+        {/* <Hero /> */}
+        {/* <PageBody> */}
+        {/* {isMobileResolution && <RecentlyAddedAlbums />} */}
+        <RecentlyAddedAlbums />
+        {/* </PageBody> */}
       </ContainerMain>
+      <Footer />
     </>
     // </Container>
   )

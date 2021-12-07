@@ -7,7 +7,7 @@ const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 // const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
 
 export const StyledAlbumsGrid = styled.div`
-  width: 100%;
+  /* width: 100%; */
 
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */
@@ -26,7 +26,7 @@ export const StyledAlbumsGrid = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  /* show 3 columns of albums from 600px screen width and up */
+  /* show 4 columns of albums from 1024px screen width and up */
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

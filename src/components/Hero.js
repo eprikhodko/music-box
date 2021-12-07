@@ -13,26 +13,26 @@ import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
 const GridContainer = styled.div`
-  width: 95%; /* <-- set padding to the edges of the content so it won't stick to the device screen edges */
-  max-width: 72.5em;
-  margin: 0 auto;
+  /* width: 95%; */
+  /* max-width: 72.5em; */
+  /* margin: 0 auto; */
 
   display: grid;
   justify-items: center;
 
   grid-column: 2/4;
 
-  border: 1px solid green;
+  /* border: 1px solid green; */
 
   @media (min-width: ${screenSize.mobileLarge}) {
     grid-template-columns: auto 2em 1fr 1fr;
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    width: 100%;
-    max-width: 90em;
+    /* width: 100%; */
+    /* max-width: 90em; */
 
-    grid-template-columns: auto 2em auto 3em 1fr;
+    grid-template-columns: auto 2em auto 2em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
   }
 `
@@ -116,13 +116,13 @@ const ButtonLogin = styled(HeroButton)`
 `
 
 const HeroImage = styled.img`
-  max-width: 100%; /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
+  max-width: 50%; /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
   object-fit: cover;
   /* border: 3px solid rebeccapurple; */
 
-  justify-self: end;
-  grid-column: 6 / 7;
+  grid-column: 5 / 6;
   grid-row: 1 / 5;
+  justify-self: end;
   display: none;
 
   @media (min-width: ${screenSize.tabletMedium}) {
