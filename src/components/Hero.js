@@ -35,15 +35,6 @@ const GridContainer = styled.div`
     grid-template-columns: auto 2em auto 3em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
   }
-
-  /* @media (min-width: 1212px) {
-    width: 100%;
-    max-width: 90em;
-
-    grid-template-columns: 0.16fr auto 2em auto 3em 1fr;
-    grid-template-rows: 1.5fr auto auto 1fr;
-  } */
-  /* border: 1px solid green; */
 `
 
 const HeroTitle = styled.h1`
@@ -64,7 +55,7 @@ const HeroTitle = styled.h1`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 2/5;
+    grid-column: 1/5;
     max-width: 6.2em;
 
     color: #000;
@@ -89,7 +80,7 @@ const HeroSubtitle = styled.h3`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 2/5;
+    grid-column: 1/5;
   }
 `
 
@@ -104,7 +95,7 @@ const ButtonViewCatalog = styled(HeroButton)`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 2/3;
+    grid-column: 1/2;
   }
 `
 
@@ -119,41 +110,10 @@ const ButtonLogin = styled(HeroButton)`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 4/5;
+    grid-column: 3/4;
+    justify-self: end;
   }
 `
-
-// const HeroContent = styled.div`
-//   max-width: 90em;
-//   margin: 0 auto;
-
-//   border: 5px solid yellow;
-
-// `
-//  background-image: url(${heroImage});
-
-// const ContainerHeroText = styled.div`
-//   /* max-width: 34em; */
-//   display: flex;
-//   flex-direction: column;
-//   /* margin: 10em 0 14.5em; */
-//   border: 3px solid green;
-
-//   grid-column: 1 / 2;
-// `
-
-// const ContainerHeroButtons = styled.div`
-//   /* display: flex;
-//   align-items: center;
-//   justify-content: center; */
-//   margin-top: 3em;
-
-//   grid-column: 1/4;
-//   /* grid-row: 4/5; */
-
-//   justify-items: stretch;
-//   border: 1px solid red;
-// `
 
 const HeroImage = styled.img`
   max-width: 100%; /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */

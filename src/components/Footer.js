@@ -11,10 +11,7 @@ const StyledFooter = styled.footer`
 `
 
 const ContainerFooter = styled.div`
-  /* max-width: 1440px; */
-  /* margin: 0 auto; */
   margin-top: ${({ $marginTop }) => $marginTop};
-  /* padding: 3em 4em 1em; */
   background-color: #c2c2c2;
   /* border: 1px solid magenta; */
 `
