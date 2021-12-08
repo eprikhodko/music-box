@@ -13,10 +13,7 @@ import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
 const HeroGridContainer = styled.div`
-  /* width: 95%; */
-  /* width: 81.25em; */
   max-width: 81.25em;
-  /* margin: 0 auto; */
 
   display: grid;
   /* justify-items: center; */
@@ -32,9 +29,6 @@ const HeroGridContainer = styled.div`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    /* width: 100%; */
-    /* max-width: 90em; */
-
     grid-template-columns: auto 2em auto 2em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
   }
@@ -119,9 +113,9 @@ const ButtonLogin = styled(HeroButton)`
 `
 
 const HeroImage = styled.img`
-  max-width: 100%; /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
+  /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
+  max-width: 100%;
   object-fit: cover;
-  /* border: 3px solid rebeccapurple; */
 
   grid-column: 5 / 6;
   grid-row: 1 / 5;

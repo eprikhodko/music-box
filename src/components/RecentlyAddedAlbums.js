@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
-// import { Content } from "./shared/Containers"
 import { HeroButton } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
 import useMatchMedia from "../hooks/useMatchMedia"
@@ -13,13 +12,14 @@ import screenSize from "../constants/mediaQueries"
 
 const Container = styled.div`
   width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-self: stretch;
+
   grid-column: 2/3;
-  /* width: 50%;
-  margin: 0 auto; */
+
+  margin-top: 4em;
 `
 
 const Subtitle = styled.h2`
@@ -65,12 +65,6 @@ function RecentlyAddedAlbums() {
 
   const { albumsData } = useContext(AlbumsDataContext)
 
-  // <Content
-  //   flexDirection="column"
-  //   alignItems="center"
-  //   $marginTop="4.5em"
-  //   $width="100%"
-  // >
   return (
     <Container>
       <Subtitle>Recently added albums</Subtitle>

@@ -18,23 +18,6 @@ import {
   ButtonCloseHamburger,
 } from "./MobileMenu"
 
-// ::after {
-//   /* padding: 0.5em; */
-//   /* box-sizing: border-box; */
-//   /* content: "Look at this orange box. Look at this orange box."; */
-//   /* height: 0.4em; */
-//   content: "";
-//   border-bottom: 3px solid #c2c2c2;
-//   border-bottom: 3px solid red;
-
-//   /* background-color: #ffba10; */
-//   position: absolute;
-//   width: 100%;
-//   left: 0;
-//   /* top: 0; */
-//   /* bottom: 55em; */
-// }
-
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
 
@@ -59,7 +42,6 @@ function Header({ noSearchBox }) {
   const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
   const showSearchBox = !noSearchBox
-  // console.log(showSearchBox)
 
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false)
 

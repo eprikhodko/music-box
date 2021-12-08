@@ -8,22 +8,71 @@ import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 
 const StyledFooter = styled.footer`
   grid-column: 2/3;
+  grid-row: 6/7;
+
+  z-index: 1;
+
+  /* margin-top: 7em; */
+
+  /* border: 1px solid; */
 `
+
+// const FooterBackground = styled.div`
+//   border-bottom: 3px solid #c2c2c2;
+
+//   grid-column: 1/4;
+// `
+
+// ::after {
+//   /* display: block; */
+//   /* padding: 0.5em; */
+//   /* box-sizing: border-box; */
+//   /* content: "Look at this orange box. Look at this orange box."; */
+//   content: "";
+//   height: 1%;
+//   /* border-bottom: 3px solid #c2c2c2; */
+//   /* border-top: 500px solid #c2c2c2; */
+
+//   background-color: #ffba10;
+//   position: absolute;
+//   width: 100%;
+//   left: 0;
+//   /* top: 0; */
+//   /* bottom: 0; */
+//   /* bottom: 55em; */
+//   /* top: 0; */
+//   /* bottom: 20em; */
+// }
 
 const ContainerFooter = styled.div`
   margin-top: ${({ $marginTop }) => $marginTop};
-  background-color: #c2c2c2;
+  margin-top: 0;
+  /* background-color: #c2c2c2; */
   /* border: 1px solid magenta; */
+  /* position: relative; */
+  /* border: 1px solid gray; */
+`
+
+const BackgroundFooter = styled.div`
+  background-color: #c2c2c2;
+
+  height: 27em;
+  width: 100%;
+
+  grid-column: 1/4;
+  grid-row: 6/7;
+
+  align-self: end;
 `
 
 const FooterContent = styled.div`
-  width: 90%;
+  /* width: 90%; */
   max-width: 72.5em;
   margin: 0 auto;
   padding: 3em 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
   /* grid-gap: 5em; */
 
   /* border: 1px solid; */
@@ -100,102 +149,105 @@ const GridElement = styled.div`
 
 function Footer({ $marginTop }) {
   return (
-    <StyledFooter>
-      <ContainerFooter $marginTop={$marginTop}>
-        <FooterContent>
-          <GridElement>
-            <p>
-              <Title>Music Box</Title>
-            </p>
-            <FooterLinks>
-              <li>
-                <StyledLink to="#">About Us</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="#">Blog</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="#">App</StyledLink>
-              </li>
-            </FooterLinks>
-          </GridElement>
+    <>
+      <StyledFooter>
+        <ContainerFooter $marginTop={$marginTop}>
+          <FooterContent>
+            <GridElement>
+              <p>
+                <Title>Music Box</Title>
+              </p>
+              <FooterLinks>
+                <li>
+                  <StyledLink to="#">About Us</StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="#">Blog</StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="#">App</StyledLink>
+                </li>
+              </FooterLinks>
+            </GridElement>
 
-          <GridElement>
-            <p>
-              <Title> Help is here</Title>
-            </p>
-            <FooterLinks>
-              <li>
-                <StyledLink to="#">Help & Support</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="#">Forum</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="#">Database Guidelines</StyledLink>
-              </li>
-            </FooterLinks>
-          </GridElement>
+            <GridElement>
+              <p>
+                <Title> Help is here</Title>
+              </p>
+              <FooterLinks>
+                <li>
+                  <StyledLink to="#">Help & Support</StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="#">Forum</StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="#">Database Guidelines</StyledLink>
+                </li>
+              </FooterLinks>
+            </GridElement>
 
-          <GridElement>
-            <p>
-              <Title>Join in</Title>
-            </p>
-            <FooterLinks>
-              <li>
-                <StyledLink to="#">Get Started</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="#">Sign Up</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="#">Contribute</StyledLink>
-              </li>
-            </FooterLinks>
-          </GridElement>
+            <GridElement>
+              <p>
+                <Title>Join in</Title>
+              </p>
+              <FooterLinks>
+                <li>
+                  <StyledLink to="#">Get Started</StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="#">Sign Up</StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="#">Contribute</StyledLink>
+                </li>
+              </FooterLinks>
+            </GridElement>
 
-          <GridElement>
-            <p>
-              <Title>Follow us</Title>
-            </p>
-            <FooterLinks>
-              <li>
-                <LinkWithIcon>
-                  <IconContainer>
-                    <StyledIcon>
-                      <IconInstagram />
-                    </StyledIcon>
-                  </IconContainer>
-                  <StyledLink to="#">Instagram</StyledLink>
-                </LinkWithIcon>
-              </li>
-              <li>
-                <LinkWithIcon>
-                  <IconContainer>
-                    <StyledIcon>
-                      <IconFacebook />
-                    </StyledIcon>
-                  </IconContainer>
-                  <StyledLink to="#">Facebook</StyledLink>
-                </LinkWithIcon>
-              </li>
-              <li>
-                <LinkWithIcon>
-                  <IconContainer>
-                    <StyledIcon>
-                      <IconTwitter />
-                    </StyledIcon>
-                  </IconContainer>
-                  <StyledLink to="#">Twitter</StyledLink>
-                </LinkWithIcon>
-              </li>
-            </FooterLinks>
-          </GridElement>
+            <GridElement>
+              <p>
+                <Title>Follow us</Title>
+              </p>
+              <FooterLinks>
+                <li>
+                  <LinkWithIcon>
+                    <IconContainer>
+                      <StyledIcon>
+                        <IconInstagram />
+                      </StyledIcon>
+                    </IconContainer>
+                    <StyledLink to="#">Instagram</StyledLink>
+                  </LinkWithIcon>
+                </li>
+                <li>
+                  <LinkWithIcon>
+                    <IconContainer>
+                      <StyledIcon>
+                        <IconFacebook />
+                      </StyledIcon>
+                    </IconContainer>
+                    <StyledLink to="#">Facebook</StyledLink>
+                  </LinkWithIcon>
+                </li>
+                <li>
+                  <LinkWithIcon>
+                    <IconContainer>
+                      <StyledIcon>
+                        <IconTwitter />
+                      </StyledIcon>
+                    </IconContainer>
+                    <StyledLink to="#">Twitter</StyledLink>
+                  </LinkWithIcon>
+                </li>
+              </FooterLinks>
+            </GridElement>
 
-          <Copyright>© Copyright MusicBox</Copyright>
-        </FooterContent>
-      </ContainerFooter>
-    </StyledFooter>
+            <Copyright>© Copyright MusicBox</Copyright>
+          </FooterContent>
+        </ContainerFooter>
+      </StyledFooter>
+      <BackgroundFooter />
+    </>
   )
 }
 
