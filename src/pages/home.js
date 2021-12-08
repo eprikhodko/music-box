@@ -16,11 +16,10 @@ const ContainerMain = styled.div`
   /* width: 95%; */
   /* max-width: 90em; */
   /* margin: 0 auto; */
-  /* margin-left: 10em; */
 
   display: grid;
   grid-template-columns: 1fr minmax(0, 72.5em) 1fr;
-  grid-gap: 1em;
+  grid-column-gap: 1em;
 
   /* border: 3px solid coral; */
 `
@@ -31,8 +30,8 @@ function Home() {
   return (
     // <Container>
     <>
-      <Header />
       <ContainerMain>
+        <Header />
         <Hero />
         {/* <PageBody> */}
         {/* {isMobileResolution && <RecentlyAddedAlbums />} */}

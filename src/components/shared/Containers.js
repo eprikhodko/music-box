@@ -22,6 +22,10 @@ export const Content = styled.div`
   align-items: ${({ alignItems }) => alignItems};
 
   /* border: 1px solid magenta; */
+
+  /* @media (min-width: 75.4em) {
+    margin: 0 auto;
+  } */
 `
 
 export const CenterContent = styled.div`
