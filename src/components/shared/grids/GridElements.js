@@ -11,6 +11,7 @@ export const StyledAlbumsGrid = styled.div`
   /* max-width: 72.5em; */
   /* border: 1px solid; */
   /* align-self: center; */
+  align-self: stretch;
 
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */

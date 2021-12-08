@@ -12,9 +12,11 @@ import useMatchMedia from "../hooks/useMatchMedia"
 import screenSize from "../constants/mediaQueries"
 
 const Container = styled.div`
-  /* width: 72.5em; */
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  align-self: stretch;
   grid-column: 2/3;
   /* width: 50%;
   margin: 0 auto; */

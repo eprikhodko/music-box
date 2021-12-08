@@ -37,17 +37,11 @@ import {
 
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
-  /* border-bottom: 3px solid #c2c2c2; */
 
   grid-column: 2/3;
 
   /* border: 1px solid magenta; */
 `
-
-// const ContainerHeader = styled(Content)`
-//   /* max-width: 70.5em; */
-//   border: 1px solid magenta;
-// `
 
 const BorderBottom = styled.div`
   border-bottom: 3px solid #c2c2c2;
