@@ -12,7 +12,7 @@ import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimize
 import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
-const GridContainer = styled.div`
+const HeroGridContainer = styled.div`
   /* width: 95%; */
   /* width: 81.25em; */
   max-width: 81.25em;
@@ -21,9 +21,9 @@ const GridContainer = styled.div`
   display: grid;
   /* justify-items: center; */
   /* align-self: end; */
-  /* justify-self: center; */
+  /* justify-self: end; */
 
-  grid-column: 3/5;
+  grid-column: 2/4;
 
   /* border: 1px solid green; */
 
@@ -137,7 +137,7 @@ function Hero() {
   const currentUser = useContext(UserContext)
 
   return (
-    <GridContainer>
+    <HeroGridContainer>
       <HeroTitle>Build your music library</HeroTitle>
       <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
       <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
@@ -149,7 +149,7 @@ function Hero() {
         </ButtonLogin>
       )}
       <HeroImage src={heroImage} alt="shelf full of vinyl records" />
-    </GridContainer>
+    </HeroGridContainer>
   )
 }
 

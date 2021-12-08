@@ -19,11 +19,7 @@ const ContainerMain = styled.div`
   /* margin-left: 10em; */
 
   display: grid;
-  /* grid-template-columns: 5em 90em 5em; */
-  grid-template-columns: 1fr fit-content(72.5em) 1fr;
-  grid-template-columns: 8.75em 72.5em 8.75em;
-  grid-template-columns: auto 1fr minmax(0, 72.5em) 1fr auto;
-
+  grid-template-columns: 1fr minmax(0, 72.5em) 1fr;
   grid-gap: 1em;
 
   /* border: 3px solid coral; */
