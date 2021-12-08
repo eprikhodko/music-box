@@ -14,13 +14,16 @@ import UserContext from "../context/user"
 
 const GridContainer = styled.div`
   /* width: 95%; */
-  /* max-width: 72.5em; */
+  /* width: 81.25em; */
+  max-width: 81.25em;
   /* margin: 0 auto; */
 
   display: grid;
-  justify-items: center;
+  /* justify-items: center; */
+  /* align-self: end; */
+  /* justify-self: center; */
 
-  grid-column: 2/4;
+  grid-column: 3/5;
 
   /* border: 1px solid green; */
 
@@ -116,7 +119,7 @@ const ButtonLogin = styled(HeroButton)`
 `
 
 const HeroImage = styled.img`
-  max-width: 50%; /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
+  max-width: 100%; /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
   object-fit: cover;
   /* border: 3px solid rebeccapurple; */
 

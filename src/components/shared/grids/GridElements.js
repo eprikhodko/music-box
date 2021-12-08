@@ -8,6 +8,9 @@ const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 
 export const StyledAlbumsGrid = styled.div`
   /* width: 100%; */
+  /* max-width: 72.5em; */
+  /* border: 1px solid; */
+  /* align-self: center; */
 
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */
