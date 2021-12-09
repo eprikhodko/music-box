@@ -29,6 +29,7 @@ const Container = styled.div`
 
 const Subtitle = styled.h2`
   font-size: 3rem;
+  color: #333;
   text-align: center;
 
   @media (min-width: ${screenSize.tabletMedium}) {

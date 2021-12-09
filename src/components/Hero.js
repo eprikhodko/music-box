@@ -16,25 +16,13 @@ import UserContext from "../context/user"
 const HeroGridContainer = styled.div`
   /* width: 95%; */
   max-width: 1300px;
-  /* grid-column: 2 / -2; */
-  grid-column: 2/4;
+  grid-column: 2 / -2;
+
+  /////////////////
+  /* grid-column: 2/4; */
+  ////////////////
+
   display: grid;
-  /* grid-template-columns: minmax(1em, 1fr) minmax(0, 1300px) minmax(1em, 1fr);
-
-  & > * {
-    grid-column: 2 / -2;
-  } */
-  /* grid-column: 2/-2; */
-
-  /* justify-items: center; */
-
-  /* justify-items: center; */
-  /* align-self: end; */
-  /* justify-self: end; */
-
-  /* grid-area: hero; */
-
-  /* border: 1px solid green; */
 
   /* @media (min-width: ${screenSize.mobileLarge}) {
     grid-template-columns: auto 2em 1fr 1fr;
@@ -43,11 +31,12 @@ const HeroGridContainer = styled.div`
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-template-columns: auto 2em auto 2em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
+    grid-column: 2/4;
   }
 `
 
 const HeroTitle = styled.h1`
-  font-size: 4.8rem;
+  font-size: 4.6rem;
   color: #333;
   line-height: 1.15;
   text-align: center;

@@ -17,19 +17,12 @@ import {
   ButtonHamburger,
   ButtonCloseHamburger,
 } from "./MobileMenu"
-import MainGridSharedStyle from "../../pages/sharedStyles"
+// import MainGridSharedStyle from "../../pages/sharedStyles"
+import { MainGrid } from "../shared/Containers"
 
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
-
-  /* grid-column: 2/3; */
-  /* grid-area: header; */
-
   border-bottom: 3px solid #c2c2c2;
-
-  /* border: 1px solid magenta; */
-
-  ${MainGridSharedStyle}
 `
 
 const Content = styled.div`
@@ -38,13 +31,6 @@ const Content = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
-// const BorderBottom = styled.div`
-//   border-bottom: 3px solid #c2c2c2;
-
-//   /* grid-column: 1/-1; */
-//   /* grid-area: bottom-line; */
-// `
 
 const ContainerFlex = styled.div`
   display: flex;
@@ -73,33 +59,39 @@ function Header({ noSearchBox }) {
   return (
     <>
       <StyledHeader>
-        <Content>
-          <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
-            <Logo />
-            {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
-            {isDesktopResolution && showSearchBox && <SearchBox />}
-          </ContainerFlex>
-
-          {isTabletOrMobile ? (
-            <Navigation />
-          ) : (
-            <ButtonHamburger
-              toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
-            />
-          )}
-
-          <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
-            <Container>
-              <ButtonCloseHamburger
-                toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
-              />
-              <MobileNavigation
-                toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
-              />
+        <MainGrid>
+          <Content>
+            <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
               <Logo />
-            </Container>
-          </HamburgerMenu>
-        </Content>
+              {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
+              {isDesktopResolution && showSearchBox && <SearchBox />}
+            </ContainerFlex>
+
+            {isTabletOrMobile ? (
+              <Navigation />
+            ) : (
+              <ButtonHamburger
+                toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
+              />
+            )}
+
+            <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
+              <Container>
+                <ButtonCloseHamburger
+                  toggleHamburgerMenuOpenOrClose={
+                    toggleHamburgerMenuOpenOrClose
+                  }
+                />
+                <MobileNavigation
+                  toggleHamburgerMenuOpenOrClose={
+                    toggleHamburgerMenuOpenOrClose
+                  }
+                />
+                <Logo />
+              </Container>
+            </HamburgerMenu>
+          </Content>
+        </MainGrid>
       </StyledHeader>
     </>
   )

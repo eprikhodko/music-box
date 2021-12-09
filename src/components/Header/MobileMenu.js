@@ -36,6 +36,7 @@ export const HamburgerMenu = styled.div`
 export const HamburgerButton = styled.button`
   background: transparent;
   border: 0;
+  padding: 0;
 `
 
 export const CloseHamburgerButton = styled(HamburgerButton)`
