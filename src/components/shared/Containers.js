@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 export const MainGrid = styled.div`
   display: grid;
-  grid-template-columns: minmax(1em, 1fr) minmax(0, 500px) minmax(1em, 1fr);
+  grid-template-columns: minmax(1em, 1fr) minmax(0, 700px) minmax(1em, 1fr);
 
   /* > * {
     grid-column: 2 / -2;

@@ -69,6 +69,7 @@ import { MainGrid } from "./shared/Containers"
 
 const StyledFooter = styled.footer`
   background-color: #c2c2c2;
+  margin-top: 6.25em;
 `
 
 const ContainerFooter = styled.div`

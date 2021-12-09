@@ -24,10 +24,10 @@ const HeroGridContainer = styled.div`
 
   display: grid;
 
-  /* @media (min-width: ${screenSize.mobileLarge}) {
-    grid-template-columns: auto 2em 1fr 1fr;
+  @media (min-width: 750px) {
+    /* grid-template-columns: auto 2em auto 1fr; */
   }
- */
+
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-template-columns: auto 2em auto 2em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
@@ -36,22 +36,22 @@ const HeroGridContainer = styled.div`
 `
 
 const HeroTitle = styled.h1`
+  max-width: 7.8em;
+  margin-top: 1em;
+
   font-size: 4.6rem;
   color: #333;
   line-height: 1.15;
   text-align: center;
 
-  /* max-width: 7.8em; */
-  margin-top: 1em;
+  justify-self: center;
 
-  /* @media (min-width: ${screenSize.mobileLarge}) {
-    grid-column: 1/5;
-    justify-self: start;
+  @media (min-width: 600px) {
+    /* justify-self: start; */
 
-    text-align: left;
+    /* text-align: left; */
     font-size: 7rem;
   }
-  */
 
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/5;
@@ -69,14 +69,13 @@ const HeroSubtitle = styled.h3`
 
   margin: 1em 0;
 
-  /* @media (min-width: ${screenSize.mobileLarge}) {
-    grid-column: 1/5;
-    justify-self: start;
+  @media (min-width: 600px) {
+    /* justify-self: start; */
 
     font-size: 2.5rem;
     color: rgba(0, 0, 0, 0.7);
   }
-*/
+
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/5;
   }
@@ -86,13 +85,12 @@ const ButtonViewCatalog = styled(HeroButton)`
   margin-top: 1.5em;
   justify-self: center;
 
-  /* @media (min-width: ${screenSize.mobileLarge}) {
-    grid-column: 1/2;
-    justify-self: start;
+  @media (min-width: 600px) {
+    /* justify-self: start; */
 
     margin-top: 2em;
   }
-*/
+
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/2;
   }
@@ -102,14 +100,11 @@ const ButtonLogin = styled(HeroButton)`
   margin-top: 1em;
   justify-self: center;
 
-  /* @media (min-width: ${screenSize.mobileLarge}) {
-    grid-column: 3/4;
-    justify-self: start;
+  @media (min-width: 600px) {
+    /* justify-self: start; */
 
     margin-top: 2em;
   }
-
-  */
 
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 3/4;
