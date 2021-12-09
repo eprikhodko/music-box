@@ -17,6 +17,7 @@ import {
   ButtonHamburger,
   ButtonCloseHamburger,
 } from "./MobileMenu"
+import MainGridSharedStyle from "../../pages/sharedStyles"
 
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
@@ -28,20 +29,7 @@ const StyledHeader = styled.header`
 
   /* border: 1px solid magenta; */
 
-  display: grid;
-  grid-template-columns: minmax(1em, 1fr) minmax(0, 500px) minmax(1em, 1fr);
-
-  /* > * {
-    grid-column: 2 / -2;
-  } */
-
-  @media (min-width: 600px) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1160px) minmax(0, 1fr);
-
-    /* & > * {
-      grid-column: 2 / -2;
-    } */
-  }
+  ${MainGridSharedStyle}
 `
 
 const Content = styled.div`
@@ -85,7 +73,6 @@ function Header({ noSearchBox }) {
   return (
     <>
       <StyledHeader>
-        {/* <Content justifyContent="space-between" alignItems="center"> */}
         <Content>
           <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
             <Logo />
@@ -112,10 +99,8 @@ function Header({ noSearchBox }) {
               <Logo />
             </Container>
           </HamburgerMenu>
-          {/* </Content> */}
         </Content>
       </StyledHeader>
-      {/* <BorderBottom /> */}
     </>
   )
 }

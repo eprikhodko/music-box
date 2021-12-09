@@ -9,6 +9,7 @@ import { HeroButton } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
 import useMatchMedia from "../hooks/useMatchMedia"
 import screenSize from "../constants/mediaQueries"
+import { MainGrid } from "./shared/Containers"
 
 const Container = styled.div`
   /* width: 100%;
@@ -70,13 +71,15 @@ function RecentlyAddedAlbums() {
   const { albumsData } = useContext(AlbumsDataContext)
 
   return (
-    <Container>
-      <Subtitle>Recently added albums</Subtitle>
-      <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
-      <HeroButton as={Link} to={ROUTES.CATALOG} $marginTop="2em">
-        View all
-      </HeroButton>
-    </Container>
+    <MainGrid>
+      <Container>
+        <Subtitle>Recently added albums</Subtitle>
+        <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
+        <HeroButton as={Link} to={ROUTES.CATALOG} $marginTop="2em">
+          View all
+        </HeroButton>
+      </Container>
+    </MainGrid>
   )
 }
 

@@ -6,6 +6,7 @@ import * as ROUTES from "../constants/routes"
 import screenSize from "../constants/mediaQueries"
 
 // import { Content } from "./shared/Containers"
+import { MainGrid } from "./shared/Containers"
 // import { HeroTitle } from "./shared/HeroTitle"
 
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
@@ -147,7 +148,7 @@ function Hero() {
   const currentUser = useContext(UserContext)
 
   return (
-    <>
+    <MainGrid>
       <HeroGridContainer>
         <HeroTitle>Build your music library</HeroTitle>
         <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
@@ -161,7 +162,7 @@ function Hero() {
         )}
         <HeroImage src={heroImage} alt="shelf full of vinyl records" />
       </HeroGridContainer>
-    </>
+    </MainGrid>
   )
 }
 
