@@ -12,37 +12,38 @@ import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimize
 import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
-// const HeroGridContainer = styled.div`
-//   /* width: 95%; */
-//   /* max-width: 81.25em; */
+const HeroGridContainer = styled.div`
+  /* width: 95%; */
+  max-width: 1300px;
+  /* grid-column: 2 / -2; */
+  grid-column: 2/4;
+  display: grid;
+  /* grid-template-columns: minmax(1em, 1fr) minmax(0, 1300px) minmax(1em, 1fr);
 
-//   display: grid;
-//   grid-template-columns: minmax(1em, 1fr) minmax(0, 500px) minmax(1em, 1fr);
+  & > * {
+    grid-column: 2 / -2;
+  } */
+  /* grid-column: 2/-2; */
 
-//   & > * {
-//     grid-column: 2 / -2;
-//   }
-//   /* grid-column: 2/-2; */
+  /* justify-items: center; */
 
-//   /* justify-items: center; */
+  /* justify-items: center; */
+  /* align-self: end; */
+  /* justify-self: end; */
 
-//   /* justify-items: center; */
-//   /* align-self: end; */
-//   /* justify-self: end; */
+  /* grid-area: hero; */
 
-//   /* grid-area: hero; */
+  /* border: 1px solid green; */
 
-//   /* border: 1px solid green; */
-
-//   /* @media (min-width: ${screenSize.mobileLarge}) {
-//     grid-template-columns: auto 2em 1fr 1fr;
-//   }
-
-//   @media (min-width: ${screenSize.tabletMedium}) {
-//     grid-template-columns: auto 2em auto 2em 1fr;
-//     grid-template-rows: 1.5fr auto auto 1fr;
-//   } */
-// `
+  /* @media (min-width: ${screenSize.mobileLarge}) {
+    grid-template-columns: auto 2em 1fr 1fr;
+  }
+ */
+  @media (min-width: ${screenSize.tabletMedium}) {
+    grid-template-columns: auto 2em auto 2em 1fr;
+    grid-template-rows: 1.5fr auto auto 1fr;
+  }
+`
 
 const HeroTitle = styled.h1`
   font-size: 4.8rem;
@@ -60,6 +61,7 @@ const HeroTitle = styled.h1`
     text-align: left;
     font-size: 7rem;
   }
+  */
 
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/5;
@@ -67,7 +69,7 @@ const HeroTitle = styled.h1`
 
     color: #000;
     align-self: end;
-  } */
+  }
 `
 
 const HeroSubtitle = styled.h3`
@@ -84,10 +86,10 @@ const HeroSubtitle = styled.h3`
     font-size: 2.5rem;
     color: rgba(0, 0, 0, 0.7);
   }
-
+*/
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/5;
-  } */
+  }
 `
 
 const ButtonViewCatalog = styled(HeroButton)`
@@ -100,10 +102,10 @@ const ButtonViewCatalog = styled(HeroButton)`
 
     margin-top: 2em;
   }
-
+*/
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/2;
-  } */
+  }
 `
 
 const ButtonLogin = styled(HeroButton)`
@@ -117,10 +119,12 @@ const ButtonLogin = styled(HeroButton)`
     margin-top: 2em;
   }
 
+  */
+
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 3/4;
     justify-self: end;
-  } */
+  }
 `
 
 const HeroImage = styled.img`
@@ -134,9 +138,9 @@ const HeroImage = styled.img`
   justify-self: end;
   display: none;
 
-  /* @media (min-width: ${screenSize.tabletMedium}) {
+  @media (min-width: ${screenSize.tabletMedium}) {
     display: block;
-  } */
+  }
 `
 
 function Hero() {
@@ -144,19 +148,19 @@ function Hero() {
 
   return (
     <>
-      {/* <HeroGridContainer> */}
-      <HeroTitle>Build your music library</HeroTitle>
-      <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
-      <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
-        View catalog
-      </ButtonViewCatalog>
-      {!currentUser && (
-        <ButtonLogin as={Link} to={ROUTES.LOGIN}>
-          Log in
-        </ButtonLogin>
-      )}
-      <HeroImage src={heroImage} alt="shelf full of vinyl records" />
-      {/* </HeroGridContainer> */}
+      <HeroGridContainer>
+        <HeroTitle>Build your music library</HeroTitle>
+        <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
+        <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
+          View catalog
+        </ButtonViewCatalog>
+        {!currentUser && (
+          <ButtonLogin as={Link} to={ROUTES.LOGIN}>
+            Log in
+          </ButtonLogin>
+        )}
+        <HeroImage src={heroImage} alt="shelf full of vinyl records" />
+      </HeroGridContainer>
     </>
   )
 }

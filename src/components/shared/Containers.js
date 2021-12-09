@@ -26,6 +26,8 @@ export const Content = styled.div`
   /* @media (min-width: 75.4em) {
     margin: 0 auto;
   } */
+
+  /* grid-column: 2 / -2; */
 `
 
 export const CenterContent = styled.div`

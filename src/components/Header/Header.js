@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { useState } from "react"
 
-import { Content } from "../shared/Containers"
+// import { Content } from "../shared/Containers"
 import Logo from "./Logo"
 
 import SearchBox from "../shared/SearchBox"
@@ -22,11 +22,33 @@ const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
 
   /* grid-column: 2/3; */
-  grid-area: header;
+  /* grid-area: header; */
 
   border-bottom: 3px solid #c2c2c2;
 
   /* border: 1px solid magenta; */
+
+  display: grid;
+  grid-template-columns: minmax(1em, 1fr) minmax(0, 500px) minmax(1em, 1fr);
+
+  /* > * {
+    grid-column: 2 / -2;
+  } */
+
+  @media (min-width: 600px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1160px) minmax(0, 1fr);
+
+    /* & > * {
+      grid-column: 2 / -2;
+    } */
+  }
+`
+
+const Content = styled.div`
+  grid-column: 2 / -2;
+
+  display: flex;
+  justify-content: space-between;
 `
 
 // const BorderBottom = styled.div`
@@ -63,7 +85,8 @@ function Header({ noSearchBox }) {
   return (
     <>
       <StyledHeader>
-        <Content justifyContent="space-between" alignItems="center">
+        {/* <Content justifyContent="space-between" alignItems="center"> */}
+        <Content>
           <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
             <Logo />
             {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
@@ -89,6 +112,7 @@ function Header({ noSearchBox }) {
               <Logo />
             </Container>
           </HamburgerMenu>
+          {/* </Content> */}
         </Content>
       </StyledHeader>
       {/* <BorderBottom /> */}

@@ -21,7 +21,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  /* grid-column: 2/3; */
+  grid-column: 2/-2;
 
   margin-top: 4em;
 `
