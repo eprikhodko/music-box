@@ -12,12 +12,17 @@ import screenSize from "../constants/mediaQueries"
 
 const Container = styled.div`
   width: 100%;
+  width: 95%;
+
+  max-width: 72.5em;
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  grid-column: 2/3;
+  /* grid-column: 2/3; */
+  grid-area: content;
 
   margin-top: 4em;
 `

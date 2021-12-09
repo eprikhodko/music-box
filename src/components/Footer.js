@@ -6,15 +6,45 @@ import { ReactComponent as IconInstagram } from "../icons/social/instagram-icon.
 import { ReactComponent as IconFacebook } from "../icons/social/facebook-icon.svg"
 import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 
-const StyledFooter = styled.footer`
-  grid-column: 2/3;
-  grid-row: 6/7;
+// ::before {
+//   /* display: block; */
+//   /* padding: 0.5em; */
+//   /* box-sizing: border-box; */
+//   /* content: "Look at this orange box. Look at this orange box."; */
+//   content: "";
+//   height: 100%;
+//   /* border-bottom: 3px solid #c2c2c2; */
+//   /* border-top: 500px solid #c2c2c2; */
 
-  z-index: 1;
+//   background-color: #ffba10;
+//   position: absolute;
+//   width: 100%;
+//   left: -20%;
+//   /* left: 0; */
+//   /* top: 0; */
+//   /* bottom: 0; */
+//   /* bottom: 55em; */
+//   /* top: 0; */
+//   /* bottom: 20em; */
+// }
+
+const StyledFooter = styled.footer`
+  /* grid-column: 2/3;
+  grid-row: 5/6; */
+
+  grid-area: footer;
+
+  /* grid-row: 6/7; */
+
+  /* z-index: 1; */
+
+  background-color: #c2c2c2;
 
   /* margin-top: 7em; */
 
   /* border: 1px solid; */
+
+  /* position: relative; */
 `
 
 // const FooterBackground = styled.div`
@@ -23,52 +53,19 @@ const StyledFooter = styled.footer`
 //   grid-column: 1/4;
 // `
 
-// ::after {
-//   /* display: block; */
-//   /* padding: 0.5em; */
-//   /* box-sizing: border-box; */
-//   /* content: "Look at this orange box. Look at this orange box."; */
-//   content: "";
-//   height: 1%;
-//   /* border-bottom: 3px solid #c2c2c2; */
-//   /* border-top: 500px solid #c2c2c2; */
-
-//   background-color: #ffba10;
-//   position: absolute;
-//   width: 100%;
-//   left: 0;
-//   /* top: 0; */
-//   /* bottom: 0; */
-//   /* bottom: 55em; */
-//   /* top: 0; */
-//   /* bottom: 20em; */
-// }
-
 const ContainerFooter = styled.div`
   margin-top: ${({ $marginTop }) => $marginTop};
   margin-top: 0;
   /* background-color: #c2c2c2; */
   /* border: 1px solid magenta; */
   /* position: relative; */
-  /* border: 1px solid gray; */
-`
-
-const BackgroundFooter = styled.div`
-  background-color: #c2c2c2;
-
-  height: 27em;
-  width: 100%;
-
-  grid-column: 1/4;
-  grid-row: 6/7;
-
-  align-self: end;
+  /* border: 1px solid magenta; */
 `
 
 const FooterContent = styled.div`
-  /* width: 90%; */
-  max-width: 72.5em;
-  margin: 0 auto;
+  /* width: 95%; */
+  /* max-width: 72.5em; */
+  /* margin: 0 auto; */
   padding: 3em 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -246,7 +243,6 @@ function Footer({ $marginTop }) {
           </FooterContent>
         </ContainerFooter>
       </StyledFooter>
-      <BackgroundFooter />
     </>
   )
 }

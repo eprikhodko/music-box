@@ -10,8 +10,17 @@ import Footer from "../components/Footer"
 const ContainerMain = styled.div`
   display: grid;
   grid-template-columns: 1fr minmax(0, 72.5em) 1fr;
-  grid-template-rows: repeat(4, auto) 7.5em auto;
-  grid-column-gap: 1em;
+  grid-template-columns: minmax(1em, 1fr) minmax(0, 72.5em) minmax(1em, 1fr);
+
+  grid-template-areas:
+    "header header header"
+    ". hero hero"
+    "content content content"
+    /* "margin-left break margin-right" */
+    "footer footer footer";
+
+  /* grid-template-rows: repeat(4, auto) 7.5em auto; */
+  /* grid-column-gap: 2em; */
 
   /* border: 3px solid coral; */
 `

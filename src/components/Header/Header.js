@@ -21,16 +21,20 @@ import {
 const StyledHeader = styled.header`
   padding: 0.5em 0 0.5em;
 
-  grid-column: 2/3;
+  /* grid-column: 2/3; */
+  grid-area: header;
+
+  border-bottom: 3px solid #c2c2c2;
 
   /* border: 1px solid magenta; */
 `
 
-const BorderBottom = styled.div`
-  border-bottom: 3px solid #c2c2c2;
+// const BorderBottom = styled.div`
+//   border-bottom: 3px solid #c2c2c2;
 
-  grid-column: 1/4;
-`
+//   /* grid-column: 1/-1; */
+//   /* grid-area: bottom-line; */
+// `
 
 const ContainerFlex = styled.div`
   display: flex;
@@ -87,7 +91,7 @@ function Header({ noSearchBox }) {
           </HamburgerMenu>
         </Content>
       </StyledHeader>
-      <BorderBottom />
+      {/* <BorderBottom /> */}
     </>
   )
 }

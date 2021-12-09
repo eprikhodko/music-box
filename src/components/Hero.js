@@ -13,6 +13,7 @@ import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
 const HeroGridContainer = styled.div`
+  /* width: 95%; */
   max-width: 81.25em;
 
   display: grid;
@@ -20,7 +21,8 @@ const HeroGridContainer = styled.div`
   /* align-self: end; */
   /* justify-self: end; */
 
-  grid-column: 2/4;
+  /* grid-column: 2/4; */
+  grid-area: hero;
 
   /* border: 1px solid green; */
 
@@ -119,6 +121,7 @@ const HeroImage = styled.img`
 
   grid-column: 5 / 6;
   grid-row: 1 / 5;
+
   justify-self: end;
   display: none;
 
