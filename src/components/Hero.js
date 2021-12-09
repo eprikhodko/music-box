@@ -12,29 +12,37 @@ import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimize
 import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
 
-const HeroGridContainer = styled.div`
-  /* width: 95%; */
-  max-width: 81.25em;
+// const HeroGridContainer = styled.div`
+//   /* width: 95%; */
+//   /* max-width: 81.25em; */
 
-  display: grid;
-  /* justify-items: center; */
-  /* align-self: end; */
-  /* justify-self: end; */
+//   display: grid;
+//   grid-template-columns: minmax(1em, 1fr) minmax(0, 500px) minmax(1em, 1fr);
 
-  /* grid-column: 2/4; */
-  grid-area: hero;
+//   & > * {
+//     grid-column: 2 / -2;
+//   }
+//   /* grid-column: 2/-2; */
 
-  /* border: 1px solid green; */
+//   /* justify-items: center; */
 
-  @media (min-width: ${screenSize.mobileLarge}) {
-    grid-template-columns: auto 2em 1fr 1fr;
-  }
+//   /* justify-items: center; */
+//   /* align-self: end; */
+//   /* justify-self: end; */
 
-  @media (min-width: ${screenSize.tabletMedium}) {
-    grid-template-columns: auto 2em auto 2em 1fr;
-    grid-template-rows: 1.5fr auto auto 1fr;
-  }
-`
+//   /* grid-area: hero; */
+
+//   /* border: 1px solid green; */
+
+//   /* @media (min-width: ${screenSize.mobileLarge}) {
+//     grid-template-columns: auto 2em 1fr 1fr;
+//   }
+
+//   @media (min-width: ${screenSize.tabletMedium}) {
+//     grid-template-columns: auto 2em auto 2em 1fr;
+//     grid-template-rows: 1.5fr auto auto 1fr;
+//   } */
+// `
 
 const HeroTitle = styled.h1`
   font-size: 4.8rem;
@@ -42,10 +50,10 @@ const HeroTitle = styled.h1`
   line-height: 1.15;
   text-align: center;
 
-  max-width: 7.8em;
+  /* max-width: 7.8em; */
   margin-top: 1em;
 
-  @media (min-width: ${screenSize.mobileLarge}) {
+  /* @media (min-width: ${screenSize.mobileLarge}) {
     grid-column: 1/5;
     justify-self: start;
 
@@ -58,9 +66,8 @@ const HeroTitle = styled.h1`
     max-width: 6.2em;
 
     color: #000;
-    /* margin-top: 1.3em; */
     align-self: end;
-  }
+  } */
 `
 
 const HeroSubtitle = styled.h3`
@@ -70,7 +77,7 @@ const HeroSubtitle = styled.h3`
 
   margin: 1em 0;
 
-  @media (min-width: ${screenSize.mobileLarge}) {
+  /* @media (min-width: ${screenSize.mobileLarge}) {
     grid-column: 1/5;
     justify-self: start;
 
@@ -80,13 +87,14 @@ const HeroSubtitle = styled.h3`
 
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/5;
-  }
+  } */
 `
 
 const ButtonViewCatalog = styled(HeroButton)`
   margin-top: 1.5em;
+  justify-self: center;
 
-  @media (min-width: ${screenSize.mobileLarge}) {
+  /* @media (min-width: ${screenSize.mobileLarge}) {
     grid-column: 1/2;
     justify-self: start;
 
@@ -95,13 +103,14 @@ const ButtonViewCatalog = styled(HeroButton)`
 
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 1/2;
-  }
+  } */
 `
 
 const ButtonLogin = styled(HeroButton)`
   margin-top: 1em;
+  justify-self: center;
 
-  @media (min-width: ${screenSize.mobileLarge}) {
+  /* @media (min-width: ${screenSize.mobileLarge}) {
     grid-column: 3/4;
     justify-self: start;
 
@@ -111,7 +120,7 @@ const ButtonLogin = styled(HeroButton)`
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 3/4;
     justify-self: end;
-  }
+  } */
 `
 
 const HeroImage = styled.img`
@@ -125,16 +134,17 @@ const HeroImage = styled.img`
   justify-self: end;
   display: none;
 
-  @media (min-width: ${screenSize.tabletMedium}) {
+  /* @media (min-width: ${screenSize.tabletMedium}) {
     display: block;
-  }
+  } */
 `
 
 function Hero() {
   const currentUser = useContext(UserContext)
 
   return (
-    <HeroGridContainer>
+    <>
+      {/* <HeroGridContainer> */}
       <HeroTitle>Build your music library</HeroTitle>
       <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
       <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
@@ -146,7 +156,8 @@ function Hero() {
         </ButtonLogin>
       )}
       <HeroImage src={heroImage} alt="shelf full of vinyl records" />
-    </HeroGridContainer>
+      {/* </HeroGridContainer> */}
+    </>
   )
 }
 
