@@ -6,6 +6,7 @@ import { MainGrid, Container } from "./shared/Containers"
 import AlbumsGrid from "./shared/grids/AlbumsGrid"
 import ShowMoreAndBackToTopButtons from "./shared/ShowMoreAndBackToTopButtons"
 import AlbumsDataContext from "../context/albumsData"
+import SectionTitle from "./shared/TypographyElements"
 
 function CatalogContent({ componentsCount, setComponentsCount }) {
   const [albumsSlice, setAlbumsSlice] = useState({
@@ -22,7 +23,7 @@ function CatalogContent({ componentsCount, setComponentsCount }) {
     <MainGrid>
       {/* <Content flexDirection="column" alignItems="center" $marginTop="5em"> */}
       <Container>
-        <h2>Catalog</h2>
+        <SectionTitle>Catalog</SectionTitle>
         <AlbumsGrid
           albumsSlice={albumsSlice}
           albumsData={albumsData}

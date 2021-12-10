@@ -11,6 +11,9 @@ export const Button = styled.button`
   cursor: pointer;
 
   padding: 1em 3.5em;
+  /* test styles below
+  padding: 1em;
+  min-width: 12.5em; */
 
   background-color: transparent;
 
@@ -35,6 +38,11 @@ export const Button = styled.button`
 export const HeroButton = styled(Button)`
   padding: 1em;
   min-width: 12.5em;
+`
+
+export const CatalogButton = styled(Button)`
+  padding: 1em;
+  min-width: 10.5em;
 `
 
 export const ButtonAlbum = styled(Button)`

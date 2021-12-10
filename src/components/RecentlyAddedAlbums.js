@@ -1,5 +1,3 @@
-import styled from "styled-components"
-
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
@@ -8,18 +6,8 @@ import AlbumsGrid from "./shared/grids/AlbumsGrid"
 import { HeroButton } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
 import useMatchMedia from "../hooks/useMatchMedia"
-import screenSize from "../constants/mediaQueries"
 import { MainGrid, Container } from "./shared/Containers"
-
-const Subtitle = styled.h2`
-  font-size: 3rem;
-  color: #333;
-  text-align: center;
-
-  @media (min-width: ${screenSize.tabletMedium}) {
-    font-size: 4.5rem;
-  }
-`
+import SectionTitle from "./shared/TypographyElements"
 
 function RecentlyAddedAlbums() {
   const isTabletOrMobile = useMatchMedia("(min-width: 600px)", true)
@@ -58,7 +46,7 @@ function RecentlyAddedAlbums() {
   return (
     <MainGrid>
       <Container>
-        <Subtitle>Recently added albums</Subtitle>
+        <SectionTitle>Recently added albums</SectionTitle>
         <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
         <HeroButton as={Link} to={ROUTES.CATALOG} $marginTop="2em">
           View all

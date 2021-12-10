@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 // import { useEffect, useState } from "react"
-import { Button } from "./Buttons"
+import { CatalogButton } from "./Buttons"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 
 const ButtonsContainer = styled.div`
@@ -9,9 +9,14 @@ const ButtonsContainer = styled.div`
   width: 100%;
   margin-top: 2em;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1em 1fr;
+  grid-template-areas: ". show-more-button . back-to-top-button";
   justify-items: center;
   /* border: 1px solid; */
+`
+
+const ShowMoreButton = styled(CatalogButton)`
+  grid-area: show-more-button;
 `
 
 const ContainerArrowIcon = styled.div`
@@ -39,6 +44,7 @@ const ContainerArrowIcon = styled.div`
 
 const ContainerArrowIconBig = styled(ContainerArrowIcon)`
   margin-left: auto;
+  grid-area: back-to-top-button;
   svg {
     height: 3.5em;
     width: 3.5em;
@@ -62,21 +68,10 @@ function ShowMoreAndBackToTopButtons({
   return (
     <ButtonsContainer>
       {componentsCount < albumsData.length && (
-        <Button
-          onClick={showMore}
-          style={{
-            gridColumnStart: "2",
-          }}
-        >
-          Show more
-        </Button>
+        <ShowMoreButton onClick={showMore}>Show more</ShowMoreButton>
       )}
       {albumsSlice.end > 24 && (
-        <ContainerArrowIconBig
-          style={{
-            gridColumnStart: "3",
-          }}
-        >
+        <ContainerArrowIconBig>
           <ArrowIcon onClick={() => window.scrollTo(0, 0)} />
         </ContainerArrowIconBig>
       )}
