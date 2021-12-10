@@ -29,9 +29,15 @@ const HeroGridContainer = styled.div`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
+    grid-column: 2/4;
     grid-template-columns: auto 2em auto 2em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
-    grid-column: 2/4;
+
+    grid-template-areas:
+      "title title title gap image"
+      "subtitle subtitle subtitle gap image"
+      "button-catalog space button-login gap image"
+      ". . . gap image";
   }
 `
 
@@ -47,15 +53,19 @@ const HeroTitle = styled.h1`
   justify-self: center;
 
   @media (min-width: 600px) {
-    /* justify-self: start; */
+    /* justify-self: end; */
 
-    /* text-align: left; */
+    text-align: center;
     font-size: 7rem;
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 1/5;
+    /* grid-column: 1/4; */
+    grid-area: title;
     max-width: 6.2em;
+
+    text-align: left;
+    justify-self: start;
 
     color: #000;
     align-self: end;
@@ -77,7 +87,11 @@ const HeroSubtitle = styled.h3`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 1/5;
+    /* grid-column: 1/4; */
+    grid-area: subtitle;
+
+    /* text-align: left; */
+    justify-self: start;
   }
 `
 
@@ -92,7 +106,8 @@ const ButtonViewCatalog = styled(HeroButton)`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 1/2;
+    /* grid-column: 1/2; */
+    grid-area: button-catalog;
   }
 `
 
@@ -103,12 +118,15 @@ const ButtonLogin = styled(HeroButton)`
   @media (min-width: 600px) {
     /* justify-self: start; */
 
-    margin-top: 2em;
+    margin-top: 1em;
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    grid-column: 3/4;
+    /* grid-column: 3/4; */
+    grid-area: button-login;
     justify-self: end;
+
+    margin-top: 2em;
   }
 `
 
