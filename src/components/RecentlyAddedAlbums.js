@@ -9,23 +9,7 @@ import { HeroButton } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
 import useMatchMedia from "../hooks/useMatchMedia"
 import screenSize from "../constants/mediaQueries"
-import { MainGrid } from "./shared/Containers"
-
-const Container = styled.div`
-  /* width: 100%;
-  width: 95%;
-
-  max-width: 72.5em;
-  margin: 0 auto; */
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  grid-column: 2/-2;
-
-  margin-top: 4em;
-`
+import { MainGrid, Container } from "./shared/Containers"
 
 const Subtitle = styled.h2`
   font-size: 3rem;

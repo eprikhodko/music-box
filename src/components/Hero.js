@@ -23,10 +23,10 @@ const HeroGridContainer = styled.div`
     grid-template-rows: 1.5fr auto auto 1fr;
 
     grid-template-areas:
-      "title title title gap image"
-      "subtitle subtitle subtitle gap image"
-      "button-catalog space button-login gap image"
-      ". . . gap image";
+      "title          title     title         .   image"
+      "subtitle       subtitle  subtitle      .   image"
+      "button-catalog   .       button-login  .   image"
+      ".                .         .           .   image";
   }
 `
 

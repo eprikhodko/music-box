@@ -66,3 +66,19 @@ export const PageBody = styled.main`
 
   grid-column: 2/3;
 `
+
+export const Container = styled.div`
+  /* width: 100%;
+  width: 95%;
+
+  max-width: 72.5em;
+  margin: 0 auto; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  grid-column: 2/-2;
+
+  margin-top: 4em;
+`
