@@ -1,8 +1,9 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
-// import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { CatalogButton } from "./Buttons"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
+import useMatchMedia from "../../hooks/useMatchMedia"
 
 const ButtonsContainer = styled.div`
   /* set width to 100% to avoid shrinking because of alignItems="center" at parent <Content /> component */
@@ -58,8 +59,39 @@ function ShowMoreAndBackToTopButtons({
   albumsData,
   componentsCount,
 }) {
+  const isTabletOrMobile = useMatchMedia("(min-width: 600px)", true)
+  const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
+
+  console.log(isTabletOrMobile, isDesktopResolution)
+
+  const howManyAlbumsToShow = () => {
+    // show 8 albums by default
+    let slice = 8
+
+    // console.log("default value, render 8 albums")
+
+    if (isTabletOrMobile && isDesktopResolution) {
+      slice = 8
+      // console.log("render 8 albums")
+    } else if (isTabletOrMobile) {
+      slice = 9
+      // console.log("render 9 albums")
+    }
+    return slice
+  }
+
+  //   const albumsSlice = howManyAlbumsToShow()
+  // console.log(albumsSlice)
+
+  useEffect(() => {
+    console.log(howManyAlbumsToShow())
+  }, [isTabletOrMobile, isDesktopResolution])
+
   const showMore = () => {
-    setAlbumsSlice((prevSlice) => ({ ...prevSlice, end: prevSlice.end + 8 }))
+    setAlbumsSlice((prevSlice) => ({
+      ...prevSlice,
+      end: prevSlice.end + howManyAlbumsToShow(),
+    }))
   }
 
   //   console.log(componentsCount)

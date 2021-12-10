@@ -7,6 +7,7 @@ import AlbumsGrid from "./shared/grids/AlbumsGrid"
 import ShowMoreAndBackToTopButtons from "./shared/ShowMoreAndBackToTopButtons"
 import AlbumsDataContext from "../context/albumsData"
 import SectionTitle from "./shared/TypographyElements"
+// import useMatchMedia from "../hooks/useMatchMedia"
 
 function CatalogContent({ componentsCount, setComponentsCount }) {
   const [albumsSlice, setAlbumsSlice] = useState({
