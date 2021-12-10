@@ -7,93 +7,31 @@ import { ReactComponent as IconFacebook } from "../icons/social/facebook-icon.sv
 import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 import { MainGrid } from "./shared/Containers"
 
-// ::before {
-//   /* display: block; */
-//   /* padding: 0.5em; */
-//   /* box-sizing: border-box; */
-//   /* content: "Look at this orange box. Look at this orange box."; */
-//   content: "";
-//   height: 100%;
-//   /* border-bottom: 3px solid #c2c2c2; */
-//   /* border-top: 500px solid #c2c2c2; */
-
-//   background-color: #ffba10;
-//   position: absolute;
-//   width: 100%;
-//   left: -20%;
-//   /* left: 0; */
-//   /* top: 0; */
-//   /* bottom: 0; */
-//   /* bottom: 55em; */
-//   /* top: 0; */
-//   /* bottom: 20em; */
-// }
-
-// const StyledFooter = styled.footer`
-//   /* grid-column: 2/3;
-//   grid-row: 5/6; */
-
-//   /* grid-area: footer; */
-
-//   /* grid-row: 6/7; */
-
-//   /* z-index: 1; */
-
-//   background-color: #c2c2c2;
-
-//   /* margin-top: 7em; */
-
-//   /* border: 1px solid; */
-
-//   /* position: relative; */
-
-//   display: grid;
-//   grid-template-columns: minmax(1em, 1fr) minmax(0, 500px) minmax(1em, 1fr);
-
-//   /* > * {
-//     grid-column: 2 / -2;
-//   } */
-
-//   @media (min-width: 600px) {
-//     grid-template-columns: minmax(0, 1fr) minmax(0, 1160px) minmax(0, 1fr);
-
-//     /* grid-column: 2 / -2; */
-//   }
-// `
-
-// const FooterBackground = styled.div`
-//   border-bottom: 3px solid #c2c2c2;
-
-//   grid-column: 1/4;
-// `
-
 const StyledFooter = styled.footer`
   background-color: #c2c2c2;
   margin-top: 6.25em;
 `
 
+// margin-top: ${({ $marginTop }) => $marginTop};
 const ContainerFooter = styled.div`
-  margin-top: ${({ $marginTop }) => $marginTop};
-  margin-top: 0;
-  /* background-color: #c2c2c2; */
-  /* border: 1px solid magenta; */
-  /* position: relative; */
-  /* border: 1px solid magenta; */
-
   grid-column: 2/-2;
+  margin-top: 0;
 `
 
 const FooterContent = styled.div`
+  padding: 3em 0 4em 0;
+  display: grid;
   /* width: 95%; */
   /* max-width: 72.5em; */
   /* margin: 0 auto; */
-  padding: 3em 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
   /* grid-gap: 5em; */
 
   /* border: 1px solid; */
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 3em 0 2em 0;
+  }
 `
 
 const Title = styled.strong`
@@ -157,7 +95,13 @@ const StyledIcon = styled.div`
 const Copyright = styled.p`
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.5);
-  /* margin-top: 5em; */
+  margin: 0;
+  margin-top: 1em;
+
+  @media (min-width: 1024px) {
+    margin-top: 9.5em;
+  }
+
   /* border: 1px solid green; */
 `
 

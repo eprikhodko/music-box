@@ -5,10 +5,7 @@ import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import screenSize from "../constants/mediaQueries"
 
-// import { Content } from "./shared/Containers"
 import { MainGrid } from "./shared/Containers"
-// import { HeroTitle } from "./shared/HeroTitle"
-
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
 import { HeroButton } from "./shared/Buttons"
 import UserContext from "../context/user"
@@ -18,19 +15,11 @@ const HeroGridContainer = styled.div`
   max-width: 1300px;
   grid-column: 2 / -2;
 
-  /////////////////
-  /* grid-column: 2/4; */
-  ////////////////
-
   display: grid;
-
-  @media (min-width: 750px) {
-    /* grid-template-columns: auto 2em auto 1fr; */
-  }
 
   @media (min-width: ${screenSize.tabletMedium}) {
     grid-column: 2/4;
-    grid-template-columns: auto 2em auto 2em 1fr;
+    grid-template-columns: auto 2em auto 3em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
 
     grid-template-areas:
@@ -53,8 +42,6 @@ const HeroTitle = styled.h1`
   justify-self: center;
 
   @media (min-width: 600px) {
-    /* justify-self: end; */
-
     text-align: center;
     font-size: 7rem;
   }
@@ -80,8 +67,6 @@ const HeroSubtitle = styled.h3`
   margin: 1em 0;
 
   @media (min-width: 600px) {
-    /* justify-self: start; */
-
     font-size: 2.5rem;
     color: rgba(0, 0, 0, 0.7);
   }
@@ -90,7 +75,6 @@ const HeroSubtitle = styled.h3`
     /* grid-column: 1/4; */
     grid-area: subtitle;
 
-    /* text-align: left; */
     justify-self: start;
   }
 `
@@ -100,8 +84,6 @@ const ButtonViewCatalog = styled(HeroButton)`
   justify-self: center;
 
   @media (min-width: 600px) {
-    /* justify-self: start; */
-
     margin-top: 2em;
   }
 
@@ -116,8 +98,6 @@ const ButtonLogin = styled(HeroButton)`
   justify-self: center;
 
   @media (min-width: 600px) {
-    /* justify-self: start; */
-
     margin-top: 1em;
   }
 
@@ -135,8 +115,9 @@ const HeroImage = styled.img`
   max-width: 100%;
   object-fit: cover;
 
-  grid-column: 5 / 6;
-  grid-row: 1 / 5;
+  /* grid-column: 5 / 6;
+  grid-row: 1 / 5; */
+  grid-area: image;
 
   justify-self: end;
   display: none;
