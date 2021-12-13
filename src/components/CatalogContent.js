@@ -21,7 +21,7 @@ function CatalogContent({ componentsCount, setComponentsCount }) {
 
   return (
     <MainGrid>
-      <Container>
+      <Container $marginTop="4em">
         <SectionTitle>Catalog</SectionTitle>
         <AlbumsGrid
           albumsSlice={albumsSlice}

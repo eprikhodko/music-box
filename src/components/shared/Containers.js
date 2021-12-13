@@ -80,5 +80,5 @@ export const Container = styled.div`
 
   grid-column: 2/-2;
 
-  margin-top: 4em;
+  margin-top: ${({ $marginTop }) => $marginTop};
 `

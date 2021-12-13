@@ -13,6 +13,7 @@ import { ReactComponent as IconNeutralFace } from "../../icons/sentiment_neutral
 import * as ROUTES from "../../constants/routes"
 import ScrollToTop from "../../components/utils/ScrollToTop"
 import { Button } from "../../components/shared/Buttons"
+import { MainGrid, Container } from "../../components/shared/Containers"
 
 const StyledParagraph = styled.p`
   font-size: 4.5rem;
@@ -129,68 +130,80 @@ function SearchResults({ componentsCount, setComponentsCount }) {
   return (
     <>
       <ScrollToTop />
-      <h2>search results for &quot;{searchQuery}&quot;</h2>
+      <MainGrid>
+        <Container>
+          <h2>search results for &quot;{searchQuery}&quot;</h2>
 
-      {/* show filter buttons only if filteredAlbums is not empty. If nothing found on search, don't show filter buttons */}
-      {filteredAlbums.length > 0 && (
-        <>
-          <FilterAlbumsButtons>
-            <FilterAlbumsTitle>filter albums:</FilterAlbumsTitle>
-            {filteredByGenre.length > 0 && (
-              <Button type="button" $marginRight="2em" onClick={filterByGenre}>
-                genre
-              </Button>
-            )}
+          {/* show filter buttons only if filteredAlbums is not empty. If nothing found on search, don't show filter buttons */}
+          {filteredAlbums.length > 0 && (
+            <>
+              <FilterAlbumsButtons>
+                <FilterAlbumsTitle>filter albums:</FilterAlbumsTitle>
+                {filteredByGenre.length > 0 && (
+                  <Button
+                    type="button"
+                    $marginRight="2em"
+                    onClick={filterByGenre}
+                  >
+                    genre
+                  </Button>
+                )}
 
-            {filteredByAlbumName.length > 0 && (
-              <Button
-                type="button"
-                $marginRight="2em"
-                onClick={filterByAlbumName}
-              >
-                album name
-              </Button>
-            )}
+                {filteredByAlbumName.length > 0 && (
+                  <Button
+                    type="button"
+                    $marginRight="2em"
+                    onClick={filterByAlbumName}
+                  >
+                    album name
+                  </Button>
+                )}
 
-            {filteredByArtist.length > 0 && (
-              <Button type="button" $marginRight="2em" onClick={filterByArtist}>
-                artist
-              </Button>
-            )}
+                {filteredByArtist.length > 0 && (
+                  <Button
+                    type="button"
+                    $marginRight="2em"
+                    onClick={filterByArtist}
+                  >
+                    artist
+                  </Button>
+                )}
 
-            <Button type="button" onClick={showAllAlbums}>
-              all albums
-            </Button>
-          </FilterAlbumsButtons>
-        </>
-      )}
+                <Button type="button" onClick={showAllAlbums}>
+                  all albums
+                </Button>
+              </FilterAlbumsButtons>
+            </>
+          )}
 
-      {filteredAlbums.length > 0 ? (
-        <>
-          <AlbumsGrid
-            albumsSlice={albumsSlice}
-            albumsData={filteredAlbums}
-            setComponentsCount={setComponentsCount}
-          />
-          {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
-          <ShowMoreAndBackToTopButtons
-            albumsSlice={albumsSlice}
-            setAlbumsSlice={setAlbumsSlice}
-            albumsData={filteredAlbums}
-            componentsCount={componentsCount}
-          />
-        </>
-      ) : (
-        <>
-          <PokerFace>
-            <IconNeutralFace />
-          </PokerFace>
-          <StyledParagraph>
-            Nothing found on search, please change your request or{" "}
-            <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new album
-          </StyledParagraph>
-        </>
-      )}
+          {filteredAlbums.length > 0 ? (
+            <>
+              <AlbumsGrid
+                albumsSlice={albumsSlice}
+                albumsData={filteredAlbums}
+                setComponentsCount={setComponentsCount}
+              />
+              {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
+              <ShowMoreAndBackToTopButtons
+                albumsSlice={albumsSlice}
+                setAlbumsSlice={setAlbumsSlice}
+                albumsData={filteredAlbums}
+                componentsCount={componentsCount}
+              />
+            </>
+          ) : (
+            <>
+              <PokerFace>
+                <IconNeutralFace />
+              </PokerFace>
+              <StyledParagraph>
+                Nothing found on search, please change your request or{" "}
+                <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new album
+              </StyledParagraph>
+            </>
+          )}
+        </Container>
+      </MainGrid>
     </>
   )
 }

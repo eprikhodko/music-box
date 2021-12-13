@@ -16,6 +16,7 @@ import {
   AlbumTitle,
   StyledAlbumsGrid,
 } from "./GridElements"
+import SectionTitle from "../TypographyElements"
 
 function GenresGrid() {
   const [genresData, setGenresData] = useState([])
@@ -61,8 +62,7 @@ function GenresGrid() {
 
   return (
     <>
-      <h2>Genres</h2>
-
+      <SectionTitle>Genres</SectionTitle>
       <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
     </>
   )

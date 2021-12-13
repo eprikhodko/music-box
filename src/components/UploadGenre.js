@@ -17,7 +17,7 @@ import {
   FloatInput,
   ContainerFloatInput,
 } from "./shared/FormElements"
-import { Button } from "./shared/Button"
+import { Button } from "./shared/Buttons"
 import { ReactComponent as IconImagePlaceholder } from "../icons/image-placeholder.svg"
 // import UserContext from "../context/user"
 

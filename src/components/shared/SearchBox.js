@@ -11,10 +11,11 @@ import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 const ContainerSearchBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 14em;
+  /* justify-content: space-between; */
+  /* width: 14em; */
   margin-top: ${({ marginTop }) => marginTop};
-  margin-right: 2em;
+  margin-right: ${({ marginRight }) => marginRight || "2em"};
+  margin-bottom: ${({ marginBottom }) => marginBottom};
 
   background-color: #ebebeb;
   border: 1px solid #000;
@@ -32,15 +33,17 @@ const ContainerSearchBox = styled.div`
 `
 
 const ContainerSearchBoxBig = styled(ContainerSearchBox)`
-  width: 35em;
+  max-width: 35em;
+  width: 100%;
   margin-left: 0;
+  margin-right: 0;
+  margin: 10em 0 0;
   margin-bottom: ${({ marginBottom }) => marginBottom};
 `
 
 const TextInput = styled.input`
-  /* flex: 1 0; */
   padding: 0.6em 0;
-  min-width: 50px;
+  width: 100%;
   font-size: 1.6rem;
   background-color: transparent;
   margin-left: 0.7em;
@@ -109,7 +112,7 @@ const ButtonArrowBig = styled(ButtonArrow)`
   }
 `
 
-function SearchBox({ placeholder, big, marginTop, marginBottom }) {
+function SearchBox({ placeholder, big, marginTop, marginBottom, marginRight }) {
   const [searchQuery, setSearchQuery] = useState("")
 
   const handleChange = (event) => {
@@ -138,9 +141,13 @@ function SearchBox({ placeholder, big, marginTop, marginBottom }) {
   }
 
   return !big ? (
-    // return regular sized search box, if it is rendered in header
+    // return regular sized search box, if it is rendered in the header
     <form onSubmit={handleSearchSubmit}>
-      <ContainerSearchBox marginTop={marginTop}>
+      <ContainerSearchBox
+        marginTop={marginTop}
+        marginRight={marginRight}
+        marginBottom={marginBottom}
+      >
         <ContainerSearchIcon>
           <SearchIcon onClick={handleSearchSubmit} />
         </ContainerSearchIcon>
@@ -191,6 +198,7 @@ SearchBox.propTypes = {
   big: PropTypes.bool,
   marginTop: PropTypes.string,
   marginBottom: PropTypes.string,
+  marginRight: PropTypes.string,
 }
 
 SearchBox.defaultProps = {
@@ -198,4 +206,5 @@ SearchBox.defaultProps = {
   big: false,
   marginTop: "0",
   marginBottom: "0",
+  marginRight: "2em",
 }

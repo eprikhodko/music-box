@@ -45,7 +45,7 @@ function RecentlyAddedAlbums() {
 
   return (
     <MainGrid>
-      <Container>
+      <Container $marginTop="4em">
         <SectionTitle>Recently added albums</SectionTitle>
         <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
         <ButtonPrimary as={Link} to={ROUTES.CATALOG} $marginTop="2em">

@@ -7,14 +7,9 @@ const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 // const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
 
 export const StyledAlbumsGrid = styled.div`
-  /* width: 100%; */
-  /* max-width: 72.5em; */
-  /* border: 1px solid; */
-  /* align-self: center; */
   align-self: stretch;
 
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); */
   grid-template-columns: 1fr 1fr;
   /* we need to configure our columns with minmax(0, 1fr) to make text overflow work */
   /* grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); */
