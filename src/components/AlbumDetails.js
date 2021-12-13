@@ -16,7 +16,7 @@ import {
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
 import AlbumsDataContext from "../context/albumsData"
-import { HeroButton, ButtonAlbum } from "./shared/Buttons"
+import { ButtonPrimary, ButtonAlbum } from "./shared/Buttons"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
@@ -315,10 +315,14 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
                   please log in or make an account first:
                 </ButtonsParagraph>
                 <AlbumButtons>
-                  <HeroButton as={Link} to={ROUTES.SIGNUP} $marginRight="2em">
+                  <ButtonPrimary
+                    as={Link}
+                    to={ROUTES.SIGNUP}
+                    $marginRight="2em"
+                  >
                     Sign up
-                  </HeroButton>
-                  <HeroButton to={ROUTES.LOGIN}>Log in</HeroButton>
+                  </ButtonPrimary>
+                  <ButtonPrimary to={ROUTES.LOGIN}>Log in</ButtonPrimary>
                 </AlbumButtons>
               </>
             )}

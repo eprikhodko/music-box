@@ -7,7 +7,7 @@ import screenSize from "../constants/mediaQueries"
 
 import { MainGrid } from "./shared/Containers"
 import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
-import { HeroButton } from "./shared/Buttons"
+import { ButtonPrimary } from "./shared/Buttons"
 import UserContext from "../context/user"
 
 const HeroGridContainer = styled.div`
@@ -79,7 +79,7 @@ const HeroSubtitle = styled.h3`
   }
 `
 
-const ButtonViewCatalog = styled(HeroButton)`
+const ButtonViewCatalog = styled(ButtonPrimary)`
   margin-top: 1.5em;
   justify-self: center;
 
@@ -93,7 +93,7 @@ const ButtonViewCatalog = styled(HeroButton)`
   }
 `
 
-const ButtonLogin = styled(HeroButton)`
+const ButtonLogin = styled(ButtonPrimary)`
   margin-top: 1em;
   justify-self: center;
 

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { useEffect } from "react"
-import { CatalogButton } from "./Buttons"
+// import { useEffect } from "react"
+import { ButtonPrimary } from "./Buttons"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 import useMatchMedia from "../../hooks/useMatchMedia"
 
@@ -16,8 +16,13 @@ const ButtonsContainer = styled.div`
   /* border: 1px solid; */
 `
 
-const ShowMoreButton = styled(CatalogButton)`
+const ShowMoreButton = styled(ButtonPrimary)`
   grid-area: show-more-button;
+`
+
+const ShowMoreButtonSmall = styled(ShowMoreButton)`
+  padding: 1em;
+  min-width: 10.5em;
 `
 
 const ContainerArrowIcon = styled.div`
@@ -62,7 +67,7 @@ function ShowMoreAndBackToTopButtons({
   const isTabletOrMobile = useMatchMedia("(min-width: 600px)", true)
   const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
-  console.log(isTabletOrMobile, isDesktopResolution)
+  // console.log(isTabletOrMobile, isDesktopResolution)
 
   const howManyAlbumsToShow = () => {
     // show 8 albums by default
@@ -83,9 +88,9 @@ function ShowMoreAndBackToTopButtons({
   //   const albumsSlice = howManyAlbumsToShow()
   // console.log(albumsSlice)
 
-  useEffect(() => {
-    console.log(howManyAlbumsToShow())
-  }, [isTabletOrMobile, isDesktopResolution])
+  // useEffect(() => {
+  //   console.log(howManyAlbumsToShow())
+  // }, [isTabletOrMobile, isDesktopResolution])
 
   const showMore = () => {
     setAlbumsSlice((prevSlice) => ({
@@ -99,9 +104,15 @@ function ShowMoreAndBackToTopButtons({
 
   return (
     <ButtonsContainer>
-      {componentsCount < albumsData.length && (
-        <ShowMoreButton onClick={showMore}>Show more</ShowMoreButton>
-      )}
+      {componentsCount < albumsData.length &&
+        // show big button if screen width is more than 600px. if screen width is smaller than 600px, show small button
+        (isTabletOrMobile ? (
+          <ShowMoreButton onClick={showMore}>Show more</ShowMoreButton>
+        ) : (
+          <ShowMoreButtonSmall onClick={showMore}>
+            Show more
+          </ShowMoreButtonSmall>
+        ))}
       {albumsSlice.end > 24 && (
         <ContainerArrowIconBig>
           <ArrowIcon onClick={() => window.scrollTo(0, 0)} />

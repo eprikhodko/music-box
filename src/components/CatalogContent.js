@@ -7,7 +7,6 @@ import AlbumsGrid from "./shared/grids/AlbumsGrid"
 import ShowMoreAndBackToTopButtons from "./shared/ShowMoreAndBackToTopButtons"
 import AlbumsDataContext from "../context/albumsData"
 import SectionTitle from "./shared/TypographyElements"
-// import useMatchMedia from "../hooks/useMatchMedia"
 
 function CatalogContent({ componentsCount, setComponentsCount }) {
   const [albumsSlice, setAlbumsSlice] = useState({
@@ -22,7 +21,6 @@ function CatalogContent({ componentsCount, setComponentsCount }) {
 
   return (
     <MainGrid>
-      {/* <Content flexDirection="column" alignItems="center" $marginTop="5em"> */}
       <Container>
         <SectionTitle>Catalog</SectionTitle>
         <AlbumsGrid
@@ -37,7 +35,6 @@ function CatalogContent({ componentsCount, setComponentsCount }) {
           albumsData={albumsData}
           componentsCount={componentsCount}
         />
-        {/* </Content> */}
       </Container>
     </MainGrid>
   )

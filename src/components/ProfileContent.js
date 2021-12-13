@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { HeroButton } from "./shared/Buttons"
+import { ButtonPrimary } from "./shared/Buttons"
 import { HeroTitle } from "./shared/HeroTitle"
 import UserAvatar from "./UserAvatar"
 
@@ -263,26 +263,29 @@ function ProfileContent() {
         <CenterContent>
           <UserAvatar />
           <Username>{currentUser?.displayName}</Username>
-          <HeroButton as={Link} to={`/collection/${currentUser?.displayName}`}>
+          <ButtonPrimary
+            as={Link}
+            to={`/collection/${currentUser?.displayName}`}
+          >
             Collection
-          </HeroButton>
-          <HeroButton
+          </ButtonPrimary>
+          <ButtonPrimary
             as={Link}
             to={`/wishlist/${currentUser?.displayName}`}
             $marginTop="1em"
           >
             Wishlist
-          </HeroButton>
-          <HeroButton as={Link} to={ROUTES.UPLOAD} $marginTop="1em">
+          </ButtonPrimary>
+          <ButtonPrimary as={Link} to={ROUTES.UPLOAD} $marginTop="1em">
             Upload
-          </HeroButton>
-          <HeroButton
+          </ButtonPrimary>
+          <ButtonPrimary
             as={Link}
             to={`/my-uploads/${currentUser?.displayName}`}
             $marginTop="1em"
           >
             My Uploads
-          </HeroButton>
+          </ButtonPrimary>
         </CenterContent>
 
         {albumsComponents.length > 0 ? (

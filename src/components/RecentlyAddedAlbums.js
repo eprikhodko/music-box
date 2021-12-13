@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import AlbumsGrid from "./shared/grids/AlbumsGrid"
 
-import { HeroButton } from "./shared/Buttons"
+import { ButtonPrimary } from "./shared/Buttons"
 import AlbumsDataContext from "../context/albumsData"
 import useMatchMedia from "../hooks/useMatchMedia"
 import { MainGrid, Container } from "./shared/Containers"
@@ -48,9 +48,9 @@ function RecentlyAddedAlbums() {
       <Container>
         <SectionTitle>Recently added albums</SectionTitle>
         <AlbumsGrid albumsSlice={albumsSlice} albumsData={albumsData} />
-        <HeroButton as={Link} to={ROUTES.CATALOG} $marginTop="2em">
+        <ButtonPrimary as={Link} to={ROUTES.CATALOG} $marginTop="2em">
           View all
-        </HeroButton>
+        </ButtonPrimary>
       </Container>
     </MainGrid>
   )
