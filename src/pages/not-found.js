@@ -3,11 +3,7 @@ import { Link } from "react-router-dom"
 import * as ROUTES from "../constants/routes"
 import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
-import {
-  ContainerMain,
-  Content,
-  PageBody,
-} from "../components/shared/Containers"
+import { ContainerMain, Content } from "../components/shared/Containers"
 import { Button } from "../components/shared/Buttons"
 
 const NotFoundTitle = styled.h1`
@@ -20,7 +16,7 @@ function NotFound() {
   return (
     <ContainerMain>
       <Header />
-      <PageBody>
+      <main>
         <Content flexDirection="column" alignItems="center" marginTop="3em">
           <NotFoundTitle>404</NotFoundTitle>
           <h2>Sorry, this page not found</h2>
@@ -29,7 +25,7 @@ function NotFound() {
             Go Back To Home
           </Button>
         </Content>
-      </PageBody>
+      </main>
       <Footer />
     </ContainerMain>
   )

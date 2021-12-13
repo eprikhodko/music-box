@@ -19,11 +19,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
-import {
-  ContainerMain,
-  Content,
-  PageBody,
-} from "../components/shared/Containers"
+import { ContainerMain, Content } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
 import ShowMoreAndBackToTopButtons from "../components/shared/ShowMoreAndBackToTopButtons"
 
@@ -102,7 +98,7 @@ function Collection({ componentsCount, setComponentsCount }) {
       <ScrollToTop />
       <ContainerMain>
         <Header />
-        <PageBody>
+        <main>
           <Content flexDirection="column" alignItems="center" $marginTop="5em">
             <h2>Collection</h2>
             {albumsInUserCollection.length > 0 ? (
@@ -132,7 +128,7 @@ function Collection({ componentsCount, setComponentsCount }) {
               </StyledParagraph>
             )}
           </Content>
-        </PageBody>
+        </main>
         <Footer />
       </ContainerMain>
     </>

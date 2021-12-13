@@ -59,13 +59,13 @@ export const CenterContent = styled.div`
   margin: 0 auto;
 `
 
-export const PageBody = styled.main`
-  /* flex-grow defines how much a flexbox item should grow if there's space available */
-  /* make PageBody fill up all remaining space if no other flexbox item has a flex-grow value*/
-  flex-grow: 1;
+// export const PageBody = styled.main`
+//   /* flex-grow defines how much a flexbox item should grow if there's space available */
+//   /* make PageBody fill up all remaining space if no other flexbox item has a flex-grow value*/
+//   flex-grow: 1;
 
-  grid-column: 2/3;
-`
+//   grid-column: 2/3;
+// `
 
 export const Container = styled.div`
   /* width: 100%;

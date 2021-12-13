@@ -1,11 +1,7 @@
 import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
 import LoginForm from "../components/LoginForm"
-import {
-  ContainerMain,
-  Content,
-  PageBody,
-} from "../components/shared/Containers"
+import { ContainerMain, Content } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
 
 function Login() {
@@ -14,11 +10,11 @@ function Login() {
       <ScrollToTop />
       <ContainerMain>
         <Header />
-        <PageBody>
+        <main>
           <Content justifyContent="center">
             <LoginForm />
           </Content>
-        </PageBody>
+        </main>
         <Footer />
       </ContainerMain>
     </>

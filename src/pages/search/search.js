@@ -5,19 +5,15 @@ import { Switch, Route } from "react-router-dom"
 import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer"
 import SearchBox from "../../components/shared/SearchBox"
-import {
-  ContainerMain,
-  Content,
-  PageBody,
-} from "../../components/shared/Containers"
+import { Content } from "../../components/shared/Containers"
 import GenresGrid from "../../components/shared/grids/GenresGrid"
 import SearchResults from "./search-results"
 
 function Search({ componentsCount, setComponentsCount }) {
   return (
-    <ContainerMain>
+    <>
       <Header noSearchBox />
-      <PageBody>
+      <main>
         <Content flexDirection="column" alignItems="center" $marginTop="10em">
           <SearchBox
             placeholder="Search genre, album, artist"
@@ -44,9 +40,9 @@ function Search({ componentsCount, setComponentsCount }) {
             </Route>
           </Switch>
         </Content>
-      </PageBody>
+      </main>
       <Footer />
-    </ContainerMain>
+    </>
   )
 }
 
