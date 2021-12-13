@@ -1,14 +1,6 @@
 import styled from "styled-components"
-import PropTypes from "prop-types"
 
-// import { useState } from "react"
-
-// import { useHistory } from "react-router-dom"
-
-// import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
-// import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
-
-export const ContainerSearchBox = styled.div`
+export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   /* justify-content: space-between; */
@@ -32,7 +24,13 @@ export const ContainerSearchBox = styled.div`
   } */
 `
 
-export const ContainerSearchBoxBig = styled(ContainerSearchBox)`
+export const SearchFormMobile = styled(SearchForm)`
+  margin-top: 3.75em;
+  margin-bottom: 3.75em;
+  margin-right: 0;
+`
+
+export const ContainerSearchBoxBig = styled(SearchForm)`
   max-width: 35em;
   width: 100%;
   margin-left: 0;
@@ -60,6 +58,10 @@ export const TextInput = styled.input`
   }
 `
 
+export const TextInputMobile = styled(TextInput)`
+  padding: 1em 0;
+`
+
 export const TextInputBig = styled(TextInput)`
   font-size: 2.2rem;
   margin-left: 0;
@@ -74,6 +76,13 @@ export const ContainerSearchIcon = styled.div`
     width: 1em;
   }
   /* border: 1px solid green; */
+`
+
+export const ContainerSearchIconMobile = styled(ContainerSearchIcon)`
+  svg {
+    height: 1.3em;
+    width: 1.3em;
+  }
 `
 
 export const ContainerSearchIconBig = styled(ContainerSearchIcon)`
@@ -104,6 +113,15 @@ export const ButtonArrow = styled.button`
   }
 `
 
+export const ButtonArrowMobile = styled(ButtonArrow)`
+  margin-right: 0.2em;
+
+  svg {
+    height: 2.5em;
+    width: 2.5em;
+  }
+`
+
 export const ButtonArrowBig = styled(ButtonArrow)`
   margin-right: 0.7em;
   svg {
@@ -111,57 +129,3 @@ export const ButtonArrowBig = styled(ButtonArrow)`
     width: 4.2em;
   }
 `
-
-function SearchBox({
-  children,
-
-  handleSearchSubmit,
-}) {
-  return (
-    <form onSubmit={handleSearchSubmit}>{children}</form>
-
-    // return big search box, if search box is rendered at search page body below the header, as a separate component
-    // <form onSubmit={handleSearchSubmit}>
-    //   <ContainerSearchBoxBig marginBottom={marginBottom}>
-    //     <ContainerSearchIconBig>
-    //       <SearchIcon onClick={handleSearchSubmit} />
-    //     </ContainerSearchIconBig>
-    //     <TextInputBig
-    //       // type="submit"
-    //       placeholder={placeholder}
-    //       value={searchQuery}
-    //       onChange={handleChange}
-    //     />
-    //     <ButtonArrowBig
-    //       type="submit"
-    //       isEmpty={searchQuery}
-    //       onClick={handleSearchSubmit}
-    //     >
-    //       <ArrowIcon />
-    //     </ButtonArrowBig>
-    //   </ContainerSearchBoxBig>
-    // </form>
-  )
-}
-
-export default SearchBox
-
-SearchBox.propTypes = {
-  // placeholder: PropTypes.string,
-  // big: PropTypes.bool,
-  // marginTop: PropTypes.string,
-  // marginBottom: PropTypes.string,
-  // marginRight: PropTypes.string,
-
-  handleSearchSubmit: PropTypes.func.isRequired,
-  children: PropTypes.node,
-}
-
-SearchBox.defaultProps = {
-  // placeholder: "Search",
-  // big: false,
-  // marginTop: "0",
-  // marginBottom: "0",
-  // marginRight: "2em",
-  children: null,
-}
