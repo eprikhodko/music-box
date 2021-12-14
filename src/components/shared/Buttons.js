@@ -35,8 +35,3 @@ export const ButtonPrimary = styled(Button)`
   padding: 1em;
   min-width: 12.5em;
 `
-
-export const ButtonAlbum = styled(Button)`
-  padding: 1em 0;
-  min-width: 16.5em;
-`

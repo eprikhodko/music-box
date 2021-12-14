@@ -59,21 +59,7 @@ export const CenterContent = styled.div`
   margin: 0 auto;
 `
 
-// export const PageBody = styled.main`
-//   /* flex-grow defines how much a flexbox item should grow if there's space available */
-//   /* make PageBody fill up all remaining space if no other flexbox item has a flex-grow value*/
-//   flex-grow: 1;
-
-//   grid-column: 2/3;
-// `
-
 export const Container = styled.div`
-  /* width: 100%;
-  width: 95%;
-
-  max-width: 72.5em;
-  margin: 0 auto; */
-
   display: flex;
   flex-direction: column;
   align-items: center;

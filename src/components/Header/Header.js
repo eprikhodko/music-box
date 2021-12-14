@@ -37,8 +37,8 @@ const ContainerFlex = styled.div`
 `
 
 function Header({ noSearchBox }) {
-  const isTabletOrMobile = useMatchMedia("(min-width: 750px)", true)
-  const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
+  const isTabletOrMobile = useMatchMedia("(min-width: 840px)", true)
+  const isDesktopResolution = useMatchMedia("(min-width: 1100px)", true)
 
   const showSearchBox = !noSearchBox
 

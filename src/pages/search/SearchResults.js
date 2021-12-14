@@ -15,6 +15,7 @@ import ScrollToTop from "../../components/utils/ScrollToTop"
 import { Button } from "../../components/shared/Buttons"
 import { MainGrid, Container } from "../../components/shared/Containers"
 import SectionTitle from "../../components/shared/TypographyElements"
+import UserContext from "../../context/user"
 
 const StyledParagraph = styled.p`
   font-size: 3rem;
@@ -69,6 +70,7 @@ function SearchResults({ componentsCount, setComponentsCount }) {
   console.log(searchQuery)
 
   const { albumsData } = useContext(AlbumsDataContext)
+  const currentUser = useContext(UserContext)
 
   const [albumsSlice, setAlbumsSlice] = useState({
     start: 0,
@@ -213,10 +215,20 @@ function SearchResults({ componentsCount, setComponentsCount }) {
               <PokerFace>
                 <IconNeutralFace />
               </PokerFace>
-              <StyledParagraph>
-                Nothing found on search, please change your request or{" "}
-                <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new album
-              </StyledParagraph>
+
+              {currentUser ? (
+                <StyledParagraph>
+                  Nothing found on search, please change your request or{" "}
+                  <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new album
+                </StyledParagraph>
+              ) : (
+                <StyledParagraph>
+                  Nothing found on search, please change your request or{" "}
+                  <StyledLink to={ROUTES.SIGNUP}>sign up</StyledLink> /{" "}
+                  <StyledLink to={ROUTES.LOGIN}>log in</StyledLink> to upload a
+                  new album
+                </StyledParagraph>
+              )}
             </>
           )}
         </Container>

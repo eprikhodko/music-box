@@ -88,7 +88,6 @@ const ButtonViewCatalog = styled(ButtonPrimary)`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    /* grid-column: 1/2; */
     grid-area: button-catalog;
   }
 `
@@ -102,7 +101,6 @@ const ButtonLogin = styled(ButtonPrimary)`
   }
 
   @media (min-width: ${screenSize.tabletMedium}) {
-    /* grid-column: 3/4; */
     grid-area: button-login;
     justify-self: end;
 

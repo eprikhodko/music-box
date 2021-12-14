@@ -7,7 +7,7 @@ import Footer from "../../components/Footer"
 
 import { Container, MainGrid } from "../../components/shared/Containers"
 import GenresGrid from "../../components/shared/grids/GenresGrid"
-import SearchResults from "./search-results"
+import SearchResults from "./SearchResults"
 import SearchBox from "./SearchBox"
 
 function Search({ componentsCount, setComponentsCount }) {
