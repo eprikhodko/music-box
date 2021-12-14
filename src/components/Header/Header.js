@@ -23,10 +23,10 @@ import { MainGrid } from "../shared/Containers"
 import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 import {
-  ButtonArrowMobile,
+  ButtonArrow,
   SearchForm,
-  TextInputMobile,
-  ContainerSearchIconMobile,
+  TextInput,
+  ContainerSearchIcon,
 } from "../shared/SearchBoxModules"
 
 const StyledHeader = styled.header`
@@ -102,21 +102,21 @@ function Header({ noSearchBox }) {
               {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
               {isDesktopResolution && showSearchBox && (
                 <SearchForm onSubmit={handleSearchSubmit}>
-                  <ContainerSearchIconMobile>
+                  <ContainerSearchIcon>
                     <SearchIcon onClick={handleSearchSubmit} />
-                  </ContainerSearchIconMobile>
-                  <TextInputMobile
-                    placeholder="Search music"
+                  </ContainerSearchIcon>
+                  <TextInput
+                    placeholder="Search music..."
                     value={searchQuery}
                     onChange={handleChange}
                   />
-                  <ButtonArrowMobile
+                  <ButtonArrow
                     type="submit"
                     isEmpty={searchQuery}
                     onClick={handleSearchSubmit}
                   >
                     <ArrowIcon />
-                  </ButtonArrowMobile>
+                  </ButtonArrow>
                 </SearchForm>
               )}
             </ContainerFlex>

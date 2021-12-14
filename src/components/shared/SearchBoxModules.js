@@ -4,7 +4,7 @@ export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   /* justify-content: space-between; */
-  /* width: 14em; */
+  width: 14em;
   margin-top: ${({ marginTop }) => marginTop};
   margin-right: ${({ marginRight }) => marginRight || "2em"};
   margin-bottom: ${({ marginBottom }) => marginBottom};
@@ -25,19 +25,27 @@ export const SearchForm = styled.form`
 `
 
 export const SearchFormMobile = styled(SearchForm)`
+  width: 100%;
+  max-width: 22em;
   margin-top: 3.75em;
   margin-bottom: 3.75em;
   margin-right: 0;
+
+  @media (min-width: 1024px) {
+    max-width: 35em;
+    width: 100%;
+    margin: 10em 0 7.5em;
+  }
 `
 
-export const ContainerSearchBoxBig = styled(SearchForm)`
-  max-width: 35em;
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  margin: 10em 0 0;
-  margin-bottom: ${({ marginBottom }) => marginBottom};
-`
+// export const ContainerSearchBoxBig = styled(SearchForm)`
+//   max-width: 35em;
+//   width: 100%;
+//   margin-left: 0;
+//   margin-right: 0;
+//   margin: 10em 0 0;
+//   margin-bottom: ${({ marginBottom }) => marginBottom};
+// `
 
 export const TextInput = styled.input`
   padding: 0.6em 0;
@@ -60,12 +68,12 @@ export const TextInput = styled.input`
 
 export const TextInputMobile = styled(TextInput)`
   padding: 1em 0;
-`
 
-export const TextInputBig = styled(TextInput)`
-  font-size: 2.2rem;
-  margin-left: 0;
-  padding: 1.3em 1em;
+  @media (min-width: 1024px) {
+    font-size: 2.2rem;
+    margin-left: 0;
+    padding: 1.3em 1em;
+  }
 `
 
 export const ContainerSearchIcon = styled.div`
@@ -83,15 +91,23 @@ export const ContainerSearchIconMobile = styled(ContainerSearchIcon)`
     height: 1.3em;
     width: 1.3em;
   }
-`
 
-export const ContainerSearchIconBig = styled(ContainerSearchIcon)`
-  margin-left: 1.5em;
-  svg {
-    height: 2em;
-    width: 2em;
+  @media (min-width: 1024px) {
+    margin-left: 1.5em;
+    svg {
+      height: 2em;
+      width: 2em;
+    }
   }
 `
+
+// export const ContainerSearchIconBig = styled(ContainerSearchIcon)`
+//   margin-left: 1.5em;
+//   svg {
+//     height: 2em;
+//     width: 2em;
+//   }
+// `
 
 export const ButtonArrow = styled.button`
   display: flex;
@@ -120,12 +136,19 @@ export const ButtonArrowMobile = styled(ButtonArrow)`
     height: 2.5em;
     width: 2.5em;
   }
-`
 
-export const ButtonArrowBig = styled(ButtonArrow)`
-  margin-right: 0.7em;
+  @media (min-width: 1024px) {
+    margin-right: 0.7em;
   svg {
     height: 4.2em;
     width: 4.2em;
   }
 `
+
+/* export const ButtonArrowBig = styled(ButtonArrow)`
+  margin-right: 0.7em;
+  svg {
+    height: 4.2em;
+    width: 4.2em;
+  }
+` */
