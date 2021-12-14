@@ -14,6 +14,7 @@ import * as ROUTES from "../../constants/routes"
 import ScrollToTop from "../../components/utils/ScrollToTop"
 import { Button } from "../../components/shared/Buttons"
 import { MainGrid, Container } from "../../components/shared/Containers"
+import SectionTitle from "../../components/shared/TypographyElements"
 
 const StyledParagraph = styled.p`
   font-size: 4.5rem;
@@ -39,12 +40,22 @@ const PokerFace = styled.div`
 
 const FilterAlbumsButtons = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 2em 0;
+  gap: 2em;
+
+  @media (min-width: 1080px) {
+    margin: 2em 0;
+    flex-direction: row;
+  }
 `
 
 const FilterAlbumsTitle = styled.h3`
-  margin-right: 1em;
+  margin: 0;
+
+  @media (min-width: 1080) {
+    margin-right: 1em;
+  }
 `
 
 function SearchResults({ componentsCount, setComponentsCount }) {
@@ -132,7 +143,9 @@ function SearchResults({ componentsCount, setComponentsCount }) {
       <ScrollToTop />
       <MainGrid>
         <Container>
-          <h2>search results for &quot;{searchQuery}&quot;</h2>
+          <SectionTitle>
+            search results for &quot;{searchQuery}&quot;
+          </SectionTitle>
 
           {/* show filter buttons only if filteredAlbums is not empty. If nothing found on search, don't show filter buttons */}
           {filteredAlbums.length > 0 && (
@@ -142,7 +155,7 @@ function SearchResults({ componentsCount, setComponentsCount }) {
                 {filteredByGenre.length > 0 && (
                   <Button
                     type="button"
-                    $marginRight="2em"
+                    // $marginRight="2em"
                     onClick={filterByGenre}
                   >
                     genre
@@ -152,7 +165,7 @@ function SearchResults({ componentsCount, setComponentsCount }) {
                 {filteredByAlbumName.length > 0 && (
                   <Button
                     type="button"
-                    $marginRight="2em"
+                    // $marginRight="2em"
                     onClick={filterByAlbumName}
                   >
                     album name
@@ -162,7 +175,7 @@ function SearchResults({ componentsCount, setComponentsCount }) {
                 {filteredByArtist.length > 0 && (
                   <Button
                     type="button"
-                    $marginRight="2em"
+                    // $marginRight="2em"
                     onClick={filterByArtist}
                   >
                     artist

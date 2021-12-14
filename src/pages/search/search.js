@@ -30,14 +30,10 @@ function Search({ componentsCount, setComponentsCount }) {
           </Route>
 
           <Route path="/search/genres/:searchQuery">
-            {/* <MainGrid>
-              <Container> */}
             <SearchResults
               componentsCount={componentsCount}
               setComponentsCount={setComponentsCount}
             />
-            {/* </Container>
-            </MainGrid> */}
           </Route>
 
           <Route path="/search/:searchQuery">
