@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState, useLayoutEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 
 import AlbumsDataContext from "../../context/albumsData"
@@ -81,7 +81,7 @@ function SearchResults({ componentsCount, setComponentsCount }) {
   const [filteredByArtist, setFilteredByArtist] = useState([])
   const [allAlbums, setAllAlbums] = useState([])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const filterAlbums = () => {
       const filterByGenre = albumsData.filter((album) =>
         album.genre.toLowerCase().includes(searchQuery.toLowerCase())
