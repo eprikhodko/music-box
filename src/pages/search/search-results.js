@@ -17,8 +17,12 @@ import { MainGrid, Container } from "../../components/shared/Containers"
 import SectionTitle from "../../components/shared/TypographyElements"
 
 const StyledParagraph = styled.p`
-  font-size: 4.5rem;
+  font-size: 3rem;
   text-align: center;
+
+  @media (min-width: 1024px) {
+    font-size: 4.5rem;
+  }
 `
 
 const StyledLink = styled(Link)`
@@ -39,13 +43,13 @@ const PokerFace = styled.div`
 `
 
 const FilterAlbumsButtons = styled.div`
+  margin: 2em 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
+  gap: 1.5em;
 
   @media (min-width: 1080px) {
-    margin: 2em 0;
     flex-direction: row;
   }
 `
