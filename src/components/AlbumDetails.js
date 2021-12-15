@@ -21,7 +21,7 @@ import { ButtonPrimary } from "./shared/Buttons"
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
-import IconImagePlaceholder from "../icons/image-placeholder-album-cover-grid.svg"
+import IconImagePlaceholder from "../icons/image-placeholder-fallback.svg"
 
 import { MainGrid } from "./shared/Containers"
 
@@ -34,6 +34,9 @@ const Container = styled.div`
 
   display: grid;
   /* justify-items: center; */
+
+  grid-template-columns: auto minmax(0, 35em) auto;
+  /* grid-template-rows: minmax(0, 35em); */
 `
 
 export const FallbackBackgroundImage = styled.div`
@@ -42,25 +45,15 @@ export const FallbackBackgroundImage = styled.div`
 
   background-image: url(${IconImagePlaceholder});
   background-size: 20% auto;
+  /* background-size: 100%; */
   background-repeat: no-repeat;
   background-position: center;
   background-color: #c2c2c2;
 
-  /* max-width: 10em;
-  max-height: 10em; */
-`
+  width: 100%;
+  max-width: 35em;
 
-export const AlbumCover = styled.div`
-  background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
-    url(${IconImagePlaceholder});
-
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-color: #c2c2c2;
-
-  ${SharedBoxShadowStyle}
-  /* max-width: 100%; */
+  grid-column: 2/-2;
 
   &:before {
     content: "";
@@ -69,7 +62,41 @@ export const AlbumCover = styled.div`
   }
 `
 
+// export const AlbumCover = styled.div`
+//   background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
+//     url(${IconImagePlaceholder});
+
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+//   background-color: #c2c2c2;
+//   justify-self: stretch;
+//   /* margin: 0 auto; */
+
+//   ${SharedBoxShadowStyle}
+
+//   &:before {
+//     content: "";
+//     display: block;
+//     padding-bottom: 100%;
+//   }
+
+//   @media (min-width: 600px) {
+//     max-width: 35em;
+//   }
+// `
+
+const AlbumCover = styled.img`
+  grid-column: 2/-2;
+
+  width: 100%;
+  max-width: 35em;
+  /* height: 100%; */
+`
+
 const AlbumTitle = styled.h1`
+  grid-column: 2/-2;
+
   font-size: 2.5rem;
   color: #000;
   text-align: center;
@@ -82,6 +109,8 @@ const AlbumTitle = styled.h1`
 `
 
 const AlbumArtist = styled.h2`
+  grid-column: 2/-2;
+
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
@@ -94,6 +123,8 @@ const AlbumArtist = styled.h2`
 `
 
 const AlbumYear = styled.p`
+  grid-column: 2/-2;
+
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.8rem;
@@ -105,6 +136,8 @@ const AlbumYear = styled.p`
 `
 
 const AlbumGenre = styled.p`
+  grid-column: 2/-2;
+
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.8rem;
@@ -116,6 +149,8 @@ const AlbumGenre = styled.p`
 `
 
 const StyledParagraph = styled.p`
+  grid-column: 2/-2;
+
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.6rem;
@@ -126,6 +161,8 @@ const StyledParagraph = styled.p`
 `
 
 const ButtonLink = styled(ButtonPrimary)`
+  grid-column: 2/-2;
+
   margin-top: 1.5em;
   justify-self: center;
 
@@ -135,6 +172,8 @@ const ButtonLink = styled(ButtonPrimary)`
 `
 
 const ButtonAlbum = styled(ButtonPrimary)`
+  grid-column: 2/-2;
+
   /* margin-top: 1.5em; */
 
   /* padding: 1em 0; */
@@ -303,6 +342,25 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
     }
   }
 
+  console.log(album)
+  // https://firebasestorage.googleapis.com/v0/b/music-box-e8f66.appspot.com/o/albums-covers%2FLoveless%20-%20My%20Bloody%20Valentine.resized.jpeg1638194280639?alt=media&token=c86fc622-f68d-4965-ba55-7a1fc3ca709b
+
+  const [imgSrc, setImgSrc] = useState("")
+  // const fallback =
+  //   "https://firebasestorage.googleapis.com/v0/b/music-box-e8f66.appspot.com/o/albums-covers%2FGumboot%20Soup%20-%20King%20Gizzard%20%26%20The%20Lizard%20Wizard.resized.jpeg1638194651456?alt=media&token=ef6da424-b59a-40aa-9665-4f349d41a304"
+
+  // const fallback = "../icons/image-placeholder-fallback.svg"
+
+  const fallback = IconImagePlaceholder
+
+  const onError = () => setImgSrc(fallback)
+
+  useEffect(() => {
+    if (!isAlbumsDataLoading) {
+      setImgSrc(album.albumCover)
+    }
+  }, [isAlbumsDataLoading])
+
   useEffect(() => {
     if (currentUser) {
       checkIfAlbumIsInUserCollection()
@@ -315,12 +373,18 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
       <Container>
         {!isAlbumsDataLoading && (
           <>
-            <AlbumCover albumCoverUrl={album.albumCover} />
+            {/* <FallbackBackgroundImage> */}
+            <AlbumCover
+              // src={imgSrc ? imgSrc : fallback}
+              src={imgSrc || fallback}
+              alt={`cover for ${album.albumName} album`}
+              onError={onError}
+            />
+            {/* </FallbackBackgroundImage> */}
             <AlbumTitle>{album.albumName}</AlbumTitle>
             <AlbumArtist>{album.artist}</AlbumArtist>
             <AlbumYear>Year: {album.year}</AlbumYear>
             <AlbumGenre>Genre: {album.genre}</AlbumGenre>
-
             {currentUser ? (
               <>
                 {isAlbumInUserCollection ? (
