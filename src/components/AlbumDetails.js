@@ -21,7 +21,7 @@ import { ButtonPrimary } from "./shared/Buttons"
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
-import IconImagePlaceholder from "../icons/image-placeholder-fallback.svg"
+import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
 
 import { MainGrid } from "./shared/Containers"
 
@@ -62,36 +62,13 @@ export const FallbackBackgroundImage = styled.div`
   }
 `
 
-// export const AlbumCover = styled.div`
-//   background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
-//     url(${IconImagePlaceholder});
-
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-//   background-color: #c2c2c2;
-//   justify-self: stretch;
-//   /* margin: 0 auto; */
-
-//   ${SharedBoxShadowStyle}
-
-//   &:before {
-//     content: "";
-//     display: block;
-//     padding-bottom: 100%;
-//   }
-
-//   @media (min-width: 600px) {
-//     max-width: 35em;
-//   }
-// `
-
 const AlbumCover = styled.img`
   grid-column: 2/-2;
 
   width: 100%;
   max-width: 35em;
-  /* height: 100%; */
+
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
 `
 
 const AlbumTitle = styled.h1`
