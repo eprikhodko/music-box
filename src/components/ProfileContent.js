@@ -23,10 +23,34 @@ import {
   StyledAlbumsGrid,
 } from "./shared/grids/GridElements"
 
-import { FallbackBackgroundImage } from "./AlbumDetails"
-
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
+
+import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
+
+const SharedDimensionsStyle = "width: 35em; height: 35em;"
+const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
+
+const FallbackBackgroundImage = styled.div`
+  /* ${SharedDimensionsStyle} */
+  /* ${SharedBoxShadowStyle} */
+
+  background-image: url(${IconImagePlaceholder});
+  background-size: 20% auto;
+  /* background-size: 100%; */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #c2c2c2;
+
+  width: 100%;
+  max-width: 35em;
+
+  /* &:before {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  } */
+`
 
 const Username = styled.p`
   font-size: 2.5rem;

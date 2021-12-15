@@ -25,68 +25,71 @@ import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
 
 import { MainGrid } from "./shared/Containers"
 
-const SharedDimensionsStyle = "width: 35em; height: 35em;"
-const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
-
 const Container = styled.div`
   margin-top: 1em;
   grid-column: 2/-2;
 
   display: grid;
-  /* justify-items: center; */
+  justify-items: center;
 
-  grid-template-columns: auto minmax(0, 35em) auto;
-  /* grid-template-rows: minmax(0, 35em); */
-`
+  @media (min-width: 900px) {
+    margin-top: 5em;
+    justify-items: left;
 
-export const FallbackBackgroundImage = styled.div`
-  /* ${SharedDimensionsStyle} */
-  /* ${SharedBoxShadowStyle} */
+    grid-template-columns: auto minmax(0, 8em) auto minmax(0, 2em) minmax(
+        0,
+        1fr
+      );
+    grid-template-columns: auto 8em auto 2em 1fr;
+    grid-template-columns: auto 2em 13em 2em 13em;
+    grid-template-columns: auto 2em 13em 2em 13em;
 
-  background-image: url(${IconImagePlaceholder});
-  background-size: 20% auto;
-  /* background-size: 100%; */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #c2c2c2;
-
-  width: 100%;
-  max-width: 35em;
-
-  grid-column: 2/-2;
-
-  &:before {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
+    grid-template-rows: auto auto 4em auto 6em 1fr;
+    grid-template-areas:
+      "image . album-title album-title album-title"
+      "image . artist artist artist"
+      "image . year year year"
+      "image . genre genre genre"
+      "image . text text text"
+      "image . button-signup . button-login";
   }
 `
 
 const AlbumCover = styled.img`
-  grid-column: 2/-2;
+  /* grid-column: 2/-2; */
 
   width: 100%;
   max-width: 35em;
 
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+
+  @media (min-width: 900px) {
+    grid-area: image;
+  }
 `
 
 const AlbumTitle = styled.h1`
-  grid-column: 2/-2;
+  /* grid-column: 2/-2; */
 
   font-size: 2.5rem;
   color: #000;
   text-align: center;
 
-  margin-top: 2em;
+  margin-top: 1.5em;
 
   @media (min-width: 1024px) {
     font-size: 4.5rem;
   }
+
+  @media (min-width: 900px) {
+    grid-area: album-title;
+    align-self: end;
+    text-align: left;
+  }
 `
 
 const AlbumArtist = styled.h2`
-  grid-column: 2/-2;
+  /* grid-column: 2/-2; */
 
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 0.7);
@@ -95,12 +98,17 @@ const AlbumArtist = styled.h2`
   /* margin-top: 2em; */
 
   @media (min-width: 1024px) {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    grid-area: artist;
+    text-align: left;
   }
 `
 
 const AlbumYear = styled.p`
-  grid-column: 2/-2;
+  /* grid-column: 2/-2; */
 
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -110,10 +118,17 @@ const AlbumYear = styled.p`
 
   margin: 0;
   margin-top: 1em;
+
+  @media (min-width: 900px) {
+    grid-area: year;
+    margin: 0;
+    align-self: end;
+    text-align: left;
+  }
 `
 
 const AlbumGenre = styled.p`
-  grid-column: 2/-2;
+  /* grid-column: 2/-2; */
 
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -123,10 +138,17 @@ const AlbumGenre = styled.p`
 
   margin-top: 0.2em;
   margin-bottom: 2em;
+
+  @media (min-width: 900px) {
+    grid-area: genre;
+    text-align: left;
+    margin: 0;
+    margin-top: 0.2em;
+  }
 `
 
 const StyledParagraph = styled.p`
-  grid-column: 2/-2;
+  /* grid-column: 2/-2; */
 
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -135,10 +157,17 @@ const StyledParagraph = styled.p`
   text-align: center;
 
   margin-top: 0.5em;
+
+  @media (min-width: 900px) {
+    grid-area: text;
+    text-align: left;
+    align-self: end;
+    margin: 0;
+  }
 `
 
-const ButtonLink = styled(ButtonPrimary)`
-  grid-column: 2/-2;
+const ButtonSignup = styled(ButtonPrimary)`
+  /* grid-column: 2/-2; */
 
   margin-top: 1.5em;
   justify-self: center;
@@ -146,10 +175,33 @@ const ButtonLink = styled(ButtonPrimary)`
   /* @media (min-width: 600px) {
     margin-top: 2em;
   } */
+
+  @media (min-width: 900px) {
+    grid-area: button-signup;
+    align-self: start;
+    justify-self: start;
+  }
+`
+
+const ButtonLogin = styled(ButtonPrimary)`
+  /* grid-column: 2/-2; */
+
+  margin-top: 1.5em;
+  justify-self: center;
+
+  /* @media (min-width: 600px) {
+    margin-top: 2em;
+  } */
+
+  @media (min-width: 900px) {
+    grid-area: button-login;
+    align-self: start;
+    justify-self: start;
+  }
 `
 
 const ButtonAlbum = styled(ButtonPrimary)`
-  grid-column: 2/-2;
+  /* grid-column: 2/-2; */
 
   /* margin-top: 1.5em; */
 
@@ -158,6 +210,10 @@ const ButtonAlbum = styled(ButtonPrimary)`
   width: 16.5em;
 
   justify-self: center;
+
+  @media (min-width: 900px) {
+    grid-area: text;
+  }
 `
 
 function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
@@ -319,7 +375,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
     }
   }
 
-  console.log(album)
+  // console.log(album)
   // https://firebasestorage.googleapis.com/v0/b/music-box-e8f66.appspot.com/o/albums-covers%2FLoveless%20-%20My%20Bloody%20Valentine.resized.jpeg1638194280639?alt=media&token=c86fc622-f68d-4965-ba55-7a1fc3ca709b
 
   const [imgSrc, setImgSrc] = useState("")
@@ -350,14 +406,12 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
       <Container>
         {!isAlbumsDataLoading && (
           <>
-            {/* <FallbackBackgroundImage> */}
             <AlbumCover
               // src={imgSrc ? imgSrc : fallback}
               src={imgSrc || fallback}
               alt={`cover for ${album.albumName} album`}
               onError={onError}
             />
-            {/* </FallbackBackgroundImage> */}
             <AlbumTitle>{album.albumName}</AlbumTitle>
             <AlbumArtist>{album.artist}</AlbumArtist>
             <AlbumYear>Year: {album.year}</AlbumYear>
@@ -403,13 +457,12 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
                   If you want to add this album to your collection or wishlist,
                   please log in or make an account first:
                 </StyledParagraph>
-                {/* <AlbumButtons> */}
-                <ButtonLink as={Link} to={ROUTES.SIGNUP}>
+                <ButtonSignup as={Link} to={ROUTES.SIGNUP}>
                   Sign up
-                </ButtonLink>
-                <ButtonLink as={Link} to={ROUTES.LOGIN}>
+                </ButtonSignup>
+                <ButtonLogin as={Link} to={ROUTES.LOGIN}>
                   Log in
-                </ButtonLink>
+                </ButtonLogin>
               </>
             )}
           </>
