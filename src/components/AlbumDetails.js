@@ -32,7 +32,7 @@ const Container = styled.div`
   display: grid;
   justify-items: center;
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     margin-top: 5em;
     justify-items: left;
 
@@ -41,17 +41,54 @@ const Container = styled.div`
         1fr
       );
     grid-template-columns: auto 8em auto 2em 1fr;
-    grid-template-columns: auto 2em 13em 2em 13em;
-    grid-template-columns: auto 2em 13em 2em 13em;
+    grid-template-columns: auto 8em auto 2em 1fr;
+
+    /* grid-template-columns: auto 2em 13em 2em 13em; */
+    /* grid-template-columns: auto 2em 15em 2em 13em; */
 
     grid-template-rows: auto auto 4em auto 6em 1fr;
-    grid-template-areas:
+    grid-template-rows: auto auto 4em auto auto auto auto;
+    grid-template-rows: ${({ currentUser }) =>
+      currentUser
+        ? "auto auto 4em auto auto auto auto"
+        : "auto auto 4em auto 6em 1fr"};
+
+    grid-template-areas: ${({ currentUser }) =>
+      currentUser
+        ? `
+      "image . album-title album-title album-title"
+      "image . artist artist artist"
+      "image . year year year"
+      "image . genre genre genre"
+      "image . button-collection button-collection button-collection"
+      "image . button-wishlist button-wishlist button-wishlist"
+      "image . button-remove button-remove button-remove";
+      `
+        : `
       "image . album-title album-title album-title"
       "image . artist artist artist"
       "image . year year year"
       "image . genre genre genre"
       "image . text text text"
       "image . button-signup . button-login";
+      `};
+
+    /* grid-template-areas:
+      "image . album-title album-title album-title"
+      "image . artist artist artist"
+      "image . year year year"
+      "image . genre genre genre"
+      "image . text text text"
+      "image . button-signup . button-login";
+
+    grid-template-areas:
+      "image . album-title album-title album-title"
+      "image . artist artist artist"
+      "image . year year year"
+      "image . genre genre genre"
+      "image . button-collection button-collection button-collection"
+      "image . button-wishlist button-wishlist button-wishlist"
+      "image . button-remove button-remove button-remove"; */
   }
 `
 
@@ -63,25 +100,25 @@ const AlbumCover = styled.img`
 
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: image;
   }
 `
 
 const AlbumTitle = styled.h1`
-  /* grid-column: 2/-2; */
-
   font-size: 2.5rem;
   color: #000;
   text-align: center;
 
-  margin-top: 1.5em;
+  margin-top: 3em;
+  /* margin-top: ${({ currentUser }) => (currentUser ? "0" : "1.5em")}; */
 
-  @media (min-width: 1024px) {
+  @media (min-width: 600px) {
     font-size: 4.5rem;
+    margin-top: 1.5em;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: album-title;
     align-self: end;
     text-align: left;
@@ -97,11 +134,11 @@ const AlbumArtist = styled.h2`
 
   /* margin-top: 2em; */
 
-  @media (min-width: 1024px) {
+  @media (min-width: 600px) {
     font-size: 2.5rem;
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: artist;
     text-align: left;
   }
@@ -119,7 +156,7 @@ const AlbumYear = styled.p`
   margin: 0;
   margin-top: 1em;
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: year;
     margin: 0;
     align-self: end;
@@ -139,7 +176,7 @@ const AlbumGenre = styled.p`
   margin-top: 0.2em;
   margin-bottom: 2em;
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: genre;
     text-align: left;
     margin: 0;
@@ -150,6 +187,7 @@ const AlbumGenre = styled.p`
 const StyledParagraph = styled.p`
   /* grid-column: 2/-2; */
 
+  max-width: 30em;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.6rem;
@@ -158,7 +196,7 @@ const StyledParagraph = styled.p`
 
   margin-top: 0.5em;
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: text;
     text-align: left;
     align-self: end;
@@ -169,14 +207,14 @@ const StyledParagraph = styled.p`
 const ButtonSignup = styled(ButtonPrimary)`
   /* grid-column: 2/-2; */
 
-  margin-top: 1.5em;
+  margin-top: 1.3em;
   justify-self: center;
 
   /* @media (min-width: 600px) {
     margin-top: 2em;
   } */
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: button-signup;
     align-self: start;
     justify-self: start;
@@ -186,34 +224,69 @@ const ButtonSignup = styled(ButtonPrimary)`
 const ButtonLogin = styled(ButtonPrimary)`
   /* grid-column: 2/-2; */
 
-  margin-top: 1.5em;
+  margin-top: 1.3em;
   justify-self: center;
 
   /* @media (min-width: 600px) {
     margin-top: 2em;
   } */
 
-  @media (min-width: 900px) {
+  @media (min-width: 1160px) {
     grid-area: button-login;
     align-self: start;
     justify-self: start;
   }
 `
 
-const ButtonAlbum = styled(ButtonPrimary)`
-  /* grid-column: 2/-2; */
+// const ButtonAlbum = styled(ButtonPrimary)`
+//   /* grid-column: 2/-2; */
 
-  /* margin-top: 1.5em; */
+//   /* margin-top: 1.5em; */
 
-  /* padding: 1em 0; */
-  /* min-width: 16.5em; */
+//   /* padding: 1em 0; */
+//   /* min-width: 16.5em; */
+//   width: 16.5em;
+
+//   justify-self: center;
+
+//   @media (min-width: 1160px) {
+//     grid-area: text;
+//   }
+// `
+
+const ButtonCollection = styled(ButtonPrimary)`
   width: 16.5em;
 
-  justify-self: center;
-
-  @media (min-width: 900px) {
-    grid-area: text;
+  @media (min-width: 1160px) {
+    grid-area: button-collection;
+    align-self: start;
   }
+  /* justify-self: center; */
+`
+
+const ButtonWishlist = styled(ButtonPrimary)`
+  width: 16.5em;
+  margin-top: 1.3em;
+
+  @media (min-width: 1160px) {
+    grid-area: button-wishlist;
+    align-self: start;
+    margin: 0;
+  }
+  /* justify-self: center; */
+`
+
+const ButtonRemove = styled(ButtonPrimary)`
+  width: 16.5em;
+  margin-top: 1.3em;
+
+  @media (min-width: 1160px) {
+    grid-area: button-remove;
+    align-self: start;
+    margin: 0;
+  }
+
+  /* justify-self: center; */
 `
 
 function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
@@ -403,7 +476,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
 
   return (
     <MainGrid>
-      <Container>
+      <Container currentUser={currentUser}>
         {!isAlbumsDataLoading && (
           <>
             <AlbumCover
@@ -419,36 +492,39 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
             {currentUser ? (
               <>
                 {isAlbumInUserCollection ? (
-                  <ButtonAlbum onClick={removeAlbumFromCollection}>
+                  <ButtonCollection onClick={removeAlbumFromCollection}>
                     Remove from my collection
-                  </ButtonAlbum>
+                  </ButtonCollection>
                 ) : (
-                  <ButtonAlbum onClick={addAlbumToCollection}>
+                  <ButtonCollection onClick={addAlbumToCollection}>
                     Add to my collection
-                  </ButtonAlbum>
+                  </ButtonCollection>
                 )}
 
                 {isAlbumInUserWishlist ? (
-                  <ButtonAlbum
-                    $marginTop="1.5em"
+                  <ButtonWishlist
+                    // $marginTop="1.5em"
                     onClick={removeAlbumFromWishlist}
                   >
                     Remove from my wishlist
-                  </ButtonAlbum>
+                  </ButtonWishlist>
                 ) : (
-                  <ButtonAlbum $marginTop="1.5em" onClick={addAlbumToWishlist}>
+                  <ButtonWishlist
+                    // $marginTop="1.5em"
+                    onClick={addAlbumToWishlist}
+                  >
                     Add to my wishlist
-                  </ButtonAlbum>
+                  </ButtonWishlist>
                 )}
 
                 {/* show 'Remove from database' button only if user uploaded this album to the database himself */}
                 {album.uploadedBy === currentUser.uid && (
-                  <ButtonAlbum
-                    $marginTop="1.5em"
+                  <ButtonRemove
+                    // $marginTop="1.5em"
                     onClick={removeAlbumFromDatabase}
                   >
                     Remove from database
-                  </ButtonAlbum>
+                  </ButtonRemove>
                 )}
               </>
             ) : (
