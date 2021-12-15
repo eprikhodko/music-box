@@ -50,7 +50,7 @@ const Container = styled.div`
     grid-template-rows: auto auto 4em auto auto auto auto;
     grid-template-rows: ${({ currentUser }) =>
       currentUser
-        ? "auto auto 4em auto auto auto auto"
+        ? "auto auto auto auto auto auto 1fr"
         : "auto auto 4em auto 6em 1fr"};
 
     grid-template-areas: ${({ currentUser }) =>
@@ -115,7 +115,8 @@ const AlbumTitle = styled.h1`
 
   @media (min-width: 600px) {
     font-size: 4.5rem;
-    margin-top: 1.5em;
+    /* margin-top: 1em; */
+    margin-top: ${({ currentUser }) => (currentUser ? "1em" : "1.5em")};
   }
 
   @media (min-width: 1160px) {
@@ -154,11 +155,11 @@ const AlbumYear = styled.p`
   text-align: center;
 
   margin: 0;
-  margin-top: 1em;
+  margin-top: 1.5em;
 
   @media (min-width: 1160px) {
     grid-area: year;
-    margin: 0;
+    /* margin: 0; */
     align-self: end;
     text-align: left;
   }
@@ -259,7 +260,8 @@ const ButtonCollection = styled(ButtonPrimary)`
 
   @media (min-width: 1160px) {
     grid-area: button-collection;
-    align-self: start;
+    /* align-self: start; */
+    margin-top: 2.5em;
   }
   /* justify-self: center; */
 `
@@ -270,8 +272,8 @@ const ButtonWishlist = styled(ButtonPrimary)`
 
   @media (min-width: 1160px) {
     grid-area: button-wishlist;
-    align-self: start;
-    margin: 0;
+    /* align-self: start; */
+    /* margin: 0; */
   }
   /* justify-self: center; */
 `
@@ -283,7 +285,7 @@ const ButtonRemove = styled(ButtonPrimary)`
   @media (min-width: 1160px) {
     grid-area: button-remove;
     align-self: start;
-    margin: 0;
+    /* margin: 0; */
   }
 
   /* justify-self: center; */
@@ -485,7 +487,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
               alt={`cover for ${album.albumName} album`}
               onError={onError}
             />
-            <AlbumTitle>{album.albumName}</AlbumTitle>
+            <AlbumTitle currentUser={currentUser}>{album.albumName}</AlbumTitle>
             <AlbumArtist>{album.artist}</AlbumArtist>
             <AlbumYear>Year: {album.year}</AlbumYear>
             <AlbumGenre>Genre: {album.genre}</AlbumGenre>
