@@ -10,13 +10,14 @@ import {
 import firebaseApp from "../lib/firebase"
 
 import * as ROUTES from "../constants/routes"
-import { Button } from "./shared/Buttons"
+import { ButtonPrimary } from "./shared/Buttons"
 
 import {
   FloatInput,
   FloatLabel,
   ContainerFloatInput,
   Form,
+  ErrorMessage,
 } from "./shared/FormElements"
 import { MainGrid } from "./shared/Containers"
 
@@ -34,8 +35,29 @@ const StyledLink = styled(Link)`
   }
 `
 
-const ContainerFlex = styled.div`
-  display: flex;
+const ContainerButtons = styled.div`
+  display: grid;
+  justify-items: center;
+  grid-template-rows: auto 1.5em auto;
+
+  margin-top: 4em;
+
+  @media (min-width: 500px) {
+    grid-template-columns: auto 2em auto;
+  }
+`
+
+const ButtonLogin = styled(ButtonPrimary)`
+  grid-row: 1/2;
+`
+
+const ButtonResetPassword = styled(ButtonPrimary)`
+  grid-row: 3/4;
+
+  @media (min-width: 500px) {
+    grid-column: 3/4;
+    grid-row: 1/2;
+  }
 `
 
 function LoginForm() {
@@ -70,6 +92,7 @@ function LoginForm() {
   const handlePasswordReset = async () => {
     try {
       await sendPasswordResetEmail(auth, email)
+      setErrorMessage("password reset instructions was sent to your email!")
       console.log("password reset email sent!")
     } catch (error) {
       console.log(error)
@@ -82,8 +105,8 @@ function LoginForm() {
         {/* show error message if something went wrong */}
         {errorMessage && (
           <>
-            <p>{errorMessage}</p>
-            <p>please try again</p>
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+            <ErrorMessage>please try again</ErrorMessage>
           </>
         )}
 
@@ -122,22 +145,20 @@ function LoginForm() {
           />
         </ContainerFloatInput>
 
-        <ContainerFlex>
-          <Button type="submit" $marginTop="4em">
-            Log in
-          </Button>
+        <ContainerButtons>
+          <ButtonLogin type="submit">Log in</ButtonLogin>
           {/* Show 'send password reset email' button if user typed in incorrect password */}
           {isPasswordWrong && (
-            <Button
+            <ButtonResetPassword
               type="button"
-              $marginTop="4em"
-              $marginLeft="2em"
+              // $marginTop="4em"
+              // $marginLeft="2em"
               onClick={handlePasswordReset}
             >
-              Send password reset email
-            </Button>
+              Reset password
+            </ButtonResetPassword>
           )}
-        </ContainerFlex>
+        </ContainerButtons>
         <StyledParagraph>
           New to Music Box?{" "}
           <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>

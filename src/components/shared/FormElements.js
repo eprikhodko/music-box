@@ -1,14 +1,5 @@
 import styled from "styled-components"
 
-// export const Form = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   /* set default margin-top for StyledForm component */
-//   margin-top: ${({ marginTop }) => marginTop || "10em"};
-//   /* border: 2px solid goldenrod; */
-// `
-
 export const Form = styled.form`
   grid-column: 2/-2;
 
@@ -97,4 +88,8 @@ export const ContainerFloatInput = styled.div`
   &:hover ${FloatInput} {
     border-bottom: 3px solid #000;
   }
+`
+
+export const ErrorMessage = styled.p`
+  text-align: center;
 `
