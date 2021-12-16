@@ -15,9 +15,12 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-top: 2em; */
 
   /* border: 2px solid goldenrod; */
+
+  @media (min-width: 500px) {
+    margin-top: 5em;
+  }
 `
 
 export const FloatInput = styled.input`
