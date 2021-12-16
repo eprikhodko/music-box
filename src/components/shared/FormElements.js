@@ -1,16 +1,28 @@
 import styled from "styled-components"
 
+// export const Form = styled.form`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   /* set default margin-top for StyledForm component */
+//   margin-top: ${({ marginTop }) => marginTop || "10em"};
+//   /* border: 2px solid goldenrod; */
+// `
+
 export const Form = styled.form`
+  grid-column: 2/-2;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* set default margin-top for StyledForm component */
-  margin-top: ${({ marginTop }) => marginTop || "10em"};
+  /* margin-top: 2em; */
+
   /* border: 2px solid goldenrod; */
 `
 
 export const FloatInput = styled.input`
   font-size: 2.5rem;
+  /* font-size: 1.8rem; */
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   font-family: "Inter", sans-serif;
@@ -68,7 +80,8 @@ export const FloatLabel = styled.label`
 export const ContainerFloatInput = styled.div`
   display: flex;
   flex-direction: column;
-  width: 35em;
+  width: 100%;
+  max-width: 35em;
   position: relative;
   margin-top: 3.5em;
   margin-top: ${({ marginTop }) => marginTop};

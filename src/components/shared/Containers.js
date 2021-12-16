@@ -3,22 +3,12 @@ import styled from "styled-components"
 
 export const MainGrid = styled.div`
   display: grid;
+  /* justify-items: ${({ justifyItems }) => justifyItems}; */
+  /* justify-items: center; */
   grid-template-columns: minmax(1em, 1fr) minmax(0, 700px) minmax(1em, 1fr);
-
-  /* > * {
-    grid-column: 2 / -2;
-  } */
-
-  /* @media (min-width: 600px) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1160px) minmax(0, 1fr);
-  } */
 
   @media (min-width: 700px) {
     grid-template-columns: minmax(1em, 1fr) minmax(0, 1160px) minmax(1em, 1fr);
-
-    /* & > * {
-      grid-column: 2 / -2;
-    } */
   }
 `
 

@@ -18,6 +18,7 @@ import {
   ContainerFloatInput,
   Form,
 } from "./shared/FormElements"
+import { MainGrid } from "./shared/Containers"
 
 const StyledParagraph = styled.p`
   font-size: 1.6rem;
@@ -75,71 +76,73 @@ function LoginForm() {
   }
 
   return (
-    <Form onSubmit={handleLogin} marginTop="5em">
-      {/* show error message if something went wrong */}
-      {errorMessage && (
-        <>
-          <p>{errorMessage}</p>
-          <p>please try again</p>
-        </>
-      )}
-
-      <ContainerFloatInput>
-        <FloatLabel htmlFor="email" isNotEmpty={email}>
-          Email
-        </FloatLabel>
-        <FloatInput
-          id="email"
-          type="email"
-          name="email"
-          aria-label="Email address"
-          required
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value.toLowerCase())
-          }}
-        />
-      </ContainerFloatInput>
-
-      <ContainerFloatInput>
-        <FloatLabel htmlFor="pass" isNotEmpty={password}>
-          Password
-        </FloatLabel>
-        <FloatInput
-          id="pass"
-          type="password"
-          name="password"
-          aria-label="Password"
-          minLength="6"
-          required
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value)
-          }}
-        />
-      </ContainerFloatInput>
-
-      <ContainerFlex>
-        <Button type="submit" $marginTop="4em">
-          Log in
-        </Button>
-        {/* Show 'send password reset email' button if user typed in incorrect password */}
-        {isPasswordWrong && (
-          <Button
-            type="button"
-            $marginTop="4em"
-            $marginLeft="2em"
-            onClick={handlePasswordReset}
-          >
-            Send password reset email
-          </Button>
+    <MainGrid>
+      <Form onSubmit={handleLogin} marginTop="5em">
+        {/* show error message if something went wrong */}
+        {errorMessage && (
+          <>
+            <p>{errorMessage}</p>
+            <p>please try again</p>
+          </>
         )}
-      </ContainerFlex>
-      <StyledParagraph>
-        New to Music Box?{" "}
-        <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>
-      </StyledParagraph>
-    </Form>
+
+        <ContainerFloatInput>
+          <FloatLabel htmlFor="email" isNotEmpty={email}>
+            Email
+          </FloatLabel>
+          <FloatInput
+            id="email"
+            type="email"
+            name="email"
+            aria-label="Email address"
+            required
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value.toLowerCase())
+            }}
+          />
+        </ContainerFloatInput>
+
+        <ContainerFloatInput>
+          <FloatLabel htmlFor="pass" isNotEmpty={password}>
+            Password
+          </FloatLabel>
+          <FloatInput
+            id="pass"
+            type="password"
+            name="password"
+            aria-label="Password"
+            minLength="6"
+            required
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value)
+            }}
+          />
+        </ContainerFloatInput>
+
+        <ContainerFlex>
+          <Button type="submit" $marginTop="4em">
+            Log in
+          </Button>
+          {/* Show 'send password reset email' button if user typed in incorrect password */}
+          {isPasswordWrong && (
+            <Button
+              type="button"
+              $marginTop="4em"
+              $marginLeft="2em"
+              onClick={handlePasswordReset}
+            >
+              Send password reset email
+            </Button>
+          )}
+        </ContainerFlex>
+        <StyledParagraph>
+          New to Music Box?{" "}
+          <StyledLink to={ROUTES.SIGNUP}>Create an account</StyledLink>
+        </StyledParagraph>
+      </Form>
+    </MainGrid>
   )
 }
 
