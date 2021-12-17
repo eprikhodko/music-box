@@ -26,31 +26,8 @@ import {
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
-import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
-
-const SharedDimensionsStyle = "width: 35em; height: 35em;"
-const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
-
-const FallbackBackgroundImage = styled.div`
-  /* ${SharedDimensionsStyle} */
-  /* ${SharedBoxShadowStyle} */
-
-  background-image: url(${IconImagePlaceholder});
-  background-size: 20% auto;
-  /* background-size: 100%; */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #c2c2c2;
-
-  width: 100%;
-  max-width: 35em;
-
-  /* &:before {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  } */
-`
+// import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
+import { Container, MainGrid } from "./shared/Containers"
 
 const Username = styled.p`
   font-size: 2.5rem;
@@ -78,14 +55,11 @@ const ContainerTextBlock = styled(ContainerFlex)`
   margin-left: 19em;
 `
 
-const HeroAlbumCover = styled(AlbumCover)`
-  width: 35em;
-  height: 35em;
-`
+const HeroAlbumCover = styled(AlbumCover)``
 
-const FallbackImage = styled(FallbackBackgroundImage)`
-  margin-top: 1em;
-`
+// const FallbackImage = styled(FallbackBackgroundImage)`
+//   margin-top: 1em;
+// `
 
 const AlbumName = styled.p`
   font-size: 1.8rem;
@@ -262,10 +236,11 @@ function ProfileContent() {
       const albums = albumsData.map((album) => (
         <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
           <AlbumContainer>
-            <AlbumCover
+            {/* <AlbumCover
               src={album.albumCover}
               alt={`album cover for ${album.albumName} album`}
-            />
+            /> */}
+            <AlbumCover albumCoverUrl={album.albumCover} />
             <AlbumTitle>{album.albumName}</AlbumTitle>
             <AlbumArtist>{album.artist}</AlbumArtist>
           </AlbumContainer>
@@ -277,13 +252,13 @@ function ProfileContent() {
     setAlbumsComponents(createAlbumsComponents())
   }, [albumsData])
 
-  const setDisplayToNone = (e) => {
-    e.target.style.display = "none"
-  }
+  // const setDisplayToNone = (e) => {
+  //   e.target.style.display = "none"
+  // }
 
   return (
-    <>
-      <ContainerFlex justifyContent="space-between">
+    <MainGrid>
+      <Container>
         <CenterContent>
           <UserAvatar />
           <Username>{currentUser?.displayName}</Username>
@@ -318,13 +293,12 @@ function ProfileContent() {
             <StyledLink
               to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
             >
-              <FallbackImage>
-                <HeroAlbumCover
-                  src={albumsData[0] && albumsData[0].albumCover}
-                  alt="cover for album"
-                  onError={setDisplayToNone}
-                />
-              </FallbackImage>
+              {/* <FallbackImage> */}
+              <HeroAlbumCover
+                albumCoverUrl={albumsData[0] && albumsData[0].albumCover}
+                // onError={setDisplayToNone}
+              />
+              {/* </FallbackImage> */}
             </StyledLink>
 
             <AlbumName>{albumsData[0] && albumsData[0].albumName}</AlbumName>
@@ -342,12 +316,12 @@ function ProfileContent() {
             </h3>
           </ContainerTextBlock>
         )}
-      </ContainerFlex>
 
-      {albumsComponents.length > 1 && (
-        <StyledAlbumsGrid>{albumsComponents.slice(1, 5)}</StyledAlbumsGrid>
-      )}
-    </>
+        {albumsComponents.length > 1 && (
+          <StyledAlbumsGrid>{albumsComponents.slice(1, 5)}</StyledAlbumsGrid>
+        )}
+      </Container>
+    </MainGrid>
   )
 }
 

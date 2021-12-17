@@ -82,6 +82,14 @@ function MobileNavigation({ toggleHamburgerMenuOpenOrClose }) {
       <NavList aria-label="Header navigation" role="navigation">
         {navLinksRegistered}
         <li>
+          <NavLink
+            to={`/profile/${currentUser.displayName}`}
+            // onClick={handleSignOut}
+          >
+            Profile
+          </NavLink>
+        </li>
+        <li>
           <NavLink to={ROUTES.HOME} onClick={handleSignOut}>
             Sign out
           </NavLink>

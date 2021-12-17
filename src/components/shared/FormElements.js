@@ -120,7 +120,6 @@ export const ImageUploadBox = styled.label`
   font-size: 1.8rem;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
-  /* margin-top: 0.6em; */
 
   /* background-image: url(${IconImagePlaceholder});
   background-repeat: no-repeat;
@@ -132,16 +131,6 @@ export const ImageUploadBox = styled.label`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
-  /* background-size: cover; */
-
-  /* set image upload box dimensions and background color */
-  /* width: 100%; */
-  /* max-width: 31em; */
-  /* height: 100%;
-  max-height: 31em; */
-  /* width: 31em;
-  height: 31em; */
   background-color: #c2c2c2;
 
   /* center content inside of image upload box */
