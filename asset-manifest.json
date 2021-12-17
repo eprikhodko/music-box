@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/music-box/static/js/main.cf28b0d2.chunk.js",
-    "main.js.map": "/music-box/static/js/main.cf28b0d2.chunk.js.map",
+    "main.js": "/music-box/static/js/main.2070f808.chunk.js",
+    "main.js.map": "/music-box/static/js/main.2070f808.chunk.js.map",
     "runtime-main.js": "/music-box/static/js/runtime-main.90f42bcb.js",
     "runtime-main.js.map": "/music-box/static/js/runtime-main.90f42bcb.js.map",
     "static/js/2.e7c44e5c.chunk.js": "/music-box/static/js/2.e7c44e5c.chunk.js",
@@ -18,7 +18,6 @@
     "static/media/icon-search.16b763cb.svg": "/music-box/static/media/icon-search.16b763cb.svg",
     "static/media/image-fallback-album-details.d41ee09f.svg": "/music-box/static/media/image-fallback-album-details.d41ee09f.svg",
     "static/media/image-placeholder-album-cover-grid.767311d3.svg": "/music-box/static/media/image-placeholder-album-cover-grid.767311d3.svg",
-    "static/media/image-placeholder.4c60c8b2.svg": "/music-box/static/media/image-placeholder.4c60c8b2.svg",
     "static/media/instagram-icon.3f1fb93f.svg": "/music-box/static/media/instagram-icon.3f1fb93f.svg",
     "static/media/person_24px.d465e367.svg": "/music-box/static/media/person_24px.d465e367.svg",
     "static/media/search-arrow-icon.df3287b1.svg": "/music-box/static/media/search-arrow-icon.df3287b1.svg",
@@ -30,6 +29,6 @@
   "entrypoints": [
     "static/js/runtime-main.90f42bcb.js",
     "static/js/2.e7c44e5c.chunk.js",
-    "static/js/main.cf28b0d2.chunk.js"
+    "static/js/main.2070f808.chunk.js"
   ]
 }
