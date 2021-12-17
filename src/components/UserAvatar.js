@@ -14,7 +14,7 @@ const AvatarText = styled.p`
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
 
-  @media (min-width: 500px) {
+  @media (min-width: 600px) {
     font-size: 2.5rem;
   }
 `
@@ -30,7 +30,7 @@ const AvatarImage = styled.div`
 
   border-radius: 999px;
 
-  @media (min-width: 500px) {
+  @media (min-width: 600px) {
     width: 17em;
     height: 17em;
   }
@@ -43,8 +43,13 @@ const AvatarImage = styled.div`
 // `
 
 const IconPerson = styled(IconPers)`
-  width: 8em;
-  height: 8em;
+  width: 4em;
+  height: 4em;
+
+  @media (min-width: 600px) {
+    width: 8em;
+    height: 8em;
+  }
 `
 
 // style label element to visually represent interactive upload container
@@ -89,7 +94,7 @@ const ImageUploadBox = styled.label`
     outline-offset: 5px;
   }
 
-  @media (min-width: 500px) {
+  @media (min-width: 600px) {
     width: 17em;
     height: 17em;
   }

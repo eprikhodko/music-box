@@ -86,7 +86,11 @@ function Header({ noSearchBox }) {
                     toggleHamburgerMenuOpenOrClose
                   }
                 />
-                <Logo />
+                <Logo
+                  toggleHamburgerMenuOpenOrClose={
+                    toggleHamburgerMenuOpenOrClose
+                  }
+                />
               </Container>
             </HamburgerMenu>
           </Content>

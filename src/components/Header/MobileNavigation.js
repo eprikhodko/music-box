@@ -84,6 +84,7 @@ function MobileNavigation({ toggleHamburgerMenuOpenOrClose }) {
         <li>
           <NavLink
             to={`/profile/${currentUser.displayName}`}
+            onClick={toggleHamburgerMenuOpenOrClose}
             // onClick={handleSignOut}
           >
             Profile

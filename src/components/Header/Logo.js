@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
@@ -16,9 +18,9 @@ const StyledLogo = styled.div`
   }
 `
 
-function Logo() {
+function Logo({ toggleHamburgerMenuOpenOrClose }) {
   return (
-    <Link to={ROUTES.HOME}>
+    <Link to={ROUTES.HOME} onClick={toggleHamburgerMenuOpenOrClose}>
       <StyledLogo>
         <SiteLogo />
       </StyledLogo>
@@ -27,3 +29,11 @@ function Logo() {
 }
 
 export default Logo
+
+Logo.propTypes = {
+  toggleHamburgerMenuOpenOrClose: PropTypes.func,
+}
+
+Logo.defaultProps = {
+  toggleHamburgerMenuOpenOrClose: () => {},
+}
