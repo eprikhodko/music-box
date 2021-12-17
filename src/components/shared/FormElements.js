@@ -250,9 +250,17 @@ export const CustomCheckbox = styled(CheckboxCircleIcon)`
 `
 
 export const HiddenCheckbox = styled.input`
-  -webkit-appearance: none;
-  appearance: none;
+  /* -webkit-appearance: none; */
+  /* appearance: none; */
   margin: 0;
+
+  /* remove the checkbox from flow */
+  position: absolute;
+  /* hide it visually */
+  opacity: 0;
+
+  width: 20px;
+  height: 20px;
 
   &:checked + ${CustomCheckbox} {
     border: none;
