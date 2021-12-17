@@ -24,7 +24,7 @@ import {
   MessageController,
   Message,
   ImageUploadBox,
-  ImagePlaceholderIcon,
+  // ImagePlaceholderIcon,
   HiddenFileInput,
 } from "./shared/FormElements"
 import { Button } from "./shared/Buttons"
@@ -34,6 +34,23 @@ import { MainGrid } from "./shared/Containers"
 
 const ButtonUpload = styled(Button)`
   margin-top: 3em;
+`
+
+const CenterContent = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledText = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
 `
 
 function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
@@ -202,7 +219,10 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
         <ImageUploadBox htmlFor="imageUpload" fileUrl={fileDownloadUrl}>
           {!fileDownloadUrl && (
             <>
-              <ImagePlaceholderIcon /> Click to upload album picture
+              {/* <ImagePlaceholderIcon /> */}
+              <StyledText>
+                <CenterContent>Click to upload album picture</CenterContent>
+              </StyledText>
             </>
           )}
 

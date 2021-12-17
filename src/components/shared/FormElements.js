@@ -2,12 +2,20 @@ import styled from "styled-components"
 import { ReactComponent as IconImagePlaceholder } from "../../icons/image-placeholder.svg"
 import { ReactComponent as CheckboxCircleIcon } from "../../icons/check_circle_24px.svg"
 
+// import IconImagePlaceholder from "../../icons/image-placeholder.svg"
+
 export const Form = styled.form`
   grid-column: 2/-2;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: 100%;
+  max-width: 35em;
+  margin: 0 auto;
+
+  /* display: grid; */
 
   /* border: 2px solid goldenrod; */
 
@@ -98,19 +106,20 @@ export const ErrorMessage = styled.p`
 
 // upload form elements below
 
-export const ContainerUploadForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: ${({ marginTop }) => marginTop || "10em"};
-`
+// export const ContainerUploadForm = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   margin-top: ${({ marginTop }) => marginTop || "10em"};
+// `
 
 // style label element to visually represent interactive upload box
 export const ImageUploadBox = styled.label`
+  height: 0;
   font-size: 1.8rem;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
-  margin-top: 0.6em;
+  /* margin-top: 0.6em; */
 
   background-image: url(${({ fileUrl }) => fileUrl});
   background-repeat: no-repeat;
@@ -118,8 +127,10 @@ export const ImageUploadBox = styled.label`
   background-size: cover;
 
   /* set image upload box dimensions and background color */
-  width: 100%;
+  /* width: 100%; */
   /* max-width: 31em; */
+  /* height: 100%;
+  max-height: 31em; */
   /* width: 31em;
   height: 31em; */
   background-color: #c2c2c2;
@@ -150,14 +161,44 @@ export const ImageUploadBox = styled.label`
     outline: 2px solid #000;
     outline-offset: 3px;
   }
+
+  /* &:before {
+    content: "";
+    display: block;
+    padding-bottom: 43.5%;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 43.5%;
+  } */
+
+  /* &:before {
+    content: "";
+    background-image: url(${IconImagePlaceholder});
+    width: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    padding-bottom: 100%;
+  } */
+
+  /* height: 0; */
+  /* overflow: hidden; */
+  padding-top: 100%;
+  background: c2c2c2;
+  /* position: relative; */
+  align-self: stretch;
 `
 
 export const ImagePlaceholderIcon = styled(IconImagePlaceholder)`
   /* width: 3em;
   height: 3em; */
-  width: 100%;
-  height: 100%;
-  margin-bottom: 1em;
+  /* width: 100%; */
+  /* max-width: 35em; */
+  /* height: 100%; */
+  /* margin-bottom: 1em; */
 `
 
 export const HiddenFileInput = styled.input`
