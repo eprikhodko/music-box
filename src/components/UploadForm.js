@@ -28,12 +28,23 @@ import {
   HiddenFileInput,
 } from "./shared/FormElements"
 import { Button } from "./shared/Buttons"
+import { ReactComponent as IconImagePlaceholder } from "../icons/image-placeholder.svg"
 
 import UserContext from "../context/user"
 import { MainGrid } from "./shared/Containers"
 
 const ButtonUpload = styled(Button)`
   margin-top: 3em;
+`
+
+const ImagePlaceholderIcon = styled(IconImagePlaceholder)`
+  position: absolute;
+  top: 35%;
+  left: 45%;
+  width: 10%;
+  height: 10%;
+
+  margin: 0;
 `
 
 const CenterContent = styled.div`
@@ -219,7 +230,7 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
         <ImageUploadBox htmlFor="imageUpload" fileUrl={fileDownloadUrl}>
           {!fileDownloadUrl && (
             <>
-              {/* <ImagePlaceholderIcon /> */}
+              <ImagePlaceholderIcon />
               <StyledText>
                 <CenterContent>Click to upload album picture</CenterContent>
               </StyledText>

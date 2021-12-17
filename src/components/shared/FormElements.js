@@ -174,16 +174,6 @@ export const ImageUploadBox = styled.label`
     padding-bottom: 43.5%;
   } */
 
-  /* &:before {
-    content: "";
-    background-image: url(${IconImagePlaceholder});
-    width: 100px;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: block;
-    padding-bottom: 100%;
-  } */
-
   /* height: 0; */
   /* overflow: hidden; */
   padding-top: 100%;
