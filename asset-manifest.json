@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/music-box/static/js/main.294311a8.chunk.js",
-    "main.js.map": "/music-box/static/js/main.294311a8.chunk.js.map",
+    "main.js": "/music-box/static/js/main.2dc414da.chunk.js",
+    "main.js.map": "/music-box/static/js/main.2dc414da.chunk.js.map",
     "runtime-main.js": "/music-box/static/js/runtime-main.90f42bcb.js",
     "runtime-main.js.map": "/music-box/static/js/runtime-main.90f42bcb.js.map",
     "static/js/2.e7c44e5c.chunk.js": "/music-box/static/js/2.e7c44e5c.chunk.js",
@@ -30,6 +30,6 @@
   "entrypoints": [
     "static/js/runtime-main.90f42bcb.js",
     "static/js/2.e7c44e5c.chunk.js",
-    "static/js/main.294311a8.chunk.js"
+    "static/js/main.2dc414da.chunk.js"
   ]
 }
