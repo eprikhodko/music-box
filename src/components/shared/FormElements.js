@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { ReactComponent as IconImagePlaceholder } from "../../icons/image-placeholder.svg"
+// import { ReactComponent as IconImagePlaceholder } from "../../icons/image-placeholder.svg"
 import { ReactComponent as CheckboxCircleIcon } from "../../icons/check_circle_24px.svg"
 
-// import IconImagePlaceholder from "../../icons/image-placeholder.svg"
+import IconImagePlaceholder from "../../icons/upload-image.svg"
 
 export const Form = styled.form`
   grid-column: 2/-2;
@@ -14,12 +14,13 @@ export const Form = styled.form`
   width: 100%;
   max-width: 35em;
   margin: 0 auto;
+  margin-top: 1em;
 
   /* display: grid; */
 
   /* border: 2px solid goldenrod; */
 
-  @media (min-width: 500px) {
+  @media (min-width: 600px) {
     margin-top: 5em;
   }
 `
@@ -121,10 +122,18 @@ export const ImageUploadBox = styled.label`
   font-weight: 500;
   /* margin-top: 0.6em; */
 
-  background-image: url(${({ fileUrl }) => fileUrl});
+  /* background-image: url(${IconImagePlaceholder});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: 50% 45%; */
+
+  background-image: url(${({ fileUrl }) => fileUrl}),
+    url(${IconImagePlaceholder});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  /* background-size: cover; */
 
   /* set image upload box dimensions and background color */
   /* width: 100%; */
@@ -182,14 +191,14 @@ export const ImageUploadBox = styled.label`
   align-self: stretch;
 `
 
-export const ImagePlaceholderIcon = styled(IconImagePlaceholder)`
-  /* width: 3em;
-  height: 3em; */
-  /* width: 100%; */
-  /* max-width: 35em; */
-  /* height: 100%; */
-  /* margin-bottom: 1em; */
-`
+// export const ImagePlaceholderIcon = styled(IconImagePlaceholder)`
+//   /* width: 3em;
+//   height: 3em; */
+//   /* width: 100%; */
+//   /* max-width: 35em; */
+//   /* height: 100%; */
+//   /* margin-bottom: 1em; */
+// `
 
 export const HiddenFileInput = styled.input`
   /* height: 0; */
@@ -203,7 +212,11 @@ export const ContainerCheckboxes = styled.div`
   align-self: flex-start;
 
   margin-top: 1em;
-  /* border: 1px solid green; */
+
+  @media (min-width: 550px) {
+    flex-direction: row;
+    gap: 7em;
+  }
 `
 
 export const CheckboxLabel = styled.label`
