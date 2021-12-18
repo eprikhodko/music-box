@@ -20,7 +20,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
-import { ContainerMain, Content } from "../components/shared/Containers"
+import { Container, MainGrid } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
 import ShowMoreAndBackToTopButtons from "../components/shared/ShowMoreAndBackToTopButtons"
 
@@ -72,10 +72,10 @@ function MyUploads({ componentsCount, setComponentsCount }) {
   return (
     <>
       <ScrollToTop />
-      <ContainerMain>
-        <Header />
-        <main>
-          <Content flexDirection="column" alignItems="center" $marginTop="5em">
+      <Header />
+      <main>
+        <MainGrid>
+          <Container $marginTop="4em">
             <h2>My Uploads</h2>
             {albumsUploadedByCurrentUser.length > 0 ? (
               <>
@@ -102,10 +102,10 @@ function MyUploads({ componentsCount, setComponentsCount }) {
                 <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new one?
               </StyledParagraph>
             )}
-          </Content>
-        </main>
-        <Footer />
-      </ContainerMain>
+          </Container>
+        </MainGrid>
+      </main>
+      <Footer />
     </>
   )
 }
