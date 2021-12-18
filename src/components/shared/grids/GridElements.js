@@ -58,6 +58,8 @@ export const UploadNewAlbumBox = styled.div`
   align-items: center;
   background-color: #c2c2c2;
 
+  /* border: 1px solid green; */
+
   &:hover {
     ${SharedBoxShadowStyle}
   }
