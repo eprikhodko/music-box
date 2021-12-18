@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/music-box/static/js/main.3a92b677.chunk.js",
-    "main.js.map": "/music-box/static/js/main.3a92b677.chunk.js.map",
+    "main.js": "/music-box/static/js/main.1fe0390a.chunk.js",
+    "main.js.map": "/music-box/static/js/main.1fe0390a.chunk.js.map",
     "runtime-main.js": "/music-box/static/js/runtime-main.90f42bcb.js",
     "runtime-main.js.map": "/music-box/static/js/runtime-main.90f42bcb.js.map",
     "static/js/2.e7c44e5c.chunk.js": "/music-box/static/js/2.e7c44e5c.chunk.js",
@@ -11,7 +11,6 @@
     "static/media/burger-close.aa819249.svg": "/music-box/static/media/burger-close.aa819249.svg",
     "static/media/burger.a2b8a5d9.svg": "/music-box/static/media/burger.a2b8a5d9.svg",
     "static/media/check_circle_24px.6e6713d3.svg": "/music-box/static/media/check_circle_24px.6e6713d3.svg",
-    "static/media/cloud_upload_24px.f976338c.svg": "/music-box/static/media/cloud_upload_24px.f976338c.svg",
     "static/media/facebook-icon.c9f43824.svg": "/music-box/static/media/facebook-icon.c9f43824.svg",
     "static/media/florencia-viadana-F7W1QP62psQ-unsplash-optimized.d421dc6a.jpg": "/music-box/static/media/florencia-viadana-F7W1QP62psQ-unsplash-optimized.d421dc6a.jpg",
     "static/media/icon-avatar.b1483c9f.svg": "/music-box/static/media/icon-avatar.b1483c9f.svg",
@@ -24,11 +23,12 @@
     "static/media/sentiment_neutral_24px.d383df02.svg": "/music-box/static/media/sentiment_neutral_24px.d383df02.svg",
     "static/media/site-logo.5ad86e14.svg": "/music-box/static/media/site-logo.5ad86e14.svg",
     "static/media/twitter-icon.f1dd512a.svg": "/music-box/static/media/twitter-icon.f1dd512a.svg",
+    "static/media/upload-album-image.aa8c8561.svg": "/music-box/static/media/upload-album-image.aa8c8561.svg",
     "static/media/upload-image.46663ef2.svg": "/music-box/static/media/upload-image.46663ef2.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.90f42bcb.js",
     "static/js/2.e7c44e5c.chunk.js",
-    "static/js/main.3a92b677.chunk.js"
+    "static/js/main.1fe0390a.chunk.js"
   ]
 }
