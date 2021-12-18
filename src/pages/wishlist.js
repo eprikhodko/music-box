@@ -17,7 +17,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
-import { ContainerMain, Content } from "../components/shared/Containers"
+import { Container, MainGrid } from "../components/shared/Containers"
 
 import * as ROUTES from "../constants/routes"
 
@@ -96,10 +96,11 @@ function Wishlist({ componentsCount, setComponentsCount }) {
   return (
     <>
       <ScrollToTop />
-      <ContainerMain>
-        <Header />
-        <main>
-          <Content flexDirection="column" alignItems="center" $marginTop="5em">
+      <Header />
+
+      <main>
+        <MainGrid>
+          <Container $marginTop="4em">
             <h2>Wishlist</h2>
             {albumsInUserWishlist.length > 0 ? (
               <>
@@ -127,10 +128,10 @@ function Wishlist({ componentsCount, setComponentsCount }) {
                 new album yourself?
               </StyledParagraph>
             )}
-          </Content>
-        </main>
-        <Footer />
-      </ContainerMain>
+          </Container>
+        </MainGrid>
+      </main>
+      <Footer />
     </>
   )
 }
