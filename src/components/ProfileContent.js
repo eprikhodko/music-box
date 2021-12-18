@@ -11,7 +11,7 @@ import {
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { ButtonPrimary } from "./shared/Buttons"
-import { HeroTitle } from "./shared/HeroTitle"
+// import { HeroTitle } from "./shared/HeroTitle"
 import UserAvatar from "./UserAvatar"
 
 import {
@@ -27,13 +27,41 @@ import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
 // import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
-import { Container, MainGrid } from "./shared/Containers"
+import { MainGrid } from "./shared/Containers"
+import useMatchMedia from "../hooks/useMatchMedia"
+
+const Container = styled.div`
+  grid-column: 2 / -2;
+  margin-top: 3.75em;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
 
 const Username = styled.p`
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   margin-top: 0.6em;
+`
+
+const HeroTitle = styled.h1`
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  /* order: -1; */
+  align-self: end;
+
+  /* margin-top: 1em; */
+  font-size: 7rem;
+  line-height: 1.15;
+  /* margin-bottom: 0.2em; */
+`
+
+const Subtitle = styled.h3`
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+
+  margin-top: 1em;
 `
 
 const ContainerFlex = styled.div`
@@ -43,19 +71,29 @@ const ContainerFlex = styled.div`
 `
 
 export const CenterContent = styled.div`
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3.75em;
+
+  @media (min-width: 1024px) {
+    grid-column: 1 / 2;
+    justify-self: start;
+  }
 `
 
-const ContainerTextBlock = styled(ContainerFlex)`
-  max-width: 32em;
-  margin-top: 7em;
-  margin-left: 19em;
-`
+// const ContainerTextBlock = styled(ContainerFlex)`
+//   max-width: 32em;
+//   margin-top: 7em;
+//   margin-left: 19em;
+// `
 
-const HeroAlbumCover = styled(AlbumCover)``
+const HeroAlbumCover = styled(AlbumCover)`
+  margin-top: 1em;
+  /* max-width: 35em; */
+`
 
 // const FallbackImage = styled(FallbackBackgroundImage)`
 //   margin-top: 1em;
@@ -79,6 +117,10 @@ const AddAlbumsLink = styled(StyledLink)`
   text-decoration: underline;
 `
 
+const ProfileAlbums = styled(StyledAlbumsGrid)`
+  grid-column: 1/3;
+`
+
 // fetch 5 last albums ids from albumsInUserCollection
 // fetch 5 last albums ids from albumsInUserWishlist
 // merge this arrays
@@ -94,6 +136,8 @@ function ProfileContent() {
   const [albumsData, setAlbumsData] = useState([])
   const [albumsComponents, setAlbumsComponents] = useState([])
   // const [isLoading, setIsLoading] = useState(true)
+
+  const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
   useEffect(() => {
     const fetchAlbumsInUserCollection = async () => {
@@ -287,38 +331,46 @@ function ProfileContent() {
           </ButtonPrimary>
         </CenterContent>
 
-        {albumsComponents.length > 0 ? (
-          <ContainerFlex flexDirection="column">
-            <h2>Recently added albums</h2>
-            <StyledLink
-              to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
-            >
-              {/* <FallbackImage> */}
-              <HeroAlbumCover
-                albumCoverUrl={albumsData[0] && albumsData[0].albumCover}
-                // onError={setDisplayToNone}
-              />
-              {/* </FallbackImage> */}
-            </StyledLink>
+        {isDesktopResolution && (
+          <>
+            {albumsComponents.length > 0 ? (
+              <ContainerFlex flexDirection="column">
+                <h2>Recently added albums</h2>
+                <StyledLink
+                  to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
+                >
+                  {/* <FallbackImage> */}
+                  <HeroAlbumCover
+                    albumCoverUrl={albumsData[0] && albumsData[0].albumCover}
+                    // onError={setDisplayToNone}
+                  />
+                  {/* </FallbackImage> */}
+                </StyledLink>
 
-            <AlbumName>{albumsData[0] && albumsData[0].albumName}</AlbumName>
-            <AlbumArtistName>
-              {albumsData[0] && albumsData[0].artist}
-            </AlbumArtistName>
-          </ContainerFlex>
-        ) : (
-          <ContainerTextBlock flexDirection="column">
-            <HeroTitle>Build your music library</HeroTitle>
-            <h3>
-              <AddAlbumsLink to={ROUTES.CATALOG}>Add some albums</AddAlbumsLink>{" "}
-              to your collection or wishlist and they will appear in your
-              profile
-            </h3>
-          </ContainerTextBlock>
-        )}
+                <AlbumName>
+                  {albumsData[0] && albumsData[0].albumName}
+                </AlbumName>
+                <AlbumArtistName>
+                  {albumsData[0] && albumsData[0].artist}
+                </AlbumArtistName>
+              </ContainerFlex>
+            ) : (
+              <>
+                <HeroTitle>Build your music library</HeroTitle>
+                <Subtitle>
+                  <AddAlbumsLink to={ROUTES.CATALOG}>
+                    Add some albums
+                  </AddAlbumsLink>{" "}
+                  to your collection or wishlist and they will appear in your
+                  profile
+                </Subtitle>
+              </>
+            )}
 
-        {albumsComponents.length > 1 && (
-          <StyledAlbumsGrid>{albumsComponents.slice(1, 5)}</StyledAlbumsGrid>
+            {albumsComponents.length > 1 && (
+              <ProfileAlbums>{albumsComponents.slice(1, 5)}</ProfileAlbums>
+            )}
+          </>
         )}
       </Container>
     </MainGrid>
