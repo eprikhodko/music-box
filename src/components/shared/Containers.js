@@ -58,3 +58,9 @@ export const Container = styled.div`
 
   margin-top: ${({ $marginTop }) => $marginTop};
 `
+
+export const MainContainer = styled.div`
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+`

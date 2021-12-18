@@ -17,7 +17,11 @@ import Footer from "../components/Footer"
 import Header from "../components/Header/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
-import { Container, MainGrid } from "../components/shared/Containers"
+import {
+  Container,
+  MainContainer,
+  MainGrid,
+} from "../components/shared/Containers"
 
 import * as ROUTES from "../constants/routes"
 
@@ -25,12 +29,7 @@ import UserContext from "../context/user"
 import AlbumsDataContext from "../context/albumsData"
 import ScrollToTop from "../components/utils/ScrollToTop"
 import ShowMoreAndBackToTopButtons from "../components/shared/ShowMoreAndBackToTopButtons"
-
-const StyledParagraph = styled.p`
-  font-size: 2.5rem;
-  text-align: center;
-  width: 40em;
-`
+import { StyledParagraph } from "../components/shared/TypographyElements"
 
 const StyledLink = styled(Link)`
   color: #000;
@@ -96,42 +95,43 @@ function Wishlist({ componentsCount, setComponentsCount }) {
   return (
     <>
       <ScrollToTop />
-      <Header />
-
-      <main>
-        <MainGrid>
-          <Container $marginTop="4em">
-            <h2>Wishlist</h2>
-            {albumsInUserWishlist.length > 0 ? (
-              <>
-                {/* use component composition here, and pass <UploadNewAlbum /> as {children} to the <AlbumsGrid /> */}
-                <AlbumsGrid
-                  albumsSlice={albumsSlice}
-                  albumsData={albumsInUserWishlist}
-                  setComponentsCount={setComponentsCount}
-                >
-                  <UploadNewAlbum />
-                </AlbumsGrid>
-                {/* Show 'Show more' button only if there is more then 11 albums in user wishlist */}
-                <ShowMoreAndBackToTopButtons
-                  albumsSlice={albumsSlice}
-                  setAlbumsSlice={setAlbumsSlice}
-                  albumsData={albumsInUserWishlist}
-                  componentsCount={componentsCount}
-                />
-              </>
-            ) : (
-              <StyledParagraph>
-                There is no albums in your wishlist yet. Would you like to add
-                some from <StyledLink to={ROUTES.CATALOG}>catalog</StyledLink>{" "}
-                or maybe <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a
-                new album yourself?
-              </StyledParagraph>
-            )}
-          </Container>
-        </MainGrid>
-      </main>
-      <Footer />
+      <MainContainer>
+        <Header />
+        <main>
+          <MainGrid>
+            <Container $marginTop="4em">
+              <h2>Wishlist</h2>
+              {albumsInUserWishlist.length > 0 ? (
+                <>
+                  {/* use component composition here, and pass <UploadNewAlbum /> as {children} to the <AlbumsGrid /> */}
+                  <AlbumsGrid
+                    albumsSlice={albumsSlice}
+                    albumsData={albumsInUserWishlist}
+                    setComponentsCount={setComponentsCount}
+                  >
+                    <UploadNewAlbum />
+                  </AlbumsGrid>
+                  {/* Show 'Show more' button only if there is more then 11 albums in user wishlist */}
+                  <ShowMoreAndBackToTopButtons
+                    albumsSlice={albumsSlice}
+                    setAlbumsSlice={setAlbumsSlice}
+                    albumsData={albumsInUserWishlist}
+                    componentsCount={componentsCount}
+                  />
+                </>
+              ) : (
+                <StyledParagraph>
+                  There is no albums in your wishlist yet. Would you like to add
+                  some from <StyledLink to={ROUTES.CATALOG}>catalog</StyledLink>{" "}
+                  or maybe <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a
+                  new album yourself?
+                </StyledParagraph>
+              )}
+            </Container>
+          </MainGrid>
+        </main>
+        <Footer />
+      </MainContainer>
     </>
   )
 }

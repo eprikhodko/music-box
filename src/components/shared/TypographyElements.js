@@ -11,4 +11,10 @@ const SectionTitle = styled.h2`
   }
 `
 
+export const StyledParagraph = styled.p`
+  /* margin: 5em 0; */
+  font-size: 2.5rem;
+  text-align: center;
+`
+
 export default SectionTitle
