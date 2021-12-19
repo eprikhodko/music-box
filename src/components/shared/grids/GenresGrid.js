@@ -12,6 +12,7 @@ import {
 import {
   AlbumContainer,
   StyledLink,
+  AlbumCoverContainer,
   AlbumCover,
   AlbumTitle,
   StyledAlbumsGrid,
@@ -47,7 +48,12 @@ function GenresGrid() {
           key={doc.genreId}
         >
           <AlbumContainer>
-            <AlbumCover albumCoverUrl={doc.albumCover} />
+            <AlbumCoverContainer>
+              <AlbumCover
+                src={doc.albumCover}
+                alt={`album cover for ${doc.genreName} album`}
+              />
+            </AlbumCoverContainer>
 
             <AlbumTitle>{doc.genreName}</AlbumTitle>
           </AlbumContainer>

@@ -121,7 +121,6 @@ function ProfileContent() {
   const [albumsIDs, setAlbumsIDs] = useState([])
   const [albumsData, setAlbumsData] = useState([])
   const [albumsComponents, setAlbumsComponents] = useState([])
-  // const [isLoading, setIsLoading] = useState(true)
 
   const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
@@ -258,8 +257,6 @@ function ProfileContent() {
 
     if (albumsIDs.length > 0) fetchAlbumsData(albumsIDs)
   }, [albumsIDs])
-
-  console.log(albumsData)
 
   useEffect(() => {
     const createAlbumsComponents = () => {

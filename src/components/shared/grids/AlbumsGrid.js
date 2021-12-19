@@ -32,12 +32,10 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
         className="component-count"
       >
         <AlbumContainer>
-          {/* <AlbumCover albumCoverUrl={album.albumCover} /> */}
           <AlbumCoverContainer>
             <AlbumCover
               src={album.albumCover}
               alt={`album cover for ${album.albumName}`}
-              // onError={handleError}
             />
           </AlbumCoverContainer>
 

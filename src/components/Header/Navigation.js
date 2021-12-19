@@ -71,7 +71,7 @@ const ImageAvatar = styled.div`
   background-position: center;
   background-size: cover;
 
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   border-radius: 999px;
 
   &:hover {
