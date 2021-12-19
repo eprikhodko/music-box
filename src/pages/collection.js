@@ -93,7 +93,6 @@ function Collection({ componentsCount, setComponentsCount }) {
       <ScrollToTop />
       <MainContainer>
         <Header />
-
         <main>
           <MainGrid>
             <Container $marginTop="4em">
