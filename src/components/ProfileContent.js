@@ -17,6 +17,7 @@ import UserAvatar from "./UserAvatar"
 import {
   AlbumContainer,
   StyledLink,
+  AlbumCoverContainer,
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
@@ -45,16 +46,17 @@ const Username = styled.p`
   margin-top: 0.6em;
 `
 
+const Title = styled.h2`
+  margin-bottom: 0.3em;
+`
+
 const HeroTitle = styled.h1`
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  /* order: -1; */
   align-self: end;
 
-  /* margin-top: 1em; */
   font-size: 7rem;
   line-height: 1.15;
-  /* margin-bottom: 0.2em; */
 `
 
 const Subtitle = styled.h3`
@@ -84,21 +86,6 @@ export const CenterContent = styled.div`
   }
 `
 
-// const ContainerTextBlock = styled(ContainerFlex)`
-//   max-width: 32em;
-//   margin-top: 7em;
-//   margin-left: 19em;
-// `
-
-const HeroAlbumCover = styled(AlbumCover)`
-  margin-top: 1em;
-  /* max-width: 35em; */
-`
-
-// const FallbackImage = styled(FallbackBackgroundImage)`
-//   margin-top: 1em;
-// `
-
 const AlbumName = styled.p`
   font-size: 1.8rem;
   color: #000;
@@ -110,7 +97,6 @@ const AlbumArtistName = styled.p`
   font-size: 1.6rem;
   color: #000;
   margin: 0;
-  //
 `
 
 const AddAlbumsLink = styled(StyledLink)`
@@ -280,11 +266,12 @@ function ProfileContent() {
       const albums = albumsData.map((album) => (
         <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
           <AlbumContainer>
-            {/* <AlbumCover
-              src={album.albumCover}
-              alt={`album cover for ${album.albumName} album`}
-            /> */}
-            <AlbumCover albumCoverUrl={album.albumCover} />
+            <AlbumCoverContainer>
+              <AlbumCover
+                src={album.albumCover}
+                alt={`album cover for ${album.albumName}`}
+              />
+            </AlbumCoverContainer>
             <AlbumTitle>{album.albumName}</AlbumTitle>
             <AlbumArtist>{album.artist}</AlbumArtist>
           </AlbumContainer>
@@ -295,10 +282,6 @@ function ProfileContent() {
 
     setAlbumsComponents(createAlbumsComponents())
   }, [albumsData])
-
-  // const setDisplayToNone = (e) => {
-  //   e.target.style.display = "none"
-  // }
 
   return (
     <MainGrid>
@@ -335,16 +318,16 @@ function ProfileContent() {
           <>
             {albumsComponents.length > 0 ? (
               <ContainerFlex flexDirection="column">
-                <h2>Recently added</h2>
+                <Title>Recently added</Title>
                 <StyledLink
                   to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
                 >
-                  {/* <FallbackImage> */}
-                  <HeroAlbumCover
-                    albumCoverUrl={albumsData[0] && albumsData[0].albumCover}
-                    // onError={setDisplayToNone}
-                  />
-                  {/* </FallbackImage> */}
+                  <AlbumCoverContainer>
+                    <AlbumCover
+                      src={albumsData[0] && albumsData[0].albumCover}
+                      alt={`album cover for ${albumsData[0].albumName}`}
+                    />
+                  </AlbumCoverContainer>
                 </StyledLink>
 
                 <AlbumName>

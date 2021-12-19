@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 // import IconImagePlaceholder from "../../../icons/image-placeholder-fallback.svg"
-// import IconImagePlaceholder from "../../../icons/image-placeholder-album-cover-grid.svg"
+import IconImagePlaceholder from "../../../icons/image-placeholder-album-cover-grid.svg"
 
 const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 // const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
@@ -52,9 +52,27 @@ export const StyledAlbumsGrid = styled.div`
 //   }
 // `
 
+export const AlbumCoverContainer = styled.div`
+  position: relative;
+  padding-top: 100%;
+  background: cadetblue;
+
+  background-image: url(${IconImagePlaceholder});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #c2c2c2;
+`
+
 export const AlbumCover = styled.img`
-  width: 15em;
-  height: 15em;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   &:hover {
     ${SharedBoxShadowStyle}

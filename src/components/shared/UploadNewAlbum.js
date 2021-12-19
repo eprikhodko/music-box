@@ -9,6 +9,7 @@ import {
   StyledLink,
   AlbumCover,
   AlbumTitle,
+  AlbumCoverContainer,
   // UploadNewAlbumBox,
 } from "./grids/GridElements"
 
@@ -39,7 +40,9 @@ function UploadNewAlbum() {
 
     <StyledLink to={ROUTES.UPLOAD} key="upload-album-box">
       <AlbumContainer>
-        <AlbumCover albumCoverUrl={UploadAlbumImage} />
+        <AlbumCoverContainer>
+          <AlbumCover src={UploadAlbumImage} alt="upload new album" />
+        </AlbumCoverContainer>
         <AlbumTitle>Upload new album</AlbumTitle>
       </AlbumContainer>
     </StyledLink>

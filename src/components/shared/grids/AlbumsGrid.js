@@ -11,6 +11,7 @@ import {
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
+  AlbumCoverContainer,
 } from "./GridElements"
 
 function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
@@ -32,11 +33,13 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
       >
         <AlbumContainer>
           {/* <AlbumCover albumCoverUrl={album.albumCover} /> */}
-          <AlbumCover
-            src={album.albumCover}
-            alt={`album cover for ${album.albumName}`}
-            // onError={handleError}
-          />
+          <AlbumCoverContainer>
+            <AlbumCover
+              src={album.albumCover}
+              alt={`album cover for ${album.albumName}`}
+              // onError={handleError}
+            />
+          </AlbumCoverContainer>
 
           <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
