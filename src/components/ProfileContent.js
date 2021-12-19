@@ -335,7 +335,7 @@ function ProfileContent() {
           <>
             {albumsComponents.length > 0 ? (
               <ContainerFlex flexDirection="column">
-                <h2>Recently added albums</h2>
+                <h2>Recently added</h2>
                 <StyledLink
                   to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
                 >

@@ -31,7 +31,12 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
         className="component-count"
       >
         <AlbumContainer>
-          <AlbumCover albumCoverUrl={album.albumCover} />
+          {/* <AlbumCover albumCoverUrl={album.albumCover} /> */}
+          <AlbumCover
+            src={album.albumCover}
+            alt={`album cover for ${album.albumName}`}
+            // onError={handleError}
+          />
 
           <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
@@ -41,6 +46,8 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
 
     return albums
   }
+
+  console.log(albumsComponents)
 
   useEffect(() => {
     setAlbumsComponents(createAlbumsComponents(start, end))

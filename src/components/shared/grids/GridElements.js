@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 // import IconImagePlaceholder from "../../../icons/image-placeholder-fallback.svg"
-import IconImagePlaceholder from "../../../icons/image-placeholder-album-cover-grid.svg"
+// import IconImagePlaceholder from "../../../icons/image-placeholder-album-cover-grid.svg"
 
 const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
 // const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
@@ -34,19 +34,30 @@ export const StyledAlbumsGrid = styled.div`
   /* border: 1px solid green; */
 `
 
-export const AlbumCover = styled.div`
-  background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
-    url(${IconImagePlaceholder});
+// background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
+//   url(${IconImagePlaceholder});
+// background-image: url(${IconImagePlaceholder});
+// export const AlbumCover = styled.div`
+//   background-image: ${({ albumCoverUrl }) => `url(${albumCoverUrl})`};
 
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-color: #c2c2c2;
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+//   background-color: #c2c2c2;
 
-  &:before {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
+//   &:before {
+//     content: "";
+//     display: block;
+//     padding-bottom: 100%;
+//   }
+// `
+
+export const AlbumCover = styled.img`
+  width: 15em;
+  height: 15em;
+
+  &:hover {
+    ${SharedBoxShadowStyle}
   }
 `
 

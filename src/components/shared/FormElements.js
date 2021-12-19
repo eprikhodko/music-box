@@ -63,6 +63,12 @@ export const FloatInput = styled.input`
     transition: background-color 5000s;
     -webkit-text-fill-color: rgba(0, 0, 0, 0.7) !important;
   }
+
+  /* remove default iOS form styling. Form inputs won't appear with round edges anymore */
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 `
 
 export const FloatLabel = styled.label`
