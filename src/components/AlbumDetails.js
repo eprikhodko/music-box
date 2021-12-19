@@ -21,33 +21,29 @@ import { ButtonPrimary } from "./shared/Buttons"
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
-import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
+// import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
 
 import { MainGrid } from "./shared/Containers"
+import { AlbumCoverContainer, AlbumCover } from "./shared/grids/GridElements"
 
 const Container = styled.div`
-  margin-top: 1em;
   grid-column: 2/-2;
+
+  margin: 1em auto;
+  width: 100%;
+  max-width: 35em;
 
   display: grid;
   justify-items: center;
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
+    margin: 0;
     margin-top: 5em;
+    max-width: 100%;
     justify-items: left;
 
-    grid-template-columns: auto minmax(0, 8em) auto minmax(0, 2em) minmax(
-        0,
-        1fr
-      );
-    grid-template-columns: auto 8em auto 2em 1fr;
-    grid-template-columns: auto 8em auto 2em 1fr;
+    grid-template-columns: minmax(0, 35em) 8em auto 2em minmax(0, 5em);
 
-    /* grid-template-columns: auto 2em 13em 2em 13em; */
-    /* grid-template-columns: auto 2em 15em 2em 13em; */
-
-    grid-template-rows: auto auto 4em auto 6em 1fr;
-    grid-template-rows: auto auto 4em auto auto auto auto;
     grid-template-rows: ${({ currentUser }) =>
       currentUser
         ? "auto auto auto auto auto auto 1fr"
@@ -72,37 +68,19 @@ const Container = styled.div`
       "image . text text text"
       "image . button-signup . button-login";
       `};
-
-    /* grid-template-areas:
-      "image . album-title album-title album-title"
-      "image . artist artist artist"
-      "image . year year year"
-      "image . genre genre genre"
-      "image . text text text"
-      "image . button-signup . button-login";
-
-    grid-template-areas:
-      "image . album-title album-title album-title"
-      "image . artist artist artist"
-      "image . year year year"
-      "image . genre genre genre"
-      "image . button-collection button-collection button-collection"
-      "image . button-wishlist button-wishlist button-wishlist"
-      "image . button-remove button-remove button-remove"; */
   }
 `
 
-const AlbumCover = styled.img`
-  /* grid-column: 2/-2; */
+const AlbumCoverImageContainer = styled(AlbumCoverContainer)`
+  justify-self: stretch;
 
-  width: 100%;
-  max-width: 35em;
-
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: image;
   }
+`
+
+const AlbumCoverImage = styled(AlbumCover)`
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
 `
 
 const AlbumTitle = styled.h1`
@@ -119,7 +97,7 @@ const AlbumTitle = styled.h1`
     margin-top: ${({ currentUser }) => (currentUser ? "1em" : "1.5em")};
   }
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: album-title;
     align-self: end;
     text-align: left;
@@ -139,7 +117,7 @@ const AlbumArtist = styled.h2`
     font-size: 2.5rem;
   }
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: artist;
     text-align: left;
   }
@@ -157,7 +135,7 @@ const AlbumYear = styled.p`
   margin: 0;
   margin-top: 1.5em;
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: year;
     /* margin: 0; */
     align-self: end;
@@ -177,7 +155,7 @@ const AlbumGenre = styled.p`
   margin-top: 0.2em;
   margin-bottom: 2em;
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: genre;
     text-align: left;
     margin: 0;
@@ -197,7 +175,7 @@ const StyledParagraph = styled.p`
 
   margin-top: 0.5em;
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: text;
     text-align: left;
     align-self: end;
@@ -215,7 +193,7 @@ const ButtonSignup = styled(ButtonPrimary)`
     margin-top: 2em;
   } */
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: button-signup;
     align-self: start;
     justify-self: start;
@@ -232,7 +210,7 @@ const ButtonLogin = styled(ButtonPrimary)`
     margin-top: 2em;
   } */
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: button-login;
     align-self: start;
     justify-self: start;
@@ -250,7 +228,7 @@ const ButtonLogin = styled(ButtonPrimary)`
 
 //   justify-self: center;
 
-//   @media (min-width: 1160px) {
+//   @media (min-width: 1100px) {
 //     grid-area: text;
 //   }
 // `
@@ -258,7 +236,7 @@ const ButtonLogin = styled(ButtonPrimary)`
 const ButtonCollection = styled(ButtonPrimary)`
   width: 16.5em;
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: button-collection;
     /* align-self: start; */
     margin-top: 2.5em;
@@ -270,7 +248,7 @@ const ButtonWishlist = styled(ButtonPrimary)`
   width: 16.5em;
   margin-top: 1.3em;
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: button-wishlist;
     /* align-self: start; */
     /* margin: 0; */
@@ -282,7 +260,7 @@ const ButtonRemove = styled(ButtonPrimary)`
   width: 16.5em;
   margin-top: 1.3em;
 
-  @media (min-width: 1160px) {
+  @media (min-width: 1100px) {
     grid-area: button-remove;
     align-self: start;
     /* margin: 0; */
@@ -450,25 +428,6 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
     }
   }
 
-  // console.log(album)
-  // https://firebasestorage.googleapis.com/v0/b/music-box-e8f66.appspot.com/o/albums-covers%2FLoveless%20-%20My%20Bloody%20Valentine.resized.jpeg1638194280639?alt=media&token=c86fc622-f68d-4965-ba55-7a1fc3ca709b
-
-  const [imgSrc, setImgSrc] = useState("")
-  // const fallback =
-  //   "https://firebasestorage.googleapis.com/v0/b/music-box-e8f66.appspot.com/o/albums-covers%2FGumboot%20Soup%20-%20King%20Gizzard%20%26%20The%20Lizard%20Wizard.resized.jpeg1638194651456?alt=media&token=ef6da424-b59a-40aa-9665-4f349d41a304"
-
-  // const fallback = "../icons/image-placeholder-fallback.svg"
-
-  const fallback = IconImagePlaceholder
-
-  const onError = () => setImgSrc(fallback)
-
-  useEffect(() => {
-    if (!isAlbumsDataLoading) {
-      setImgSrc(album.albumCover)
-    }
-  }, [isAlbumsDataLoading])
-
   useEffect(() => {
     if (currentUser) {
       checkIfAlbumIsInUserCollection()
@@ -481,12 +440,12 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
       <Container currentUser={currentUser}>
         {!isAlbumsDataLoading && (
           <>
-            <AlbumCover
-              // src={imgSrc ? imgSrc : fallback}
-              src={imgSrc || fallback}
-              alt={`cover for ${album.albumName} album`}
-              onError={onError}
-            />
+            <AlbumCoverImageContainer>
+              <AlbumCoverImage
+                src={album.albumCover}
+                alt={`album cover for ${album.albumName}`}
+              />
+            </AlbumCoverImageContainer>
             <AlbumTitle currentUser={currentUser}>{album.albumName}</AlbumTitle>
             <AlbumArtist>{album.artist}</AlbumArtist>
             <AlbumYear>Year: {album.year}</AlbumYear>

@@ -55,7 +55,6 @@ export const StyledAlbumsGrid = styled.div`
 export const AlbumCoverContainer = styled.div`
   position: relative;
   padding-top: 100%;
-  background: cadetblue;
 
   background-image: url(${IconImagePlaceholder});
   background-repeat: no-repeat;
