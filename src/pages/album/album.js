@@ -4,18 +4,21 @@ import AlbumDetails from "./AlbumDetails"
 import Footer from "../../components/Footer"
 import Header from "../../components/Header/Header"
 import ScrollToTop from "../../components/utils/ScrollToTop"
+import { MainContainer } from "../../components/shared/Containers"
 
 function Album({ setIsAlbumRemovedFromDatabase }) {
   return (
     <>
       <ScrollToTop />
-      <Header />
-      <main>
-        <AlbumDetails
-          setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
-        />
-      </main>
-      <Footer />
+      <MainContainer>
+        <Header />
+        <main>
+          <AlbumDetails
+            setIsAlbumRemovedFromDatabase={setIsAlbumRemovedFromDatabase}
+          />
+        </main>
+        <Footer />
+      </MainContainer>
     </>
   )
 }
