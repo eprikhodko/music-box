@@ -19,11 +19,6 @@ export const Button = styled.button`
   margin-right: ${({ $marginRight }) => $marginRight};
   margin-left: ${({ $marginLeft }) => $marginLeft};
 
-  /* &:hover {
-    background-color: #333;
-    color: #fff;
-  } */
-
   @media (hover: hover) {
     &:hover {
       background-color: #333;
@@ -32,8 +27,6 @@ export const Button = styled.button`
   }
 
   &:focus {
-    /* background-color: #333;
-    color: #fff; */
     outline: 3px solid transparent;
   }
 `

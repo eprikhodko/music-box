@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import PropTypes from "prop-types"
 
 import { ReactComponent as IconInstagram } from "../icons/social/instagram-icon.svg"
 import { ReactComponent as IconFacebook } from "../icons/social/facebook-icon.svg"
 import { ReactComponent as IconTwitter } from "../icons/social/twitter-icon.svg"
 import { MainGrid } from "./shared/Containers"
+import screenSize from "../constants/mediaQueries"
 
 const StyledFooter = styled.footer`
   background-color: #c2c2c2;
   margin-top: 6.25em;
 `
 
-// margin-top: ${({ $marginTop }) => $marginTop};
 const ContainerFooter = styled.div`
   grid-column: 2/-2;
   margin-top: 0;
@@ -21,14 +20,8 @@ const ContainerFooter = styled.div`
 const FooterContent = styled.div`
   padding: 3em 0 4em 0;
   display: grid;
-  /* width: 95%; */
-  /* max-width: 72.5em; */
-  /* margin: 0 auto; */
-  /* grid-gap: 5em; */
 
-  /* border: 1px solid; */
-
-  @media (min-width: 1024px) {
+  @media (min-width: ${screenSize.desktopSmall}) {
     grid-template-columns: repeat(4, 1fr);
     padding: 3em 0 2em 0;
   }
@@ -60,18 +53,14 @@ const StyledLink = styled(Link)`
   font-weight: 500;
   &:hover {
     color: #000;
-    /* border-bottom: 2px solid #000; */
   }
   &:focus {
-    /* border-bottom: 2px solid #000; */
     color: #000;
-    /* outline: 3px solid transparent; */
   }
 `
 
 const LinkWithIcon = styled.div`
   display: flex;
-  /* border: 1px solid; */
 `
 
 const IconContainer = styled.div`
@@ -79,7 +68,6 @@ const IconContainer = styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  /* border: 1px solid green; */
 `
 
 const StyledIcon = styled.div`
@@ -89,7 +77,6 @@ const StyledIcon = styled.div`
     height: 1.4em;
     margin-right: 0.3em;
   }
-  /* border: 1px solid magenta; */
 `
 
 const Copyright = styled.p`
@@ -98,23 +85,19 @@ const Copyright = styled.p`
   margin: 0;
   margin-top: 1em;
 
-  @media (min-width: 1024px) {
+  @media (min-width: ${screenSize.desktopSmall}) {
     margin-top: 9.5em;
   }
-
-  /* border: 1px solid green; */
 `
 
-const GridElement = styled.div`
-  /* border: 1px solid green; */
-`
+const GridElement = styled.div``
 
-function Footer({ $marginTop }) {
+function Footer() {
   return (
     <>
       <StyledFooter>
         <MainGrid>
-          <ContainerFooter $marginTop={$marginTop}>
+          <ContainerFooter>
             <FooterContent>
               <GridElement>
                 <p>
@@ -215,11 +198,3 @@ function Footer({ $marginTop }) {
 }
 
 export default Footer
-
-Footer.propTypes = {
-  $marginTop: PropTypes.string,
-}
-
-Footer.defaultProps = {
-  $marginTop: "7.5em",
-}

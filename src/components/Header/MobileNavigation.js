@@ -19,8 +19,6 @@ const NavList = styled.ul`
   margin: 0;
   margin-bottom: 5em;
   padding: 0;
-
-  /* border: 1px solid wheat; */
 `
 
 const NavLink = styled(Link)`
@@ -85,7 +83,6 @@ function MobileNavigation({ toggleHamburgerMenuOpenOrClose }) {
           <NavLink
             to={`/profile/${currentUser.displayName}`}
             onClick={toggleHamburgerMenuOpenOrClose}
-            // onClick={handleSignOut}
           >
             Profile
           </NavLink>

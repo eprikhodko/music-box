@@ -10,31 +10,29 @@ import { MainGrid, Container } from "./shared/Containers"
 import SectionTitle from "./shared/TypographyElements"
 
 function RecentlyAddedAlbums() {
-  const isTabletOrMobile = useMatchMedia("(min-width: 600px)", true)
+  const isTablet = useMatchMedia("(min-width: 600px)", true)
   const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
-  // console.log(isTabletOrMobile, isDesktopResolution)
-
   const howManyAlbumsToShow = () => {
-    // show 8 albums by default
+    // show 8 albums by default if screen width is 0px - 600px
     let slice = {
       start: 0,
       end: 8,
     }
-    // console.log("default value, render 8 albums")
 
-    if (isTabletOrMobile && isDesktopResolution) {
+    // show 8 albums if screen width is more than 1024px
+    if (isTablet && isDesktopResolution) {
       slice = {
         start: 0,
         end: 8,
       }
-      // console.log("render 8 albums")
-    } else if (isTabletOrMobile) {
+
+      // show 9 albums if screen width is 600px-1024px
+    } else if (isTablet) {
       slice = {
         start: 0,
         end: 9,
       }
-      // console.log("render 9 albums")
     }
     return slice
   }

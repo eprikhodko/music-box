@@ -21,7 +21,6 @@ function SearchBox() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault()
-    console.log("search submitted")
     event.stopPropagation()
 
     // clean up search query

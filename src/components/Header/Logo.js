@@ -13,8 +13,6 @@ const StyledLogo = styled.div`
   svg {
     width: 4em;
     height: 4em;
-    /* margin-right: 0.3em; */
-    /* color: palevioletred; */
   }
 `
 

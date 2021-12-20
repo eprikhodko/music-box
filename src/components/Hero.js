@@ -10,14 +10,13 @@ import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimize
 import { ButtonPrimary } from "./shared/Buttons"
 import UserContext from "../context/user"
 
-const HeroGridContainer = styled.div`
-  /* width: 95%; */
+const Container = styled.div`
   max-width: 1300px;
   grid-column: 2 / -2;
 
   display: grid;
 
-  @media (min-width: ${screenSize.tabletMedium}) {
+  @media (min-width: ${screenSize.desktopSmall}) {
     grid-column: 2/4;
     grid-template-columns: auto 2em auto 3em 1fr;
     grid-template-rows: 1.5fr auto auto 1fr;
@@ -41,13 +40,12 @@ const HeroTitle = styled.h1`
 
   justify-self: center;
 
-  @media (min-width: 600px) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     text-align: center;
     font-size: 7rem;
   }
 
-  @media (min-width: ${screenSize.tabletMedium}) {
-    /* grid-column: 1/4; */
+  @media (min-width: ${screenSize.desktopSmall}) {
     grid-area: title;
     max-width: 6.2em;
 
@@ -66,13 +64,12 @@ const HeroSubtitle = styled.h3`
 
   margin: 1em 0;
 
-  @media (min-width: 600px) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     font-size: 2.5rem;
     color: rgba(0, 0, 0, 0.7);
   }
 
-  @media (min-width: ${screenSize.tabletMedium}) {
-    /* grid-column: 1/4; */
+  @media (min-width: ${screenSize.desktopSmall}) {
     grid-area: subtitle;
 
     justify-self: start;
@@ -83,11 +80,11 @@ const ButtonViewCatalog = styled(ButtonPrimary)`
   margin-top: 1.5em;
   justify-self: center;
 
-  @media (min-width: 600px) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     margin-top: 2em;
   }
 
-  @media (min-width: ${screenSize.tabletMedium}) {
+  @media (min-width: ${screenSize.desktopSmall}) {
     grid-area: button-catalog;
   }
 `
@@ -96,11 +93,11 @@ const ButtonLogin = styled(ButtonPrimary)`
   margin-top: 1em;
   justify-self: center;
 
-  @media (min-width: 600px) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     margin-top: 1em;
   }
 
-  @media (min-width: ${screenSize.tabletMedium}) {
+  @media (min-width: ${screenSize.desktopSmall}) {
     grid-area: button-login;
     justify-self: end;
 
@@ -109,18 +106,15 @@ const ButtonLogin = styled(ButtonPrimary)`
 `
 
 const HeroImage = styled.img`
-  /* by setting max-width: 100% instead of width: 100% we're allow image to shrink and grow. width: 100% will make image always take up 100% of avaiable width. */
   max-width: 100%;
   object-fit: cover;
 
-  /* grid-column: 5 / 6;
-  grid-row: 1 / 5; */
   grid-area: image;
-
   justify-self: end;
+
   display: none;
 
-  @media (min-width: ${screenSize.tabletMedium}) {
+  @media (min-width: ${screenSize.desktopSmall}) {
     display: block;
   }
 `
@@ -130,7 +124,7 @@ function Hero() {
 
   return (
     <MainGrid>
-      <HeroGridContainer>
+      <Container>
         <HeroTitle>Build your music library</HeroTitle>
         <HeroSubtitle>Discover and explore music with us</HeroSubtitle>
         <ButtonViewCatalog as={Link} to={ROUTES.CATALOG}>
@@ -142,7 +136,7 @@ function Hero() {
           </ButtonLogin>
         )}
         <HeroImage src={heroImage} alt="shelf full of vinyl records" />
-      </HeroGridContainer>
+      </Container>
     </MainGrid>
   )
 }

@@ -1,56 +1,34 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-// import IconImagePlaceholder from "../../../icons/image-placeholder-fallback.svg"
 import IconImagePlaceholder from "../../../icons/image-placeholder-album-cover-grid.svg"
+import screenSize from "../../../constants/mediaQueries"
 
 const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
-// const SharedDimensionsStyle = "width: 16.65em; height: 16.65em;"
 
 export const StyledAlbumsGrid = styled.div`
   align-self: stretch;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* we need to configure our columns with minmax(0, 1fr) to make text overflow work */
-  /* grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); */
-
   grid-gap: 1em;
-  /* grid-gap: 4%; */
 
   margin: 3em 0 2em;
 
   /* show 2 columns of albums by default */
+  /* we need to configure our columns with minmax(0, 1fr) to make text overflow work */
+  /* grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); */
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   /* show 3 columns of albums from 600px screen width and up */
-  @media (min-width: 600px) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   /* show 4 columns of albums from 1024px screen width and up */
-  @media (min-width: 1024px) {
+  @media (min-width: ${screenSize.desktopSmall}) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  /* border: 1px solid green; */
 `
-
-// background-image: url(${({ albumCoverUrl }) => albumCoverUrl}),
-//   url(${IconImagePlaceholder});
-// background-image: url(${IconImagePlaceholder});
-// export const AlbumCover = styled.div`
-//   background-image: ${({ albumCoverUrl }) => `url(${albumCoverUrl})`};
-
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-//   background-color: #c2c2c2;
-
-//   &:before {
-//     content: "";
-//     display: block;
-//     padding-bottom: 100%;
-//   }
-// `
 
 export const AlbumCoverContainer = styled.div`
   position: relative;
@@ -78,15 +56,12 @@ export const AlbumCover = styled.img`
   }
 `
 
-/* ${SharedDimensionsStyle} */
 export const UploadNewAlbumBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #c2c2c2;
-
-  /* border: 1px solid green; */
 
   &:hover {
     ${SharedBoxShadowStyle}

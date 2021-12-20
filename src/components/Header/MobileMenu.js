@@ -11,8 +11,6 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  /* border: 1px dashed white; */
 `
 
 export const HamburgerMenu = styled.div`
@@ -29,8 +27,6 @@ export const HamburgerMenu = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  /* border: 1px solid white; */
 `
 
 export const HamburgerButton = styled.button`

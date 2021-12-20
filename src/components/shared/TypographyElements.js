@@ -6,13 +6,12 @@ const SectionTitle = styled.h2`
   color: #333;
   text-align: center;
 
-  @media (min-width: ${screenSize.tabletMedium}) {
+  @media (min-width: ${screenSize.tabletSmall}) {
     font-size: 4.5rem;
   }
 `
 
 export const StyledParagraph = styled.p`
-  /* margin: 5em 0; */
   font-size: 2.5rem;
   text-align: center;
 `

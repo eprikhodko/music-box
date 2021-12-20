@@ -40,8 +40,4 @@ export const navLinksDataRegistered = [
     name: "Upload",
     path: ROUTES.UPLOAD,
   },
-  // {
-  //   name: "Profile",
-  //   path: "/profile/${currentUser.displayName}",
-  // },
 ]

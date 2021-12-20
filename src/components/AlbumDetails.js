@@ -21,8 +21,6 @@ import { ButtonPrimary } from "./shared/Buttons"
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
-// import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
-
 import { MainGrid } from "./shared/Containers"
 import { AlbumCoverContainer, AlbumCover } from "./shared/grids/GridElements"
 
@@ -42,11 +40,12 @@ const Container = styled.div`
     max-width: 100%;
     justify-items: left;
 
-    grid-template-columns: minmax(0, 35em) 8em auto 2em minmax(0, 5em);
+    grid-template-columns: minmax(0, 35em) minmax(0, 8em) min-content 2em auto;
 
     grid-template-rows: ${({ currentUser }) =>
       currentUser
-        ? "auto auto auto auto auto auto 1fr"
+        ? // ? "auto auto auto auto auto auto 1fr"
+          "auto auto auto auto 3em auto 1.5em auto 1.5em auto"
         : "auto auto 4em auto 6em 1fr"};
 
     grid-template-areas: ${({ currentUser }) =>
@@ -56,9 +55,13 @@ const Container = styled.div`
       "image . artist artist artist"
       "image . year year year"
       "image . genre genre genre"
+      "image . . . ."
       "image . button-collection button-collection button-collection"
+      "image . . . ."
       "image . button-wishlist button-wishlist button-wishlist"
-      "image . button-remove button-remove button-remove";
+      "image . . . ."
+      "image . button-remove button-remove button-remove"
+      "image . . . .";
       `
         : `
       "image . album-title album-title album-title"
@@ -89,11 +92,9 @@ const AlbumTitle = styled.h1`
   text-align: center;
 
   margin-top: 3em;
-  /* margin-top: ${({ currentUser }) => (currentUser ? "0" : "1.5em")}; */
 
   @media (min-width: 600px) {
     font-size: 4.5rem;
-    /* margin-top: 1em; */
     margin-top: ${({ currentUser }) => (currentUser ? "1em" : "1.5em")};
   }
 
@@ -105,13 +106,9 @@ const AlbumTitle = styled.h1`
 `
 
 const AlbumArtist = styled.h2`
-  /* grid-column: 2/-2; */
-
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
-
-  /* margin-top: 2em; */
 
   @media (min-width: 600px) {
     font-size: 2.5rem;
@@ -124,8 +121,6 @@ const AlbumArtist = styled.h2`
 `
 
 const AlbumYear = styled.p`
-  /* grid-column: 2/-2; */
-
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.8rem;
@@ -137,15 +132,12 @@ const AlbumYear = styled.p`
 
   @media (min-width: 1100px) {
     grid-area: year;
-    /* margin: 0; */
     align-self: end;
     text-align: left;
   }
 `
 
 const AlbumGenre = styled.p`
-  /* grid-column: 2/-2; */
-
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.8rem;
@@ -164,8 +156,6 @@ const AlbumGenre = styled.p`
 `
 
 const StyledParagraph = styled.p`
-  /* grid-column: 2/-2; */
-
   max-width: 30em;
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -184,14 +174,8 @@ const StyledParagraph = styled.p`
 `
 
 const ButtonSignup = styled(ButtonPrimary)`
-  /* grid-column: 2/-2; */
-
   margin-top: 1.3em;
   justify-self: center;
-
-  /* @media (min-width: 600px) {
-    margin-top: 2em;
-  } */
 
   @media (min-width: 1100px) {
     grid-area: button-signup;
@@ -201,14 +185,8 @@ const ButtonSignup = styled(ButtonPrimary)`
 `
 
 const ButtonLogin = styled(ButtonPrimary)`
-  /* grid-column: 2/-2; */
-
   margin-top: 1.3em;
   justify-self: center;
-
-  /* @media (min-width: 600px) {
-    margin-top: 2em;
-  } */
 
   @media (min-width: 1100px) {
     grid-area: button-login;
@@ -217,56 +195,37 @@ const ButtonLogin = styled(ButtonPrimary)`
   }
 `
 
-// const ButtonAlbum = styled(ButtonPrimary)`
-//   /* grid-column: 2/-2; */
-
-//   /* margin-top: 1.5em; */
-
-//   /* padding: 1em 0; */
-//   /* min-width: 16.5em; */
-//   width: 16.5em;
-
-//   justify-self: center;
-
-//   @media (min-width: 1100px) {
-//     grid-area: text;
-//   }
-// `
-
 const ButtonCollection = styled(ButtonPrimary)`
   width: 16.5em;
 
   @media (min-width: 1100px) {
     grid-area: button-collection;
-    /* align-self: start; */
-    margin-top: 2.5em;
+    align-self: start;
   }
-  /* justify-self: center; */
 `
 
 const ButtonWishlist = styled(ButtonPrimary)`
   width: 16.5em;
-  margin-top: 1.3em;
+  margin-top: 1.5em;
 
   @media (min-width: 1100px) {
     grid-area: button-wishlist;
-    /* align-self: start; */
-    /* margin: 0; */
+    align-self: start;
+
+    margin: 0;
   }
-  /* justify-self: center; */
 `
 
 const ButtonRemove = styled(ButtonPrimary)`
   width: 16.5em;
-  margin-top: 1.3em;
+  margin-top: 1.5em;
 
   @media (min-width: 1100px) {
     grid-area: button-remove;
     align-self: start;
-    /* margin: 0; */
-  }
 
-  /* justify-self: center; */
+    margin: 0;
+  }
 `
 
 function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
@@ -463,17 +422,11 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
                 )}
 
                 {isAlbumInUserWishlist ? (
-                  <ButtonWishlist
-                    // $marginTop="1.5em"
-                    onClick={removeAlbumFromWishlist}
-                  >
+                  <ButtonWishlist onClick={removeAlbumFromWishlist}>
                     Remove from my wishlist
                   </ButtonWishlist>
                 ) : (
-                  <ButtonWishlist
-                    // $marginTop="1.5em"
-                    onClick={addAlbumToWishlist}
-                  >
+                  <ButtonWishlist onClick={addAlbumToWishlist}>
                     Add to my wishlist
                   </ButtonWishlist>
                 )}

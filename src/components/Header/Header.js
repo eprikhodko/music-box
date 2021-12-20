@@ -15,7 +15,6 @@ import {
   ButtonHamburger,
   ButtonCloseHamburger,
 } from "./MobileMenu"
-// import MainGridSharedStyle from "../../pages/sharedStyles"
 import { MainGrid } from "../shared/Containers"
 import SearchBox from "./SearchBox"
 

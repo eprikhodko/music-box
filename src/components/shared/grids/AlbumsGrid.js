@@ -1,5 +1,3 @@
-// import styled from "styled-components"
-
 import { useEffect, useState } from "react"
 
 import PropTypes from "prop-types"
@@ -47,8 +45,6 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
 
     return albums
   }
-
-  console.log(albumsComponents)
 
   useEffect(() => {
     setAlbumsComponents(createAlbumsComponents(start, end))
