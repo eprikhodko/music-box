@@ -4,10 +4,8 @@ import styled from "styled-components"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { getAuth, updateProfile } from "firebase/auth"
 
-import { ReactComponent as IconPers } from "../icons/person_24px.svg"
-// import FallbackAvatar from "../icons/person_24px.svg"
-// import { ReactComponent as ImagePlaceholder } from "../icons/image-placeholder.svg"
-import UserContext from "../context/user"
+import { ReactComponent as IconPers } from "../../icons/person_24px.svg"
+import UserContext from "../../context/user"
 
 const AvatarText = styled.p`
   font-size: 1.6rem;
@@ -35,12 +33,6 @@ const AvatarImage = styled.div`
     height: 17em;
   }
 `
-
-// const IconImagePlaceholder = styled(ImagePlaceholder)`
-//   width: 4em;
-//   height: 4em;
-//   margin-top: 2em;
-// `
 
 const IconPerson = styled(IconPers)`
   width: 4em;
@@ -196,7 +188,6 @@ function UserAvatar() {
         )
       ) : (
         <>
-          {/* <IconImagePlaceholder /> */}
           <AvatarText>Upload image</AvatarText>
         </>
       )}

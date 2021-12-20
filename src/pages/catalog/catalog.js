@@ -1,8 +1,8 @@
 import PropTypes from "prop-types"
-import CatalogContent from "../components/CatalogContent"
-import Footer from "../components/Footer"
-import Header from "../components/Header/Header"
-import ScrollToTop from "../components/utils/ScrollToTop"
+import CatalogContent from "./CatalogContent"
+import Footer from "../../components/Footer"
+import Header from "../../components/Header/Header"
+import ScrollToTop from "../../components/utils/ScrollToTop"
 
 function Catalog({ componentsCount, setComponentsCount }) {
   return (

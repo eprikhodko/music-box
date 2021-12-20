@@ -10,8 +10,7 @@ import {
 } from "firebase/firestore"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { ButtonPrimary } from "./shared/Buttons"
-// import { HeroTitle } from "./shared/HeroTitle"
+import { ButtonPrimary } from "../../components/shared/Buttons"
 import UserAvatar from "./UserAvatar"
 
 import {
@@ -22,14 +21,14 @@ import {
   AlbumTitle,
   AlbumArtist,
   StyledAlbumsGrid,
-} from "./shared/grids/GridElements"
+} from "../../components/shared/grids/GridElements"
 
-import * as ROUTES from "../constants/routes"
-import UserContext from "../context/user"
+import * as ROUTES from "../../constants/routes"
+import UserContext from "../../context/user"
 
 // import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
-import { MainGrid } from "./shared/Containers"
-import useMatchMedia from "../hooks/useMatchMedia"
+import { MainGrid } from "../../components/shared/Containers"
+import useMatchMedia from "../../hooks/useMatchMedia"
 
 const Container = styled.div`
   grid-column: 2 / -2;
