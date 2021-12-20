@@ -10,29 +10,59 @@ import {
 } from "firebase/firestore"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { HeroButton } from "./shared/Button"
-import { HeroTitle } from "./shared/HeroTitle"
+import { ButtonPrimary } from "../../components/shared/Buttons"
 import UserAvatar from "./UserAvatar"
 
 import {
   AlbumContainer,
   StyledLink,
+  AlbumCoverContainer,
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
   StyledAlbumsGrid,
-} from "./shared/grids/GridElements"
+} from "../../components/shared/grids/GridElements"
 
-import { FallbackBackgroundImage } from "./AlbumDetails"
+import * as ROUTES from "../../constants/routes"
+import UserContext from "../../context/user"
 
-import * as ROUTES from "../constants/routes"
-import UserContext from "../context/user"
+// import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
+import { MainGrid } from "../../components/shared/Containers"
+import useMatchMedia from "../../hooks/useMatchMedia"
+
+const Container = styled.div`
+  grid-column: 2 / -2;
+  margin-top: 3.75em;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
 
 const Username = styled.p`
   font-size: 2.5rem;
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
   margin-top: 0.6em;
+`
+
+const Title = styled.h2`
+  margin-bottom: 0.3em;
+`
+
+const HeroTitle = styled.h1`
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: end;
+
+  font-size: 7rem;
+  line-height: 1.15;
+`
+
+const Subtitle = styled.h3`
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+
+  margin-top: 1em;
 `
 
 const ContainerFlex = styled.div`
@@ -42,25 +72,17 @@ const ContainerFlex = styled.div`
 `
 
 export const CenterContent = styled.div`
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin: 0 auto; */
-`
 
-const ContainerTextBlock = styled(ContainerFlex)`
-  max-width: 32em;
-  margin-top: 7em;
-  margin-left: 19em;
-`
-
-const HeroAlbumCover = styled(AlbumCover)`
-  width: 35em;
-  height: 35em;
-`
-
-const FallbackImage = styled(FallbackBackgroundImage)`
-  margin-top: 1em;
+  @media (min-width: 1024px) {
+    grid-column: 1 / 2;
+    justify-self: start;
+  }
 `
 
 const AlbumName = styled.p`
@@ -74,11 +96,14 @@ const AlbumArtistName = styled.p`
   font-size: 1.6rem;
   color: #000;
   margin: 0;
-  //
 `
 
 const AddAlbumsLink = styled(StyledLink)`
   text-decoration: underline;
+`
+
+const ProfileAlbums = styled(StyledAlbumsGrid)`
+  grid-column: 1/3;
 `
 
 // fetch 5 last albums ids from albumsInUserCollection
@@ -95,7 +120,8 @@ function ProfileContent() {
   const [albumsIDs, setAlbumsIDs] = useState([])
   const [albumsData, setAlbumsData] = useState([])
   const [albumsComponents, setAlbumsComponents] = useState([])
-  // const [isLoading, setIsLoading] = useState(true)
+
+  const isDesktopResolution = useMatchMedia("(min-width: 1024px)", true)
 
   useEffect(() => {
     const fetchAlbumsInUserCollection = async () => {
@@ -231,17 +257,17 @@ function ProfileContent() {
     if (albumsIDs.length > 0) fetchAlbumsData(albumsIDs)
   }, [albumsIDs])
 
-  console.log(albumsData)
-
   useEffect(() => {
     const createAlbumsComponents = () => {
       const albums = albumsData.map((album) => (
         <StyledLink to={`/albums/${album.albumId}`} key={album.albumId}>
           <AlbumContainer>
-            <AlbumCover
-              src={album.albumCover}
-              alt={`album cover for ${album.albumName} album`}
-            />
+            <AlbumCoverContainer>
+              <AlbumCover
+                src={album.albumCover}
+                alt={`album cover for ${album.albumName}`}
+              />
+            </AlbumCoverContainer>
             <AlbumTitle>{album.albumName}</AlbumTitle>
             <AlbumArtist>{album.artist}</AlbumArtist>
           </AlbumContainer>
@@ -253,74 +279,80 @@ function ProfileContent() {
     setAlbumsComponents(createAlbumsComponents())
   }, [albumsData])
 
-  const setDisplayToNone = (e) => {
-    e.target.style.display = "none"
-  }
-
   return (
-    <>
-      <ContainerFlex justifyContent="space-between">
+    <MainGrid>
+      <Container>
         <CenterContent>
           <UserAvatar />
           <Username>{currentUser?.displayName}</Username>
-          <HeroButton as={Link} to={`/collection/${currentUser?.displayName}`}>
+          <ButtonPrimary
+            as={Link}
+            to={`/collection/${currentUser?.displayName}`}
+          >
             Collection
-          </HeroButton>
-          <HeroButton
+          </ButtonPrimary>
+          <ButtonPrimary
             as={Link}
             to={`/wishlist/${currentUser?.displayName}`}
             $marginTop="1em"
           >
             Wishlist
-          </HeroButton>
-          <HeroButton as={Link} to={ROUTES.UPLOAD} $marginTop="1em">
+          </ButtonPrimary>
+          <ButtonPrimary as={Link} to={ROUTES.UPLOAD} $marginTop="1em">
             Upload
-          </HeroButton>
-          <HeroButton
+          </ButtonPrimary>
+          <ButtonPrimary
             as={Link}
             to={`/my-uploads/${currentUser?.displayName}`}
             $marginTop="1em"
           >
             My Uploads
-          </HeroButton>
+          </ButtonPrimary>
         </CenterContent>
 
-        {albumsComponents.length > 0 ? (
-          <ContainerFlex flexDirection="column">
-            <h2>Recently added albums</h2>
-            <StyledLink
-              to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
-            >
-              <FallbackImage>
-                <HeroAlbumCover
-                  src={albumsData[0] && albumsData[0].albumCover}
-                  alt="cover for album"
-                  onError={setDisplayToNone}
-                />
-              </FallbackImage>
-            </StyledLink>
+        {isDesktopResolution && (
+          <>
+            {albumsComponents.length > 0 ? (
+              <ContainerFlex flexDirection="column">
+                <Title>Recently added</Title>
+                <StyledLink
+                  to={albumsData[0] && `/albums/${albumsData[0].albumId}`}
+                >
+                  <AlbumCoverContainer>
+                    <AlbumCover
+                      src={albumsData[0] && albumsData[0].albumCover}
+                      alt={`album cover for ${albumsData[0].albumName}`}
+                    />
+                  </AlbumCoverContainer>
+                </StyledLink>
 
-            <AlbumName>{albumsData[0] && albumsData[0].albumName}</AlbumName>
-            <AlbumArtistName>
-              {albumsData[0] && albumsData[0].artist}
-            </AlbumArtistName>
-          </ContainerFlex>
-        ) : (
-          <ContainerTextBlock flexDirection="column">
-            <HeroTitle>Build your music library</HeroTitle>
-            <h3>
-              <AddAlbumsLink to={ROUTES.CATALOG}>Add some albums</AddAlbumsLink>{" "}
-              to your collection or wishlist and they will appear in your
-              profile
-            </h3>
-          </ContainerTextBlock>
+                <AlbumName>
+                  {albumsData[0] && albumsData[0].albumName}
+                </AlbumName>
+                <AlbumArtistName>
+                  {albumsData[0] && albumsData[0].artist}
+                </AlbumArtistName>
+              </ContainerFlex>
+            ) : (
+              <>
+                <HeroTitle>Build your music library</HeroTitle>
+                <Subtitle>
+                  <AddAlbumsLink to={ROUTES.CATALOG}>
+                    Add some albums
+                  </AddAlbumsLink>{" "}
+                  to your collection or wishlist and they will appear in your
+                  profile
+                </Subtitle>
+              </>
+            )}
+
+            {albumsComponents.length > 1 && (
+              <ProfileAlbums>{albumsComponents.slice(1, 5)}</ProfileAlbums>
+            )}
+          </>
         )}
-      </ContainerFlex>
-
-      {albumsComponents.length > 1 && (
-        <StyledAlbumsGrid>{albumsComponents.slice(1, 5)}</StyledAlbumsGrid>
-      )}
-    </>
+      </Container>
+    </MainGrid>
   )
 }
 

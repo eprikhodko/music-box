@@ -13,31 +13,25 @@ export const Button = styled.button`
   padding: 1em 3.5em;
 
   background-color: transparent;
-
   border: 2px solid #333;
   border-radius: 50px;
   margin-top: ${({ $marginTop }) => $marginTop};
   margin-right: ${({ $marginRight }) => $marginRight};
   margin-left: ${({ $marginLeft }) => $marginLeft};
 
-  &:hover {
-    background-color: #333;
-    color: #fff;
+  @media (hover: hover) {
+    &:hover {
+      background-color: #333;
+      color: #fff;
+    }
   }
 
   &:focus {
-    background-color: #333;
-    color: #fff;
     outline: 3px solid transparent;
   }
 `
 
-export const HeroButton = styled(Button)`
-  padding: 1em 0;
-  min-width: 10.5em;
-`
-
-export const ButtonAlbum = styled(Button)`
-  padding: 1em 0;
-  min-width: 16.5em;
+export const ButtonPrimary = styled(Button)`
+  padding: 1em;
+  min-width: 12.5em;
 `

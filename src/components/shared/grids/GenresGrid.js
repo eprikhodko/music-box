@@ -12,10 +12,12 @@ import {
 import {
   AlbumContainer,
   StyledLink,
+  AlbumCoverContainer,
   AlbumCover,
   AlbumTitle,
   StyledAlbumsGrid,
 } from "./GridElements"
+import SectionTitle from "../TypographyElements"
 
 function GenresGrid() {
   const [genresData, setGenresData] = useState([])
@@ -46,10 +48,13 @@ function GenresGrid() {
           key={doc.genreId}
         >
           <AlbumContainer>
-            <AlbumCover
-              src={doc.albumCover}
-              alt={`album cover for ${doc.genreName} album`}
-            />
+            <AlbumCoverContainer>
+              <AlbumCover
+                src={doc.albumCover}
+                alt={`album cover for ${doc.genreName} album`}
+              />
+            </AlbumCoverContainer>
+
             <AlbumTitle>{doc.genreName}</AlbumTitle>
           </AlbumContainer>
         </StyledLink>
@@ -63,8 +68,7 @@ function GenresGrid() {
 
   return (
     <>
-      <h2>Genres</h2>
-
+      <SectionTitle>Genres</SectionTitle>
       <StyledAlbumsGrid>{genresComponents}</StyledAlbumsGrid>
     </>
   )

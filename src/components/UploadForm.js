@@ -16,146 +16,46 @@ import {
   FloatLabel,
   FloatInput,
   ContainerFloatInput,
+  Form,
+  ContainerCheckboxes,
+  CheckboxLabel,
+  HiddenCheckbox,
+  CustomCheckbox,
+  MessageController,
+  Message,
+  ImageUploadBox,
+  // ImagePlaceholderIcon,
+  HiddenFileInput,
 } from "./shared/FormElements"
-import { Button } from "./shared/Button"
-import { ReactComponent as IconImagePlaceholder } from "../icons/image-placeholder.svg"
-import { ReactComponent as CheckboxCircleIcon } from "../icons/check_circle_24px.svg"
+import { Button } from "./shared/Buttons"
+// import { ReactComponent as IconImagePlaceholder } from "../icons/image-placeholder.svg"
+
 import UserContext from "../context/user"
+import { MainGrid } from "./shared/Containers"
 
-const ContainerUploadForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* set default margin-top of 10em for container */
-  margin-top: ${({ marginTop }) => marginTop || "10em"};
-  /* border: 2px solid goldenrod; */
+const ButtonUpload = styled(Button)`
+  margin-top: 3em;
 `
 
-// style label element to visually represent interactive upload box
-const ImageUploadBox = styled.label`
-  font-size: 1.8rem;
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 500;
-  margin-top: 0.6em;
+// const ImagePlaceholderIcon = styled(IconImagePlaceholder)``
 
-  background-image: url(${({ fileUrl }) => fileUrl});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  /* set image upload box dimensions and background color */
-  width: 31em;
-  height: 31em;
-  background-color: #c2c2c2;
-
-  /* center content inside of image upload box */
+const CenterContent = styled.div`
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-
-  /* set transition animation duration */
-  will-change: transform;
-  transition: background-color 450ms, transform 450ms;
-
-  /* on hover: show pointer cursor, change background color, move image upload box up for 10px */
-  &:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-    transform: translateY(-10px);
-  }
-  /* change image icon color on hover */
-  &:hover svg path {
-    fill: rgba(0, 0, 0, 0.3);
-  }
-
-  /* show focus outline at image upload box when hidden file input receives focus too */
-  &:focus-within {
-    outline: 2px solid #000;
-    outline-offset: 3px;
-  }
-`
-
-const ImagePlaceholderIcon = styled(IconImagePlaceholder)`
-  width: 3em;
-  height: 3em;
-  margin-bottom: 1em;
-`
-
-const HiddenFileInput = styled.input`
-  /* height: 0; */
-  padding: 0;
-  opacity: 0;
-`
-
-const CheckboxLabel = styled.label`
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.7);
-
-  display: flex;
   align-items: center;
-  margin-right: 6em;
-  margin-top: 2.5em;
 
-  cursor: pointer;
+  padding-top: 5em;
 `
 
-const CustomCheckbox = styled(CheckboxCircleIcon)`
-  width: 1.3em;
-  height: 1.3em;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  border-radius: 50px;
-  margin-right: 0.5em;
-  margin-bottom: 0.1em;
+const StyledText = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-  path {
-    fill: transparent;
-  }
-
-  * {
-    transition: all 0.1s linear;
-  }
-`
-
-const HiddenCheckbox = styled.input`
-  -webkit-appearance: none;
-  appearance: none;
   margin: 0;
-
-  &:checked + ${CustomCheckbox} {
-    border: none;
-    path {
-      fill: #333333;
-    }
-  }
-
-  /* visually show focus outline when the SVG receives focus */
-  &:focus + ${CustomCheckbox} {
-    outline: 2px solid #000;
-    outline-offset: 3px;
-  }
-
-  /* hide the focus styles for mouse users */
-  &:focus:not(:focus-visible) + ${CustomCheckbox} {
-    outline: none;
-  }
-`
-
-const ContainerCheckboxes = styled.div`
-  display: flex;
-`
-
-const MessageController = styled.div`
-  /* property name | duration */
-  transition: color 5s; // <- the second value defines transition duration
-  color: ${({ triggerTransition }) => (triggerTransition ? "red" : "green")};
-`
-
-const Message = styled.p`
-  opacity: ${({ showMessage }) => (showMessage ? "1" : "0")};
-  transition: all 250ms linear 0.5s; // <- the last value defines transition-delay, so 'opacity:' changes after half a second
-  cursor: default;
 `
 
 function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
@@ -318,12 +218,16 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ContainerUploadForm marginTop="5em">
+    <MainGrid>
+      <Form onSubmit={handleSubmit}>
+        {/* <ContainerUploadForm marginTop="5em"> */}
         <ImageUploadBox htmlFor="imageUpload" fileUrl={fileDownloadUrl}>
           {!fileDownloadUrl && (
             <>
-              <ImagePlaceholderIcon /> Click to upload album picture
+              {/* <ImagePlaceholderIcon /> */}
+              <StyledText>
+                <CenterContent>Click to upload album picture</CenterContent>
+              </StyledText>
             </>
           )}
 
@@ -403,38 +307,38 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
             }}
           />
         </ContainerFloatInput>
-      </ContainerUploadForm>
+        {/* </ContainerUploadForm> */}
 
-      <ContainerCheckboxes>
-        <CheckboxLabel htmlFor="addToCollection">
-          <HiddenCheckbox
-            type="checkbox"
-            id="addToCollection"
-            name="addToCollection"
-            checked={checkboxes.addToCollection}
-            onChange={handleChange}
-          />
-          <CustomCheckbox />
-          add to my collection
-        </CheckboxLabel>
+        <ContainerCheckboxes>
+          <CheckboxLabel htmlFor="addToCollection">
+            <HiddenCheckbox
+              type="checkbox"
+              id="addToCollection"
+              name="addToCollection"
+              checked={checkboxes.addToCollection}
+              onChange={handleChange}
+            />
+            <CustomCheckbox />
+            add to my collection
+          </CheckboxLabel>
 
-        <CheckboxLabel htmlFor="addToWishList">
-          <HiddenCheckbox
-            type="checkbox"
-            id="addToWishList"
-            // a small note: be shure that 'name' property matching checked property, or checkbox wouldn't work at all.
-            // addToWishlist and addToWishList are not the same! Watch for case and 'L' letter!
-            name="addToWishList"
-            checked={checkboxes.addToWishList}
-            onChange={handleChange}
-          />
-          <CustomCheckbox />
-          add to wishlist
-        </CheckboxLabel>
-      </ContainerCheckboxes>
+          <CheckboxLabel htmlFor="addToWishList">
+            <HiddenCheckbox
+              type="checkbox"
+              id="addToWishList"
+              // a small note: be shure that 'name' property matching checked property, or checkbox wouldn't work at all.
+              // addToWishlist and addToWishList are not the same! Watch for case and 'L' letter!
+              name="addToWishList"
+              checked={checkboxes.addToWishList}
+              onChange={handleChange}
+            />
+            <CustomCheckbox />
+            add to wishlist
+          </CheckboxLabel>
+        </ContainerCheckboxes>
 
-      <ContainerUploadForm marginTop="3em">
-        <Button type="submit">Upload</Button>
+        {/* <ContainerUploadForm marginTop="3em"> */}
+        <ButtonUpload type="submit">Upload</ButtonUpload>
 
         {/* <<-- Show message to the user after successful upload-->> */}
         {/* this is an empty div that controls how long <Message /> componet will be showing to the user */}
@@ -465,8 +369,9 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
         <Message showMessage={isUploadSuccessful}>
           You&apos;re successfully uploaded album to the database!
         </Message>
-      </ContainerUploadForm>
-    </form>
+        {/* </ContainerUploadForm> */}
+      </Form>
+    </MainGrid>
   )
 }
 

@@ -1,23 +1,33 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { Content } from "../shared/Containers"
+import { useState } from "react"
+
 import Logo from "./Logo"
-import SearchBox from "../shared/SearchBox"
-import Nav from "./Nav"
+
+import Navigation from "./Navigation"
+import MobileNavigation from "./MobileNavigation"
+import useMatchMedia from "../../hooks/useMatchMedia"
+
+import {
+  Container,
+  HamburgerMenu,
+  ButtonHamburger,
+  ButtonCloseHamburger,
+} from "./MobileMenu"
+import { MainGrid } from "../shared/Containers"
+import SearchBox from "./SearchBox"
 
 const StyledHeader = styled.header`
-  width: 100%;
-  /* margin: 0 auto; */
   padding: 0.5em 0 0.5em;
-
-  display: flex;
-  justify-content: center;
   border-bottom: 3px solid #c2c2c2;
 `
 
-const HeaderContent = styled.div`
-  width: 90%;
+const Content = styled.div`
+  grid-column: 2 / -2;
+
+  display: flex;
+  justify-content: space-between;
 `
 
 const ContainerFlex = styled.div`
@@ -26,20 +36,66 @@ const ContainerFlex = styled.div`
 `
 
 function Header({ noSearchBox }) {
-  return (
-    <StyledHeader>
-      <HeaderContent>
-        <Content justifyContent="space-between">
-          <ContainerFlex>
-            <Logo />
-            {/* hide search box if Header receieved 'noSearchBox' prop */}
-            {!noSearchBox && <SearchBox />}
-          </ContainerFlex>
+  const isTabletOrMobile = useMatchMedia("(min-width: 840px)", true)
+  const isDesktopResolution = useMatchMedia("(min-width: 1100px)", true)
 
-          <Nav />
-        </Content>
-      </HeaderContent>
-    </StyledHeader>
+  const showSearchBox = !noSearchBox
+
+  const [showHamburgerMenu, setShowHamburgerMenu] = useState(false)
+
+  const toggleHamburgerMenuOpenOrClose = () => {
+    setShowHamburgerMenu((prevState) => !prevState)
+
+    // disable scroll if hamburger menu is open
+    if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "scroll"
+    }
+  }
+
+  return (
+    <>
+      <StyledHeader>
+        <MainGrid>
+          <Content>
+            <ContainerFlex showHamburgerMenu={showHamburgerMenu}>
+              <Logo />
+              {/* hide search box if Header receieved 'noSearchBox' prop or if it is a mobile layout */}
+              {isDesktopResolution && showSearchBox && <SearchBox />}
+            </ContainerFlex>
+
+            {isTabletOrMobile ? (
+              <Navigation />
+            ) : (
+              <ButtonHamburger
+                toggleHamburgerMenuOpenOrClose={toggleHamburgerMenuOpenOrClose}
+              />
+            )}
+
+            <HamburgerMenu showHamburgerMenu={showHamburgerMenu}>
+              <Container>
+                <ButtonCloseHamburger
+                  toggleHamburgerMenuOpenOrClose={
+                    toggleHamburgerMenuOpenOrClose
+                  }
+                />
+                <MobileNavigation
+                  toggleHamburgerMenuOpenOrClose={
+                    toggleHamburgerMenuOpenOrClose
+                  }
+                />
+                <Logo
+                  toggleHamburgerMenuOpenOrClose={
+                    toggleHamburgerMenuOpenOrClose
+                  }
+                />
+              </Container>
+            </HamburgerMenu>
+          </Content>
+        </MainGrid>
+      </StyledHeader>
+    </>
   )
 }
 

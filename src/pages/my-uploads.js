@@ -21,18 +21,13 @@ import Header from "../components/Header/Header"
 import AlbumsGrid from "../components/shared/grids/AlbumsGrid"
 import UploadNewAlbum from "../components/shared/UploadNewAlbum"
 import {
-  ContainerMain,
-  Content,
-  PageBody,
+  Container,
+  MainContainer,
+  MainGrid,
 } from "../components/shared/Containers"
 import ScrollToTop from "../components/utils/ScrollToTop"
 import ShowMoreAndBackToTopButtons from "../components/shared/ShowMoreAndBackToTopButtons"
-
-const StyledParagraph = styled.p`
-  font-size: 2.5rem;
-  text-align: center;
-  width: 40em;
-`
+import { StyledParagraph } from "../components/shared/TypographyElements"
 
 const StyledLink = styled(Link)`
   color: #000;
@@ -76,40 +71,42 @@ function MyUploads({ componentsCount, setComponentsCount }) {
   return (
     <>
       <ScrollToTop />
-      <ContainerMain>
+      <MainContainer>
         <Header />
-        <PageBody>
-          <Content flexDirection="column" alignItems="center" $marginTop="5em">
-            <h2>My Uploads</h2>
-            {albumsUploadedByCurrentUser.length > 0 ? (
-              <>
-                {/* use component composition here, and pass <UploadNewAlbum /> as {children} to the <AlbumsGrid /> */}
-                <AlbumsGrid
-                  albumsSlice={albumsSlice}
-                  albumsData={albumsUploadedByCurrentUser}
-                  componentsCount={componentsCount}
-                  setComponentsCount={setComponentsCount}
-                >
-                  <UploadNewAlbum />
-                </AlbumsGrid>
-                {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
-                <ShowMoreAndBackToTopButtons
-                  albumsSlice={albumsSlice}
-                  setAlbumsSlice={setAlbumsSlice}
-                  albumsData={albumsUploadedByCurrentUser}
-                  componentsCount={componentsCount}
-                />
-              </>
-            ) : (
-              <StyledParagraph>
-                There is no albums in your uploads yet. Would you like to{" "}
-                <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new one?
-              </StyledParagraph>
-            )}
-          </Content>
-        </PageBody>
+        <main>
+          <MainGrid>
+            <Container $marginTop="4em">
+              <h2>My Uploads</h2>
+              {albumsUploadedByCurrentUser.length > 0 ? (
+                <>
+                  {/* use component composition here, and pass <UploadNewAlbum /> as {children} to the <AlbumsGrid /> */}
+                  <AlbumsGrid
+                    albumsSlice={albumsSlice}
+                    albumsData={albumsUploadedByCurrentUser}
+                    componentsCount={componentsCount}
+                    setComponentsCount={setComponentsCount}
+                  >
+                    <UploadNewAlbum />
+                  </AlbumsGrid>
+                  {/* Show 'Show more' button only if there is more then 11 albums in user collection */}
+                  <ShowMoreAndBackToTopButtons
+                    albumsSlice={albumsSlice}
+                    setAlbumsSlice={setAlbumsSlice}
+                    albumsData={albumsUploadedByCurrentUser}
+                    componentsCount={componentsCount}
+                  />
+                </>
+              ) : (
+                <StyledParagraph>
+                  There is no albums in your uploads yet. Would you like to{" "}
+                  <StyledLink to={ROUTES.UPLOAD}>upload</StyledLink> a new one?
+                </StyledParagraph>
+              )}
+            </Container>
+          </MainGrid>
+        </main>
         <Footer />
-      </ContainerMain>
+      </MainContainer>
     </>
   )
 }

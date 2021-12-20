@@ -4,20 +4,22 @@ import styled from "styled-components"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { getAuth, updateProfile } from "firebase/auth"
 
-import { ReactComponent as IconPers } from "../icons/person_24px.svg"
-import { ReactComponent as ImagePlaceholder } from "../icons/image-placeholder.svg"
-import UserContext from "../context/user"
+import { ReactComponent as IconPers } from "../../icons/person_24px.svg"
+import UserContext from "../../context/user"
 
 const AvatarText = styled.p`
-  font-size: 2.5rem;
+  font-size: 1.6rem;
   color: rgba(0, 0, 0, 0.7);
   font-weight: 500;
-  margin-top: 0.6em;
+
+  @media (min-width: 600px) {
+    font-size: 2.5rem;
+  }
 `
 
 const AvatarImage = styled.div`
-  width: 17em;
-  height: 17em;
+  width: 8.5em;
+  height: 8.5em;
 
   background-image: url(${({ fileUrl }) => fileUrl});
   background-repeat: no-repeat;
@@ -25,17 +27,21 @@ const AvatarImage = styled.div`
   background-size: cover;
 
   border-radius: 999px;
-`
 
-const IconImagePlaceholder = styled(ImagePlaceholder)`
-  width: 4em;
-  height: 4em;
-  margin-top: 2em;
+  @media (min-width: 600px) {
+    width: 17em;
+    height: 17em;
+  }
 `
 
 const IconPerson = styled(IconPers)`
-  width: 8em;
-  height: 8em;
+  width: 4em;
+  height: 4em;
+
+  @media (min-width: 600px) {
+    width: 8em;
+    height: 8em;
+  }
 `
 
 // style label element to visually represent interactive upload container
@@ -46,10 +52,10 @@ const ImageUploadBox = styled.label`
   margin-top: 0.6em;
 
   /* set image upload container dimensions and background color */
-  width: 17em;
-  height: 17em;
+  width: 8.5em;
+  height: 8.5em;
 
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   border-radius: 999px;
 
   /* center content inside of image upload container */
@@ -78,6 +84,11 @@ const ImageUploadBox = styled.label`
     background-color: rgba(0, 0, 0, 0.1);
     outline: 2px solid #000;
     outline-offset: 5px;
+  }
+
+  @media (min-width: 600px) {
+    width: 17em;
+    height: 17em;
   }
 `
 
@@ -177,7 +188,6 @@ function UserAvatar() {
         )
       ) : (
         <>
-          <IconImagePlaceholder />
           <AvatarText>Upload image</AvatarText>
         </>
       )}

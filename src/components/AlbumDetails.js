@@ -16,38 +16,108 @@ import {
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
 import AlbumsDataContext from "../context/albumsData"
-import { HeroButton, ButtonAlbum } from "./shared/Button"
+import { ButtonPrimary } from "./shared/Buttons"
 
 import * as ROUTES from "../constants/routes"
 import UserContext from "../context/user"
 
-import IconImagePlaceholder from "../icons/image-placeholder-fallback.svg"
+import { MainGrid } from "./shared/Containers"
+import { AlbumCoverContainer, AlbumCover } from "./shared/grids/GridElements"
 
-const SharedDimensionsStyle = "width: 35em; height: 35em;"
-const SharedBoxShadowStyle = "box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);"
+const Container = styled.div`
+  grid-column: 2/-2;
 
-export const FallbackBackgroundImage = styled.div`
-  ${SharedDimensionsStyle}
-  /* ${SharedBoxShadowStyle} */
+  margin: 1em auto;
+  width: 100%;
+  max-width: 35em;
 
-  background-image: url(${IconImagePlaceholder});
-  background-size: 20% auto;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #c2c2c2;
+  display: grid;
+  justify-items: center;
+
+  @media (min-width: 1100px) {
+    margin: 0;
+    margin-top: 5em;
+    max-width: 100%;
+    justify-items: left;
+
+    grid-template-columns: minmax(0, 35em) minmax(0, 8em) min-content 2em auto;
+
+    grid-template-rows: ${({ currentUser }) =>
+      currentUser
+        ? // ? "auto auto auto auto auto auto 1fr"
+          "auto auto auto auto 3em auto 1.5em auto 1.5em auto"
+        : "auto auto 4em auto 6em 1fr"};
+
+    grid-template-areas: ${({ currentUser }) =>
+      currentUser
+        ? `
+      "image . album-title album-title album-title"
+      "image . artist artist artist"
+      "image . year year year"
+      "image . genre genre genre"
+      "image . . . ."
+      "image . button-collection button-collection button-collection"
+      "image . . . ."
+      "image . button-wishlist button-wishlist button-wishlist"
+      "image . . . ."
+      "image . button-remove button-remove button-remove"
+      "image . . . .";
+      `
+        : `
+      "image . album-title album-title album-title"
+      "image . artist artist artist"
+      "image . year year year"
+      "image . genre genre genre"
+      "image . text text text"
+      "image . button-signup . button-login";
+      `};
+  }
 `
 
-const AlbumCover = styled.img`
-  ${SharedDimensionsStyle}
-  ${SharedBoxShadowStyle}
+const AlbumCoverImageContainer = styled(AlbumCoverContainer)`
+  justify-self: stretch;
+
+  @media (min-width: 1100px) {
+    grid-area: image;
+  }
 `
 
-const AlbumDescription = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 8em;
-  margin-top: 4em;
-  /* border: 1px solid; */
+const AlbumCoverImage = styled(AlbumCover)`
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+`
+
+const AlbumTitle = styled.h1`
+  font-size: 2.5rem;
+  color: #000;
+  text-align: center;
+
+  margin-top: 3em;
+
+  @media (min-width: 600px) {
+    font-size: 4.5rem;
+    margin-top: ${({ currentUser }) => (currentUser ? "1em" : "1.5em")};
+  }
+
+  @media (min-width: 1100px) {
+    grid-area: album-title;
+    align-self: end;
+    text-align: left;
+  }
+`
+
+const AlbumArtist = styled.h2`
+  font-size: 2.5rem;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+
+  @media (min-width: 600px) {
+    font-size: 2.5rem;
+  }
+
+  @media (min-width: 1100px) {
+    grid-area: artist;
+    text-align: left;
+  }
 `
 
 const AlbumYear = styled.p`
@@ -55,8 +125,16 @@ const AlbumYear = styled.p`
   font-weight: 500;
   font-size: 1.8rem;
   color: #000;
+  text-align: center;
+
   margin: 0;
-  margin-top: 1em;
+  margin-top: 1.5em;
+
+  @media (min-width: 1100px) {
+    grid-area: year;
+    align-self: end;
+    text-align: left;
+  }
 `
 
 const AlbumGenre = styled.p`
@@ -64,22 +142,90 @@ const AlbumGenre = styled.p`
   font-weight: 500;
   font-size: 1.8rem;
   color: #000;
+  text-align: center;
+
   margin-top: 0.2em;
+  margin-bottom: 2em;
+
+  @media (min-width: 1100px) {
+    grid-area: genre;
+    text-align: left;
+    margin: 0;
+    margin-top: 0.2em;
+  }
 `
 
-const ButtonsParagraph = styled.p`
+const StyledParagraph = styled.p`
+  max-width: 30em;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 1.6rem;
   color: #000;
-  margin-top: 2em;
+  text-align: center;
+
+  margin-top: 0.5em;
+
+  @media (min-width: 1100px) {
+    grid-area: text;
+    text-align: left;
+    align-self: end;
+    margin: 0;
+  }
 `
 
-const AlbumButtons = styled.div`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: ${({ currentUser }) => currentUser && "column"};
-  margin-top: ${({ currentUser }) => currentUser && "2em"};
+const ButtonSignup = styled(ButtonPrimary)`
+  margin-top: 1.3em;
+  justify-self: center;
+
+  @media (min-width: 1100px) {
+    grid-area: button-signup;
+    align-self: start;
+    justify-self: start;
+  }
+`
+
+const ButtonLogin = styled(ButtonPrimary)`
+  margin-top: 1.3em;
+  justify-self: center;
+
+  @media (min-width: 1100px) {
+    grid-area: button-login;
+    align-self: start;
+    justify-self: start;
+  }
+`
+
+const ButtonCollection = styled(ButtonPrimary)`
+  width: 16.5em;
+
+  @media (min-width: 1100px) {
+    grid-area: button-collection;
+    align-self: start;
+  }
+`
+
+const ButtonWishlist = styled(ButtonPrimary)`
+  width: 16.5em;
+  margin-top: 1.5em;
+
+  @media (min-width: 1100px) {
+    grid-area: button-wishlist;
+    align-self: start;
+
+    margin: 0;
+  }
+`
+
+const ButtonRemove = styled(ButtonPrimary)`
+  width: 16.5em;
+  margin-top: 1.5em;
+
+  @media (min-width: 1100px) {
+    grid-area: button-remove;
+    align-self: start;
+
+    margin: 0;
+  }
 `
 
 function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
@@ -133,10 +279,6 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
       // doc.data() will be undefined in this case
       console.log("No such document!")
     }
-  }
-
-  const setDisplayToNone = (e) => {
-    e.target.style.display = "none"
   }
 
   const removeAlbumFromCollection = async () => {
@@ -253,79 +395,70 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
   }, [isAlbumsDataLoading])
 
   return (
-    <>
-      {!isAlbumsDataLoading && (
-        <>
-          <FallbackBackgroundImage>
-            <AlbumCover
-              src={album.albumCover}
-              alt={`cover for ${album.albumCover} album`}
-              onError={setDisplayToNone}
-            />
-          </FallbackBackgroundImage>
-          <AlbumDescription>
-            <h2>{album.albumName}</h2>
-            <h3>{album.artist}</h3>
+    <MainGrid>
+      <Container currentUser={currentUser}>
+        {!isAlbumsDataLoading && (
+          <>
+            <AlbumCoverImageContainer>
+              <AlbumCoverImage
+                src={album.albumCover}
+                alt={`album cover for ${album.albumName}`}
+              />
+            </AlbumCoverImageContainer>
+            <AlbumTitle currentUser={currentUser}>{album.albumName}</AlbumTitle>
+            <AlbumArtist>{album.artist}</AlbumArtist>
             <AlbumYear>Year: {album.year}</AlbumYear>
             <AlbumGenre>Genre: {album.genre}</AlbumGenre>
             {currentUser ? (
               <>
-                <AlbumButtons currentUser={currentUser}>
-                  {isAlbumInUserCollection ? (
-                    <ButtonAlbum onClick={removeAlbumFromCollection}>
-                      Remove from my collection
-                    </ButtonAlbum>
-                  ) : (
-                    <ButtonAlbum onClick={addAlbumToCollection}>
-                      Add to my collection
-                    </ButtonAlbum>
-                  )}
+                {isAlbumInUserCollection ? (
+                  <ButtonCollection onClick={removeAlbumFromCollection}>
+                    Remove from my collection
+                  </ButtonCollection>
+                ) : (
+                  <ButtonCollection onClick={addAlbumToCollection}>
+                    Add to my collection
+                  </ButtonCollection>
+                )}
 
-                  {isAlbumInUserWishlist ? (
-                    <ButtonAlbum
-                      $marginTop="1.5em"
-                      onClick={removeAlbumFromWishlist}
-                    >
-                      Remove from my wishlist
-                    </ButtonAlbum>
-                  ) : (
-                    <ButtonAlbum
-                      $marginTop="1.5em"
-                      onClick={addAlbumToWishlist}
-                    >
-                      Add to my wishlist
-                    </ButtonAlbum>
-                  )}
+                {isAlbumInUserWishlist ? (
+                  <ButtonWishlist onClick={removeAlbumFromWishlist}>
+                    Remove from my wishlist
+                  </ButtonWishlist>
+                ) : (
+                  <ButtonWishlist onClick={addAlbumToWishlist}>
+                    Add to my wishlist
+                  </ButtonWishlist>
+                )}
 
-                  {/* show 'Remove from database' button only if user uploaded this album to the database himself */}
-                  {album.uploadedBy === currentUser.uid && (
-                    <ButtonAlbum
-                      $marginTop="1.5em"
-                      onClick={removeAlbumFromDatabase}
-                    >
-                      Remove from database
-                    </ButtonAlbum>
-                  )}
-                </AlbumButtons>
+                {/* show 'Remove from database' button only if user uploaded this album to the database himself */}
+                {album.uploadedBy === currentUser.uid && (
+                  <ButtonRemove
+                    // $marginTop="1.5em"
+                    onClick={removeAlbumFromDatabase}
+                  >
+                    Remove from database
+                  </ButtonRemove>
+                )}
               </>
             ) : (
               <>
-                <ButtonsParagraph>
+                <StyledParagraph>
                   If you want to add this album to your collection or wishlist,
-                  please make an account first:
-                </ButtonsParagraph>
-                <AlbumButtons>
-                  <HeroButton as={Link} to={ROUTES.SIGNUP} $marginRight="2em">
-                    Sign up
-                  </HeroButton>
-                  <HeroButton to={ROUTES.LOGIN}>Log in</HeroButton>
-                </AlbumButtons>
+                  please log in or make an account first:
+                </StyledParagraph>
+                <ButtonSignup as={Link} to={ROUTES.SIGNUP}>
+                  Sign up
+                </ButtonSignup>
+                <ButtonLogin as={Link} to={ROUTES.LOGIN}>
+                  Log in
+                </ButtonLogin>
               </>
             )}
-          </AlbumDescription>
-        </>
-      )}
-    </>
+          </>
+        )}
+      </Container>
+    </MainGrid>
   )
 }
 

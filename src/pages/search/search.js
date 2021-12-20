@@ -4,49 +4,48 @@ import { Switch, Route } from "react-router-dom"
 
 import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer"
-import SearchBox from "../../components/shared/SearchBox"
-import {
-  ContainerMain,
-  Content,
-  PageBody,
-} from "../../components/shared/Containers"
+
+import { Container, MainGrid } from "../../components/shared/Containers"
 import GenresGrid from "../../components/shared/grids/GenresGrid"
-import SearchResults from "./search-results"
+import SearchResults from "./SearchResults"
+import SearchBox from "./SearchBox"
 
 function Search({ componentsCount, setComponentsCount }) {
   return (
-    <ContainerMain>
+    <>
       <Header noSearchBox />
-      <PageBody>
-        <Content flexDirection="column" alignItems="center" $marginTop="10em">
-          <SearchBox
-            placeholder="Search genre, album, artist"
-            big
-            marginBottom="4em"
-          />
-          <Switch>
-            <Route exact path="/search">
-              <GenresGrid />
-            </Route>
+      <main>
+        <MainGrid>
+          <Container>
+            <SearchBox />
+          </Container>
+        </MainGrid>
+        <Switch>
+          <Route exact path="/search">
+            <MainGrid>
+              <Container>
+                <GenresGrid />
+              </Container>
+            </MainGrid>
+          </Route>
 
-            <Route path="/search/genres/:searchQuery">
-              <SearchResults
-                componentsCount={componentsCount}
-                setComponentsCount={setComponentsCount}
-              />
-            </Route>
+          <Route path="/search/genres/:searchQuery">
+            <SearchResults
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
 
-            <Route path="/search/:searchQuery">
-              <SearchResults
-                componentsCount={componentsCount}
-                setComponentsCount={setComponentsCount}
-              />
-            </Route>
-          </Switch>
-        </Content>
-      </PageBody>
+          <Route path="/search/:searchQuery">
+            <SearchResults
+              componentsCount={componentsCount}
+              setComponentsCount={setComponentsCount}
+            />
+          </Route>
+        </Switch>
+      </main>
       <Footer />
-    </ContainerMain>
+    </>
   )
 }
 

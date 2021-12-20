@@ -5,11 +5,11 @@ import PropTypes from "prop-types"
 import {
   AlbumContainer,
   StyledLink,
+  StyledAlbumsGrid,
   AlbumCover,
   AlbumTitle,
   AlbumArtist,
-  StyledAlbumsGrid,
-  FallbackBackgroundImage,
+  AlbumCoverContainer,
 } from "./GridElements"
 
 function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
@@ -22,10 +22,6 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
       setComponentsCount(document.querySelectorAll(".component-count").length)
   }, [albumsComponents])
 
-  const handleError = (e) => {
-    e.target.style.display = "none"
-  }
-
   const createAlbumsComponents = (a, b) => {
     const albums = albumsData.slice(a, b).map((album) => (
       <StyledLink
@@ -34,13 +30,12 @@ function AlbumsGrid({ albumsSlice, albumsData, setComponentsCount, children }) {
         className="component-count"
       >
         <AlbumContainer>
-          <FallbackBackgroundImage>
+          <AlbumCoverContainer>
             <AlbumCover
               src={album.albumCover}
               alt={`album cover for ${album.albumName}`}
-              onError={handleError}
             />
-          </FallbackBackgroundImage>
+          </AlbumCoverContainer>
 
           <AlbumTitle>{album.albumName}</AlbumTitle>
           <AlbumArtist>{album.artist}</AlbumArtist>
