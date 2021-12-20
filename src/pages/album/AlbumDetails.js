@@ -15,14 +15,17 @@ import {
 } from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
-import AlbumsDataContext from "../context/albumsData"
-import { ButtonPrimary } from "./shared/Buttons"
+import AlbumsDataContext from "../../context/albumsData"
+import { ButtonPrimary } from "../../components/shared/Buttons"
 
-import * as ROUTES from "../constants/routes"
-import UserContext from "../context/user"
+import * as ROUTES from "../../constants/routes"
+import UserContext from "../../context/user"
 
-import { MainGrid } from "./shared/Containers"
-import { AlbumCoverContainer, AlbumCover } from "./shared/grids/GridElements"
+import { MainGrid } from "../../components/shared/Containers"
+import {
+  AlbumCoverContainer,
+  AlbumCover,
+} from "../../components/shared/grids/GridElements"
 
 const Container = styled.div`
   grid-column: 2/-2;

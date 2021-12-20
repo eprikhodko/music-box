@@ -1,9 +1,9 @@
 import PropTypes from "prop-types"
 
-import AlbumDetails from "../components/AlbumDetails"
-import Footer from "../components/Footer"
-import Header from "../components/Header/Header"
-import ScrollToTop from "../components/utils/ScrollToTop"
+import AlbumDetails from "./AlbumDetails"
+import Footer from "../../components/Footer"
+import Header from "../../components/Header/Header"
+import ScrollToTop from "../../components/utils/ScrollToTop"
 
 function Album({ setIsAlbumRemovedFromDatabase }) {
   return (
