@@ -57,7 +57,7 @@ for authenticated users only:
 
 ![screenshot of figma designs](assets/figma-designs.png)
 
-- Next I created project in a Click-Up kanban board and broke down designs into smaller tasks:
+- Next I created project in a Click-Up kanban board and broke down designs into smaller tasks
 
 ![screenshot of click-up board](assets/click-up-tasks.png)
 
