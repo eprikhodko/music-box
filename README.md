@@ -37,14 +37,25 @@ Project created with:
 Features for unauthenticated users:
 
 - view recently added albums
-- view album page
-- search through database
+- view album details
+- view music catalog
+- search albums through database
 
 for authenticated users only:
 
-- add/remove an album to/from collection
-- upload new album to the database
+- add/remove albums to/from collection
+- upload new albums to the database
 - view all albums uploaded by the current user
+
+## How I worked on this project
+
+- I received designs of the website which were made in Figma: ![Screenshot](assets/figma-designs.png)
+- Next I created project in a Click-Up kanban board and broke down designs into smaller tasks: [Screenshot of tasks]
+- During the rest of the work on this project I continued to break big features into the smaller tasks and then implemented them one by one.
+
+- I built this app based on Figma designs: [Screenshot of designs]
+- I worked with tasks on a Kanban board: [Screenshot of tasks]
+- I used feature branches and Pull Requests: [Link to example PR]
 
 ## To-Do
 
