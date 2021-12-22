@@ -1,7 +1,5 @@
 # Music Box
 
-Music Database App built with React and Firebase
-
 ## About project
 
 Music Box is a web App for music collectors who buy music on analog records like vinyls, cd disks, audio tapes, etc. Music Box allow people to track their music collection, add albums to their digital catalog or wishlist and perform search.
@@ -49,13 +47,10 @@ for authenticated users only:
 
 ## How I worked on this project
 
-- I received designs of the website which were made in Figma: ![Screenshot](assets/figma-designs.png)
-- Next I created project in a Click-Up kanban board and broke down designs into smaller tasks: [Screenshot of tasks]
+- I received designs of the website which were made in Figma: ![screenshot of figma designs](assets/figma-designs.png)
+- Next I created project in a Click-Up kanban board and broke down designs into smaller tasks: ![screenshot of click-up board](assets/click-up-tasks.png)
 - During the rest of the work on this project I continued to break big features into the smaller tasks and then implemented them one by one.
-
-- I built this app based on Figma designs: [Screenshot of designs]
-- I worked with tasks on a Kanban board: [Screenshot of tasks]
-- I used feature branches and Pull Requests: [Link to example PR]
+- I also used feature branches and Pull Requests: [Link to example PR](https://github.com/eprikhodko/music-box/pull/18)
 
 ## To-Do
 
