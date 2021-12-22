@@ -47,7 +47,8 @@ for authenticated users only:
 
 ## How I worked on this project
 
-- I received designs of the website which were made in Figma: ![screenshot of figma designs](assets/figma-designs.png)
+- I received designs of the website which were made in Figma:
+- ![screenshot of figma designs](assets/figma-designs.png)
 - Next I created project in a Click-Up kanban board and broke down designs into smaller tasks: ![screenshot of click-up board](assets/click-up-tasks.png)
 - During the rest of the work on this project I continued to break big features into the smaller tasks and then implemented them one by one.
 - I also used feature branches and Pull Requests: [Link to example PR](https://github.com/eprikhodko/music-box/pull/18)
