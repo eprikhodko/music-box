@@ -4,7 +4,9 @@
 
 Music Box is a Web App for music collectors who buy music in the form of analog records. Music Box allow people track their music collection, upload albums to the database and search for new music.
 
-https://user-images.githubusercontent.com/74785156/147135584-9eaf8d5a-2848-4b2e-a9d7-346d74b5251b.mp4
+## Video overview
+
+https://user-images.githubusercontent.com/74785156/147227788-fe7adc6b-1c19-45b1-9cb8-13538330e512.mp4
 
 ## Contents
 
