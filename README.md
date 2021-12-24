@@ -4,30 +4,46 @@
 
 Music Box is a Web App for music collectors who buy music in the form of analog records. Music Box allow people track their music collection, upload albums to the database and search for new music.
 
-## Video overview
+## Live Demo
+
+live demo: https://eprikhodko.github.io/music-box/
+
+## Video Overview
 
 https://user-images.githubusercontent.com/74785156/147227788-fe7adc6b-1c19-45b1-9cb8-13538330e512.mp4
 
 ## Contents
 
-- [General Info](#general-info)
+- [About Project](#about-project)
 - [Live Demo](#live-demo)
+- [Video Overview](#video-overview)
+- [General Info](#general-info)
 - [Technologies](#technologies)
 - [Features](#features)
+- [How I worked on this project](#how-I-worked-on-this-project)
 - [To-Do](#to-do)
 
 ## General Info
 
-I have built this project with the aim to dive deep into React and Styled Components and make a "real-world", fullstack application with authentication and realtime database provided by Firebase.
+I have built this project with the aim to dive deep into React, React Hooks, JavaScript ES6+ syntax, Routing, Styled Components, and make a "real-world", fullstack application with authentication and realtime database provided by Firebase.
 This application uses React for a frontend and Firebase services for a backend, which are:
 
 - Firebase authentication system
 - Firestore database
 - Firebase Storage for file uploads
 
-## Live Demo
+While working on this project I learned a lot of modern core web developing concepts which are:
 
-live demo: https://eprikhodko.github.io/music-box/
+- Developing user-facing features using React.js and React Hooks
+- Thorough understanding of React.js and its principles
+- Building reusable components for future use
+- Translating designs and wireframes into code
+- Fetching data from server with async/await
+- Authenticating and creating user profiles in database
+- Uploading files to server from frontend
+- Signing up and log in users via forms
+- Familiarity with code versioning tool such as Git
+- And much more
 
 ## Technologies
 
@@ -49,7 +65,7 @@ Features for unauthenticated users:
 
 for authenticated users only:
 
-- add/remove albums to/from collection
+- add/remove albums to/from collection and wishlist
 - upload new albums to the database
 - view all albums uploaded by the current user
 
@@ -63,10 +79,12 @@ for authenticated users only:
 
 ![screenshot of click-up board](assets/click-up-tasks.png)
 
-- Then I began to work with this tasks that I created for myself
+- Then I began to work with that tasks that I created for myself
 - During the rest of the work on this project I continued to break big features into the smaller tasks and then implemented them one by one
-- I also used feature branches and Pull Requests to keep up my work well structured and organized: [Link to example PR](https://github.com/eprikhodko/music-box/pull/18)
+- I also used feature branches and Pull Requests to keep my work well structured and organized: [Here is a link to example PR](https://github.com/eprikhodko/music-box/pull/18)
 
 ## To-Do
 
+- make UI work more smooth
 - add Russian language support
+
