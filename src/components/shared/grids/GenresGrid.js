@@ -36,7 +36,6 @@ function GenresGrid() {
       setGenresData(docsData)
       setIsLoading(false)
     }
-    // fetch genres data
     fetchGenresData()
   }, [])
 

@@ -3,11 +3,8 @@ import styled from "styled-components"
 export const SearchForm = styled.form`
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   width: 14em;
-  margin-top: ${({ marginTop }) => marginTop};
-  margin-right: ${({ marginRight }) => marginRight || "2em"};
-  margin-bottom: ${({ marginBottom }) => marginBottom};
+  margin-right: 2em;
 
   background-color: #ebebeb;
   border: 1px solid #000;
@@ -18,10 +15,6 @@ export const SearchForm = styled.form`
   &:focus-within {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
-
-  /* @media (max-width: 940px) {
-    display: none;
-  } */
 `
 
 export const SearchFormMobile = styled(SearchForm)`
@@ -38,15 +31,6 @@ export const SearchFormMobile = styled(SearchForm)`
   }
 `
 
-// export const ContainerSearchBoxBig = styled(SearchForm)`
-//   max-width: 35em;
-//   width: 100%;
-//   margin-left: 0;
-//   margin-right: 0;
-//   margin: 10em 0 0;
-//   margin-bottom: ${({ marginBottom }) => marginBottom};
-// `
-
 export const TextInput = styled.input`
   padding: 0.6em 0;
   width: 100%;
@@ -59,8 +43,7 @@ export const TextInput = styled.input`
     outline: 3px solid transparent;
   }
   &::placeholder {
-    /* add "opacity: 1;" rule because firefox will render input placeholder semi-transparent */
-    opacity: 1;
+    opacity: 1; /* <-- add "opacity: 1;" rule because firefox will render input placeholder semi-transparent */
     color: rgba(0, 0, 0, 0.5);
     font-weight: 500;
   }

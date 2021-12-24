@@ -19,6 +19,7 @@ export const Button = styled.button`
   margin-right: ${({ $marginRight }) => $marginRight};
   margin-left: ${({ $marginLeft }) => $marginLeft};
 
+  /* enable hover effect only for devices that support hover. This hover styles would not being applied for mobile devices */
   @media (hover: hover) {
     &:hover {
       background-color: #333;

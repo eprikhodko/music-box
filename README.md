@@ -87,4 +87,3 @@ for authenticated users only:
 
 - make UI work more smooth
 - add Russian language support
-
