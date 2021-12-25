@@ -7,7 +7,7 @@ import { ReactComponent as SearchIcon } from "../../icons/icon-search.svg"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 import {
   ButtonArrowMobile,
-  SearchFormMobile,
+  SearchFormBig,
   TextInputMobile,
   ContainerSearchIconMobile,
 } from "../../components/shared/SearchBoxModules"
@@ -43,12 +43,11 @@ function SearchBox() {
   const isScreenBigEnough = useMatchMedia("(min-width: 400px)", true)
 
   return (
-    <SearchFormMobile onSubmit={handleSearchSubmit}>
+    <SearchFormBig onSubmit={handleSearchSubmit}>
       <ContainerSearchIconMobile>
         <SearchIcon onClick={handleSearchSubmit} />
       </ContainerSearchIconMobile>
       <TextInputMobile
-        // placeholder="Search artists, albums and more..."
         placeholder={
           isScreenBigEnough
             ? "Search artists, albums and more"
@@ -64,7 +63,7 @@ function SearchBox() {
       >
         <ArrowIcon />
       </ButtonArrowMobile>
-    </SearchFormMobile>
+    </SearchFormBig>
   )
 }
 

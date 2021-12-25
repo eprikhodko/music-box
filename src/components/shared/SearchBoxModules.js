@@ -17,7 +17,7 @@ export const SearchForm = styled.form`
   }
 `
 
-export const SearchFormMobile = styled(SearchForm)`
+export const SearchFormBig = styled(SearchForm)`
   width: 100%;
   max-width: 22em;
   margin-top: 3.75em;

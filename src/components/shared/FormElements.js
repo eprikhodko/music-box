@@ -126,14 +126,10 @@ export const ImageUploadBox = styled.label`
   will-change: transform;
   transition: background-color 450ms, transform 450ms;
 
-  /* enable hover effect only for devices that support hover. This hover styles would not being applied for mobile devices */
-  @media (hover: hover) {
-    /* on hover: show pointer cursor, change background color, move image upload box up for 10px */
-    &:hover {
-      cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.2);
-      transform: translateY(-10px);
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px); /* <-- move image upload box up for 10px */
   }
 
   /* change image icon color on hover */
@@ -231,12 +227,12 @@ export const HiddenCheckbox = styled.input`
 
 export const MessageController = styled.div`
   /* property name | duration */
-  transition: color 5s; /* <-- the second value defines transition duration */
+  transition: color 5s; /* <-- second value defines transition duration */
   color: ${({ triggerTransition }) => (triggerTransition ? "red" : "green")};
 `
 
 export const Message = styled.p`
   opacity: ${({ showMessage }) => (showMessage ? "1" : "0")};
-  transition: all 250ms linear 0.5s; /* <-- the last value defines transition-delay, so 'opacity:' changes after half a second */
+  transition: all 250ms linear 0.5s; /* <-- last value defines transition-delay, so 'opacity:' changes after half a second */
   cursor: default;
 `
