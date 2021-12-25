@@ -59,7 +59,7 @@ const FilterButton = styled(Button)`
   padding: 1em;
   min-width: 12em;
 
-  &:focus {
+  &:hover {
     background-color: #333;
     color: #fff;
   }
