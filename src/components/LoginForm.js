@@ -149,12 +149,7 @@ function LoginForm() {
           <ButtonLogin type="submit">Log in</ButtonLogin>
           {/* Show 'send password reset email' button if user typed in incorrect password */}
           {isPasswordWrong && (
-            <ButtonResetPassword
-              type="button"
-              // $marginTop="4em"
-              // $marginLeft="2em"
-              onClick={handlePasswordReset}
-            >
+            <ButtonResetPassword type="button" onClick={handlePasswordReset}>
               Reset password
             </ButtonResetPassword>
           )}
