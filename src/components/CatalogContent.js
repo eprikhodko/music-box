@@ -25,7 +25,7 @@ function CatalogContent({ componentsCount, setComponentsCount }) {
           albumsData={albumsData}
           setComponentsCount={setComponentsCount}
         />
-        {/* because of alignItems="center" on <Content /> parent component, go to <ShowMoreAndBackToTopButtons /> and set width: 100% to prevent <ShowMoreAndBackToTopButtons /> component shrinking */}
+        {/* because of alignItems="center" in <Container /> parent component, we're need to set width: 100% in <ShowMoreAndBackToTopButtons /> component to prevent its shrinking   */}
         <ShowMoreAndBackToTopButtons
           albumsSlice={albumsSlice}
           setAlbumsSlice={setAlbumsSlice}
