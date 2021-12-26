@@ -49,7 +49,7 @@ export const TextInput = styled.input`
   }
 `
 
-export const TextInputMobile = styled(TextInput)`
+export const TextInputBig = styled(TextInput)`
   padding: 1em 0;
 
   @media (min-width: 1024px) {
@@ -66,10 +66,9 @@ export const ContainerSearchIcon = styled.div`
     height: 1em;
     width: 1em;
   }
-  /* border: 1px solid green; */
 `
 
-export const ContainerSearchIconMobile = styled(ContainerSearchIcon)`
+export const ContainerSearchIconBig = styled(ContainerSearchIcon)`
   svg {
     height: 1.3em;
     width: 1.3em;
@@ -83,14 +82,6 @@ export const ContainerSearchIconMobile = styled(ContainerSearchIcon)`
     }
   }
 `
-
-// export const ContainerSearchIconBig = styled(ContainerSearchIcon)`
-//   margin-left: 1.5em;
-//   svg {
-//     height: 2em;
-//     width: 2em;
-//   }
-// `
 
 export const ButtonArrow = styled.button`
   display: flex;
@@ -112,7 +103,7 @@ export const ButtonArrow = styled.button`
   }
 `
 
-export const ButtonArrowMobile = styled(ButtonArrow)`
+export const ButtonArrowBig = styled(ButtonArrow)`
   margin-right: 0.2em;
 
   svg {
@@ -127,11 +118,3 @@ export const ButtonArrowMobile = styled(ButtonArrow)`
     width: 4.2em;
   }
 `
-
-/* export const ButtonArrowBig = styled(ButtonArrow)`
-  margin-right: 0.7em;
-  svg {
-    height: 4.2em;
-    width: 4.2em;
-  }
-` */

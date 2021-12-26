@@ -26,7 +26,6 @@ import {
 import * as ROUTES from "../../constants/routes"
 import UserContext from "../../context/user"
 
-// import IconImagePlaceholder from "../icons/image-fallback-album-details.svg"
 import { MainGrid } from "../../components/shared/Containers"
 import useMatchMedia from "../../hooks/useMatchMedia"
 
@@ -153,7 +152,6 @@ function ProfileContent() {
 
       // write sorted albums to the state
       setAlbumsInUserCollection(newArray)
-      // setIsLoading(false)
     }
 
     const fetchAlbumsInUserWishlist = async () => {
@@ -183,11 +181,8 @@ function ProfileContent() {
         dateAdded: timestamps[index],
       }))
 
-      // console.log("this is new array", newArray)
-
       // write sorted albums to the state
       setAlbumsInUserWishlist(newArray)
-      // setIsLoading(false)
     }
     // fetch albums
     if (currentUser) {
@@ -196,15 +191,10 @@ function ProfileContent() {
     }
   }, [currentUser])
 
-  // console.log("this is loading state", isLoading)
-
   useEffect(() => {
     const mergedArray = albumsInUserCollection.concat(albumsInUserWishlist)
     console.log("albums in user collection", albumsInUserCollection)
     console.log("albums in user wishlist", albumsInUserWishlist)
-
-    // const sortFunc = (a, b) =>
-    //   mergedArray.indexOf(a.dateAdded) - mergedArray.indexOf(b.dateAdded)
 
     const sortFunction = (a, b) => b.dateAdded - a.dateAdded
 

@@ -8,7 +8,7 @@ import AlbumsDataContext from "../../context/albumsData"
 
 import AlbumsGrid from "../../components/shared/grids/AlbumsGrid"
 import ShowMoreAndBackToTopButtons from "../../components/shared/ShowMoreAndBackToTopButtons"
-import { ReactComponent as IconNeutralFace } from "../../icons/sentiment_neutral_24px.svg"
+import { ReactComponent as IconPokerFace } from "../../icons/sentiment_neutral_24px.svg"
 
 import * as ROUTES from "../../constants/routes"
 import ScrollToTop from "../../components/utils/ScrollToTop"
@@ -209,7 +209,7 @@ function SearchResults({ componentsCount, setComponentsCount }) {
           ) : (
             <>
               <PokerFace>
-                <IconNeutralFace />
+                <IconPokerFace />
               </PokerFace>
 
               {currentUser ? (
