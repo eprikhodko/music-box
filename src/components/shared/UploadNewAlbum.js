@@ -8,7 +8,6 @@ import {
   AlbumCover,
   AlbumTitle,
   AlbumCoverContainer,
-  // UploadNewAlbumBox,
 } from "./grids/GridElements"
 
 function UploadNewAlbum() {

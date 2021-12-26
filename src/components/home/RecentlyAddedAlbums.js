@@ -1,13 +1,13 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import * as ROUTES from "../constants/routes"
-import AlbumsGrid from "./shared/grids/AlbumsGrid"
+import * as ROUTES from "../../constants/routes"
+import AlbumsGrid from "../shared/grids/AlbumsGrid"
 
-import { ButtonPrimary } from "./shared/Buttons"
-import AlbumsDataContext from "../context/albumsData"
-import useMatchMedia from "../hooks/useMatchMedia"
-import { MainGrid, Container } from "./shared/Containers"
-import SectionTitle from "./shared/TypographyElements"
+import { ButtonPrimary } from "../shared/Buttons"
+import AlbumsDataContext from "../../context/albumsData"
+import useMatchMedia from "../../hooks/useMatchMedia"
+import { MainGrid, Container } from "../shared/Containers"
+import SectionTitle from "../shared/TypographyElements"
 
 function RecentlyAddedAlbums() {
   const isTablet = useMatchMedia("(min-width: 600px)", true)

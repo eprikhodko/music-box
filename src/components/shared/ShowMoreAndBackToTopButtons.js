@@ -1,19 +1,16 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
-// import { useEffect } from "react"
 import { ButtonPrimary } from "./Buttons"
 import { ReactComponent as ArrowIcon } from "../../icons/search-arrow-icon.svg"
 import useMatchMedia from "../../hooks/useMatchMedia"
 
 const ButtonsContainer = styled.div`
-  /* set width to 100% to avoid shrinking because of alignItems="center" at parent <Content /> component */
-  width: 100%;
+  width: 100%; /* <-- set width to 100% to avoid shrinking because of alignItems="center" at parent <Content /> component */
   margin-top: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr 1em 1fr;
   grid-template-areas: ". show-more-button . back-to-top-button";
   justify-items: center;
-  /* border: 1px solid; */
 `
 
 const ShowMoreButton = styled(ButtonPrimary)`
@@ -84,13 +81,6 @@ function ShowMoreAndBackToTopButtons({
     }
     return slice
   }
-
-  //   const albumsSlice = howManyAlbumsToShow()
-  // console.log(albumsSlice)
-
-  // useEffect(() => {
-  //   console.log(howManyAlbumsToShow())
-  // }, [isTabletOrMobile, isDesktopResolution])
 
   const showMore = () => {
     setAlbumsSlice((prevSlice) => ({

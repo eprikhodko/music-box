@@ -24,11 +24,9 @@ import {
   MessageController,
   Message,
   ImageUploadBox,
-  // ImagePlaceholderIcon,
   HiddenFileInput,
 } from "./shared/FormElements"
 import { Button } from "./shared/Buttons"
-// import { ReactComponent as IconImagePlaceholder } from "../icons/image-placeholder.svg"
 
 import UserContext from "../context/user"
 import { MainGrid } from "./shared/Containers"
@@ -36,8 +34,6 @@ import { MainGrid } from "./shared/Containers"
 const ButtonUpload = styled(Button)`
   margin-top: 3em;
 `
-
-// const ImagePlaceholderIcon = styled(IconImagePlaceholder)``
 
 const CenterContent = styled.div`
   height: 100%;
@@ -220,11 +216,9 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
   return (
     <MainGrid>
       <Form onSubmit={handleSubmit}>
-        {/* <ContainerUploadForm marginTop="5em"> */}
         <ImageUploadBox htmlFor="imageUpload" fileUrl={fileDownloadUrl}>
           {!fileDownloadUrl && (
             <>
-              {/* <ImagePlaceholderIcon /> */}
               <StyledText>
                 <CenterContent>Click to upload album picture</CenterContent>
               </StyledText>
@@ -307,7 +301,6 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
             }}
           />
         </ContainerFloatInput>
-        {/* </ContainerUploadForm> */}
 
         <ContainerCheckboxes>
           <CheckboxLabel htmlFor="addToCollection">
@@ -337,7 +330,6 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
           </CheckboxLabel>
         </ContainerCheckboxes>
 
-        {/* <ContainerUploadForm marginTop="3em"> */}
         <ButtonUpload type="submit">Upload</ButtonUpload>
 
         {/* <<-- Show message to the user after successful upload-->> */}
@@ -369,7 +361,6 @@ function UploadForm({ isUploadSuccessful, setIsUploadSuccessful }) {
         <Message showMessage={isUploadSuccessful}>
           You&apos;re successfully uploaded album to the database!
         </Message>
-        {/* </ContainerUploadForm> */}
       </Form>
     </MainGrid>
   )

@@ -15,15 +15,15 @@ import useAuth from "./hooks/useAuth"
 import * as ROUTES from "./constants/routes"
 
 // import pages
-import Catalog from "./pages/catalog/catalog"
 import Home from "./pages/home"
-import Search from "./pages/search/search"
+import Catalog from "./pages/catalog"
+import Search from "./pages/search"
 import Login from "./pages/login"
 import SignUp from "./pages/signup"
 import NotFound from "./pages/not-found"
 import Upload from "./pages/upload"
 import Album from "./pages/album"
-import Profile from "./pages/profile/profile"
+import Profile from "./pages/profile"
 import Collection from "./pages/collection"
 import Wishlist from "./pages/wishlist"
 import MyUploads from "./pages/my-uploads"
@@ -58,13 +58,12 @@ function App() {
       setAlbumsData(docsData)
       setIsAlbumsDataLoading(false)
     }
-    // fetch albums data if user uploaded new album
+    // fetch albums data after user uploaded new album
     // if we won't fetch albums data after user uploaded new album, user should have manually refresh page to trigger useEffect hook to fetch albums data so that albums on the page will be updated too
     fetchAlbumsData()
   }, [isUploadSuccessful, isAlbumRemovedFromDatabase])
 
   return (
-    // <Router>
     <UserContext.Provider value={currentUser}>
       <AlbumsDataContext.Provider value={albumsValue}>
         <Switch>
@@ -122,8 +121,6 @@ function App() {
         </Switch>
       </AlbumsDataContext.Provider>
     </UserContext.Provider>
-
-    // </Router>
   )
 }
 

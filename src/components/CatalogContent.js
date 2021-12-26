@@ -2,11 +2,11 @@ import PropTypes from "prop-types"
 
 import { useState, useContext } from "react"
 
-import AlbumsGrid from "../../components/shared/grids/AlbumsGrid"
-import ShowMoreAndBackToTopButtons from "../../components/shared/ShowMoreAndBackToTopButtons"
-import AlbumsDataContext from "../../context/albumsData"
-import SectionTitle from "../../components/shared/TypographyElements"
-import { MainGrid, Container } from "../../components/shared/Containers"
+import AlbumsGrid from "./shared/grids/AlbumsGrid"
+import ShowMoreAndBackToTopButtons from "./shared/ShowMoreAndBackToTopButtons"
+import AlbumsDataContext from "../context/albumsData"
+import SectionTitle from "./shared/TypographyElements"
+import { MainGrid, Container } from "./shared/Containers"
 
 function CatalogContent({ componentsCount, setComponentsCount }) {
   const [albumsSlice, setAlbumsSlice] = useState({
@@ -25,7 +25,7 @@ function CatalogContent({ componentsCount, setComponentsCount }) {
           albumsData={albumsData}
           setComponentsCount={setComponentsCount}
         />
-        {/* because of alignItems="center" on <Content /> parent component, go to <ShowMoreAndBackToTopButtons /> and set width: 100% to prevent <ShowMoreAndBackToTopButtons /> component shrinking */}
+        {/* because of alignItems="center" in <Container /> parent component, we're need to set width: 100% in <ShowMoreAndBackToTopButtons /> component to prevent its shrinking   */}
         <ShowMoreAndBackToTopButtons
           albumsSlice={albumsSlice}
           setAlbumsSlice={setAlbumsSlice}

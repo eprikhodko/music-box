@@ -1,7 +1,5 @@
 import PropTypes from "prop-types"
 
-import styled from "styled-components"
-
 import { useContext, useState, useEffect } from "react"
 import { Link, useParams, useHistory } from "react-router-dom"
 
@@ -15,221 +13,29 @@ import {
 } from "firebase/firestore"
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
-import AlbumsDataContext from "../context/albumsData"
-import { ButtonPrimary } from "./shared/Buttons"
+import AlbumsDataContext from "../../context/albumsData"
 
-import * as ROUTES from "../constants/routes"
-import UserContext from "../context/user"
+import * as ROUTES from "../../constants/routes"
+import UserContext from "../../context/user"
 
-import { MainGrid } from "./shared/Containers"
-import { AlbumCoverContainer, AlbumCover } from "./shared/grids/GridElements"
-
-const Container = styled.div`
-  grid-column: 2/-2;
-
-  margin: 1em auto;
-  width: 100%;
-  max-width: 35em;
-
-  display: grid;
-  justify-items: center;
-
-  @media (min-width: 1100px) {
-    margin: 0;
-    margin-top: 5em;
-    max-width: 100%;
-    justify-items: left;
-
-    grid-template-columns: minmax(0, 35em) minmax(0, 8em) min-content 2em auto;
-
-    grid-template-rows: ${({ currentUser }) =>
-      currentUser
-        ? // ? "auto auto auto auto auto auto 1fr"
-          "auto auto auto auto 3em auto 1.5em auto 1.5em auto"
-        : "auto auto 4em auto 6em 1fr"};
-
-    grid-template-areas: ${({ currentUser }) =>
-      currentUser
-        ? `
-      "image . album-title album-title album-title"
-      "image . artist artist artist"
-      "image . year year year"
-      "image . genre genre genre"
-      "image . . . ."
-      "image . button-collection button-collection button-collection"
-      "image . . . ."
-      "image . button-wishlist button-wishlist button-wishlist"
-      "image . . . ."
-      "image . button-remove button-remove button-remove"
-      "image . . . .";
-      `
-        : `
-      "image . album-title album-title album-title"
-      "image . artist artist artist"
-      "image . year year year"
-      "image . genre genre genre"
-      "image . text text text"
-      "image . button-signup . button-login";
-      `};
-  }
-`
-
-const AlbumCoverImageContainer = styled(AlbumCoverContainer)`
-  justify-self: stretch;
-
-  @media (min-width: 1100px) {
-    grid-area: image;
-  }
-`
-
-const AlbumCoverImage = styled(AlbumCover)`
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-`
-
-const AlbumTitle = styled.h1`
-  font-size: 2.5rem;
-  color: #000;
-  text-align: center;
-
-  margin-top: 3em;
-
-  @media (min-width: 600px) {
-    font-size: 4.5rem;
-    margin-top: ${({ currentUser }) => (currentUser ? "1em" : "1.5em")};
-  }
-
-  @media (min-width: 1100px) {
-    grid-area: album-title;
-    align-self: end;
-    text-align: left;
-  }
-`
-
-const AlbumArtist = styled.h2`
-  font-size: 2.5rem;
-  color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-
-  @media (min-width: 600px) {
-    font-size: 2.5rem;
-  }
-
-  @media (min-width: 1100px) {
-    grid-area: artist;
-    text-align: left;
-  }
-`
-
-const AlbumYear = styled.p`
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 1.8rem;
-  color: #000;
-  text-align: center;
-
-  margin: 0;
-  margin-top: 1.5em;
-
-  @media (min-width: 1100px) {
-    grid-area: year;
-    align-self: end;
-    text-align: left;
-  }
-`
-
-const AlbumGenre = styled.p`
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 1.8rem;
-  color: #000;
-  text-align: center;
-
-  margin-top: 0.2em;
-  margin-bottom: 2em;
-
-  @media (min-width: 1100px) {
-    grid-area: genre;
-    text-align: left;
-    margin: 0;
-    margin-top: 0.2em;
-  }
-`
-
-const StyledParagraph = styled.p`
-  max-width: 30em;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 1.6rem;
-  color: #000;
-  text-align: center;
-
-  margin-top: 0.5em;
-
-  @media (min-width: 1100px) {
-    grid-area: text;
-    text-align: left;
-    align-self: end;
-    margin: 0;
-  }
-`
-
-const ButtonSignup = styled(ButtonPrimary)`
-  margin-top: 1.3em;
-  justify-self: center;
-
-  @media (min-width: 1100px) {
-    grid-area: button-signup;
-    align-self: start;
-    justify-self: start;
-  }
-`
-
-const ButtonLogin = styled(ButtonPrimary)`
-  margin-top: 1.3em;
-  justify-self: center;
-
-  @media (min-width: 1100px) {
-    grid-area: button-login;
-    align-self: start;
-    justify-self: start;
-  }
-`
-
-const ButtonCollection = styled(ButtonPrimary)`
-  width: 16.5em;
-
-  @media (min-width: 1100px) {
-    grid-area: button-collection;
-    align-self: start;
-  }
-`
-
-const ButtonWishlist = styled(ButtonPrimary)`
-  width: 16.5em;
-  margin-top: 1.5em;
-
-  @media (min-width: 1100px) {
-    grid-area: button-wishlist;
-    align-self: start;
-
-    margin: 0;
-  }
-`
-
-const ButtonRemove = styled(ButtonPrimary)`
-  width: 16.5em;
-  margin-top: 1.5em;
-
-  @media (min-width: 1100px) {
-    grid-area: button-remove;
-    align-self: start;
-
-    margin: 0;
-  }
-`
+import { MainGrid } from "../shared/Containers"
+import {
+  Container,
+  AlbumCoverImageContainer,
+  AlbumCoverImage,
+  AlbumTitle,
+  AlbumArtist,
+  AlbumGenre,
+  AlbumYear,
+  ButtonCollection,
+  ButtonWishlist,
+  ButtonLogin,
+  ButtonRemove,
+  ButtonSignup,
+  StyledParagraph,
+} from "./AlbumDetailsElements"
 
 function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
-  const { albumId } = useParams()
   const { albumsData, isAlbumsDataLoading } = useContext(AlbumsDataContext)
 
   const currentUser = useContext(UserContext)
@@ -241,6 +47,9 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
 
   const db = getFirestore()
 
+  // take album id from url
+  const { albumId } = useParams()
+  // find album in albumsData array
   const album = albumsData.find((item) => item.albumId === albumId)
 
   const checkIfAlbumIsInUserCollection = async () => {
@@ -251,6 +60,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
       "albumsInUserCollection",
       albumId
     )
+
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
@@ -270,6 +80,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
       "albumsInUserWishlist",
       albumId
     )
+
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
@@ -341,7 +152,6 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
       setIsAlbumRemovedFromDatabase(true)
       console.log("album was successfully removed from database")
       history.push(`/`)
-      // history.push(`/uploaded-by/${currentUser.displayName}`)
     } catch (error) {
       console.log(error)
     }
@@ -388,6 +198,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
   }
 
   useEffect(() => {
+    // if current user authorized, run functions below
     if (currentUser) {
       checkIfAlbumIsInUserCollection()
       checkIfAlbumIsInUserWishlist()
@@ -433,10 +244,7 @@ function AlbumDetails({ setIsAlbumRemovedFromDatabase }) {
 
                 {/* show 'Remove from database' button only if user uploaded this album to the database himself */}
                 {album.uploadedBy === currentUser.uid && (
-                  <ButtonRemove
-                    // $marginTop="1.5em"
-                    onClick={removeAlbumFromDatabase}
-                  >
+                  <ButtonRemove onClick={removeAlbumFromDatabase}>
                     Remove from database
                   </ButtonRemove>
                 )}

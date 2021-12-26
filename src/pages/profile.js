@@ -1,6 +1,6 @@
-import Header from "../../components/Header/Header"
-import Footer from "../../components/Footer"
-import ProfileContent from "./ProfileContent"
+import Header from "../components/Header/Header"
+import Footer from "../components/Footer"
+import ProfileContent from "../components/profile/ProfileContent"
 
 function Profile() {
   return (

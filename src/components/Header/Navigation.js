@@ -49,7 +49,7 @@ const ContainerUserAvatar = styled.div`
   margin-left: 2.5em;
 `
 
-const Avatar = styled(IconAvatar)`
+const BlankAvatar = styled(IconAvatar)`
   width: 3.5em;
   height: 3.5em;
 
@@ -128,7 +128,7 @@ function Navigation() {
           {currentUser?.photoURL ? (
             <ImageAvatar fileUrl={currentUser?.photoURL} />
           ) : (
-            <Avatar />
+            <BlankAvatar />
           )}
         </Link>
       </ContainerUserAvatar>

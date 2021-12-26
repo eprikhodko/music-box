@@ -3,11 +3,8 @@ import styled from "styled-components"
 export const SearchForm = styled.form`
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   width: 14em;
-  margin-top: ${({ marginTop }) => marginTop};
-  margin-right: ${({ marginRight }) => marginRight || "2em"};
-  margin-bottom: ${({ marginBottom }) => marginBottom};
+  margin-right: 2em;
 
   background-color: #ebebeb;
   border: 1px solid #000;
@@ -18,13 +15,9 @@ export const SearchForm = styled.form`
   &:focus-within {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
-
-  /* @media (max-width: 940px) {
-    display: none;
-  } */
 `
 
-export const SearchFormMobile = styled(SearchForm)`
+export const SearchFormBig = styled(SearchForm)`
   width: 100%;
   max-width: 22em;
   margin-top: 3.75em;
@@ -38,15 +31,6 @@ export const SearchFormMobile = styled(SearchForm)`
   }
 `
 
-// export const ContainerSearchBoxBig = styled(SearchForm)`
-//   max-width: 35em;
-//   width: 100%;
-//   margin-left: 0;
-//   margin-right: 0;
-//   margin: 10em 0 0;
-//   margin-bottom: ${({ marginBottom }) => marginBottom};
-// `
-
 export const TextInput = styled.input`
   padding: 0.6em 0;
   width: 100%;
@@ -59,14 +43,13 @@ export const TextInput = styled.input`
     outline: 3px solid transparent;
   }
   &::placeholder {
-    /* add "opacity: 1;" rule because firefox will render input placeholder semi-transparent */
-    opacity: 1;
+    opacity: 1; /* <-- add "opacity: 1;" rule because firefox will render input placeholder semi-transparent */
     color: rgba(0, 0, 0, 0.5);
     font-weight: 500;
   }
 `
 
-export const TextInputMobile = styled(TextInput)`
+export const TextInputBig = styled(TextInput)`
   padding: 1em 0;
 
   @media (min-width: 1024px) {
@@ -83,10 +66,9 @@ export const ContainerSearchIcon = styled.div`
     height: 1em;
     width: 1em;
   }
-  /* border: 1px solid green; */
 `
 
-export const ContainerSearchIconMobile = styled(ContainerSearchIcon)`
+export const ContainerSearchIconBig = styled(ContainerSearchIcon)`
   svg {
     height: 1.3em;
     width: 1.3em;
@@ -100,14 +82,6 @@ export const ContainerSearchIconMobile = styled(ContainerSearchIcon)`
     }
   }
 `
-
-// export const ContainerSearchIconBig = styled(ContainerSearchIcon)`
-//   margin-left: 1.5em;
-//   svg {
-//     height: 2em;
-//     width: 2em;
-//   }
-// `
 
 export const ButtonArrow = styled.button`
   display: flex;
@@ -129,7 +103,7 @@ export const ButtonArrow = styled.button`
   }
 `
 
-export const ButtonArrowMobile = styled(ButtonArrow)`
+export const ButtonArrowBig = styled(ButtonArrow)`
   margin-right: 0.2em;
 
   svg {
@@ -144,11 +118,3 @@ export const ButtonArrowMobile = styled(ButtonArrow)`
     width: 4.2em;
   }
 `
-
-/* export const ButtonArrowBig = styled(ButtonArrow)`
-  margin-right: 0.7em;
-  svg {
-    height: 4.2em;
-    width: 4.2em;
-  }
-` */

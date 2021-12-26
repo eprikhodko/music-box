@@ -6,15 +6,15 @@ import { useParams, Link } from "react-router-dom"
 
 import AlbumsDataContext from "../../context/albumsData"
 
-import AlbumsGrid from "../../components/shared/grids/AlbumsGrid"
-import ShowMoreAndBackToTopButtons from "../../components/shared/ShowMoreAndBackToTopButtons"
-import { ReactComponent as IconNeutralFace } from "../../icons/sentiment_neutral_24px.svg"
+import AlbumsGrid from "../shared/grids/AlbumsGrid"
+import ShowMoreAndBackToTopButtons from "../shared/ShowMoreAndBackToTopButtons"
+import { ReactComponent as IconPokerFace } from "../../icons/sentiment_neutral_24px.svg"
 
 import * as ROUTES from "../../constants/routes"
-import ScrollToTop from "../../components/utils/ScrollToTop"
-import { Button } from "../../components/shared/Buttons"
-import { MainGrid, Container } from "../../components/shared/Containers"
-import SectionTitle from "../../components/shared/TypographyElements"
+import ScrollToTop from "../utils/ScrollToTop"
+import { Button } from "../shared/Buttons"
+import { MainGrid, Container } from "../shared/Containers"
+import SectionTitle from "../shared/TypographyElements"
 import UserContext from "../../context/user"
 
 const StyledParagraph = styled.p`
@@ -43,24 +43,32 @@ const PokerFace = styled.div`
   }
 `
 
-const FilterAlbumsButtons = styled.div`
+const GridContainer = styled.div`
   margin: 2em 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
-  gap: 1.5em;
 
-  @media (min-width: 1080px) {
-    flex-direction: row;
+  grid-gap: 1em;
+
+  @media (min-width: 1024px) {
+    grid-auto-flow: column;
   }
 `
 
-const FilterAlbumsTitle = styled.h3`
-  margin: 0;
+const FilterButton = styled(Button)`
+  padding: 1em;
+  min-width: 12em;
 
-  @media (min-width: 1080) {
-    margin-right: 1em;
+  &:hover {
+    background-color: #333;
+    color: #fff;
   }
+`
+
+const FilterAlbumsTitle = styled.p`
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0;
 `
 
 function SearchResults({ componentsCount, setComponentsCount }) {
@@ -156,42 +164,30 @@ function SearchResults({ componentsCount, setComponentsCount }) {
           {/* show filter buttons only if filteredAlbums is not empty. If nothing found on search, don't show filter buttons */}
           {filteredAlbums.length > 0 && (
             <>
-              <FilterAlbumsButtons>
+              <GridContainer>
                 <FilterAlbumsTitle>filter albums:</FilterAlbumsTitle>
                 {filteredByGenre.length > 0 && (
-                  <Button
-                    type="button"
-                    // $marginRight="2em"
-                    onClick={filterByGenre}
-                  >
+                  <FilterButton type="button" onClick={filterByGenre}>
                     genre
-                  </Button>
+                  </FilterButton>
                 )}
 
                 {filteredByAlbumName.length > 0 && (
-                  <Button
-                    type="button"
-                    // $marginRight="2em"
-                    onClick={filterByAlbumName}
-                  >
+                  <FilterButton type="button" onClick={filterByAlbumName}>
                     album name
-                  </Button>
+                  </FilterButton>
                 )}
 
                 {filteredByArtist.length > 0 && (
-                  <Button
-                    type="button"
-                    // $marginRight="2em"
-                    onClick={filterByArtist}
-                  >
+                  <FilterButton type="button" onClick={filterByArtist}>
                     artist
-                  </Button>
+                  </FilterButton>
                 )}
 
-                <Button type="button" onClick={showAllAlbums}>
+                <FilterButton type="button" onClick={showAllAlbums}>
                   all albums
-                </Button>
-              </FilterAlbumsButtons>
+                </FilterButton>
+              </GridContainer>
             </>
           )}
 
@@ -213,7 +209,7 @@ function SearchResults({ componentsCount, setComponentsCount }) {
           ) : (
             <>
               <PokerFace>
-                <IconNeutralFace />
+                <IconPokerFace />
               </PokerFace>
 
               {currentUser ? (

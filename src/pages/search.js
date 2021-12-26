@@ -2,13 +2,13 @@ import PropTypes from "prop-types"
 
 import { Switch, Route } from "react-router-dom"
 
-import Header from "../../components/Header/Header"
-import Footer from "../../components/Footer"
+import Header from "../components/Header/Header"
+import Footer from "../components/Footer"
 
-import { Container, MainGrid } from "../../components/shared/Containers"
-import GenresGrid from "../../components/shared/grids/GenresGrid"
-import SearchResults from "./SearchResults"
-import SearchBox from "./SearchBox"
+import { Container, MainGrid } from "../components/shared/Containers"
+import GenresGrid from "../components/shared/grids/GenresGrid"
+import SearchResults from "../components/search/SearchResults"
+import SearchBox from "../components/search/SearchBox"
 
 function Search({ componentsCount, setComponentsCount }) {
   return (

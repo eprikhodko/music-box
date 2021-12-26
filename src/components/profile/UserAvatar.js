@@ -55,7 +55,6 @@ const ImageUploadBox = styled.label`
   width: 8.5em;
   height: 8.5em;
 
-  /* border: 1px solid #000; */
   border-radius: 999px;
 
   /* center content inside of image upload container */

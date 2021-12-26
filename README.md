@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Music Box
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About project
 
-## Available Scripts
+Music Box is a Web App for music collectors who buy music in the form of analog records. Music Box allow people track their music collection, upload albums to the database and search for new music.
 
-In the project directory, you can run:
+## Live Demo
 
-### `yarn start`
+live demo: https://eprikhodko.github.io/music-box/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Video Overview
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+https://user-images.githubusercontent.com/74785156/147227788-fe7adc6b-1c19-45b1-9cb8-13538330e512.mp4
 
-### `yarn test`
+## Contents
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [About Project](#about-project)
+- [Live Demo](#live-demo)
+- [Video Overview](#video-overview)
+- [General Info](#general-info)
+- [Technologies](#technologies)
+- [Features](#features)
+- [How I worked on this project](#how-I-worked-on-this-project)
+- [To-Do](#to-do)
 
-### `yarn build`
+## General Info
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I have built this project with the aim to dive deep into React, React Hooks, JavaScript ES6+ syntax, Routing, Styled Components, and make a "real-world", fullstack application with authentication and realtime database provided by Firebase.
+This application uses React for a frontend and Firebase services for a backend, which are:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Firebase authentication system
+- Firestore database
+- Firebase Storage for file uploads
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+While working on this project I learned a lot of modern core web developing concepts which are:
 
-### `yarn eject`
+- Developing user-facing features using React.js and React Hooks
+- Thorough understanding of React.js and its principles
+- Building reusable components for future use
+- Translating designs and wireframes into code
+- Fetching data from server with async/await
+- Authenticating and creating user profiles in database
+- Uploading files to server from frontend
+- Signing up and log in users via forms
+- Familiarity with code versioning tool such as Git
+- And much more
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Technologies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Project created with:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React 17.0.2
+- Firebase 9.2.0
+- React Router 5.3.0
+- Styled Components 5.3.1
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Features
 
-## Learn More
+Features for unauthenticated users:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- view recently added albums
+- view album details
+- view music catalog
+- search albums through database
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+for authenticated users only:
 
-### Code Splitting
+- add/remove albums to/from collection and wishlist
+- upload new albums to the database
+- view all albums uploaded by the current user
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## How I worked on this project
 
-### Analyzing the Bundle Size
+- I received designs of the website which were made in Figma:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![screenshot of figma designs](assets/figma-designs.png)
 
-### Making a Progressive Web App
+- Next I created project in a Click-Up kanban board and broke down designs into smaller tasks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![screenshot of click-up board](assets/click-up-tasks.png)
 
-### Advanced Configuration
+- Then I began to work on tasks that I created for myself
+- During the rest of the work on this project I continued to break big features into smaller tasks and then implemented them one by one
+- I also used feature branches and Pull Requests to keep my work well structured and organized: [Here is a link to example PR](https://github.com/eprikhodko/music-box/pull/18)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## To-Do
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- make UI interactions more smooth
+- add Russian language support
