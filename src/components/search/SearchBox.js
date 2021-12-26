@@ -10,7 +10,7 @@ import {
   SearchFormBig,
   TextInputBig,
   ContainerSearchIconBig,
-} from "../../components/shared/SearchBoxModules"
+} from "../shared/SearchBoxModules"
 
 function SearchBox() {
   const [searchQuery, setSearchQuery] = useState("")

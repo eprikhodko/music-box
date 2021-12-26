@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { ButtonPrimary } from "../../components/shared/Buttons"
+import { ButtonPrimary } from "../shared/Buttons"
 import UserAvatar from "./UserAvatar"
 
 import {
@@ -21,12 +21,12 @@ import {
   AlbumTitle,
   AlbumArtist,
   StyledAlbumsGrid,
-} from "../../components/shared/grids/GridElements"
+} from "../shared/grids/GridElements"
 
 import * as ROUTES from "../../constants/routes"
 import UserContext from "../../context/user"
 
-import { MainGrid } from "../../components/shared/Containers"
+import { MainGrid } from "../shared/Containers"
 import useMatchMedia from "../../hooks/useMatchMedia"
 
 const Container = styled.div`

@@ -1,10 +1,7 @@
 import styled from "styled-components"
-import {
-  AlbumCoverContainer,
-  AlbumCover,
-} from "../../components/shared/grids/GridElements"
+import { AlbumCoverContainer, AlbumCover } from "../shared/grids/GridElements"
 
-import { ButtonPrimary } from "../../components/shared/Buttons"
+import { ButtonPrimary } from "../shared/Buttons"
 
 export const Container = styled.div`
   grid-column: 2/-2;

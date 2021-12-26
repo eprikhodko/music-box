@@ -6,15 +6,15 @@ import { useParams, Link } from "react-router-dom"
 
 import AlbumsDataContext from "../../context/albumsData"
 
-import AlbumsGrid from "../../components/shared/grids/AlbumsGrid"
-import ShowMoreAndBackToTopButtons from "../../components/shared/ShowMoreAndBackToTopButtons"
+import AlbumsGrid from "../shared/grids/AlbumsGrid"
+import ShowMoreAndBackToTopButtons from "../shared/ShowMoreAndBackToTopButtons"
 import { ReactComponent as IconPokerFace } from "../../icons/sentiment_neutral_24px.svg"
 
 import * as ROUTES from "../../constants/routes"
-import ScrollToTop from "../../components/utils/ScrollToTop"
-import { Button } from "../../components/shared/Buttons"
-import { MainGrid, Container } from "../../components/shared/Containers"
-import SectionTitle from "../../components/shared/TypographyElements"
+import ScrollToTop from "../utils/ScrollToTop"
+import { Button } from "../shared/Buttons"
+import { MainGrid, Container } from "../shared/Containers"
+import SectionTitle from "../shared/TypographyElements"
 import UserContext from "../../context/user"
 
 const StyledParagraph = styled.p`

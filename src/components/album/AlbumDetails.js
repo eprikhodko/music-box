@@ -18,7 +18,7 @@ import AlbumsDataContext from "../../context/albumsData"
 import * as ROUTES from "../../constants/routes"
 import UserContext from "../../context/user"
 
-import { MainGrid } from "../../components/shared/Containers"
+import { MainGrid } from "../shared/Containers"
 import {
   Container,
   AlbumCoverImageContainer,

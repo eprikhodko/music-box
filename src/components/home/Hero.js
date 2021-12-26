@@ -2,13 +2,13 @@ import styled from "styled-components"
 import { useContext } from "react"
 
 import { Link } from "react-router-dom"
-import * as ROUTES from "../constants/routes"
-import screenSize from "../constants/mediaQueries"
+import * as ROUTES from "../../constants/routes"
+import screenSize from "../../constants/mediaQueries"
 
-import { MainGrid } from "./shared/Containers"
-import heroImage from "../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
-import { ButtonPrimary } from "./shared/Buttons"
-import UserContext from "../context/user"
+import { MainGrid } from "../shared/Containers"
+import heroImage from "../../images/florencia-viadana-F7W1QP62psQ-unsplash-optimized.jpg"
+import { ButtonPrimary } from "../shared/Buttons"
+import UserContext from "../../context/user"
 
 const Container = styled.div`
   max-width: 1300px;

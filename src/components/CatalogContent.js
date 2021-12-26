@@ -2,11 +2,11 @@ import PropTypes from "prop-types"
 
 import { useState, useContext } from "react"
 
-import AlbumsGrid from "../../components/shared/grids/AlbumsGrid"
-import ShowMoreAndBackToTopButtons from "../../components/shared/ShowMoreAndBackToTopButtons"
-import AlbumsDataContext from "../../context/albumsData"
-import SectionTitle from "../../components/shared/TypographyElements"
-import { MainGrid, Container } from "../../components/shared/Containers"
+import AlbumsGrid from "./shared/grids/AlbumsGrid"
+import ShowMoreAndBackToTopButtons from "./shared/ShowMoreAndBackToTopButtons"
+import AlbumsDataContext from "../context/albumsData"
+import SectionTitle from "./shared/TypographyElements"
+import { MainGrid, Container } from "./shared/Containers"
 
 function CatalogContent({ componentsCount, setComponentsCount }) {
   const [albumsSlice, setAlbumsSlice] = useState({
