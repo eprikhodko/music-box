@@ -16,7 +16,7 @@ const NotFoundTitle = styled.h1`
   }
 `
 
-const SubTitle = styled.h2`
+const Subtitle = styled.h2`
   font-size: 2.5rem;
   text-align: center;
 
@@ -33,7 +33,7 @@ function NotFound() {
         <MainGrid>
           <Container>
             <NotFoundTitle>404</NotFoundTitle>
-            <SubTitle>Sorry, this page not found</SubTitle>
+            <Subtitle>Sorry, this page not found</Subtitle>
 
             <Button as={Link} to={ROUTES.HOME} $marginTop="2em">
               Go Back To Home
