@@ -79,11 +79,11 @@ for authenticated users only:
 
 ![screenshot of click-up board](assets/click-up-tasks.png)
 
-- Then I began to work with that tasks that I created for myself
-- During the rest of the work on this project I continued to break big features into the smaller tasks and then implemented them one by one
+- Then I began to work on tasks that I created for myself
+- During the rest of the work on this project I continued to break big features into smaller tasks and then implemented them one by one
 - I also used feature branches and Pull Requests to keep my work well structured and organized: [Here is a link to example PR](https://github.com/eprikhodko/music-box/pull/18)
 
 ## To-Do
 
-- make UI work more smooth
+- make UI interactions more smooth
 - add Russian language support
