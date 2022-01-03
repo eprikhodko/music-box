@@ -30,7 +30,7 @@
   ],
   "overrides": [
       {
-        // enable eslint-plugin-testing-library rules or preset only for matching files!
+        // enable eslint-plugin-testing-library rules or preset only for matching files
         "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
         "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
       }
@@ -49,8 +49,6 @@
         }
       }],
       "styled-components-a11y/label-has-associated-control": [ 2, {
-        // "labelComponents": [],
-        // "labelAttributes": ["label"],
         "controlComponents": ["FormInput"],
         "depth": 3
       }],
